@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SVD</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+	  .remark-slide-content h1 { font-size: 3em; }
+    .remark-slide-content h2 { font-size: 2em; }
+    .remark-slide-content h3 { font-size: 1.6em; }
+    .remark-slide-content ul { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; line-height: 80px; }
+    .remark-slide-content ol { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; }
+    .reference ul {font-size: 1.4em; font-family: 'Yanone Kaffeesatz'; line-height: 60px; color:blue}
+    .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        right: 3em;
+        color: #777872;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 50%;
+        float: right;
+        padding-top: 1em;
+      }
+      .pseudocode{
+        background-color:#E5E1B0;
+        padding:10px;
+        font-size: 15px;
+        color: black;
+        text-shadow: 0 0 3px #333;
+        border-radius: 15px;
+      }
+	  .imgcenter{
+	  	height: 200px;/*元素的高度*/
+		width: 200px;
+	  	position: absolute;
+	  	top: 30%;
+	  	margin-top: -50px;
+		left: 25%;
+		margin-left: -50px;
+	  	}	 
+      .vertmid{
+        width: 100%;
+        height: 67%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
+
+name: mid
+layout: true
+class: center, middle 
+---
+<br/>
+<br/>
+<br/>
+## How to Use iPhone with 32G Storage?
+<br/>
+<br/>
+<br/>
+![center](http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-iphone7.png)
+.footnote[powered by <a href="https://github.com/gnab/remark"><font color=blue>remark.js</font></a>] 
+
+
+---
+##  BLACK TECHNOLOGY DIMENSIONALITY REDUCTION!
+
+---
+name:inverse
+layout: true
+class: center, middle, inverse
+---
+# Singular Value Decomposition
+## ChengMingbo
+## 2017-09-14
+---
+layout: false
+# SVD ABC
+- Matrix Linear Transformation
+- EigenVector & EigenVaule
+- Singular Value Decomposition 
+- Other Applications 
+- Summary 
+
+---
+template: inverse
+# Linear Transformation 
+
+---
+layout:false
+## Essense of Linear Transformation
+
+.vertmid[
+<p>
+$$\vec{x}=\begin{bmatrix}1\\3\end{bmatrix}\qquad A=\begin{bmatrix}2 & 1 \\ -1 & 1 \end{bmatrix}\qquad\vec{y}=A\vec{x}$$
+</p>
+]
+???
+[2 0;0 2] 相当于把一个坐标翻了两倍
+
+---
+## Essense of Linear Transformation
+<p>
+$$\vec{x}=\begin{bmatrix}1 \\3\end{bmatrix}$$
+</p>
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-a.png" height=80% width=80% />
+</div>
+
+---
+## Essense of Linear Transformation
+<p>
+$$A=\begin{bmatrix}2 & 1 \\ -1 & 1 \end{bmatrix}$$
+</p>
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-b.png" height=80% width=80% />
+</div>
+
+---
+## Essense of Linear Transformation
+
+<p>
+$$\vec{y}=
+\begin{bmatrix}
+5 \\
+2
+\end{bmatrix}$$
+</p>
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-c.png" height=80% width=80% />
+</div>
+
+---
+## Essense of Linear Transformation
+.vertmid[
+<p>
+$$\vec{x}=\begin{bmatrix}1\\3\end{bmatrix}\qquad A=\begin{bmatrix}2 & 1 \\ -1 & 1 \end{bmatrix}\qquad\vec{y}=A\vec{x}$$
+<br/>
+$$A\vec{x}= \begin{bmatrix}2 & 1\\ -1 & 1\end{bmatrix}\begin{bmatrix}1\\3\end{bmatrix}=\begin{bmatrix}5 \\2\end{bmatrix}$$
+</p>
+]
+---
+template: inverse
+
+## EigenVector & EigenVaule
+
+---
+## EigenVector & EigenVaule
+
+### Multiplication 100 times 
+
+<br/>
+<p>
+$$\begin{bmatrix}3& 1 \\0 & 2\end{bmatrix}\begin{bmatrix}3& 1 \\0 & 2\end{bmatrix}\begin{bmatrix}3& 1 \\0 & 2\end{bmatrix}\cdots \begin{bmatrix}3& 1 \\0 & 2\end{bmatrix}=$$
+</p>
+
+---
+## EigenVector & EigenVaule
+.vertmid[
+<p>
+$$A=\begin{bmatrix}3 & 1 \\0& 2\end{bmatrix}$$
+<br/>
+$$\begin{bmatrix}3 & 1 \\ 0& 2\end{bmatrix}\begin{bmatrix}1 \\2\end{bmatrix}=?$$
+</p>
+]
+
+---
+## EigenVector & EigenVaule
+<br/>
+<br/>
+
+<p>
+$$A=\begin{bmatrix}3 & 1 \\0& 2\end{bmatrix}$$
+
+$$\begin{bmatrix}3 & 1 \\0& 2\end{bmatrix}
+\begin{bmatrix}\frac{-1}{\sqrt(2)} \\ \frac{1}{\sqrt(2)}\end{bmatrix}=
+2\begin{bmatrix}\frac{-1}{\sqrt(2)} \\ \frac{1}{\sqrt(2)}\end{bmatrix}\qquad\quad\begin{bmatrix}3 & 1 \\0& 2\end{bmatrix}
+\begin{bmatrix}1 \\ 0\end{bmatrix}=
+3\begin{bmatrix}1 \\ 0\end{bmatrix}
+$$
+
+$$\vec{x_1}=\begin{bmatrix}\frac{-1}{\sqrt(2)} \\ \frac{1}{\sqrt(2)}\end{bmatrix}\qquad\, \vec{x_2}=\begin{bmatrix}1 \\ 0\end{bmatrix}$$
+$$\lambda_1=2\qquad\qquad\qquad\lambda_2=3$$
+</p>
+
+---
+## EigenVector & EigenVaule
+<p>
+$$A=\begin{bmatrix}3 & 1 \\0& 2\end{bmatrix}$$
+</p>
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-eigen1.png" height=80% width=80% />
+</div>
+
+---
+## EigenVector & EigenVaule
+.vertmid[
+<p>
+$$AQ=\begin{bmatrix}3 & 1 \\0& 2\end{bmatrix}
+\begin{bmatrix}
+\frac{-1}{\sqrt(2)}&1\\
+\frac{1}{\sqrt(2)}&0
+\end{bmatrix}=
+\begin{bmatrix}
+\frac{-1}{\sqrt(2)}&1 \\ \frac{1}{\sqrt(2)}&0
+\end{bmatrix}
+\begin{bmatrix}
+2 & 0\\
+0 & 3
+\end{bmatrix}
+$$
+<br/>
+
+$$AQ=Q\Lambda$$
+$$A = Q\Lambda Q^{-1}$$
+
+</p>
+]
+---
+## EigenVector & EigenVaule
+<br/>
+<p> 
+$$A\vec{x_1}=\lambda\vec{x_1}\\
+A\vec{x_2}=\lambda\vec{x_2}\\
+\,\qquad\vdots\\
+A\vec{x_k}=\lambda\vec{x_k}$$
+</p>
+
+<br/>
+<p>
+$$Q=
+\begin{bmatrix}
+	x_{11}& x_{21} &\cdots x_{k1}&\\
+    x_{12}& x_{22} &\cdots x_{k2}&\\
+    &\vdots&&\\
+    x_{1m}& x_{22} &\cdots x_{km}&
+\end{bmatrix}
+\qquad\Lambda=
+\begin{bmatrix}
+\lambda_1 & 0 & \cdots&0\\
+0 &\lambda_2&\cdots&0\\
+\vdots&\vdots&\ddots\\
+0&\cdots&\cdots&\lambda_k
+\end{bmatrix}$$
+</p>
+
+---
+## EigenVector & EigenVaule
+.vertmid[
+$$A = Q\Lambda Q^{-1}$$
+]
+---
+## EigenVector & EigenVaule
+### Multiplication 100 times 
+<br/>
+<p>
+$$\begin{bmatrix}3& 1 \\0 & 2\end{bmatrix}\begin{bmatrix}3& 1 \\0 & 2\end{bmatrix}\begin{bmatrix}3& 1 \\0 & 2\end{bmatrix}\cdots \begin{bmatrix}3& 1 \\0 & 2\end{bmatrix}=$$
+$$AAA\cdots A = Q\Lambda Q^{-1}Q\Lambda Q^{-1}Q\Lambda Q^{-1}\cdots Q\Lambda Q^{-1}$$
+$$AAA\cdots A =Q\Lambda\Lambda\cdots \Lambda Q^{-1}=
+Q\begin{bmatrix}2^{100} & 0 \\\\0 & 3^{100}\end{bmatrix}Q^{-1}
+$$
+</p>
+
+---
+template: inverse
+
+## Singular Value Decomposition(SVD)
+
+
+
+---
+## Singular Value Decomposition(SVD)
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-rectangle1.png" height=80% width=80% />
+</div>
+
+---
+## Singular Value Decomposition(SVD)
+<p>
+$$\vec{x}=\begin{bmatrix}1\\3\end{bmatrix}\qquad A=\begin{bmatrix}2 & 1 \\ -1 & 1 \end{bmatrix}\qquad\vec{y}=A\vec{x}$$
+</p>
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-c.png" height=80% width=80% />
+</div>
+
+???
+What if we change coordinate from red to blue?
+
+---
+## Singular Value Decomposition(SVD)
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-circle2.png" height=80% width=80% />
+</div>
+
+---
+## Singular Value Decomposition(SVD)
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-circle1.png" height=80% width=80% />
+</div>
+
+---
+## Singular Value Decomposition(SVD)
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-circle.png" height=80% width=80% />
+</div>
+
+<p>
+$$\vec{v_1} \vec{v_2} \vec{v_3},...\vec{v_n} \qquad\rightarrow \qquad \vec{u_1},\vec{u_2},\vec{u_3},...\vec{u_n}$$
+$$\qquad\qquad\qquad\qquad\qquad\ \,\sigma_1,\sigma_2, \sigma_3,...\sigma_n$$
+</p>
+
+---
+## Singular Value Decomposition(SVD)
+<br/>
+<p>
+$$ A \vec{v_1}=\sigma_1 \vec{u_1}$$
+$$\vdots$$
+$$ A \vec{v_j}=\sigma_j \vec{u_j}$$
+
+$$\begin{bmatrix}
+\\A\\\\\end{bmatrix}
+\begin{bmatrix}\\ \vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\\\end{bmatrix}
+=\begin{bmatrix}\\ \vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\\\ \end{bmatrix}
+\begin{bmatrix}
+\sigma_1 & 0 & \cdots & 0 \\
+0 & \sigma_2 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \sigma_n 
+\end{bmatrix}$$
+</p>
+
+---
+## Singular Value Decomposition(SVD)
+<br/>
+<p>
+$$\begin{bmatrix}\\A\\\\\end{bmatrix}
+\begin{bmatrix}\\ \vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\\\end{bmatrix}
+=\begin{bmatrix}\\ \vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\\\ \end{bmatrix}
+\begin{bmatrix}
+\sigma_1 & 0 & \cdots & 0 \\
+0 & \sigma_2 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & \sigma_n
+\end{bmatrix}$$
+$$\Uparrow$$
+</p>
+
+$$C^{m\times n}\qquad\quad C^{n\times n}\qquad\qquad C^{m\times n}\qquad \qquad \qquad C^{n\times n}$$
+
+<p>
+<br/>
+$$A_{m\times n}V_{n\times n} = \hat{U}_{m\times n}\hat{\Sigma}_{n\times n}$$
+
+</p>
+
+???
+V^{-1}=V^T      V^{-1}=V^T 
+
+---
+## Singular Value Decomposition(SVD)
+.vertmid[
+<p>
+$$A_{m\times n} = \hat{U}_{m\times n}\hat{\Sigma}_{n\times n}V^T_{n\times n}$$
+</p>
+]
+---
+## Singular Value Decomposition(SVD)
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-RSVD.png" height=80% width=80% />
+</div>
+
+---
+## Singular Value Decomposition(SVD)
+.vertmid[
+<p>
+$$A_{m\times n} = U_{m\times m}\Sigma_{m\times n}V^T_{n\times n}$$
+</p>
+]
+---
+template: mid
+
+## How to resolve these three variables？
+
+---
+template: mid
+<p>
+$$(AA^T)U=U\Sigma^2 $$
+<br/>
+$$(A^TA)V^T=V^T\Sigma^2$$
+</p>
+
+---
+## Compression 
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-14-rect.png" height=80% width=80% />
+</div>
+
+---
+## Compression 
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-29-image.gif" height=80% width=80% />
+</div>
+
+---
+## Other Applications 
+- Recommendation 
+- noise filtering 
+- Compression
+
+???
+netflix
+
+---
+## Summary 
+
+- Matrix Linear Transformation
+- EigenVector & EigenVaule
+- Singular Value Decomposition 
+- Other Applications 
+
+---
+
+## Reference
+<div class="reference">
+<ul >
+<li>https://www.youtube.com/watch?v=EokL7E6o1AE</li>
+<li>https://www.youtube.com/watch?v=cOUTpqlX-Xs</li>
+<li>https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw</li>
+<li> https://itunes.apple.com/cn/itunes-u/linear-algebra/id354869137</li>
+<li> http://www.ams.org/samplings/feature-column/fcarc-svd</li>
+<li> https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html</li>
+</ul>
+</div>
+
+
+
+---
+template: mid
+# Thanks!
+# Q&A
+
+
+</textarea>
+<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script type="text/javascript">
+    var options = {highlightStyle: 'monokai', highlightLines:true, ratio: '4:3'};
+    
+var renderMath = function(){
+        // Setup MathJax
+        MathJax.Hub.Config({
+        tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+    MathJax.Hub.Configured();
+}
+var slideshow = remark.create(options);
+renderMath();
+</script>
+</body>
+</html>

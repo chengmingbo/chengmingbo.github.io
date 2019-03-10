@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Deep Learning Specialization Course Review</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+	  .remark-slide-content h1 { font-size: 3em; }
+    .remark-slide-content h2 { font-size: 2em; }
+    .remark-slide-content h3 { font-size: 1.6em; }
+    .remark-slide-content ul { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; line-height: 80px; }
+    .remark-slide-content ol { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; }
+    .reference ul {font-size: 1.4em; font-family: 'Yanone Kaffeesatz'; line-height: 60px; color:blue}
+    .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        right: 3em;
+        color: #777872;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 50%;
+        float: right;
+        padding-top: 1em;
+      }
+      .pseudocode{
+        background-color:#DDDDDD;
+        padding:10px;
+        font-size: 18px;
+        color: black;
+        text-shadow: 0 0 3px #333;
+        border-radius: 15px;
+      }
+      .left {
+        float: left;
+        width: 40%;
+        margin-left: 1em;
+      }
+      .right {
+        float: right;
+        width: 40%;
+        margin-right: 1em;
+        padding-top: 0.1em;
+      }
+      .bottom {
+        width: 100%;
+        float: left;
+        padding-bottom: 1em;
+      }
+      .subblock{
+        padding-left: 2em;
+        padding-right: 4em;
+      }
+	  .imgcenter{
+	  	height: 200px;/*元素的高度*/
+		width: 200px;
+	  	position: absolute;
+	  	top: 30%;
+	  	margin-top: -50px;
+		left: 25%;
+		margin-left: -50px;
+	  	}	 
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
+
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# Deep Learning Specialization Course 
+# Review
+<br/><br/><br/>
+### By ChengMingbo
+### 2018-06-13
+.footnote[powered by <a href="https://github.com/gnab/remark"><font color=yellow>remark.js</font></a>] 
+???
+I am a note, will be only shown when under presentation mode
+
+---
+layout: false
+# Outline
+* Neural Networks and Deep Learning
+* Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
+* Structuring Machine Learning Projects
+* Convolutional Neural Networks
+* Sequence Models
+---
+## Neural Network Representation 
+
+.left[
+<br/><br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/nn.png" width=100% height=100%>
+<br/><br/><br/><br/>
+$z=w^T x + b$
+<br/><br/>
+$a=\sigma(z)$
+]
+
+.footnote[From chapter 1. week 3.2]
+--
+.right[
+<br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/nn1.png" width=100% height=100%>
+]
+
+.footnote[From chapter 1. week 3.2]
+---
+## Neural Network Representation 
+
+.left[
+<br/><br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/nn2.png" width=100% height=100%>
+]
+
+.footnote[From chapter 1. week 3.2]
+--
+.right[
+<br/><br/><br/><br/>
+$z_1^{[1]}=w_1^{[1]T}x+b_1^{[1]}\qquad a_1^{[1]}=\sigma(z_1^{[1]})$
+<br/><br/>
+$z_2^{[1]}=w_2^{[1]T}x+b_2^{[1]}\qquad a_2^{[1]}=\sigma(z_2^{[1]})$
+<br/><br/>
+$z_3^{[1]}=w_3^{[1]T}x+b_3^{[1]}\qquad a_3^{[1]}=\sigma(z_3^{[1]})$
+<br/><br/>
+$z_4^{[1]}=w_4^{[1]T}x+b_4^{[1]}\qquad a_4^{[1]}=\sigma(z_4^{[1]})$
+]
+
+.footnote[From chapter 1. week 3.2]
+---
+## Neural Network Representation 
+
+.left[
+<br/><br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/nn2.png" width=100% height=100%>
+]
+
+.right[
+<br/><br/><br/><br/>
+$$ z^{[1]} = \begin{bmatrix}
+--  w_1^{[1]}  --\\\\
+--  w_2^{[1]}  --\\\\
+--  w_3^{[1]}  --\\\\
+--  w_4^{[1]}  --
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\\\
+x_2\\\\
+x_3
+\end{bmatrix}
++
+\begin{bmatrix}
+b_1^{[1]}\\\\
+b_2^{[1]}\\\\
+b_3^{[1]}\\\\
+b_4^{[1]}
+\end{bmatrix}
+$$
+]
+
+
+.footnote[From chapter 1. week 3.2]
+
+--
+
+.bottom[
+## Attention!  $\qquad W^{[1]}\; b^{[1]}$
+]
+
+.footnote[From chapter 1. week 3.2]
+
+---
+## Neural Network Representation learning
+
+.left[
+<br/><br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/nn2.png" width=100% height=100%>
+]
+
+.right[
+$$\begin{aligned}
+\text{Giv}&\text{en Input x:}\\\\\\\\
+&z^{[1]} = W^{[1]}x + b^{[1]}\\\\\\\\
+&a^{[1]} = \sigma(z^{[1]})\\\\\\\\
+&z^{[2]} = W^{[2]}a^{[1]} + b^{[2]}\\\\\\\\
+&a^{[2]} = \sigma{(z^{[2]})}
+\end{aligned}$$
+]
+
+
+.footnote[From chapter 1. week 3.4]
+
+--
+.bottom[
+$$\begin{aligned}
+\text{suppose m samples:}\qquad &x^{(1)}----\to a^{[2]\(1\)}=\hat{y}^{(1)}\qquad \\\\
+&x^{(2)}----\to a^{[2]\(2\)}=\hat{y}^{(2)}\\\\
+&\cdots\qquad\cdots\qquad\cdots\\\\
+&x^{(m)}----\to a^{[2]\(m\)}=\hat{y}^{(m)} 
+\end{aligned}$$
+<br/><br/>
+<br/><br/>
+]
+
+.footnote[From chapter 1. week 3.4]
+---
+class: center, middle
+
+### How to vectorized samples $x=[x_1, x_2, x_3,\cdots, x_m]$ ?
+
+---
+## Vectorized implementation
+$$z^{[1]\(1\)}=W^{[1]}\color{#982F9E}{x^{\(1\)} }+ b^{[1]}\quad z^{[1]\(2\)}=W^{[1]}\color{green}{x^{\(2\)} } + b^{[1]}\quad  z^{[1]\(3\)}=W^{[1]}\color{#FD7F09}{x^{\(3\)}} + b^{[1]} $$
+
+.footnote[From chapter 1. week 3.4]
+---
+## Vectorized implementation
+$$\require{cancel} z^{[1]\(1\)}=W^{[1]}\color{#982F9E}{x^{\(1\)} }+\cancel{ b^{[1]}}\quad z^{[1]\(2\)}=W^{[1]}\color{green}{x^{\(2\)} } + \cancel{b^{[1]} }\quad  z^{[1]\(3\)}=W^{[1]}\color{#FD7F09}{x^{\(3\)}} + \cancel{b^{[1]}} $$
+
+.footnote[From chapter 1. week 3.4]
+--
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/vec1.png' width="80%" height="80%">
+</div>
+
+.footnote[From chapter 1. week 3.4]
+---
+## Vectorized implementation
+$$\require{cancel} z^{[1]\(1\)}=W^{[1]}\color{#982F9E}{x^{\(1\)} }+\cancel{ b^{[1]}}\quad z^{[1]\(2\)}=W^{[1]}\color{green}{x^{\(2\)} } + \cancel{b^{[1]} }\quad  z^{[1]\(3\)}=W^{[1]}\color{#FD7F09}{x^{\(3\)}} + \cancel{b^{[1]}} $$
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/vec2.png' width="80%" height="80%">
+</div>
+
+.footnote[From chapter 1. week 3.4]
+---
+## Vectorized implementation
+$$\require{cancel} z^{[1]\(1\)}=W^{[1]}\color{#982F9E}{x^{\(1\)} }+\cancel{ b^{[1]}}\quad z^{[1]\(2\)}=W^{[1]}\color{green}{x^{\(2\)} } + \cancel{b^{[1]} }\quad  z^{[1]\(3\)}=W^{[1]}\color{#FD7F09}{x^{\(3\)}} + \cancel{b^{[1]}} $$
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/vec3.png' width="80%" height="80%">
+</div>
+
+.footnote[From chapter 1. week 3.4]
+---
+## Vectorized implementation
+$$\require{cancel} z^{[1]\(1\)}=W^{[1]}\color{#982F9E}{x^{\(1\)} }+\cancel{ b^{[1]}}\quad z^{[1]\(2\)}=W^{[1]}\color{green}{x^{\(2\)} } + \cancel{b^{[1]} }\quad  z^{[1]\(3\)}=W^{[1]}\color{#FD7F09}{x^{\(3\)}} + \cancel{b^{[1]}} $$
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/vec4.png' width="80%" height="80%">
+</div>
+
+.footnote[From chapter 1. week 3.4]
+---
+## Vectorized implementation
+$$\require{cancel} z^{[1]\(1\)}=W^{[1]}\color{#982F9E}{x^{\(1\)} }+\cancel{ b^{[1]}}\quad z^{[1]\(2\)}=W^{[1]}\color{green}{x^{\(2\)} } + \cancel{b^{[1]} }\quad  z^{[1]\(3\)}=W^{[1]}\color{#FD7F09}{x^{\(3\)}} + \cancel{b^{[1]}} $$
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/vec5.png' width="80%" height="80%">
+</div>
+
+.footnote[From chapter 1. week 3.4]
+---
+## Vectorized implementation
+$$\begin{aligned}
+X=\begin{bmatrix}
+| & | & & |\\\\
+| & | & & |\\\\
+x^{(1)} & x^{(2)} & \cdots & x^{(m)}\\\\
+| & | & & |\\\\
+| & | & & |
+\end{bmatrix} \qquad A^{[1]}=\begin{bmatrix}
+| & | & & |\\\\
+| & | & & |\\\\
+a^{[1]\(1\)} & a^{[1]\(2\)} & \cdots & a^{[1]\(m\)}\\\\
+| & | & & |\\\\
+| & | & & |
+\end{bmatrix}
+\end{aligned}$$
+<br/>
+
+.footnote[From chapter 1. week 3.4]
+--
+.left[
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/nn1.png' width="70%" height="70%">
+]
+
+.footnote[From chapter 1. week 3.4]
+--
+<br/>
+$$\begin{aligned}
+&Z^{[1]} = W^{[1]} X + b^{[1]} \\\\
+&A^{[1]} = \sigma(Z^{[1]})\\\\
+&Z^{[2]} = W^{[2]} A[1] + b^{[1]} \\\\
+&A^{[2]} = \sigma(Z^{[2]})\\\\
+\end{aligned}$$
+
+.footnote[From chapter 1. week 3.4]
+---
+## Activation Fucntions
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/activation.jpg' width="80%" height="80%">
+</div>
+
+.footnote[From chapter 1. week 3.6]
+---
+template: inverse
+## Improving Deep Neural Networks: Hyperparameter tuning,
+## Regularization and Optimization
+
+---
+## Bias and Variance
+<br/><br/><br/><br/>
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/bias_n_variance.png' width="100%" height="100%">
+</div>
+
+.footnote[From chapter 2. week 1.2]
+
+--
+$\qquad\text{high bias}  \qquad\qquad\qquad \text{just right}  \qquad\qquad\qquad   \text{high variance}$
+
+.footnote[From chapter 2. week 1.2]
+---
+## Bias and Variance
+<br/>
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/error-curve.png' width="70%" height="70%">
+</div>
+.footnote[http://scott.fortmann-roe.com/docs/BiasVariance.html]
+
+---
+## Regularization
+* L1, L2 Regularization 
+* Dropout 
+* Data augmentation
+* Early stopping
+
+.footnote[From chapter 2. week 1]
+
+---
+class: center, middle
+
+## Why regularization reduces overfitting?
+
+.footnote[From chapter 2. week 1]
+---
+## Why regularization reduces overfitting?
+* L2 regularization
+
+<br/>
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/l2r_works1.png' width="70%" height="70%">
+</div>
+
+.footnote[From chapter 2. week 1.5]
+---
+## Why regularization reduces overfitting?
+* L2 regularization
+
+<br/>
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/l2r_works2.png' width="70%" height="70%">
+</div>
+
+.footnote[From chapter 2. week 1.5]
+
+---
+## Why regularization reduces overfitting?
+* L2 regularization
+
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/tanh.png' width="50%" height="50%">
+</div>
+
+w decline, activation incline to linear
+
+
+.footnote[From chapter 2. week 1.5]
+---
+## Why regularization reduces overfitting?
+* Dropout 
+
+<br/>
+
+### Intuition: Can't rely on any one feature, so have to spread out weights
+
+.footnote[From chapter 2. week 1.7]
+---
+
+## Normalizing inputs
+<br/><br/><br/><br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/norm_input1.png" width=100% height=100%>
+</div>
+
+.footnote[From chapter 2. week 1.9]
+---
+## Normalizing inputs
+<br/><br/><br/><br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/norm_input2.png" width=100% height=100%>
+</div>
+
+$$\begin{aligned}
+&\mu=\frac{1}{m}\sum\_{i=1}^m x^{(1)} & \color{white}{\sigma^2 = \frac{1}{m}\sum\_{i=1}^m {(x^{(i)})}^2}\\\\
+&x := x - \mu & \color{white}{x := x/\sigma^2}
+\end{aligned}$$
+
+.footnote[From chapter 2. week 1.9]
+---
+## Normalizing inputs
+<br/><br/><br/><br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/norm_input3.png" width=100% height=100%>
+</div>
+
+$$\begin{aligned}
+&\mu=\frac{1}{m}\sum\_{i=1}^m x^{(1)} & \sigma^2 = \frac{1}{m}\sum\_{i=1}^m {(x^{(i)})}^2\\\\
+&x := x - \mu & x := x/\sigma^2
+\end{aligned}$$
+
+.footnote[From chapter 2. week 1.9]
+---
+## Normalizing inputs
+<br/><br/><br/><br/>
+
+.left[
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/normCon1.png" width=100% height=100%>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Unnormalized
+]
+.right[
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/normCon2.png" width=100% height=100%>
+Normalized&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+]
+
+.footnote[From chapter 2. week 1.9]
+---
+## Vanishing/exploding gradients
+<br/><br/><br/><br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/ve.png" width=100% height=100%>
+</div>
+
+$$\hat{y} = w^{[l]} w^{[l-1]}w^{[l-2]}\cdots w^{[3]}w^{[2]}w^{[1]} x$$
+
+$$w^{[l]} = \begin{bmatrix}0.5 & 0 \\\\ 0 & 0.5 \end{bmatrix}\quad \text{OR} \quad  w^{[l]}=\begin{bmatrix}1.5 & 0 \\\\ 0 & 1.5 \end{bmatrix}$$
+
+.footnote[From chapter 2. week 1.10 1.11]
+???
+initialize guide line
+---
+## Vanishing/exploding gradients
+<br/><br/><br/><br/>
+.left[
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/sne.png" width=60% height=60%>
+]
+
+$z = w\_1 x\_1 + w\_2 x\_2 + \cdots + w\_n x\_n$
+
+larger n $\to$ smaller $w\_i$
+
+Set Var$(w\_i)$ = $\frac{1}{n}$ 
+.bottom[
+```python
+## initializing to avoid vanishing/exploding gradients 
+import numpy as np 
+
+w[l] = np.random.randn(shape) * sqrt(2/n[l-1]) #numerator=2 if activation is ReLU
+w[l] = np.random.randn(shape) * sqrt(1/n[l-1]) #numerator=1 if activation is tanh(Xavier initialization)
+w[l] = np.random.randn(shape) * sqrt(2/(n[l-1]) +(n[l]) ) #An alternative initializing function
+```
+]
+
+.footnote[From chapter 2. week 1.10 1.11]
+???
+initialize guide line
+---
+## Numberical approximation of gradients
+* Checking your derivative computation
+* Gradient checking
+
+.footnote[From chapter 2. week 1.11 1.12 1.13 1.14]
+--
+
+.subblock[
+ $\rhd\;$ Don't use in training -- only to debug.
+
+ $\rhd\;$ If algorithm fails grad check, look at components to try to identify bug.
+
+ $\rhd\;$ Remember Regularization.
+
+ $\rhd\;$ Doesn't work with dropout.
+
+ $\rhd\;$ Run at random initialization; perhaps again after some training.
+]
+
+.footnote[From chapter 2. week 1.11 1.12 1.13 1.14]
+---
+## Optimization Algorithms
+* Mini-bathch gradient descent
+* Exponentially weighted averages 
+* With momentum
+* RMSProp
+* Adam optimization
+* Learning rate decay
+
+.footnote[From chapter 2. week 2]
+
+---
+## Optimization Algorithms
+* Mini-bathch gradient descent
+
+$$X=\left[\underbrace{x^{(1)}, x^{(2)},\cdots,x^{(1000)}} ,\middle|, \underbrace{x^{(1001)}, x^{(1002)},\cdots, x^{(2000)}} ,\middle|,\cdots\cdots,\middle|\underbrace{\cdots\cdots ,x^{(m)} }\right]$$
+$$Y=\left[\underbrace{y^{(1)}, y^{(2)},\cdots,y^{(1000)}} ,\middle|, \underbrace{y^{(1001)}, y^{(1002)},\cdots, y^{(2000)}} ,\middle|,\cdots\cdots,\middle|\underbrace{\cdots\cdots ,y^{(m)} }\right]$$
+
+
+.footnote[From chapter 2. week 2.1]
+--
+<br/>
+## Dimensions of X and Y?
+
+---
+## Optimization Algorithms
+* Mini-bathch gradient descent
+
+$$X=\left[\underbrace{x^{(1)}, x^{(2)},\cdots,x^{(1000)}}_{X^{\lbrace 1\rbrace},\, (n_x, 1000)} ,\middle|, \underbrace{x^{(1001)}, x^{(1002)},\cdots, x^{(2000)}} ,\middle|,\cdots\cdots,\middle|\underbrace{\cdots\cdots ,x^{(m)} }\right]$$
+
+$$Y=\left[\underbrace{y^{(1)}, y^{(2)},\cdots,y^{(1000)}}_{Y^{\lbrace 1\rbrace},\, (1, 1000)} ,\middle|, \underbrace{y^{(1001)}, y^{(1002)},\cdots, y^{(2000)}} ,\middle|,\cdots\cdots,\middle|\underbrace{\cdots\cdots ,y^{(m)} }\right]$$
+
+.footnote[From chapter 2. week 2.1]
+--
+
+### $X\in \lbrace n_x, m\rbrace$
+### $Y\in \lbrace 1, m\rbrace$
+
+.footnote[From chapter 2. week 2.1]
+---
+## Optimization Algorithms
+* Exponentially weighted averages 
+
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/ewa1.png' width=80% height=80%/>
+
+.footnote[From chapter 2. week 2.3]
+---
+## Optimization Algorithms
+* Exponentially weighted averages 
+
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/ewa2.png' width=80% height=80%/>
+.footnote[From chapter 2. week 2.3]
+---
+## Optimization Algorithms
+* Exponentially weighted averages 
+
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/ewa3.png' width=80% height=80%/>
+
+.footnote[From chapter 2. week 2.3]
+---
+## Optimization Algorithms
+* Exponentially weighted averages 
+
+$$\begin{aligned}
+&v\_0 = 0\\\\
+&v\_1 = \beta v\_0 + (1-\beta) \theta\_1\\\\
+&v\_2 = \beta v\_1 + (1-\beta) \theta\_2\\\\
+&v\_3 = \beta v\_2 + (1-\beta) \theta\_3\\\\
+&v\_t = \beta v\_{t-1} + (1-\beta) {\theta}_t\\\\
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.3]
+--
+$$\begin{aligned}
+& \beta=0.9 & \color{white}{\rm 10\; days }\\\\
+& \beta=0.98 & \color{white}{\rm 50\; days}\\\\
+& \beta=0.5 & \color{white}{\rm 2\; days}\\\\
+& \color{white}{v_t \approx \frac{1}{1-\beta}\; \text{days temperature}}\\\\
+\end{aligned}$$
+
+
+.footnote[From chapter 2. week 2.3]
+---
+## Optimization Algorithms
+* Exponentially weighted averages 
+
+$$\begin{aligned}
+&v\_0 = 0\\\\
+&v\_1 = \beta v\_0 + (1-\beta) \theta\_1\\\\
+&v\_2 = \beta v\_1 + (1-\beta) \theta\_2\\\\
+&v\_3 = \beta v\_2 + (1-\beta) \theta\_3\\\\
+&v\_t = \beta v\_{t-1} + (1-\beta) {\theta}_t\\\\
+\end{aligned}$$
+
+$$\begin{aligned}
+& \beta=0.9 & \color{black}{\rm 10\; days }\\\\
+& \beta=0.98 & \color{black}{\rm 50\; days}\\\\
+& \beta=0.5 & \color{black}{\rm 2\; days}\\\\
+& \color{black}{v_t \approx \frac{1}{1-\beta}\; \text{days temperature}}\\\\
+\end{aligned}$$
+
+
+.footnote[From chapter 2. week 2.3]
+
+???
+underline will generate <em> tag which lead to failure of parsing mathjax.
+To solve the problem you should add backslashing to all underline of this math block
+
+---
+## Optimization Algorithms
+* With momentum
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/momentum1.png' width=100% height=100%/>
+
+.footnote[From chapter 2. week 2.6]
+---
+## Optimization Algorithms
+* With momentum
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/momentum2.png' width=100% height=100%/>
+
+.footnote[From chapter 2. week 2.6]
+---
+## Optimization Algorithms
+* With momentum
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/momentum3.png' width=100% height=100%/>
+
+.footnote[From chapter 2. week 2.6]
+
+--
+
+### compute dW, db on current mini-batch
+
+$$\begin{aligned}
+&v\_{\rm{d}W} = \beta v\_{\rm{d}W} + (1-\beta) \rm{d}W\\\\
+&v\_{\rm{d}b} = \beta v\_{\rm{d}b} + (1-\beta) \rm{d}b\\\\
+&W := W - \alpha v\_{\rm{d}W}\\\\
+&b := b - \alpha v\_{\rm{d}b}
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.6]
+---
+## Optimization Algorithms
+* With momentum
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/momentum4.png' width=100% height=100%/>
+
+### compute dW, db on current mini-batch
+
+$$\begin{aligned}
+&v\_{\rm{d}W} = \beta v\_{\rm{d}W} + (1-\beta) \rm{d}W\\\\
+&v\_{\rm{d}b} = \beta v\_{\rm{d}b} + (1-\beta) \rm{d}b\\\\
+&W := W - \alpha v\_{\rm{d}W}\\\\
+&b := b - \alpha v\_{\rm{d}b}
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.6]
+---
+## Optimization Algorithms
+* RMSProp
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/momentum1.png' width=100% height=100%/>
+
+--
+
+### compute dW, db on current mini-batch
+
+$$\begin{aligned}
+&s\_{\rm{d}W} = \beta s\_{\rm{d}W} + (1-\beta) \rm{d}W^2\\\\
+&s\_{\rm{d}b} = \beta s\_{\rm{d}b} + (1-\beta) \rm{d}b^2\\\\
+&W := W - \alpha \frac{\rm{d}W}{\sqrt{s\_{\rm{d}W} + \epsilon }}\\\\
+&b := b - \alpha \frac{\rm{d}b}{\sqrt{s\_{\rm{d}b} + \epsilon }}
+\end{aligned}$$
+
+
+.footnote[From chapter 2. week 2.7]
+---
+## Optimization Algorithms
+* Adam optimization
+
+.footnote[From chapter 2. week 2.8]
+---
+## Optimization Algorithms
+* Adam optimization(Momentum + RMSProp)
+
+.footnote[From chapter 2. week 2.8]
+---
+## Optimization Algorithms
+* Adam optimization(Momentum + RMSProp)
+
+
+$$\begin{aligned}
+&v\_{\rm{d}W} = \beta\_1 v\_{\rm{d}W} + (1-\beta\_1) \rm{d}W&v\_{\rm{d}b} = \beta\_1 v\_{\rm{d}b} + (1-\beta\_1) \rm{d}b\\\\
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.8]
+
+---
+## Optimization Algorithms
+* Adam optimization(Momentum + RMSProp)
+
+$$\begin{aligned}
+&v\_{\rm{d}W} = \beta\_1 v\_{\rm{d}W} + (1-\beta\_1) \rm{d}W&v\_{\rm{d}b} = \beta\_1 v\_{\rm{d}b} + (1-\beta\_1) \rm{d}b\\\\
+&s\_{\rm{d}W} = \beta\_2 s\_{\rm{d}W} + (1-\beta\_2) \rm{d}W^2 & s\_{\rm{d}b} = \beta\_2 s\_{\rm{d}b} + (1-\beta\_2) \rm{d}b^2\\\\
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.8]
+---
+## Optimization Algorithms
+* Adam optimization(Momentum + RMSProp)
+
+$$\begin{aligned}
+&v\_{\rm{d}W} = \beta\_1 v\_{\rm{d}W} + (1-\beta\_1) \rm{d}W
+&v\_{\rm{d}b} = \beta\_1 v\_{\rm{d}b} + (1-\beta\_1) \rm{d}b\\\\
+&s\_{\rm{d}W} = \beta\_2 s\_{\rm{d}W} + (1-\beta\_2) \rm{d}W^2 
+&s\_{\rm{d}b} = \beta\_2 s\_{\rm{d}b} + (1-\beta\_2) \rm{d}b^2\\\\
+&v\_{\rm{d}W}^{\rm corrected} = \frac{v\_{\rm{d}W} }{1-\beta\_1^t}
+&v\_{\rm{d}b}^{\rm corrected} = \frac{v\_{\rm{d}b} }{1-\beta\_1^t}
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.8]
+---
+## Optimization Algorithms
+* Adam optimization(Momentum + RMSProp)
+
+$$\begin{aligned}
+&v\_{\rm{d}W} = \beta\_1 v\_{\rm{d}W} + (1-\beta\_1) \rm{d}W
+&v\_{\rm{d}b} = \beta\_1 v\_{\rm{d}b} + (1-\beta\_1) \rm{d}b\\\\
+&s\_{\rm{d}W} = \beta\_2 s\_{\rm{d}W} + (1-\beta\_2) \rm{d}W^2 
+&s\_{\rm{d}b} = \beta\_2 s\_{\rm{d}b} + (1-\beta\_2) \rm{d}b^2\\\\
+&v\_{\rm{d}W}^{\rm corrected} = \frac{v\_{\rm{d}W} }{1-\beta\_1^t}
+&v\_{\rm{d}b}^{\rm corrected} = \frac{v\_{\rm{d}b} }{1-\beta\_1^t}\\\\
+&s\_{\rm{d}W}^{\rm corrected} = \frac{s\_{\rm{d}W} }{1-\beta\_2^t}
+&s\_{\rm{d}b}^{\rm corrected} = \frac{s\_{\rm{d}b} }{1-\beta\_2^t}
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.8]
+
+---
+## Optimization Algorithms
+* Adam optimization(Momentum + RMSProp)
+
+$$\begin{aligned}
+&v\_{\rm{d}W} = \beta\_1 v\_{\rm{d}W} + (1-\beta\_1) \rm{d}W
+&v\_{\rm{d}b} = \beta\_1 v\_{\rm{d}b} + (1-\beta\_1) \rm{d}b\\\\
+&s\_{\rm{d}W} = \beta\_2 s\_{\rm{d}W} + (1-\beta\_2) \rm{d}W^2 
+&s\_{\rm{d}b} = \beta\_2 s\_{\rm{d}b} + (1-\beta\_2) \rm{d}b^2\\\\
+&v\_{\rm{d}W}^{\rm corrected} = \frac{v\_{\rm{d}W} }{1-\beta\_1^t}
+&v\_{\rm{d}b}^{\rm corrected} = \frac{v\_{\rm{d}b} }{1-\beta\_1^t}\\\\
+&s\_{\rm{d}W}^{\rm corrected} = \frac{s\_{\rm{d}W} }{1-\beta\_2^t}
+&s\_{\rm{d}b}^{\rm corrected} = \frac{s\_{\rm{d}b} }{1-\beta\_2^t}\\\\
+&W := W - \alpha\frac{v\_{\rm{d}W}^{\rm corrected}}{\sqrt{s\_{\rm{d}W}^{\rm corrected} +\epsilon }}
+&b := b - \alpha\frac{v\_{\rm{d}b}^{\rm corrected}}{\sqrt{s\_{\rm{d}b}^{\rm corrected} + \epsilon}}
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.8]
+---
+
+## Optimization Algorithms
+* Learning rate decay
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/lrd.png" width=80% height=80%>
+
+$$\begin{aligned}
+\alpha = \frac{1}{1+\rm{decayRate}\times\rm{epochNum}} \alpha_0
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.9]
+---
+## Optimization Algorithms
+* Learning rate decay
+
+$$\begin{aligned}
+&\alpha = \frac{1}{1+\rm{decayRate}\times\rm{epochNum}} \alpha_0\\\\\\\\
+&\alpha\_0=0.2 \qquad \rm{decayRate}=1\\\\ 
+&\begin{array}{c|c}
+Epoch & \alpha \\\\
+\\hline
+1 & 0.1\\\\ 
+2 & 0.067\\\\ 
+3 & 0.05\\\\ 
+4 & 0.04\\\\ 
+\vdots & \vdots\\\\ 
+\end{array}
+\end{aligned}$$
+
+.footnote[From chapter 2. week 2.9]
+---
+## Hyperparameters Tuning 
+
+
+.footnote[From chapter 2. week 3]
+--
+
+* $\alpha$, $\beta$
+* $\beta_1, \beta_2, \epsilon$
+* \#layers
+* \#hidden units
+* Learning rate decay
+* mini-batch size
+
+.footnote[From chapter 2. week 3]
+???
+these meanings of Hyperparameters
+---
+## Hyperparameter Tuning
+* Coarse to fine
+* Panda VS Caviar
+
+.footnote[From chapter 2. week 3]
+---
+## Hyperparameter Tuning
+* Panda VS Caviar
+
+.left[
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/tune1.png" width=80% height=80%>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panda
+]
+
+.footnote[From chapter 2. week 3.3]
+--
+
+.right[
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/tune2.png" width=80% height=80%>
+Caviar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+]
+
+.footnote[From chapter 2. week 3.3]
+---
+## Hyperparameter Tuning
+* Panda VS Caviar
+
+.left[
+<br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/panda.png" width=86% height=86%>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Panda
+]
+
+.right[
+<br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/caviar.png" width=86% height=86%>
+<br/>
+Caviar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+]
+
+.footnote[From chapter 2. week 3.3]
+
+---
+## Batch Normalization 
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/bn.png" width='60%' height='60%'/>
+</div>
+
+$$\begin{aligned}
+&\mu = \frac{1}{m} \sum\_i z^{(i)} \\\\
+&\sigma^2 = \frac{1}{m} \sum\_i (z^{(i)} -\mu)^2\\\\
+&z\_{norm}^{(i)} = \frac{z^{(i)} - \mu}{\sqrt{\sigma^2 + \epsilon}}\\\\
+&\tilde{z}^{(i)} = \gamma z\_{norm}^{(i)} + \beta \qquad\color{blue}{\gamma\; and\; \beta\; are\; learnable\; parameters}
+\end{aligned}$$
+
+
+
+
+.footnote[From chapter 2. week 3.4 3.5 3.6]
+???
+you should look through vedio to learn how implement the Batch Normalization
+---
+template: inverse
+
+## Structuring Machine Learning Projects
+
+---
+## ML Strategy
+
+### 1. Collect more data 
+--
+
+### 2. Collect more diverse training set
+--
+
+### 3. Train algorithm longer with gradient descent
+--
+
+### 4. Try bigger network
+--
+
+### 5. Try smaller network
+--
+
+### 6. Try dropout
+--
+
+### 7. Add L2 regularization
+--
+
+### 8. Network architecture
+
+
+.footnote[From chapter 3. week 1.1]
+
+???
+activation functions, hidden units
+
+---
+## ML Strategy More...
+
+.footnote[From chapter 3. week 1.2]
+--
+
+### 1. orthogonalization 
+
+.footnote[From chapter 3. week 1.2]
+---
+## Setting up Your Goal
+* Single number evaluation metric
+* Satisficing and optimzing metrics
+* Train/dev/test distribution
+* Size of dev and test sets
+* When to change dev/test sets and metrics
+* Why human-level performance?
+* Avoidable bias
+
+.footnote[From chapter 4. week 1]
+---
+## Error Analysis
+* Carrying out error analysis 
+* Cleaning up Incorrectly labeled data 
+* Build your first system quickly, then iterate
+
+.footnote[From chapter 4. week 2.1 2.2 2.3]
+---
+## Mismatched training and dev/test data 
+* Training and testing on different distributions
+* Bias and Variance with mismatched data distributions
+* Addressing data mismatch 
+
+.footnote[From chapter 4. week 2.4 2.5 2.6]
+---
+## Learning from multiple tasks
+* Transfer learning 
+* Multi-task learning
+
+.footnote[From chapter 4. week 2.7 2.8]
+---
+
+## End-to-end deep learning
+* What is end-to-end deep learning
+* Whether to use end-to-end learning
+
+.footnote[From chapter 4. week 2.9 2.10]
+---
+template: inverse
+
+## Convolutional Neural Network	 
+
+---
+## Computer Vision Problems
+* Image Classification
+* Nerual Style Transfer
+* Object Detection
+* ... ...
+
+.footnote[From chapter 5. week 1.1]
+---
+## Convolutional Neural Network 
+* Edge Detection
+* Padding 
+* Strides
+* Pooling
+
+.footnote[From chapter 5. week 1]
+---
+## Convolutional Neural Network 
+* Edge Detection
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/conv.png" width=80% height=80%>
+</div>
+
+.footnote[From chapter 5. week 1]
+---
+## Convolutional Neural Network 
+* Multiple filters
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/mconv.png" width=80% height=80%>
+</div>
+
+.footnote[From chapter 5. week 1.6]
+---
+## Convolutional Neural Network 
+* A typical convolutional neural network
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/aconv.png" width=95% height=95%>
+</div>
+
+.footnote[from https://sefiks.com/2017/11/03/a-gentle-introduction-to-convolutional-neural-networks/]
+---
+## Why Convolution?
+
+.footnote[From chapter 5. week 1.11]
+--
+
+* Parameter sharing
+* Sparsity of connections
+
+.footnote[From chapter 5. week 1.11]
+---
+## Why Convolution?
+
+* Parameter sharing
+
+.subblock[
+A feature detector(such as a vertical edge detector) that's useful in one part of the image is probably useful in another part of the image.
+]
+
+* Sparsity of connections
+
+.subblock[
+In each layer, each output value depends only on a small number of inputs.
+]
+
+.footnote[From chapter 5. week 1.11]
+
+---
+## Case Studies
+* LeNet-5
+* AlexNet
+* VGG
+* ResNet
+* Inception
+
+.footnote[From chapter 5. week 2.1]
+---
+## Case Studies
+* LeNet-5
+<br/>
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/LeNet5.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.2]
+---
+## Case Studies
+* AlexNet 
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/AlexNet.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.2]
+---
+## Case Studies
+* VGG-16
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/VGG16.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.2]
+---
+## Case Studies
+* ResNet 
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/plainnet.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.3 2.4]
+--
+
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/ResNet.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.3 2.4]
+---
+## Case Studies
+* Inception network 
+
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/inception.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.5]
+---
+## Transfer Learning
+<br/><br/><br/><br/><br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/transfer.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.9]
+---
+## Transfer Learning
+<br/><br/><br/><br/><br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/transfer1.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.9]
+---
+## Transfer Learning
+<br/><br/><br/><br/><br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/transfer2.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.9]
+---
+## Transfer Learning
+<br/><br/><br/><br/><br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/transfer1.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 2.9]
+---
+## Data augmentation 
+* Mirroring
+--
+
+* Random cropping
+--
+
+* Rotation 
+--
+
+* Shearing
+--
+
+* Local warping
+--
+
+* Color shifting
+--
+
+* PCA color augmentation
+
+.footnote[From chapter 5. week 2.10]
+---
+## The State of computer vision
+
+<br/><br/><br/><br/><br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/state.png" width=95% height=95%>
+</div>
+
+---
+## Object Detection
+
+* Object localization 
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/obj_detection_1.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 3.1]
+---
+## Object Detection
+
+* Object localization 
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/obj_detection_2.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 3.1]
+---
+## Object Detection
+
+* Object localization 
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/obj_detection_3.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 3.1]
+--
+
+.left[
+<pre>
+1 - pedestrain
+2 - car
+3 - motorcycle
+4 - background
+</pre>
+]
+
+.footnote[From chapter 5. week 3.1]
+---
+## Object Detection
+* Classification with Object localization 
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/obj_local.png" width=95% height=95%>
+</div>
+
+.left[
+<pre>
+1 - pedestrain
+2 - car
+3 - motorcycle
+4 - background
+</pre>
+
+]
+
+.footnote[From chapter 5. week 3.1]
+---
+## Object Detection
+* Classification with Object localization 
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/obj2.png" width=70% height=70%>
+</div>
+$$\begin{aligned}y = \begin{bmatrix}P\_c \\\\ b\_x \\\\b\_y \\\\b\_h \\\\b\_h \\\\b\_w  \\\\C\_1 \\\\C\_2 \\\\C\_3  \end{bmatrix} 
+\quad y = \begin{bmatrix}1 \\\\ b\_x \\\\b\_y \\\\b\_h \\\\b\_h \\\\b\_w  \\\\0 \\\\1 \\\\0  \end{bmatrix} 
+\qquad y = \begin{bmatrix}0 \\\\? \\\\? \\\\? \\\\? \\\\?  \\\\? \\\\? \\\\?  \end{bmatrix} 
+\end{aligned}$$
+
+
+<!--
+$$\begin{aligned}\begin y = {bmatrix}P\_c\\\\b\_x\\\\b\_y\\\\b\_h\\\\b\_w\\\\C\_1\\\\C\_2\\\\C\_3\end{bmatrix}\end{aligned}$$
+-->
+
+.footnote[From chapter 5. week 3.1]
+---
+## Landmark detection
+<br/>
+<br/>
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/landmark.png" width=95% height=95%>
+</div>
+
+.footnote[From chapter 5. week 3.2]
+---
+## Sliding windows object Detection
+### Different size windows
+
+
+.left[
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/slide1.gif" width=90% height=90%>
+]
+
+.right[
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/slide2.gif" width=90% height=90%>
+]
+.footnote[From chapter 5. week 3.3]
+---
+## Truning FC layer into convolutional layers
+
+<div align=center>
+<br/><br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/fc2conv1.png" width=90% height=90%>
+<br/><br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/fc2conv2.png" width=90% height=90%>
+</div>
+.footnote[From chapter 5. week 3.4]
+---
+## Convolution implementation of sliding windows
+
+<div align=center>
+<br/><br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/sliding_conv1.png" width=90% height=90%>
+<br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/sliding_conv2.png" width=90% height=90%>
+<br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/sliding_conv3.png" width=90% height=90%>
+</div>
+
+.footnote[From chapter 5. week 3.4]
+---
+## Convolution implementation of sliding windows
+
+<div align=center>
+<br/><br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/sliding_conv3.png" width=90% height=90%>
+<br/><br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/slide.gif" width=30% height=30%>
+</div>
+
+.footnote[From chapter 5. week 3.4]
+---
+## YOLO algorithm 
+<br/>
+
+.left[
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/yolo1.png" width=80% height=80%>
+]
+
+.right[
+<br/>
+<br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/yolo2.png" width=80% height=80%>
+<br/><br/><br/>
+$3\times 3 \times 8\qquad\qquad$ 
+]
+
+.footnote[From chapter 5. week 3.5]
+--
+
+<div align=center>
+<br/><br/>
+<br/><br/>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/yolo3.png" width=90% height=90%>
+</div>
+$\quad 10\times 10 \times 3 \qquad \qquad \qquad \qquad \qquad \qquad \qquad \quad \quad  3 \times 3 \times 8$
+
+.footnote[From chapter 5. week 3.5]
+---
+## Specify the bounding boxes 
+<br/>
+<br/>
+<br/>
+
+.left[
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/yolo1.png" width=80% height=80%>
+]
+
+.right[
+$$y=\begin{bmatrix}1 \\\\ b\_x \\\\ b\_y \\\\ b\_h \\\\ b\_w \\\\ 0 \\\\ 1 \\\\ 0 \end{bmatrix} \begin{aligned} b\_x, b\_y = \begin{cases} 0.4 \\\\ 0.3 \end{cases}\\\\\\\\ b\_h, b\_w=\begin{cases}0.9 \\\\ 0.5\end{cases} \end{aligned}$$
+]
+
+.footnote[From chapter 5. week 3.5]
+---
+## Evaluating object localization
+
+<br/>
+<br/>
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/lou.png" width=40% height=40%>
+</div>
+$$\text{intersection over union} =  \frac{\text{size of } intersection}{\text{size of } union}$$
+
+.footnote[From chapter 5. week 3.6]
+---
+
+---
+template: inverse
+
+## Sequence Models
+---
+## Why sequence models?
+
+* Speech recognition
+* Music generateration
+* Sentiment classification
+* DNA sequence analysis
+* Machine Translation
+* Video activity recognition
+* Name entity recognition
+
+---
+## Notation
+
+### Motivating example
+
+x: Harry Potter and Hermione Granger invented a new spell
+
+  $\quad x^{<1>}\enspace x^{<2>}\enspace x^{<3>}\quad\qquad\qquad\cdots\qquad\qquad\qquad x^{<9>}$
+
+<br/>
+one-hot:
+<br/>
+<pre>
+And=367
+Invented=4700
+A=1
+New=5976
+Spell=8376
+Harry=4075
+Potter=6830
+Hermione=4200
+Gran...=4000
+</pre>
+---
+## Recurrent Neural Networks
+<br/>
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/rnn.png" width=80% height=80%>
+</div>
+
+---
+# Summary 
+* Neural Networks and Deep Learning
+* Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization
+* Structuring Machine Learning Projects
+* Convolutional Neural Networks
+* Sequence Models
+
+---
+# Reference
+<div class="reference">
+<ul >
+<li>http://mooc.study.163.com/smartSpec/detail/1001319001.htm</li>
+<li>https://www.coursera.org/specializations/deep-learning</li>
+<li>https://liam0205.me/2017/03/25/bias-variance-tradeoff/</li>
+</ul>
+</div>
+
+---
+template: inverse 
+# Thanks!
+## Q&A
+
+  </textarea>
+  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+  <script type="text/javascript">
+	  var options = {highlightStyle: 'monokai', highlightLines:true, ratio: '4:3'};
+    var slideshow = remark.create(options);
+  renderMath();
+  </script>
+</body>
+</html>

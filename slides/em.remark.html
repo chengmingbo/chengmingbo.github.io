@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EM Alogrithm</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+	  .remark-slide-content h1 { font-size: 3em; }
+    .remark-slide-content h2 { font-size: 2em; }
+    .remark-slide-content h3 { font-size: 1.6em; }
+    .remark-slide-content ul { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; line-height: 80px; }
+    .remark-slide-content ol { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; }
+    .reference ul {font-size: 1.4em; font-family: 'Yanone Kaffeesatz'; line-height: 60px; color:blue}
+    .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        right: 3em;
+        color: #777872;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 50%;
+        float: right;
+        padding-top: 1em;
+      }
+      .pseudocode{
+        background-color:#DDDDDD;
+        padding:10px;
+        font-size: 18px;
+        color: black;
+        text-shadow: 0 0 3px #333;
+        border-radius: 15px;
+      }
+	  .imgcenter{
+	  	height: 200px;/*元素的高度*/
+		width: 200px;
+	  	position: absolute;
+	  	top: 30%;
+	  	margin-top: -50px;
+		left: 25%;
+		margin-left: -50px;
+	  	}	 
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
+
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+#  Expectation Maximization Algorithm
+### By ChengMingbo
+### 2017-11-29
+.footnote[powered by <a href="https://github.com/gnab/remark"><font color=yellow>remark.js</font></a>] 
+???
+I am a note, will be only shown when under presentation mode
+
+---
+layout: false
+
+# Outline
+* Multinomial Distribution 
+* One Simple Example 
+* Example with Latent Variables  
+* Expectation Maximization
+* Mixture Guassian Model 
+
+---
+template: inverse
+# Multinomial Distribution 
+
+---
+### Binomial & Multinomial 
+$$\begin{aligned}
+\color{blue}{Bernoulli}:\\\\
+&{\mathrm {Bern} }(x|\mu)=\mu^x(1-\mu)^{(1-x)}\\\\\\\\
+\color{white}{Binomial:}\\\\
+&\color{white}{{\mathrm {Bin} }(m|N,\mu)=\begin{pmatrix}N\\\\m\end{pmatrix}\mu^m(1-\mu)^{(N-m)}}\\\\
+\color{white}{where}\quad &\color{white}{\begin{pmatrix}N\\\\m\end{pmatrix} = \frac{N!}{(N-m)!m!}}\\\\\\\\
+\color{white}{Multinomial:}\\\\
+&\color{white}{Mult(m\_1, m\_2,\cdots,m\_K|\mu, N)=\begin{pmatrix}N\\\\m\_1m\_2\cdots m\_K\end{pmatrix}\prod\_{k=1}^K \mu\_k^{m_k}}
+\end{aligned}$$
+
+---
+### Binomial & Multinomial 
+$$\begin{aligned}
+\color{blue}{Bernoulli}:\\\\
+&{\mathrm {\color{gray}{Bern}}}\color{gray}{(x|\mu)=\mu^x(1-\mu)^{(1-x)}}\\\\\\\\
+\color{blue}{Binomial}:\\\\
+&{\mathrm {Bin} }(m|N,\mu)=\begin{pmatrix}N\\\\m\end{pmatrix}\mu^m(1-\mu)^{(N-m)}\\\\
+where\quad &\begin{pmatrix}N\\\\m\end{pmatrix} = \frac{N!}{(N-m)!m!}\\\\\\\\
+\color{white}{Multinomial:}\\\\
+&\color{white}{Mult(m\_1, m\_2,\cdots,m\_K|\mu, N)=\begin{pmatrix}N\\\\m\_1m\_2\cdots m\_K\end{pmatrix}\prod\_{k=1}^K \mu\_k^{m_k}}
+\end{aligned}$$
+---
+
+### Binomial & Multinomial 
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-binomial.png" width=80% height=80%/>
+</div>
+.center[Fig1. Binomial distribution as a function of $m$ for $N=10$ and $\mu=0.25$]
+---
+### Binomial & Multinomial 
+$$\begin{aligned}
+\color{blue}{Bernoulli}:\\\\
+&{\mathrm {\color{gray}{Bern}}}\color{gray}{(x|\mu)=\mu^x(1-\mu)^{(1-x)}}\\\\\\\\
+\color{blue}{Binomial}:\\\\
+&{\mathrm {\color{gray}{Bin} } }\color{gray}{(m|N,\mu)=\begin{pmatrix}N\\\\m\end{pmatrix}\mu^m(1-\mu)^{(N-m)} }\\\\
+\color{gray}{where\quad} &\color{gray}{\begin{pmatrix}N\\\\m\end{pmatrix} = \frac{N!}{(N-m)!m!} }\\\\\\\\
+\color{blue}{Multinomial}:\\\\
+&{\mathrm {Mult} }(m\_1, m\_2,\cdots,m\_K|\mu, N)=\begin{pmatrix}N\\\\m\_1m\_2\cdots m\_K\end{pmatrix}\prod\_{k=1}^K \mu\_k^{m_k}\\\\
+where\quad &\begin{pmatrix}N\\\\m\_1m\_2\cdots m\_K\end{pmatrix} = \frac{N!}{m\_1! m\_2!\cdots m\_K!} 
+\end{aligned}$$
+---
+template: inverse
+# Simple Example 
+---
+### An Example
+#### 197 animals are distributed multinomially into 4 categories, so that the observed data consist of 
+$${\bf y}=(y\_1, y\_2, y\_3, y\_4) = (125, 18, 20, 34)$$
+with probabalities:
+$$\begin{array}{c|cccc}
+{\bf y}&y\_1 & y\_2 & y\_3 & y\_4\\\\
+\\hline
+P&\frac{1}{2}+\frac{1}{4}\pi & \frac{1}{4}(1-\pi) & \frac{1}{4}(1-\pi) & \frac{1}{4}\pi
+\end{array}$$
+
+--
+
+<br/>
+$$\begin{aligned}
+P({\bf y}|\pi) 
+= \frac{(y\_1+ y\_2+ y\_3+ y\_4)!}{y\_1! y\_2! y\_3! y\_4!}
+\left(\frac{1}{2}+\frac{1}{4}\pi\right)^{y\_1}
+\left(\frac{1}{4}(1-\pi)\right)^{y\_2}
+\left(\frac{1}{4}(1-\pi)\right)^{y\_3}
+\left(\frac{1}{4}\pi\right)^{y\_4}
+\end{aligned}$$
+---
+### An Example -- MLE
+#### 197 animals are distributed multinomially into 4 categories, so that the observed data consist of 
+$${\bf y}=(y\_1, y\_2, y\_3, y\_4) = (125, 18, 20, 34)$$
+with probabalities:
+$$\begin{array}{c|cccc}
+{\bf y}&y\_1 & y\_2 & y\_3 & y\_4\\\\
+\\hline
+P&\frac{1}{2}+\frac{1}{4}\pi & \frac{1}{4}(1-\pi) & \frac{1}{4}(1-\pi) & \frac{1}{4}\pi
+\end{array}$$
+
+<br/>
+$$\begin{aligned}
+P({\bf y}|\pi) 
+= \frac{(y\_1+ y\_2+ y\_3+ y\_4)!}{y\_1! y\_2! y\_3! y\_4!}
+\left(\frac{1}{2}+\frac{1}{4}\pi\right)^{y\_1}
+\left(\frac{1}{4}(1-\pi)\right)^{y\_2}
+\left(\frac{1}{4}(1-\pi)\right)^{y\_3}
+\left(\frac{1}{4}\pi\right)^{y\_4}
+\end{aligned}$$
+<br/>
+<p>
+$$L(y|\pi) = y_1\log (\frac{1}{2}+\frac{1}{4}\pi)+(y_2+y_3)\log(\frac{1}{4}(1-\pi)) + y_4\log \frac{1}{4}\pi$$
+</p>
+
+---
+### An Example -- MLE
+
+<p>
+$$\begin{array}{|c|}
+\hline
+L(y|\pi) = y_1\log (\frac{1}{2}+\frac{1}{4}\pi)+(y_2+y_3)\log(\frac{1}{4}(1-\pi)) + y_4\log \frac{1}{4}\pi\\
+\hline
+\end{array}$$
+</p>
+<br/>
+<br/>
+<p>
+$$\begin{aligned}
+&\frac{y_1}{2+\pi} - \frac{y_2+y_3}{1-\pi} + \frac{y_4}{\pi}\quad\overset{set}{=}\quad0\\\\
+\implies &197\pi^2-15\pi-68=0\\\\
+\implies &\pi_1=-0.5507\qquad \pi_2=0.62682
+\end{aligned}$$
+</p>
+
+--
+
+<br/>
+<br/>
+
+$$\begin{array}{c|cccc}
+{\bf y}&y\_1 & y\_2 & y\_3 & y\_4\\\\
+\\hline
+P& 0.6567 & 0.0933 & 0.0933 & 0.1567 
+\end{array}$$
+
+
+
+???
+matlab solve the problem:
+x=solve('197*x^2-15*x-68=0', 'x')
+
+---
+template: inverse
+# Example with Latent Variables  
+---
+### Example with Latent Variables  
+#### 197 animals are distributed multinomially into 5 categories, so that the observed data consist of 
+$${\bf y}=(y\_{11}+y\_{12}, y\_2, y\_3, y\_4) = (125, 18, 20, 34)$$
+with probabalities:
+$$\begin{array}{c|ccccc}
+{\bf y}&y\_{11} &y\_{12}& y\_2 & y\_3 & y\_4\\\\
+\\hline
+P&\frac{1}{2}&\frac{1}{4}\pi & \frac{1}{4}(1-\pi) & \frac{1}{4}(1-\pi) & \frac{1}{4}\pi
+\end{array}$$
+
+<br/>
+
+--
+
+<p>
+$P({\bf y}|\pi) 
+= \frac{(y_{11} + y_{12}+ y_2+ y_3+ y_4)!}{y_{11}! y_{12}! y_2! y_3! y_4!}
+(\frac{1}{2})^{y_{11} } 
+\left(\frac{1}{4}\pi\right)^{y_{12} }
+\left(\frac{1}{4}(1-\pi)\right)^{y_2}
+\left(\frac{1}{4}(1-\pi)\right)^{y_3}
+\left(\frac{1}{4}\pi\right)^{y_4}$
+<br/>
+<br/>
+<br/>
+$$L(y|\pi) = (y_{12}+y_4)\log (\frac{1}{4}\pi)+(y_2+y_3)\log(\frac{1}{4}(1-\pi))$$
+</p>
+---
+### Example with Latent Variables  
+<p>
+$$\begin{aligned}
+\color{blue}{E-Step}:\\
+&y_{11}^{(t)}=125\frac{\frac{1}{2}}{\frac{1}{2} + \frac{1}{4}\pi^{(t)}} 
+\quad y_{12}^{(t)}=125\frac{\frac{1}{4}\pi^{(t)}}{\frac{1}{2} + \frac{1}{4}\pi^{(t)}}\\\\
+\color{blue}{M-Step}:\\
+& \pi^{(t+1)} = \frac{y_{12}^{(t)}+34}{y_{12}^{(t)}+34+18+20}
+\end{aligned}$$
+
+</p>
+
+##### Code
+```matlab
+  y2=18; y3=20; y4=34;
+
+  pit = 0.5;
+  for i=1:10
+    y12 = 125 * (0.25 * pit) / (0.5 + 0.25 * pit);
+    npit = (y12+y4)/(y12+y2+y3+y4)
+    pit = npit;
+  end
+```
+---
+### Example with Latent Variables  
+<br/>
+.center[The EM algorithm in a simple case]
+<p>
+$$
+\begin{array}{ccc}
+\hline
+t & \pi^{(t)} & \pi^{(t)}-\pi^{*}  & (\pi^{(t+1)}-\pi^{*})\div(\pi^{(t)}-\pi^{*}) \\
+\hline
+0&0.500000&-0.126820&0.146448\\
+1&0.608247&-0.018573&0.134551\\
+2&0.624321&-0.002499&0.132504\\
+3&0.626489&-0.000331&0.128888\\
+4&0.626777&-0.000043&0.102346\\
+5&0.626816&-0.000004&-0.164615\\
+6&0.626821&0.000001&1.939386\\
+7&0.626821&0.000001&1.064314\\
+8&0.626821&0.000001&1.008024\\
+9&0.626821&0.000001&1.001057\\
+10&0.626821&0.000001&1.000140\\
+\hline
+\end{array}
+$$
+</p>
+---
+template: inverse
+# Expectation Maximization
+
+---
+### EM -- Jensen Inquality 
+<br/>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-convex_jesen.png" width=70% height=70%/>
+</div>
+.center[${\mathrm{Fig2.\, Convex: \,\,}}\mathbb{E}[f(X)] \geq f([\mathbb{E}X])$]
+
+---
+### Expectation Maximization -- MLE
+Given training set {$x^{(1)}x^{(2)},\cdots,x^{(m)}$} consiting of m indepent examples. 
+
+<font color=blue>If there is no latent variable, then:</font>
+<p>
+$$\begin{align}
+L(\theta) &= \log \prod_{i=1}^{m} p(x; \theta)\\
+&=\sum_{i=1}^m \log p(x;\theta)
+\end{align}$$
+</p>
+
+--
+
+<font color=blue>Suppose $p(x) = \sum_z p(x, z)$, where $z$ is latent variable, then:</font>
+<p>
+$$\begin{align}
+L(\theta) &=\sum_{i=1}^m \log p(x;\theta)\\
+&= \sum_{i=1}^m  \log \sum_z p(x, z; \theta)
+\end{align}$$
+</p>
+
+---
+### Expectation Maximization
+</br>
+<br>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-EM-Cartoon.png" width=80% height=80%/>
+</div>
+.center[Fig3. Single iteration of the EM algorithm]
+
+???
+Figure 2: Graphical interpretation of a single iteration of the EM algorithm: 
+The function L(θ|θn) is upper-bounded by the likelihood function L(θ). 
+The functions are equal at θ = θn. 
+The EM algorithm chooses θn+1 as the value of θ for which l(θ|θn) is a maximum. 
+Since L(θ) ≥ l(θ|θn) increasing l(θ|θn) ensures that the value of the likelihood function L(θ) is increased at each step.
+???
+### Expectation Maximization
+Blue one is $P(z)$,the red one is $g(z)$。
+
+$$\mathbb{E}[f(x)] = \sum p(x)\times f(x)$$
+$$z\sim p\quad g(z)\quad \mathbb{E}[g(z)]=\sum p(z)g(z)$$
+
+---
+### Expectation Maximization -- Derivation 
+$$\begin{array}{|c|}
+\\hline
+\text{Given that }Q\_i(z^{(i)})\geq 0 \,\, \sum_{z^{(i)}}Q\_i(z^{(i)})=1\\\\
+\\hline
+\end{array}$$
+<br/>
+<p>
+$$\begin{aligned}
+\max_\theta\sum_i \log p(x^{(i)};\theta)
+=&\sum_i \log \sum_{z^{(i)} }  p(x^{(i)}, z^{(i)};\theta)\\
+\color{white}{=}&\color{white}{\sum_i\log\sum_{z^{(i)}}{Q_i(z^{(i)})}\lbrack \frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})}\rbrack }\\
+\color{white}{=}&\color{white}{\sum_i\log\mathbb{E}_{z^{i}\sim Q_i}\lbrack \frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})}\rbrack}\\
+\end{aligned}$$
+</p>
+
+---
+### Expectation Maximization -- Derivation 
+$$\begin{array}{|c|}
+\\hline
+\text{Given that }Q\_i(z^{(i)})\geq 0 \,\, \sum_{z^{(i)}}Q\_i(z^{(i)})=1\\\\
+\\hline
+\end{array}$$
+<br/>
+<p>
+$$\begin{aligned}
+\max_\theta\sum_i \log p(x^{(i)};\theta)
+=&\sum_i \log \sum_{z^{(i)} }  p(x^{(i)}, z^{(i)};\theta)\\
+=&\sum_i\log\sum_{z^{(i)}}\color{blue}{Q_i(z^{(i)})}\color{red}{\lbrack \frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})}\rbrack}\\
+=&\sum_i\log\mathbb{E}_{z^{i}\sim Q_i}\lbrack \frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})}\rbrack\\
+\end{aligned}$$
+</p>
+---
+### Expectation Maximization
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-jensen_log_mark.png" width=70% height=70%/>
+</div>
+
+.center[${\mathrm{Fig4.\, Concave: \,\,}} f([\mathbb{E}X]) \geq \mathbb{E}[f(X)]\;where\;f(x)=\log(x)$]
+---
+### Expectation Maximization -- Derivation 
+$$\begin{array}{|c|}
+\\hline
+\text{Given that }Q\_i(z^{(i)})\geq 0 \,\, \sum_{z^{(i)} }Q\_i(z^{(i)})=1\\\\
+\\hline
+\end{array}$$
+<br/>
+<p>
+$$\begin{aligned}
+\max_\theta\sum_i \log p(x^{(i)};\theta)
+=&\sum_i \log \sum_{z^{(i)} }  p(x^{(i)}, z^{(i)};\theta)\\
+=&\sum_i\log\sum_{z^{(i)}}\color{blue}{Q_i(z^{(i)})}\color{red}{\lbrack \frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})}\rbrack}\\
+\hline
+=&\sum_i\log\mathbb{E}_{z^{(i)}\sim Q_i}\lbrack \frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})}\rbrack\\
+\geq&\sum_i\mathbb{E}_{z^{(i)}\sim Qi}\lbrack\log\frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})}\rbrack\\
+=&\sum_i\sum_{z^{(i)}}Q_i(z^{(i)})\log\frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})}
+\end{aligned}$$
+</p>
+
+---
+### Expectation Maximization -- Derivation 
+<br/>
+<p>
+$$\begin{array}{|c|}
+\hline
+\max_\theta\sum_i \log p(x^{(i)};\theta)
+\geq&\sum_i\sum_{z^{(i)}}\color{blue}{Q_i(z^{(i)})}\color{red}{\log\frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})} }\\
+\hline
+\end{array}$$
+</p>
+
+---
+### Expectation Maximization -- Derivation 
+<br/>
+<p>
+$$\begin{array}{|c|}
+\hline
+\max_\theta\sum_i \log p(x^{(i)};\theta)
+\geq&\sum_i\sum_{z^{(i)}}\color{blue}{Q_i(z^{(i)})}\color{red}{\log\frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})} }\\
+\hline
+\end{array}$$
+</p>
+
+<p>
+$$\begin{aligned}
+\frac{p(x^{i},z^{(i)};\theta)}{Q_i(z^{(i)})} = c \implies c \cdot \sum_{z^{(i)}}Q_i(z^{(i)}) = \sum_{z^{(i)}} p(x^{(i)}, z^{(i)}; \theta) 
+\end{aligned}$$
+</p>
+
+--
+<p>
+$$\begin{aligned}
+\quad\;\;\implies c = \sum_{z^{(i)} } p(x^{(i)}, z^{(i)}; \theta)
+\end{aligned}$$
+</p>
+--
+<p>
+$$\begin{aligned}
+Q_i(z^{(i)}) &= \frac{p(x^{(i)}, z^{(i)}; \theta)}{\sum_z p(x^{(i)}, z; \theta)}\\
+&= \frac{p(x^{(i)}, z^{(i)}; \theta)}{p(x^{(i)}; \theta)}\\
+&= p(z^{(i)}| x^{(i)}; \theta)
+\end{aligned}$$
+</p>
+---
+### Expectation Maximization -- Derivation 
+<br/>
+<p>
+$$\begin{array}{|c|}
+\hline
+ Q_i(z^{(i)})= p(z^{(i)}| x^{(i)}; \theta) \\
+ \hline
+ \end{array}$$
+</p>
+
+<br/>
+##### EM Pseudo Code
+.pseudocode[
+E ─ Step For each i, set
+
+  $$Q_i(z^{(i)}) := p(z^{(i)}|x^{(i)}; \theta)$$
+
+M ─ Step Set
+<p>
+  $$\theta := \arg\max_\theta \sum_i\sum_{z^{(i)} }  Q_i(z^{(i)}) \log \frac{p(x^{(i)}, z^{(i)}; \theta)}{Q_i(z^{(i)})}$$
+</p>
+]
+---
+template: inverse
+# Gaussian Mixture Model 
+
+---
+### GMM
+#### iter 1
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-iter1.png" height="70%" width="70%">
+</div>
+
+---
+### GMM
+#### iter 2
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-iter2.png" height="70%" width="70%">
+</div>
+
+---
+### GMM
+#### iter 3
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-iter3.png" height="70%" width="70%">
+</div>
+
+
+---
+### GMM
+#### iter 4
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-iter4.png" height="70%" width="70%">
+</div>
+
+---
+### GMM
+#### iter 5
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-iter5.png" height="70%" width="70%">
+</div>
+
+---
+### GMM
+#### iter 20 
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-iter20.png" height="70%" width="70%">
+</div>
+
+---
+### GMM 
+<p>
+$$f(x;\mu,\Sigma)=\frac{1}{{(2\pi)}^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}{(x-\mu)^T}{\Sigma^{-1}}{(x-\mu)}}$$
+</p>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-gmm.jpg" height="80%" width="80%">
+</div>
+---
+### GMM 
+<p>
+$$f(x;\mu,\Sigma)=\frac{1}{{(2\pi)}^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}{(x-\mu)^T}{\Sigma^{-1}}{(x-\mu)}}$$
+</p>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-gmm2.png" height="80%" width="80%">
+</div>
+
+---
+### GMM 
+<p>
+$$f(x;\mu,\Sigma)=\frac{1}{{(2\pi)}^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}{(x-\mu)^T}{\Sigma^{-1}}{(x-\mu)}}$$
+</p>
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-11-29-contours.png" height="80%" width="80%">
+</div>
+
+---
+### GMM 
+<p>
+$$\begin{aligned}Q_i(z^{(i)})&=p(z^{(i)}| x^{(i)}; \theta)\\
+&\color{white}{= \frac{p(x^{(i)}|z^{(i)}=j; \mu, \Sigma)p(z^{(i)}=j|\phi)}{\sum_{l=1}^k p(x^{(i)}|z^{(i)}=l; \mu, \Sigma)p(z^{(i)}=l|\phi)} }
+\end{aligned}$$
+</p>
+--
+<font color=blue>E-step:</font>
+<p>
+$$\begin{aligned}
+Q_i(z^{(i)})&=p(z^{(i)}=j|x^{(i)}; \phi, \mu, \Sigma)\\\\ 
+&= \frac{p(x^{(i)}|z^{(i)}=j; \mu, \Sigma)p(z^{(i)}=j|\phi)}{\sum_{l=1}^k p(x^{(i)}|z^{(i)}=l; \mu, \Sigma)p(z^{(i)}=l|\phi)}\\\\
+&=w_j^{(i)}
+\end{aligned}$$
+</p>
+
+---
+### GMM 
+<p>
+$$\theta := \arg\max_\theta \sum_i\sum_{z^{(i)} }  Q_i(z^{(i)}) \log \frac{p(x^{(i)}, z^{(i)}; \theta)}{Q_i(z^{(i)})}$$
+</p>
+--
+<font color=blue>M-step:</font>
+<p>
+$$
+\begin{aligned}
+\phi_j &:= \frac{1}{m}\sum_{i=1}^m w_j^{(i)}\\\\
+\mu_j &:= \frac{\sum_{i=1}^m w_j^{(i)} x^{(i)}}{\sum_{i=1}^j w_j^{(i)}}\\\\
+\Sigma_j &:= \frac{\sum_{i=1}^m w_j^{(i)}(x^{(i)}-\mu_j)(x^{(i)}-\mu_j)^T}{\sum_{i=1}^j w_j^{(i)}}
+\end{aligned} $$
+</p>
+---
+# Summary 
+* Multinomial Distribution 
+* One Simple Example 
+* Example with Latent Variables  
+* Expectation Maximization
+* Mixture Guassian Model 
+
+---
+# Reference
+<div class="reference">
+<ul >
+<li>A. P. Dempster: Maximum Likelihood from Incomplete Data via the EM Algorithm</li>
+<li>Sean Borman: The Expectation Maximization Algorithm A short tutorial</li>
+<li>Bishop: &lt; Pattern Recognition and Machine Learning &gt;</li>
+<li>http://cs229.stanford.edu/notes/cs229-notes7b.ps</li>
+<li>http://mccormickml.com/2014/08/04/gaussian-mixture-models-tutorial-and-matlab-code/</li>
+</ul>
+</div>
+
+---
+template: inverse 
+# Thanks!
+## Q&A
+
+  </textarea>
+  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+  <script type="text/javascript">
+	  var options = {highlightStyle: 'monokai', highlightLines:true, ratio: '4:3'};
+      
+  var renderMath = function(){
+          // Setup MathJax
+          MathJax.Hub.Config({
+          tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Configured();
+  }
+  var slideshow = remark.create(options);
+  renderMath();
+  </script>
+</body>
+</html>

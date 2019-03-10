@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GDA</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+	  .remark-slide-content h1 { font-size: 3em; }
+    .remark-slide-content h2 { font-size: 2em; }
+    .remark-slide-content h3 { font-size: 1.6em; }
+    .remark-slide-content ul { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; line-height: 80px; }
+    .remark-slide-content ol { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; }
+    .reference ul {font-size: 1.4em; font-family: 'Yanone Kaffeesatz'; line-height: 60px; color:blue}
+    .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        right: 3em;
+        color: #777872;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 50%;
+        float: right;
+        padding-top: 1em;
+      }
+      .pseudocode{
+        background-color:#E5E1B0;
+        padding:10px;
+        font-size: 15px;
+        color: black;
+        text-shadow: 0 0 3px #333;
+        border-radius: 15px;
+      }
+	  .imgcenter{
+	  	height: 200px;/*元素的高度*/
+		width: 200px;
+	  	position: absolute;
+	  	top: 30%;
+	  	margin-top: -50px;
+		left: 25%;
+		margin-left: -50px;
+	  	}	 
+      .vertmid{
+        width: 100%;
+        height: 67%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
+
+name: mid
+layout: true
+class: center, middle 
+
+---
+<br/>
+<br/>
+.vertmid[
+# Gaussian Discriminant Analysis
+
+## <p align=right>ChengMingbo<br/>2017-07-07</p>
+]
+
+
+.footnote[powered by <a href="https://github.com/gnab/remark"><font color=blue>remark.js</font></a>] 
+
+---
+name: inverse 
+layout: true
+class: center, middle, inverse
+
+---
+
+# Gaussian Distribution
+<p>
+$$\color{yellow}{X\sim \mathcal{N}(\mu, \sigma^2)}$$
+$$\color{yellow}{f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2} } }$$
+</p>
+
+---
+layout: false
+
+## Amazing Gauss!
+
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-16-gaussian_cash.jpg" height=80% width=80% />
+</div>
+
+???
+1989-2001 
+
+---
+<br/>
+$$f(x;0,1)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$$
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-normal_1.jpg" height=80% width=80% />
+</div>
+
+???
+函数曲线下68.268949%的面积在平均数左右的一个标准差范围内。
+95.449974%的面积在平均数左右两个标准差 {\displaystyle 2\sigma } 2 \sigma的范围内。
+99.730020%的面积在平均数左右三个标准差 {\displaystyle 3\sigma } 3 \sigma的范围内。-->
+
+---
+template: mid 
+
+## Change $\mu$
+
+---
+<br/>
+$$X\sim \mathcal{N}(2, 1)\quad \text{vs}\quad X\sim \mathcal{N}(-2, 1)$$
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-normal_2.jpg" height=80% width=80% />
+</div>
+
+---
+template: mid
+## What if change  $\sigma^2$ ?
+
+---
+<br/>
+$$\mathcal{N}(0,1),\quad\mathcal{N}(0,0.1),\quad\mathcal{N}(0,4),\quad\mathcal{N}(0,8)$$
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-normal_3.jpg" height=80% width=80% />
+</div>
+
+---
+template: inverse
+# Multivariate Gaussian Distribution
+
+---
+### <font color=blue>Univariate Gaussian Distribution</font>
+$$X\sim (\mu, \sigma^2)\quad x\in\Bbb{R}^d$$
+$$\Downarrow$$
+$$f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}}$$
+### <font color=blue>Multivariate Gaussian Distribution</font>
+$$X\sim (\mu, \Sigma)$$
+$$\Downarrow$$
+$$f(x;\mu,\Sigma)=\frac{1}{{(2\pi)}^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}{(x-\mu)^T}{\Sigma^{-1}}{(x-\mu)}}$$
+$$\mu=\Bbb{E}(x)\quad\Sigma=\Bbb{E}[(x-\mu)(x-\mu)^T]$$
+
+---
+<br/>
+<p>
+$$X\sim \left(\begin{bmatrix}0\\0\end{bmatrix}, \begin{bmatrix}1 & 0\\0& 1\end{bmatrix}\right)$$
+</p>
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-mvn_1.jpg" height=80% width=80% />
+</div>
+
+---
+## Bivariate Gaussian Distribution
+<br/>
+<p>
+$$X\sim \left(\begin{bmatrix}0\\0\end{bmatrix}, \begin{bmatrix}1 & 0\\0& 1\end{bmatrix}\right)$$
+
+$$\Downarrow$$
+
+$$f(x;\mu,\Sigma)=\frac{1}{{(2\pi)}^{\frac{2}{2}}\left|\begin{matrix}1 & 0\\0& 1\end{matrix}\right|^{\frac{1}{2}}}e^{-\frac{1}{2}{\left(x-\begin{bmatrix}0\\0\end{bmatrix}\right)^T}{\begin{bmatrix}1 & 0\\0& 1\end{bmatrix}}{\left(x-\begin{bmatrix}0\\0\end{bmatrix}\right)}}$$
+
+$$x=\begin{bmatrix}0\\0\end{bmatrix},\quad f\left(\begin{bmatrix}0\\0\end{bmatrix};\begin{bmatrix}0\\0\end{bmatrix},\begin{bmatrix}1 & 0\\0& 1\end{bmatrix}\right)=\frac{1}{2\pi}$$
+</p>
+
+---
+<br/>
+$$p(x;\mu,\Sigma)=\frac{1}{2\pi}=0.15915$$
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-mvn_1.jpg" height=80% width=80% />
+</div>
+
+---
+## What if change $\Sigma?$
+
+.vertmid[
+<p>
+$$\mu=\begin{bmatrix}0\\0\end{bmatrix}, \quad\Sigma=\begin{bmatrix}\color{red}{4} & 0\\0& \color{red}{4}\end{bmatrix}\quad?$$
+</p>
+]
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-16-1001.jpg" height=80% width=80% />
+</div>
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-16-4004.jpg" height=80% width=80% />
+</div>
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-0.3000.3.jpg" height=80% width=80% />
+</div>
+
+---
+## What if change $\Sigma?$
+
+.vertmid[
+<p>
+$$\mu=\begin{bmatrix}0\\0\end{bmatrix}, \quad\Sigma=\begin{bmatrix}\color{red}{1} & 0\\0&\color{blue}{5}\end{bmatrix}\quad?$$
+
+$$\mu=\begin{bmatrix}0\\0\end{bmatrix}, \quad\Sigma=\begin{bmatrix}\color{blue}{5} & 0\\0& \color{red}{1}\end{bmatrix}\quad?$$
+</p>
+]
+
+---
+<br/>
+<br/>
+<div align=center >
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-1005.jpg" height=80% width=80% />
+</div>
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-16-5001.jpg" height=80% width=80% />
+</div>
+
+---
+## What if change $\Sigma?$
+
+.vertmid[
+<p>
+$$\begin{aligned}&\mu=
+\begin{bmatrix}0\\0\end{bmatrix}, \quad\Sigma=
+\begin{bmatrix}1 & \color{red}{0.5}\\\color{red}{0.5}& 1\end{bmatrix}
+\quad?\\\\&\mu=\begin{bmatrix}0\\0\end{bmatrix}, \quad\Sigma=
+\begin{bmatrix}1 & \color{red}{-0.5}\\\color{red}{-0.5}& 1\end{bmatrix}\quad?
+\end{aligned}$$
+</p>
+]
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-10.50.51.jpg" height=80% width=80% />
+</div>
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-1-0.5-0.51.jpg" height=80% width=80% />
+</div>
+
+---
+## How to become thinner? 
+.vertmid[
+<p>
+$$\begin{aligned}&\mu=
+\begin{bmatrix}0\\0\end{bmatrix}, \quad\Sigma=
+\begin{bmatrix}1 & -0.0001\\-0.0001& 1\end{bmatrix}\quad?\\\\&\mu=
+\begin{bmatrix}0\\0\end{bmatrix}, \quad\Sigma=
+\begin{bmatrix}1 & 0.99\\0.99& 1\end{bmatrix}\quad?
+\end{aligned}$$
+</p>
+]
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-16-1-0.0001-0.00011.jpg" height=80% width=80% />
+</div>
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-10.990.991.jpg" height=80% width=80% />
+</div>
+
+---
+## Question 
+<br/>
+.vertmid[
+<p>
+$$\mu=\begin{bmatrix}0\\0\end{bmatrix}, \quad\Sigma=\begin{bmatrix}1 & 1\\1& 1\end{bmatrix}\quad?$$
+</p>
+]
+---
+## Find answer from formula 
+<br/>
+.vertmid[
+<p>
+$$f(x;\mu,\Sigma)=\frac{1}{{(2\pi)}^{\frac{2}{2}}\left|\color{red}{\begin{matrix}1 & 1\\1& 1\end{matrix}}\right|^{\frac{1}{2}}}
+e^{-\frac{1}{2}{\left(x-\begin{bmatrix}0\\0\end{bmatrix}\right)^T}\color{red}{\begin{bmatrix}1 & 1\\1& 1\end{bmatrix}^{-1}}{\left(x-\begin{bmatrix}0\\0\end{bmatrix}\right)}}$$
+</p>
+]
+
+---
+template: mid
+## What if change  $\mu?$
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-16-mu_00.jpg" height=80% width=80% />
+</div>
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-16-mu_11.jpg" height=80% width=80% />
+</div>
+
+---
+<br/>
+<br/>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-contour.jpg" height=80% width=80% />
+</div>
+
+---
+## Review
+.vertmid[
+<p>
+$$f(x;\mu,\Sigma)=\frac{1}{{(2\pi)}^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}{(x-\mu)^T}{\Sigma^{-1}}{(x-\mu)}}$$
+</p>
+]
+
+---
+<br/>
+### IF 
+
+<p>
+$$x=\begin{bmatrix}x_1\\x_2\end{bmatrix},\quad \mu=\begin{bmatrix}\mu_1\\\mu_2\end{bmatrix},\quad
+\Sigma=\begin{bmatrix}\sigma_1^2&0\\0&\sigma_2^2\end{bmatrix}$$
+</p>
+
+### THEN
+<p>
+$$\begin{aligned}f(x;\mu,\Sigma)&=\frac{1}{{2\pi}\left|\begin{matrix}\sigma_1^2 & 0\\0& \sigma_2^2\end{matrix}\right|^{\frac{1}{2}}}e^{-\frac{1}{2}{\left(\begin{bmatrix}x_1\\x_2\end{bmatrix}-\begin{bmatrix}\mu_1\\\mu_2\end{bmatrix}\right)^T}{\begin{bmatrix}\frac{1}{\sigma_1^2} & 0\\0& \frac{1}{\sigma_2^2}\end{bmatrix}}{\left(\begin{bmatrix}x_1\\x_2\end{bmatrix}-\begin{bmatrix}\mu_1\\\mu_2\end{bmatrix}\right)}}\\&=\frac{1}{2\pi\sigma_1\sigma_2}e^{-\frac{1}{2\sigma_1^2}(x_1-\mu_1)^2-\frac{1}{2\sigma_2^2}(x_1-\mu_2)^2}\end{aligned}$$
+</p>
+
+---
+template: inverse
+# Gaussian Discriminant Analysis 
+
+---
+## Two Univariate Guassian Distribution
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-normal_2.jpg" height=80% width=80% />
+</div>
+
+---
+## Two Multivariate Guassian Distribution
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-08-gda1.jpg" height=80% width=80% />
+</div>
+
+---
+### <font color=blue>Data</font> 
+<p>
+$$\mu_0=\begin{bmatrix}1\\1\end{bmatrix},\mu_1=\begin{bmatrix}4\\4\end{bmatrix},\Sigma=\begin{bmatrix}1&0\\0&1\end{bmatrix}$$
+</p>
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-08-samples.jpg" height=80% width=80% />
+</div>
+
+---
+<br>
+### <font color=blue>Distributions for red and blue data points</font>
+
+<p>
+$$\begin{aligned}&p(y=\text{blue})=\phi\\&p(y=\text{red})=1-\phi\end{aligned}$$
+</p>
+
+### <font color=blue>Blue represented by 1，Red represented by 0</font>
+<p>
+$$\begin{aligned}&p(y=1)=\phi\\&p(y=0)=1-\phi\end{aligned}$$
+</p>
+
+### <font color=blue>Integerate</font>:
+<p>
+$$\qquad\quad p(y;\phi)=\phi^y(1-\phi)^{(1-y)}$$
+</p>
+
+???
+可以假设，有铁和塑料两个箱子，分别红有红球和蓝球。我们取了一堆红球和篮球
+
+---
+<br/>
+### <font color=blue>Distribution for red data points</font>
+$$p(x|y=0)=\frac{1}{(2\pi)^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_0)^T\Sigma^{-1}(x-\mu_0)}$$
+
+### <font color=blue>Distribution for red data points</font>
+$$p(x|y=1)=\frac{1}{(2\pi)^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_1)^T\Sigma^{-1}(x-\mu_1)}$$
+
+---
+<br/>
+### <font color=blue>Suppose we have known all parameters</font>
+
+.vertmi[
+<p>
+$$\begin{aligned}&p(X,y;\phi,\mu_0,\mu_1,\Sigma)\\
+=&p(x^{(1)},x^{(2)},\cdots,x^{(m)},y^{(1)}y^{(2)},\cdots,y^{(m)};\phi,\mu_0,\mu_1,\Sigma)\\
+\triangleq&\prod_{i=1}^{m}p(x^{(i)},y^{(i)};\phi,\mu_0,\mu_1,\Sigma)
+\end{aligned}$$
+</p>
+]
+
+##  $$\arg\max p(X,y;\phi,\mu_0,\mu_1,\Sigma) $$
+
+---
+<br/>
+### <font color=blue>Derivation</font>
+<p>
+$$\begin{aligned}&\arg\max p(X,y;\phi,\mu_0,\mu_1,\Sigma)\\
+=&\arg\max\prod_{i=1}^{m}p(x^{(i)},y^{(i)};\phi,\mu_0,\mu_1,\Sigma)\\
+=&\arg\max\prod_{i=1}^{m}p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)p(y^{(i)};\phi)\\
+=&\arg\max\sum_{i=1}^{m}\log p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)+\sum_{i=1}^{m}p(y^{(i)};\phi)\end{aligned}$$
+</p>
+
+---
+### <font color=blue>How about $\phi?$</font>
+<br/>
+<p>
+$$\begin{aligned}&\frac{\partial\sum_{i=1}^{m} \log p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)+\sum_{i=1}^{m} \log p(y^{(i)};\phi)}{\partial \phi}=0\\
+\Rightarrow&\frac{\partial\sum_{i=1}^{m}\log p(y^{(i)};\phi)}{\partial \phi}=0\\
+\Rightarrow&\frac{\partial\sum_{i=1}^{m}\log \phi^{y^{(i)}}(1-\phi)^{(1-y^{(i)})}}{\partial \phi}=0\\
+\Rightarrow&\frac{\partial\sum_{i=1}^{m}{y^{(i)}}\log \phi+{(1-y^{(i)})}\log(1-\phi)}{\partial \phi}=0\\
+\Rightarrow&\frac{\partial\sum_{i=1}^{m}{{1}{\{y^{(i)}=1\}}}\log \phi+{1}{\{y^{(i)}=0\}}\log(1-\phi)}{\partial \phi}=0\\
+\Rightarrow&\phi=\frac{1}{m}\sum_{i=1}^{m}1\{y^{(i)}=1\}\end{aligned}$$
+</p>
+
+---
+template: mid
+
+$$\phi=\frac{1}{m}\sum_{i=1}^{m}1\{y^{(i)}=1\}$$
+
+---
+### <font color=blue>Find  $\mu_0$ and $\mu_1$</font>
+<br/>
+<p>
+$$\begin{aligned}&\frac{\partial\sum_{i=1}^{m} \log p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)+\sum_{i=1}^{m} \log p(y^{(i)};\phi)}{\partial \mu_0}=0\\
+\Rightarrow&\frac{\partial\sum_{i=1}^{m} \log p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)}{\partial \mu_0}=0\\
+\Rightarrow&\frac{\partial \sum_{i=1}^{m}\log\frac{1}{(2\pi)^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}(x^{(i)}-\mu_0)^T\Sigma^{-1}(x^{(i)}-\mu_0)}}{\partial \mu_0}=0\\
+\Rightarrow&0+\frac{\partial \sum_{i=1}^{m}{-\frac{1}{2}(x^{(i)}-\mu_0)^T\Sigma^{-1}(x^{(i)}-\mu_0)}}{\partial \mu_0}=0
+\end{aligned}$$
+</p>
+
+---
+### <font color=blue>Find  $\mu_0$ and $\mu_1$ cont.</font>
+
+Given that $\frac{\partial X^TAX}{\partial X}=(A+A^T)X$，令$(x^{(i)}-\mu_0)=X$
+<br/>
+
+<p>
+$$\begin{aligned}&0+\frac{\partial \sum_{i=1}^{m}{-\frac{1}{2}(x^{(i)}-\mu_0)^T\Sigma^{-1}(x^{(i)}-\mu_0)}}{\partial \mu_0}=0\\
+\Rightarrow&{\sum_{i=1}^{m}-\frac{1}{2}((\Sigma^{-1})^T+\Sigma^{-1})(x^{(i)}-\mu_0)\cdot(-1)}=0\\
+\Rightarrow& \sum_{i=1}^{m}1\{y^{(i)}=0\}x^{(i)}=\sum_{i=1}^{m}1\{y^{(i)}=0\}\mu_0\\
+\Rightarrow&\mu_0=\frac{\sum_{i=1}^{m}1\{y^{(i)}=0\}x^{(i)}}{\sum_{i=1}^{m}1\{y^{(i)}=0\}}
+\end{aligned}$$
+</p>
+
+---
+### <font color=blue>Find $\mu_0$ and $\mu_1$ cont.</font>
+<br/>
+<p>
+$$\mu_0=\frac{\sum_{i=1}^{m}1\{y^{(i)}=0\}x^{(i)}}{\sum_{i=1}^{m}1\{y^{(i)}=0\}}$$
+$$\mu_1=\frac{\sum_{i=1}^{m}1\{y^{(i)}=1\}x^{(i)}}{\sum_{i=1}^{m}1\{y^{(i)}=1\}}$$
+</p>
+
+---
+### <font color=blue>Find  $\Sigma$</font>
+<p>
+$$\begin{aligned}&\frac{\partial\sum_{i=1}^{m} \log p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)+\sum_{i=1}^{m} \log p(y^{(i)};\phi)}{\partial \Sigma}=0\\
+\Rightarrow&\frac{\partial \sum_{i=1}^{m}\log\frac{1}{(2\pi)^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}(x^{(i)}-\mu_{y^{(i)}})^T\Sigma^{-1}(x^{(i)}-\mu_{y^{(i)}})}}{\partial \Sigma}=0\\
+\Rightarrow&\frac{\partial \sum_{i=1}^{m}-\frac{d}{2}\log2\pi}{\partial \Sigma}+\frac{\partial \sum_{i=1}^{m}-\frac{1}{2}\log|\Sigma|}{\partial \Sigma}\\&+\frac{\partial \sum_{i=1}^{m}{-\frac{1}{2}(x^{(i)}-\mu_{y^{(i)}})^T\Sigma^{-1}(x^{(i)}-\mu_{y^{(i)}})}}{\partial \Sigma}=0\\\\
+\Rightarrow&\frac{\partial \sum_{i=1}^{m}-\frac{1}{2}\log|\Sigma|}{\partial \Sigma}+\frac{\partial \sum_{i=1}^{m}{-\frac{1}{2}(x^{(i)}-\mu_{y^{(i)}})^T\Sigma^{-1}(x^{(i)}-\mu_{y^{(i)}})}}{\partial \Sigma}\\
+&=0
+\end{aligned}$$
+</p>
+
+---
+### <font color=blue>Find $\Sigma$ cont.</font>
+
+####  Given that $\frac{\partial|\Sigma|}{\partial\Sigma}=|\Sigma|\Sigma^{-1},\quad \frac{\partial\Sigma^{-1}}{\partial\Sigma}=-\Sigma^{-2}$
+ 
+<p>
+$$\begin{aligned}&\frac{\partial \sum_{i=1}^{m}\log|\Sigma|}{\partial \Sigma}+\frac{\partial \sum_{i=1}^{m}{(x^{(i)}-\mu_{y^{(i)}})^T\Sigma^{-1}(x^{(i)}-\mu_{y^{(i)}})}}{\partial \Sigma}=0\\
+\Rightarrow&m\frac{1}{|\Sigma|}|\Sigma|\Sigma^{-1}+\sum_{i=1}^m(x^{(i)}-\mu_{y^{(i)}})^T(x^{(i)}-\mu_{y^{(i)}})(-\Sigma^{-2}))=0\\
+\Rightarrow&\Sigma=\frac{1}{m}\sum_{i=1}^{m}(x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T
+\end{aligned}$$
+</p>
+
+---
+template: mid
+<p>
+$$\Sigma=\frac{1}{m}\sum_{i=1}^{m}(x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T$$
+</p>
+
+---
+### <font color=blue>All parameters</font>
+
+<p>
+$$\begin{aligned}&\phi=\frac{1}{m}\sum_{i=1}^{m}1\{y^{(i)}=1\}\\\\
+&\mu_0=\frac{\sum_{i=1}^{m}1\{y^{(i)}=0\}x^{(i)}}{\sum_{i=1}^{m}1\{y^{(i)}=0\}}\\\\
+&\mu_1=\frac{\sum_{i=1}^{m}1\{y^{(i)}=1\}x^{(i)}}{\sum_{i=1}^{m}1\{y^{(i)}=1\}}\\\\
+&\Sigma=\frac{1}{m}\sum_{i=1}^{m}(x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T
+\end{aligned}$$
+</p>
+
+---
+### <font color=blue>Estimates</font>
+<p>
+$$\begin{aligned}
+&\phi=0.5\\\\
+&\mu_0=\begin{bmatrix}4.0551\\4.1008\end{bmatrix}\\\\
+&\mu_1=\begin{bmatrix}0.85439\\1.03622\end{bmatrix}\\\\
+&\Sigma=\begin{bmatrix}1.118822&-0.058976\\-0.058976&1.023049\end{bmatrix}
+\end{aligned}$$
+</p>
+
+---
+### <font color=blue>Distribution Estimation</font>
+
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-08-samples_fit.jpg" height=80% width=80% />
+</div>
+
+---
+### <font color=blue>Predicte</font>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-09-16-annotate.jpg" height=80% width=80% />
+</div>
+
+---
+##### <font color=blue>Recall: $\quad p(x|y=0)=\frac{1}{(2\pi)^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_0)^T\Sigma^{-1}(x-\mu_0)}$</font>
+
+<p>
+$\phi=0.5\,\mu_0=\begin{bmatrix}4.055\\4.101\end{bmatrix}
+\Sigma=\begin{bmatrix}1.1188&-0.059\\-0.059&1.023\end{bmatrix}x=\begin{bmatrix}0.88\\3.95\end{bmatrix}$
+</p>
+
+#####  <font color=blue>Find $\quad p\left(x=\begin{bmatrix}0.88\\\\3.95\end{bmatrix}\Bigg|y=0\right)$</font>
+
+<p>
+$$\begin{aligned}
+&\frac{1}{2\pi|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}{\begin{bmatrix}x_1-\mu_1\\x_2-\mu_2\end{bmatrix}^T\Sigma^{-1}\begin{bmatrix}x_1-\mu_1\\x_2-\mu_2\end{bmatrix}}}\\=&\frac{1}{{2\pi}\left|\begin{matrix}1.1188&-0.059\\-0.059&1.023\end{matrix}\right|^{\frac{1}{2}}}e^{-\frac{1}{2}{\begin{bmatrix}-3.175\\-0.151\end{bmatrix}^T\begin{bmatrix}0.896&-0.052\\-0.0520&0.98\end{bmatrix}\begin{bmatrix}-3.175\\-0.151\end{bmatrix}}}\\
+=&\frac{1}{2\pi\sqrt{(1.141)}}e^{-\frac{1}{2}\times 9.11}
+=0.149\times 0.01=0.0015
+\end{aligned}$$
+</p>
+
+---
+##### <font color=blue>Recall: $\quad p(x|y=1)=\frac{1}{(2\pi)^{\frac{d}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_1)^T\Sigma^{-1}(x-\mu_1)}$</font>
+<p>
+$\phi=0.5\,\mu_1=\begin{bmatrix}0.85\\1.036\end{bmatrix}\Sigma=\begin{bmatrix}1.1188&-0.059\\-0.059&1.023\end{bmatrix}x=\begin{bmatrix}0.88\\3.95\end{bmatrix}$
+</p>
+
+#####  <font color=blue>Find $\quad p\left(x=\begin{bmatrix}0.88\\\\3.95\end{bmatrix}\Bigg| y=1\right)$</font>
+
+<p>
+$$\begin{aligned}
+&\frac{1}{2\pi|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}{\begin{bmatrix}x_1-\mu_1\\x_2-\mu_2\end{bmatrix}^T\Sigma^{-1}\begin{bmatrix}x_1-\mu_1\\x_2-\mu_2\end{bmatrix}}}\\=&\frac{1}{{2\pi}\left|\begin{matrix}1.1188&-0.059\\-0.059&1.023\end{matrix}\right|^{\frac{1}{2}}}e^{-\frac{1}{2}{\begin{bmatrix}0.03\\2.91\end{bmatrix}^T\begin{bmatrix}0.896&-0.052\\-0.0520&0.98\end{bmatrix}\begin{bmatrix}0.03\\2.91\end{bmatrix}}}\\
+=&\frac{1}{2\pi\sqrt{(1.141)}}e^{-\frac{1}{2}\times 8.336}
+=0.149\times 0.015=0.0022
+\end{aligned}$$
+</p>
+
+---
+<br/>
+<br/>
+<br/>
+<p>
+$$\quad p\left(x=\begin{bmatrix}0.88\\\\3.95\end{bmatrix}\Bigg| y=0\right)=0.0015$$
+
+$$\quad p\left(x=\begin{bmatrix}0.88\\\\3.95\end{bmatrix}\Bigg| y=1\right)=0.0022$$
+</p>
+<br/>
+### <center>Thus, decided as blue. False!</center>
+
+---
+### <font color=blue>Decision Boundary</font>
+##### <center>$-3.0279x_1-3.1701x_2+15.575=0$ </center>
+<div align=center>
+  <img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-08-decison_boundry.jpg" height=80% width=80% />
+</div>
+
+---
+.vertmid[
+<p>
+  $$\frac{p\left(x=\begin{bmatrix}0.88\\3.95\end{bmatrix}
+  \Bigg| y=0\right)p(y=0)}{p\left(x=\begin{bmatrix}0.88\\3.95\end{bmatrix}\Bigg|
+   y=1\right)p(y=1)}=\frac{0.0015}{0.0022}=0.68182<1$$
+</p>
+]
+---
+## Notes 
+
+### We can derive Logistic Regression: $p(y=1|x)=\frac{1}{1+e^{-w^Tx}}$
+
+1. If $x|y$ with a Multivariate Gaussian Distribution，then the posterior probability $y|x$ with a Logistic Regression; but the inverse is not true. 
+
+1. If $x|y$ with a Gaussian Distribution, then GDA is a good choice; otherwise Logistic Regression is a better one.
+
+1. If $x|y=0$ and $x|y=1$ are both with Poisson Distribution, then $y|x$ with Logistic Regression as well. 
+
+---
+## Summary 
+
+- Univariate Gaussian Distribution
+- Multivariate Gaussian Distribution
+- Gaussian Discriminant Analysis
+- Parameter Estimation and Inference 
+
+---
+# Reference
+<div class="reference">
+<ul>
+<li>http://cs229.stanford.edu/notes/cs229-notes2.ps</li>
+<li>http://www.tk4479.net/hujingshuang/article/details/46357543</li>
+<li>http://www.chinacloud.cn/show.aspx?id=24927&cid=22</li>
+<li>http://www.cnblogs.com/jcchen1987/p/4424436.html</li>
+<li>http://www.xlgps.com/article/139591.html</li>
+<li>http://www.matlabsky.com/thread-10308-1-1.html</li>
+<li>http://classes.engr.oregonstate.edu/eecs/fall2015/cs534/notes/GaussianDiscriminantAnalysis.pdf</li>
+<li>张贤达, 矩阵分析与应用</li>
+</ul>
+</div>
+---
+template: mid
+
+# Thanks!
+# Q&A
+???
+http://blog.kamidox.com/write-math-formula-with-mathjax.html
+
+</textarea>
+<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script type="text/javascript">
+    var options = {highlightStyle: 'monokai', highlightLines:true, ratio: '4:3'};
+    
+var renderMath = function(){
+        // Setup MathJax
+        MathJax.Hub.Config({
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$']],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+    });
+    MathJax.Hub.Configured();
+}
+var slideshow = remark.create(options);
+renderMath();
+</script>
+</body>
+</html>

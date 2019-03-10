@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>KMeans Algorithm</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+	  .remark-slide-content h1 { font-size: 3em; }
+    .remark-slide-content h2 { font-size: 2em; }
+    .remark-slide-content h3 { font-size: 1.6em; }
+    .remark-slide-content ul { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; line-height: 80px; }
+    .remark-slide-content ol { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; }
+    .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        right: 3em;
+        color: #777872;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 60%;
+        float: right;
+        padding-top: 1em;
+      }
+      .pseudocode{
+        background-color:#E5E1B0;
+        padding:10px;
+        font-size: 15px;
+        color: black;
+        text-shadow: 0 0 3px #333;
+        border-radius: 15px;
+      }
+	  .imgcenter{
+	  	height: 200px;/*元素的高度*/
+		width: 200px;
+	  	position: absolute;
+	  	top: 30%;
+	  	margin-top: -50px;
+		left: 25%;
+		margin-left: -50px;
+	  	}	 
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
+
+name: inverse
+layout: true
+class: center, middle, inverse
+
+---
+# KMeans Algorithm
+### By ChengMingbo
+### 2017-8-18
+.footnote[powered by <a href="https://github.com/gnab/remark"><font color=yellow>remark.js</font></a>] 
+???
+I am a note, will be only shown when under presentation mode
+
+---
+layout: false
+
+# Outline
+* Classification and Clustering
+* Applications
+* KMeans
+* Other Cluster Algorithm
+---
+template: inverse
+# Classification and Clustering
+---
+layout: false
+## classify
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-classify.png" height=90% width=90% />
+</div>
+
+
+---
+## clustering
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-clustering.png" height=90% width=90% />
+</div>
+
+
+---
+template: inverse
+# Applications
+
+---
+layout: false
+
+## Applications
+.left-column[
+- Google News
+]
+.right-column[<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-gnews.png' width=100% height=100%>]
+
+---
+## Applications
+.left-column[
+- Google News
+- Marketing
+]
+.right-column[<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-marketing.png' width=100% height=100%/>]
+
+---
+## Applications
+.left-column[
+- Google News
+- Marketing
+- Vibration Detection
+]
+.right-column[<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-vibration.png' width=100% height=100%/>]
+
+
+---
+template: inverse
+# KMeans
+
+---
+layout: false
+## KMeans Cartoon
+
+.center[![](http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-kmeans.gif)]
+
+---
+layout: false
+## Algorithm
+.pseudocode[
+1. Initialize cluster centroids $\mu_1, \mu_2, \cdots, \mu_k \in R^n$ randomly.
+2. Repeat until convergence{
+
+    For every i, set
+$$c^i := \arg\min_j ||x^i-\mu_j ||^2$$
+    For every j, set
+$$\mu_j := \frac{\sum_i 1 (c^i = j) x^i}{\sum_i 1 (c^i = j)}$$
+}
+]
+
+---
+layout: false
+## Algorithm
+
+```octave
+
+	centroid1 = X(floor(rand*200),:)
+	centroid2 = X(floor(rand*200),:)
+
+	while(1)
+		for i=1:length(X)
+			d1 = norm(X(i,:)-centroid1); %Euclidean distance
+			d2 = norm(X(i,:)-centroid2);
+
+			if d1 < d2
+				class1 = [class1; X(i,:)];
+			else
+				class2 = [class2; X(i,:)];
+			end
+		end
+
+		m1 = mean(class1);
+		m2 = mean(class2);
+
+		if norm(m1-centroid1) <0.01  &&  norm(m2-centroid2) <0.01
+			break
+		end
+
+		centroid1 = m1;
+		centroid2 = m2;
+	end
+```
+???
+>
+---
+template: inverse
+# Other Cluster Algorithm
+
+---
+layout: false
+## Clustering Alogrithm
+- Guassian Mixture Model
+- Affinity Propagation
+- DBSCAN
+- Latent Dirichlet Allocation
+
+---
+layout: false
+- Guassian Mixture Model
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-GMM.png" height=90% width=90% />
+</div>
+
+---
+layout: false
+- Guassian Mixture Model
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-GMM2.png" height=90% width=90% />
+</div>
+
+---
+layout: false
+- DBSCAN
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-dbscan1.png" height=70% width=70% />
+</div>
+
+---
+layout: false
+- Latent Dirichlet Allocation
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-08-18-LDA.png" height=90% width=90% />
+</div>
+
+---
+layout: false
+
+# Summary 
+* Classification and Clustering
+* Applications
+* KMeans
+* Other Cluster Algorithm
+
+---
+template: inverse
+# Thanks!
+# Q&A
+
+---
+class: middle, center
+layout: false
+# Snacks
+## Remark.js HowTo
+
+  </textarea>
+  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+  <script type="text/javascript">
+	  var options = {highlightStyle: 'monokai', highlightLines:true, ratio: '4:3'};
+      var renderMath = function () {
+      //renderMathInElement(document.body);
+      // or if you want to use $...$ for math,
+      renderMathInElement(document.body, {delimiters: [ // mind the order of delimiters(!?)
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: false}, // false means inline
+          {left: "\\(", right: "\\)", display: true}, //true means a single line
+          {left: "$", right: "$", display: false}
+      ]});
+    }
+    var slideshow = remark.create(options, renderMath);
+	//hljs.initHighlightingOnLoad();
+	//hljs.initLineNumbersOnLoad();
+  </script>
+</body>
+
+</html>

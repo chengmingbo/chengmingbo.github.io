@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MCMC</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+	  .remark-slide-content h1 { font-size: 3em; }
+    .remark-slide-content h2 { font-size: 2em; }
+    .remark-slide-content h3 { font-size: 1.6em; }
+    .remark-slide-content ul { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; line-height: 80px; }
+    .remark-slide-content ol { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; }
+    .reference ul {font-size: 1.4em; font-family: 'Yanone Kaffeesatz'; line-height: 60px; color:blue}
+    .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        right: 3em;
+        color: #777872;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 50%;
+        float: right;
+        padding-top: 1em;
+      }
+      .pseudocode{
+        background-color:#DDDDDD;
+        padding:10px;
+        font-size: 18px;
+        color: black;
+        text-shadow: 0 0 3px #333;
+        border-radius: 15px;
+      }
+	  .imgcenter{
+	  	height: 200px;/*元素的高度*/
+		width: 200px;
+	  	position: absolute;
+	  	top: 30%;
+	  	margin-top: -50px;
+		left: 25%;
+		margin-left: -50px;
+	  	}	 
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
+
+name: inverse
+layout: true
+class: center, middle, inverse
+---
+# MCMC  
+### By ChengMingbo
+### 2017-11-30
+.footnote[powered by <a href="https://github.com/gnab/remark"><font color=yellow>remark.js</font></a>] 
+???
+I am a note, will be only shown when under presentation mode
+
+---
+layout: false
+## Criminal ciphertex
+<br/>
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-12-04-mystery.jpg' width=100% height=100%>
+</div>
+???
+斯坦福统计学教授Persi Diaconis是一位传奇式的人物。Diaconis14岁就成了一名魔术师,为了看懂数学家Feller的概率论著作，24岁时进入大学读书。
+他向《科学美国人》投稿介绍他的洗牌方法，在《科学美国人》上常年开设数学游戏专栏的著名数学科普作家马丁•加德纳给他写了推荐信去哈佛大学，
+当时哈佛的统计学家Mosteller 正在研究魔术，于是Diaconis成了Mosteller的学生。（对他这段传奇经历有兴趣的读者可以看一看统计学史话《女士品茶》）。 
+下面要讲的这个故事，是Diaconis 在他的文章The Markov Chain Monte Carlo Revolution中给出的破译犯人密码的例子。 
+一天，一位研究犯罪心理学的心理医生来到斯坦福拜访Diaconis。他带来了一个囚犯所写的密码信息。他希望Diaconis帮助他把这个密码中的信息找出来。
+这个密码里的每个符号应该对应着某个字母，但是如何把这些字母准确地找出来呢？Diaconis和他的学生Marc采用了一种叫做MCMC（马尔科夫链蒙特卡洛）的方法解决了这个问题。
+这个MCMC方法就是这一节我们所要讨论的内容。
+
+---
+
+# Outline
+* Monte Carlo Approximation 
+* Markov Chains
+* MCMC
+* Applications
+
+---
+template: inverse
+# How to solve $\pi$
+
+???
+无穷级数
+---
+## How to solve $\pi$
+<br/>
+## $\frac{\pi}{4}=1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\frac{1}{9}+\cdots$
+
+--
+
+```matlab
+N = 100000;
+sig = 1;
+total = 0;
+for i=1:N
+	total += 1*sig/(2*i-1);
+	sig = -sig;
+	if i== 100 || i==1000 || i==10000 || i==100000
+		fprintf('N=%d, pi=%.4f\n', i, total*4)
+	end
+end
+```
+--
+
+```terminal
+N=100, pi=3.1316
+N=1000, pi=3.1406
+N=10000, pi=3.1415
+N=100000, pi=3.1416
+```
+---
+## How to solve $\pi$
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-12-04-circle.png' width=70% height=70%>
+</div>
+---
+## How to solve $\pi$
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-12-04-monte-carlo.gif' width=70% height=70%>
+</div>
+.center[rejection method]
+---
+## How to solve $\pi$
+
+```matlab
+N = 100000;
+RN = rand(N, 2)*2-1;
+inner = 0;
+outer = 0;
+for i=1:N
+	if RN(i, 1)^2 + RN(i, 2)^2 <1
+		inner +=1;
+	else
+		outer +=1;
+	end
+
+	if i== 100 || i==1000 || i==10000 || i==100000
+		fprintf('N=%d, pi=%.4f\n', i, inner*4/i)
+	end
+end
+```
+
+
+```terminal
+N=100, pi=3.1200
+N=1000, pi=3.0920
+N=10000, pi=3.1436
+N=100000, pi=3.1498
+```
+---
+template: inverse
+# Monte Carlo Approximation 
+
+---
+##  Monte Carlo Integration 
+<div align=center>
+  <img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-12-04-1.png' width=70% height=70%>
+</div>
+
+---
+##  Monte Carlo Integration 
+<div align=center>
+  <img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-12-04-1.1.png' width=70% height=70%>
+</div>
+
+---
+##  Monte Carlo Integration 
+<div align=center>
+  <img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-12-04-2.png' width=70% height=70%>
+</div>
+---
+##  Monte Carlo Integration 
+<br/>
+<br/>
+<br/>
+<div align=center>
+  <img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-12-04-3.png' width=90% height=90%>
+</div>
+
+???
+##  Monte Carlo Integration 
+<br/>
+$$\langle F^N\rangle = (b-a) \dfrac{1}{N } \sum\_{i=0}^{N-1} f(X\_i)$$
+<br/>
+$$Pr(\lim\_{ N \to \infty} \langle F^N \rangle = F ) = 1$$
+
+##  Monte Carlo Integration 
+$$\begin{array}{l}
+E[\langle F^N \rangle] & = & E \left[ (b-a) \dfrac{1}{N } \sum\_{i=0}^{N-1} f(x\_i)\right],\\\\
+& = & (b-a)\dfrac{1}{N } E[f(x)],\\\\
+& = &(b-a)\dfrac{1}{N} \sum\_{i=0}^{N-1} \int\_a^b f(x)pdf(x)\:dx\\\\
+& = & \dfrac{1}{N} \sum\_{i=0}^{N-1} \int\_a^b f(x)\:dx,\\\\
+&=& \int_a^b f(x)\:dx,\\\\
+&=&F\\\\
+\end{array}$$
+
+---
+class: center, middle
+
+## Mathematical Expectation
+---
+##  Monte Carlo Integration 
+<br/>
+<br/>
+<br/>
+<br/>
+.center[
+## Resovle $I = \int\_0^1 xe^x {\rm d}x$
+]
+---
+##  Monte Carlo Integration 
+<br/>
+$$\begin{aligned}
+I &= uv - \int v du\\\\
+&= xe^x - \int e^x dx\\\\
+&= \left. xe^x - e^x \right|_0^1\\\\
+&= \left. e^x(x-1)\right|_0^1\\\\
+&= 0 - (-1) = 1
+\end{aligned}$$
+
+---
+##  Monte Carlo Integration 
+<br/>
+```matlab
+rand('seed',12345);
+N1 = 100;
+x = rand(N1,1);
+Ihat1 = sum(x.*exp(x))/N1
+N2 = 5000;
+x = rand(N2,1);
+Ihat2 = sum(x.*exp(x))/N2
+```
+<br/>
+```terminal
+Ihat1 =  0.95668
+Ihat2 =  1.0063
+```
+---
+##  Monte Carlo Integration 
+
+$$\mathbb E[x] = \int_{p(x)} p(x) f(x) dx$$
+$$where \quad f(x)=xe^x,\quad p(x)\in Unif(0,1)$$
+
+<br/>
+****
+<br/>
+
+$$\begin{aligned}
+I &= \mathbb E\_{p(x)} f(x)\\\\ 
+&\approx \frac{1}{N}\sum\_{i=1}^N x\_i e^{x\_i}
+\end{aligned}$$
+---
+##  Monte Carlo Integration 
+
+$$\begin{aligned}
+&\begin{array}{|cc|}\hline g(x) \geq 0, x \in (a,b)\qquad\int\_a^b g(x) = C < \infty\\\\
+\hline\end{array}\\\\
+&Let\quad p(x) = \frac{g(x)}{C}\\\\
+&I = C \int\_a^b h(x) p(x)dx = C \mathbb E\_{p(x)}[h(x)]
+\end{aligned}$$
+
+<br/>
+--
+
+*****
+<br/>
+
+$$\begin{array}{ll}
+\hline
+1 & Identify \, h(x)\\\\
+2 & Identify\, g(x),\, determine\, p(x)\, and\, C \\\\
+3 & Draw\, N\, independence\, samples\\\\
+4 & Estimate\, I = C \mathbb E[h(x)] \approx \frac{C}{N} \sum_i^N h(x_i)\\\\
+\hline
+\end{array}$$
+---
+template: inverse
+
+#  Markov Chains
+---
+## Markov Chains
+<br/>
+<p>
+$$x^{(0)} \rightarrow x^{(1)} \rightarrow x^{(2)} \dots \rightarrow x^{(t)} \rightarrow \dots$$
+</p>
+<br/>
+<p>
+$$\begin{array}{ll}
+\hline
+1 & state\,space:\, \color{blue}{x}\\\\
+2 & transition\,operator:\,  \color{blue}{p(x^{(t+1)} | x^{(t)})}\\\\
+3 & initial\,condition\,distribution:\,  \color{blue}{\pi^{(0)} }\\\\
+\hline
+\end{array}$$
+<p>
+
+---
+## Markov Chains
+<br/>
+#### Weather of Berkeley, CA:
+$$
+\begin{array}{|c|c|c|c|}
+\hline
+today->next week & sunny & foggy & rainy\\\\ 
+\hline
+sunny & 0.8  & 0.15  & 0.05\\\\ 
+\hline
+foggy & 0.4  & 0.5  & 0.1\\\\ 
+\hline
+rainy & 0.1  & 0.3  & 0.6\\\\ 
+\hline
+\end{array}
+$$
+<br/>
+<br/>
+<br/>
+.center[
+### weather next month, next year ?
+]
+
+---
+## Markov Chains
+<br/>
+
+<p>
+1. state space: {sunny, foggy, rainy} 
+<br/>
+2. transition operator: $ P = \begin{bmatrix} 0.8 & 0.15 & 0.05\\ 0.4 & 0.5 & 0.1\\ 0.1& 0.3 & 0.6 \end{bmatrix} $
+<br/>
+3. initial condition distribution: {sunny, foggy, rainy} = {0, 0, 1}
+<br/>
+</p>
+
+---
+## Markov Chains
+<br/>
+
+```matlab
+P = [.8 .15 .05;  % SUNNY
+.4 .5  .1;   % FOGGY
+.1 .3  .6];  % RAINY
+nWeeks = 52 
+
+% INITIAL STATE IS RAINY
+X(1,:) = [0 0 1];
+
+% RUN MARKOV CHAIN
+for iB = 2:nWeeks
+  X(iB,:) = X(iB-1,:)*P; % TRANSITION
+end
+
+% PREDICTIONS
+fprintf('\np(weather) in 1 week -->'), disp(X(2,:));
+fprintf('\np(weather) in 2 weeks -->'), disp(X(3,:));
+fprintf('\np(weather) in 6 months -->'), disp(X(25,:));
+fprintf('\np(weather) in 1 year -->'), disp(X(52,:));
+```
+
+```terminal
+p(weather) in 1 week -->   0.10000   0.30000   0.60000
+p(weather) in 2 weeks -->   0.26000   0.34500   0.39500
+p(weather) in 6 months -->   0.59649   0.26316   0.14035
+p(weather) in 1 year -->   0.59649   0.26316   0.14035
+```
+
+---
+## Markov Chains
+<br/>
+
+<div align=center>
+  <img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-12-04-markov.png' width=70% height=70%>
+</div>
+---
+class: center, middle
+
+## How about continuous state space ?
+
+---
+template: inverse
+# Markov Chain Monte Carlo(MCMC)
+
+---
+## The Metropolis Sampler
+<br/>
+
+### Markov chain 
+<p>
+1. state space {depends on target distribution, e.g. [$-\infty, \infty$]}
+<br/>
+2. proposal distribution: $q(x|x^{(t-1)})$
+<br/>
+3. initial state: $x^{(0)}=\pi^{(0)}$
+<br/>
+</p>
+
+### Monte Carlo
+
+<p>
+1. sampling from $q(x|x^{(t-1)})$
+<br/>
+2. accept or reject the sample following some rules
+</p>
+
+
+---
+## The Metropolis Sampler
+<br/>
+#### Draw sample from $p(x)=(1+x^2)^{-1}$
+<br/>
+<p>
+1.  $\quad\pi^{(0)} \sim \mathcal{N}(0,1)$
+<br/>
+<br/>
+2.  $\quad q(x|x^{(t-1)}) \sim \mathcal{N}(x^{(t-1)},1)$
+</p>
+---
+## The Metropolis Sampler
+<br/>
+
+```matlab
+randn('seed',12345);
+p = inline('(1 + x.^2).^-1','x')
+nSamples = 5000; sigma = 1;
+minn = -20; maxx = 20;
+xx = 3*minn:.1:3*maxx;
+
+x = zeros(1 ,nSamples);  x(1) = randn; t = 1;
+while t < nSamples
+    t = t+1;
+    xStar = normrnd(x(t-1) ,sigma);
+    alpha = min([1, p(xStar)/p(x(t-1))]);
+    u = rand;
+    if u < alpha
+        x(t) = xStar;
+        str = 'Accepted';
+    else
+        x(t) = x(t-1);
+        str = 'Rejected';
+    end
+end
+hist(x, 500);
+```
+---
+## The Metropolis Sampler
+<br/>
+<div align=center>
+<img src='http://cmb.oss-cn-qingdao.aliyuncs.com/2017-12-04-markov.png' width=70% height=70%>
+</div>
+
+---
+## The Metropolis Sampler
+<br/>
+
+<p>
+$$\begin{array}{|l|}
+\hline
+    \text{1. set } t = 0\\
+    \text{2. generate an initial state }x^{(0)}\text{ from a prior distribution }\pi^{(0)}\text{ over initial states}\\
+    \text{3. repeat until }t = M\\
+    \qquad\text{set }t = t+1\\
+    \qquad\text{generate a proposal state }x^*\text{ from }q(x | x^{(t-1)})\\
+    \qquad\text{calculate the acceptance probability }\alpha = \min \left(1, \frac{p(x^*)}{p(x^{(t-1)})}\right)\\
+    \qquad\text{draw a random number u from }\text{Unif}(0,1)\\
+    \qquad\qquad\text{if }u \leq \alpha\text{, accept the proposal and set }x^{(t)} = x^*\\
+    \qquad\qquad\text{else  set }x^{(t)} = x^{(t-1)}\\
+\hline
+\end{array}
+$$
+</p>
+
+---
+## MCMC family
+* Metropolis Sampler 
+* Metropolis-Hastings Sampler
+* Hybrid Monte Carlo
+* Gibbs Sampling
+
+---
+template: inverse
+
+# Applications
+
+---
+## Applications
+<br/>
+<br/>
+<br/>
+.center[
+# LDA
+## Gibbs Sampling
+]
+
+---
+## LDA
+<p>
+$$
+\begin{aligned} 
+p(z_i = k|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}) & \propto 
+p(z_i = k, w_i = t |\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i}) \\ 
+&= \int p(z_i = k, w_i = t, \overrightarrow{\theta}_m,\overrightarrow{\varphi}_k | 
+\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i}) d \overrightarrow{\theta}_m d \overrightarrow{\varphi}_k \\ 
+&= \int p(z_i = k, \overrightarrow{\theta}_m|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i}) 
+\cdot p(w_i = t, \overrightarrow{\varphi}_k | \overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i}) 
+d \overrightarrow{\theta}_m d \overrightarrow{\varphi}_k \\ 
+&= \int p(z_i = k |\overrightarrow{\theta}_m) p(\overrightarrow{\theta}_m|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i}) 
+\cdot p(w_i = t |\overrightarrow{\varphi}_k) p(\overrightarrow{\varphi}_k|\overrightarrow{\mathbf{z}}_{\neg i}, \overrightarrow{\mathbf{w}}_{\neg i}) 
+d \overrightarrow{\theta}_m d \overrightarrow{\varphi}_k \\ 
+&= \int p(z_i = k |\overrightarrow{\theta}_m) Dir(\overrightarrow{\theta}_m| \overrightarrow{n}_{m,\neg i} + \overrightarrow{\alpha}) d \overrightarrow{\theta}_m \\ 
+& \hspace{0.2cm} \cdot \int p(w_i = t |\overrightarrow{\varphi}_k) Dir( \overrightarrow{\varphi}_k| \overrightarrow{n}_{k,\neg i} + \overrightarrow{\beta}) d \overrightarrow{\varphi}_k \\ 
+&= \int \theta_{mk} Dir(\overrightarrow{\theta}_m| \overrightarrow{n}_{m,\neg i} + \overrightarrow{\alpha}) d \overrightarrow{\theta}_m 
+\cdot \int \varphi_{kt} Dir( \overrightarrow{\varphi}_k| \overrightarrow{n}_{k,\neg i} + \overrightarrow{\beta}) d \overrightarrow{\varphi}_k \\ 
+&= \color{red}{E(\theta_{mk}) \cdot E(\varphi_{kt})} \\ 
+\end{aligned}
+$$
+</p>
+---
+# Summary 
+* Monte Carlo Approximation 
+* Markov Chains
+* MCMC
+* Applications
+
+---
+
+
+# Reference
+<div class="reference">
+<ul >
+<li>https://en.wikipedia.org/wiki/Monte_Carlo_integration</li>
+<li>http://blog.csdn.net/baimafujinji/article/details/53869358</li>
+<li>https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/monte-carlo-methods-in-practice</li>
+<li>https://theclevermachine.wordpress.com/2012/11/19/a-gentle-introduction-to-markov-chain-monte-carlo-mcmc/</li>
+<li>https://site.douban.com/182577/widget/notes/10567181/note/292072927/</li>
+<li>http://www.52nlp.cn/lda-math-lda-%E6%96%87%E6%9C%AC%E5%BB%BA%E6%A8%A1</li>
+</ul>
+</div>
+
+
+
+---
+template: inverse 
+# Thanks!
+## Q&A
+
+  </textarea>
+  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+  <script type="text/javascript">
+	  var options = {highlightStyle: 'monokai', highlightLines:true, ratio: '4:3'};
+      
+  var renderMath = function(){
+          // Setup MathJax
+          MathJax.Hub.Config({
+          tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Configured();
+  }
+  var slideshow = remark.create(options);
+  renderMath();
+  </script>
+</body>
+</html>
