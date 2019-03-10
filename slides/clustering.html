@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clustering</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+	  .remark-slide-content h1 { font-size: 3em; }
+    .remark-slide-content h2 { font-size: 2em; }
+    .remark-slide-content h3 { font-size: 1.6em; }
+    .remark-slide-content ul { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; line-height: 80px; }
+    .remark-slide-content ol { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; }
+    .reference ul {font-size: 1.4em; font-family: 'Yanone Kaffeesatz'; line-height: 60px; color:blue}
+    .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        right: 3em;
+        color: #777872;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 50%;
+        float: right;
+        padding-top: 1em;
+      }
+      .pseudocode{
+        background-color:#E5E1B0;
+        padding:10px;
+        font-size: 15px;
+        color: black;
+        text-shadow: 0 0 3px #333;
+        border-radius: 15px;
+      }
+	  .imgcenter{
+	  	height: 200px;/*元素的高度*/
+		width: 200px;
+	  	position: absolute;
+	  	top: 30%;
+	  	margin-top: -50px;
+		left: 25%;
+		margin-left: -50px;
+	  	}	 
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
+
+name: quotation
+layout: true
+class: center, middle, inverse
+---
+
+# <center>An Overview on Cluster Analysis</center>
+
+### By Mingbo Cheng
+### 2019-1-17
+.footnote[powered by <a href="https://github.com/gnab/remark"><font color=yellow>remark.js</font></a>] 
+
+---
+layout: false 
+
+# <center>OUTLINE</center>
+
+- Where are Clustering Applied
+- What kinds of Clustering Methods
+- How to Evaluate
+- What Makes Better Performance
+- Conclusion
+- References
+
+---
+# <center>OUTLINE</center>
+
+- **Where are Clustering Applied**
+- What kinds of Clustering Methods
+- How to Evaluate
+- What Makes Better Performance
+- Conclusion
+- References
+
+---
+## Facebook Sentiment Analysis through LDA
+
+<br/>
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/facebook-clustering.png" width=60% height=60%/>
+</div>
+---
+### Google News Clustering
+<br/>
+<br/>
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/google_news.png" width=80% height=80%/>
+</div>
+
+???
+google paper in 2007 talked about 
+MinHashing is a probabilistic clustering method 
+Google news personalization: scalable online collaborative filtering
+
+---
+### Anomaly Detection
+<br/>
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/anomaly_detection.png" width=60% height=60%/>
+</div>
+
+<br/>
+
+<font size=1 color=green>https://www.semanticscholar.org/paper/Traffic-Anomaly-Detection-Using-K-Means-Clustering-M%C3%BCnz-Li/634e2f1a20755e7ab18e8e8094f48e140a32dacd</font>
+
+???
+1. paypal account thieves behaviors different from
+2. aircraft	engine, detect whether an engine good enough
+---
+
+#### Clustering cancer gene expression data: A comparative study
+
+<br/>
+<br/>
+<br/>
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/Ivan_Clustering.png" width=80% height=80%/>
+</div>
+
+???
+2008 
+BMC Bioinformatics 
+7 clustering algorithms
+shared nearest-neighbor algorithm(SNN)
+nearest neighbors (NN)
+spectral clustering(SPC)  similarity matrix  dimensionality reduction
+mixture of multivariate Gaussians(FMG)
+average linkage(AL)
+complete linkage(CL)
+single linkage (SL)
+4 proximity measures
+Pearson's Correlation coefficient(P)
+Cosine (C)
+Spearman's correlation coefficient(C)
+Euclidean Distance(E) -> four version, Z0 Z1 Z2 Z3
+Genetic conditions(can be seen as illness), Down's
+
+---
+
+# <center>OUTLINE</center>
+
+- Where are Clustering Applied
+- **What kinds of Clustering Methods**
+- How to Evaluate
+- What Makes Better Performance
+- Conclusion
+- References
+
+---
+## Typical cluster models
+
+- Connectivity models
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/hierarchical-clustering.png" width=50% height=50%/>
+</div>
+
+
+<font size=1 color=green>https://www.datanovia.com/en/courses/hierarchical-clustering-in-r-the-essentials/</font>
+
+???
+connectivity models:
+https://www.datanovia.com/en/courses/hierarchical-clustering-in-r-the-essentials/
+
+---
+## Typical cluster models
+
+- Centroid models
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/kmeans.jpg" width=50% height=50%/>
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<font size=1 color=green>https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/26182/versions/11/screenshot.jpg</font>
+
+???
+kmeans
+---
+## Typical cluster models
+
+- Distribution models
+<br/>
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/Multivariate_normal_distribution.png" width=65% height=65%/>
+</div>
+
+---
+## Typical cluster models
+
+- Density models
+<br/>
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/DBScan.png" width=80% height=80%/>
+</div>
+
+
+<br/>
+<font size=1 color=green>https://medium.com/@elutins/dbscan-what-is-it-when-to-use-it-how-to-use-it-8bd506293818</font>
+
+---
+## Typical cluster models
+
+- Subspace models
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/biclustering.png" width=70% height=70%/>
+</div>
+
+<br/>
+
+<font size=1 color=green>http://cw.fel.cvut.cz/old/_media/courses/a6m33bin/biclustering.pdf</font>
+
+---
+## Typical cluster models
+
+- Subspace models
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/biclustering_1.png" width=50% height=50%/>
+</div>
+
+<font size=1 color=green>http://cw.fel.cvut.cz/old/_media/courses/a6m33bin/biclustering.pdf</font>
+
+???
+different time point, if the gene express
+---
+## Typical cluster models
+
+- Graph-based models
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/graph_based_model.png" width=50% height=50%/>
+</div>
+<br/>
+<font size=1 color=green>https://en.wikipedia.org/wiki/Clique_(graph_theory)</font>
+---
+## Typical cluster models
+
+- Neural models
+
+<div align=center>
+<img src="http://cmb.oss-cn-qingdao.aliyuncs.com/SOM.gif" width=50% height=50%/>
+</div>
+<br/>
+<font size=1 color=green>http://www.lohninger.com/helpcsuite/kohonen_network_-_background_information.htm</font>
+
+???
+tutorial: http://www.pitt.edu/~is2470pb/Spring05/FinalProjects/Group1a/tutorial/som.html
+
+---
+# <center>OUTLINE</center>
+
+- Where are Clustering Applied
+- What kinds of Clustering Methods
+- **How to Evaluate**
+- What Makes Better Performance
+- Conclusion
+- References
+
+---
+## Cluster evaluation
+
+- Internal Evaluation
+    - Davies-Bouldin index
+    - Dunn index
+- External Evaluation
+	- Purity
+	- Classification Criteria
+
+???
+internal: based on data itself
+1. Devies-Bouldin index: centroids far from each other, inner the cluster, point is near to each other Smaller, better
+2. Dunn index density and well-separated Higher, better
+::::::::::::::::::::::::::::::::::::::::::::::::
+external: data not used for clustering, labeled data
+Purity, each point is a cluster, imbalance data problem
+Classificatioin Criteria: Precision, Recall __ FMeasure
+TRUE Positive False Positive True Negative False Negative
+
+---
+# <center>OUTLINE</center>
+
+- Where are Clustering Applied
+- What kinds of Clustering Methods
+- How to Evaluate
+- **What Makes Better Performance**
+- Conclusion
+- References
+
+
+---
+## Data Preprocessing
+
+- Dimensionality Reduction
+- Noise Reduction
+- Standardization
+- Scaling
+- Ranking
+
+???
+Dimensionality Reduction: PCA, Non-negative matrix factorization(NMF)
+noise reduction: LDA, high-frequency words. THE may offer us no information
+Stardardization: zero mean, then unit variance
+Scaling: Hight and weight, S or L size shirt Different dimension contribute different 
+Ranking: Function(x_i)
+
+---
+## Similarity Measures
+
+- Minkowski Metric
+
+<font size=3>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;q=1: Manhattan distance<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q=2: Euclidean distance </font>
+
+$$d(x, y) = L\_q(x, y) = \sqrt[q]{\sum\_{i=1}^n(x\_i-y\_i)^q}$$
+
+- Kullback-Leibler Divergence
+- Cosin
+
+
+???
+included angle
+---
+
+# <center>OUTLINE</center>
+
+- Where are Clustering Applied
+- What kinds of Clustering Methods
+- How to Evaluate
+- What Makes Better Performance
+- **Conclusion**
+- References
+
+
+
+---
+## Conclusion
+
+- Clustering Applications
+- Kinds of Clustering Methods
+- Clustering Evaluation
+- Gain a Better Performance
+---
+## References
+<div class="reference">
+<ul >
+<li> https://en.wikipedia.org/wiki/Cluster_analysis</li>
+<li> Costa IG: Clustering cancer gene expression data: A comparative study</li>
+<li> Mahamed G.H. Omran etc.: An overview of clustering methods</li>
+<li> T. Soni Mahulatha etc.: An overview on clustering methods by</li>
+<li> TAOUFIQ ZARRA etc.: TOPIC MODELING AND SENTIMENT ANALYSIS IN FACEBOOK TO ENHANCE STUDENTS LEARNING</li>
+<li> Abhinandan Das:Online Collaborative Filtering Online Collaborative Filtering</li>
+</ul>
+</div>
+
+---
+## References cont.
+<div class="reference">
+<ul >
+<li>Sara C. Madeira: Biclustering Gene Expression Data</li>
+<li>https://www.youtube.com/watch?v=uCaPP4blYAg</li>
+<li>http://www.mit.edu/~9.54/fall14/slides/Class13.pdf</li>
+<li>http://www.lohninger.com/helpcsuite/kohonen_network_-_background_information.htm</li>
+<li>http://www.ims.uni-stuttgart.de/institut/mitarbeiter/schulte/theses/phd/algorithm.pdf</li>
+</ul>
+</div>
+
+---
+## References cont.
+<div class="reference">
+<ul >
+<li> Marcilio C. P. de Souto etc.: Comparative Study on Normalization Procedures for Cluster Analysis of Gene Expression Datasets</li>
+<li> https://datascience.stackexchange.com/questions/22795/do-clustering-algorithms-need-feature-scaling-in-the-pre-processing-stage</li>
+<li> http://mlwiki.org/index.php/SNN_Clustering</li>
+<li> https://www.ncbi.nlm.nih.gov/pmc/articles/PMC430175/</li>
+</ul>
+</div>
+---
+template: inverse 
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+# <center>Thanks!<center>
+## <center> Q&A<center>
+
+  </textarea>
+  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+  <script type="text/javascript">
+	  var options = {highlightStyle: 'monokai', highlightLines:true, ratio: '4:3'};
+      
+  var renderMath = function(){
+          // Setup MathJax
+          MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Configured();
+  }
+  var slideshow = remark.create(options);
+  renderMath();
+  </script>
+</body>
+</html>
