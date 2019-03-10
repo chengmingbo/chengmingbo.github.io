@@ -304,16 +304,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/18/Naive-Bayes/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/03/18/Naive-Bayes/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -426,11 +416,12 @@
 
   
     <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
+        
+  <script src="https://utteranc.es/client.js" repo="chengmingbo/gitment-comments" issue-term="pathname, url, title, og:title" theme="github-light" crossorigin="anonymous" async>
+  </script>
 
+
+    </div> 
   
 
 
@@ -774,43 +765,6 @@
 
 
 
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname, 
-            owner: 'chengmingbo',
-            repo: 'gitment-comments',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '4e4d52dd4e1168b72d84393e3c70fa9831d22874',
-            
-                client_id: '415cc701939eb55fea71'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
 
 
 
