@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="ML,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -85,25 +85,17 @@
 
 
 
-<meta name="description" content="BackgroundDeep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neur">
-<meta name="keywords" content="ML">
+<meta name="description" content="只剩下办银行卡的事情了。无犯罪证明">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Neural Network ABC">
-<meta property="og:url" content="http://commanber.com/2017/03/11/neural-network-ABC/index.html">
+<meta property="og:title" content="Almost done">
+<meta property="og:url" content="http://commanber.com/2019/03/17/new-problem/index.html">
 <meta property="og:site_name" content="Mingbo">
-<meta property="og:description" content="BackgroundDeep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neur">
+<meta property="og:description" content="只剩下办银行卡的事情了。无犯罪证明">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-035015.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-043241.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-122045.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-135243.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-052259.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-085822.jpg">
-<meta property="og:updated_time" content="2019-03-17T16:28:23.575Z">
+<meta property="og:updated_time" content="2019-03-17T16:28:23.616Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Neural Network ABC">
-<meta name="twitter:description" content="BackgroundDeep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neur">
-<meta name="twitter:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-035015.jpg">
+<meta name="twitter:title" content="Almost done">
+<meta name="twitter:description" content="只剩下办银行卡的事情了。无犯罪证明">
 
 
 
@@ -133,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://commanber.com/2017/03/11/neural-network-ABC/">
+  <link rel="canonical" href="http://commanber.com/2019/03/17/new-problem/">
 
 
 
 
 
-  <title>Neural Network ABC | Mingbo</title>
+  <title>Almost done | Mingbo</title>
   
 
 
@@ -266,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/03/11/neural-network-ABC/">
+    <link itemprop="mainEntityOfPage" href="http://commanber.com/2019/03/17/new-problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mingbo Cheng">
@@ -283,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Neural Network ABC</h1>
+          <h1 class="post-title" itemprop="name headline">Almost done</h1>
         
 
         <div class="post-meta">
@@ -295,8 +287,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T19:46:55+01:00">
-                2017-03-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-17T09:50:14+01:00">
+                2019-03-17
               </time>
             
 
@@ -333,97 +325,7 @@
       
 
       
-        <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>Deep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neural network today, hoping supply a intuitive perspective of it.</p>
-<p>Before beginning, I’d like to introduce you an exicting product which help those who are blind see the world. BrianPort, which is invented by Wicab, uses you tougue to see the world. Tongue array contains 400 electrodes and is connected to the glasses. The product transfers from light to electric signal. More than 80% blind persons could pass through the block during the experiments.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-035015.jpg" alt></p>
-<p>In fact, Wicab takes advantage the mechanism of neural network of our brain. There are 86 billion neuron in our brain. We can smell, see, hear the world just because of these neurons. They are connect to each other to help us sense the world. Algorithm Neural Network is a way of mimic the mechanism of our brain. </p>
-<h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h3><p>Let’s start from the easiest model, we get $a_1$ in two steps:<br>step1: $z_1=w_1x_1+w_2x_2+w_3x_3$<br>step2: $a_1=\frac{1}{1+e^{(-z)}}$<br>In addition, we add a bias $w_0$ to the calculate. After letting $x_0=1$, then:<br>$$z=w_0x_0+w_1x_1+w_2x_2+w_3x_3$$  We always add a bias at each layer but the last to Neural Network.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-043241.jpg" alt><br>If we contrast this model with logistic regression model, ww find that right now the to model is just the same: input every $x$ represents a feature. In logistic regression, we want to train a model $h_w(x)=\frac{1}{1+e^{-W^Tx}}$. The simpliest Neural Network, the model is a little complex, but if we do not take hidden layer into account, the model is just logistic regression.</p>
-<h3 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h3><p>To approach the authentic Neural Network, we add two more nerons($a_2^{(2)}$ and $a_1^{(3)}$) to logistic regression model. Notice that the model inner green triangle box is just like logistic regression demonstrated above. There are only two layers in Logistic Regression, in contrast, we can add more layers like L2 layer. In Neural Network, we call these layers hidden layers which are neither the input(e.g. layer have $x_1, x_2, x_2$), nor the output $h(x)$. The figure below has only one hidden layer, though we can add many hidden layers to the model.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-122045.jpg" alt><br>Look at the figure above, let’s look at the definition of Neural Network, take $w_{12}^{(1)}$ for example, the subscript $_{12}$ represents the weight from the former layer $2nd$ unit to the current layer $1st$ unit. The superscript $^1$ represents former layer is layer L1. These $w$ are named weights of Neural Network. The sigmoid function $f=\frac{1}{1+e^{-x}}$ is activation function. We can choose other activation function such as symmetrical sigmoid $S(x)=\frac{1-e^{-x}}{1+e^{-x}}$. Now let’s think about how to calculate $h(x)$, for the L2 layer, we have:<br>\begin{align}<br>&amp; z_1^{(2)}=w_{10}^{(1)}x_0 + w_{11}^{(1)}x_1 + w_{12}^{(1)}x_2 +  w_{13}^{(1)}x_3\<br>&amp; z_2^{(2)}=w_{20}^{(1)}x_0 + w_{21}^{(1)}x_1 + w_{22}^{(1)}x_2 +  w_{23}^{(1)}x_3\<br>&amp; a_1^{(2)} = g(w_{10}^{(1)}x_0 + w_{11}^{(1)}x_1 + w_{12}^{(1)}x_2 +  w_{13}^{(1)}x_3)=g(z_1^{2})\<br>&amp; a_2^{(2)} = g(w_{20}^{(1)}x_0 + w_{21}^{(1)}x_1 + w_{22}^{(1)}x_2 +  w_{23}^{(1)}x_3)=g(z_2^{2})<br>\end{align}<br>Here, $g()$ is the activation function. Notice that if we use matrices represent the equation, result will be simpler:<br>$$a^{(2)} = g(z^{(2)}) = g(W^{(1)} a^{(1)})$$<br>Here, we let $a_i^{(1)}=x_i$. We can conclude one more step, for layer k, we have:<br>$$a^{(k)} = g(z^{(k)}) = g(W^{(k-1)} a^{(k-1)})$$<br>Then for the L3 Layer, we have only one neural:<br>\begin{align}<br>h(x) = a_1^{3}=g(w_{10}^{(1)}a_0^{(2)} + w_{11}^{(1)}a_1^{(2)} + w_{12}^{(1)}a_2^{(2)})=g(z_1^{3})<br>\end{align}<br>If we substitute $a_1^{2}$ and $a_2^{2}$ for elme $h(x)$, we have:<br>\begin{align}<br>h(x)=a_1^{3}=g(w_{10}^{(1)}\cdot 1 + w_{11}^{(1)}<br>\cdot g(z_1^{(2)})+ w_{12}^{(1)}\cdot g(z_2^{(2)}))<br>\end{align}<br>The formula show that we use $g()$ function once and once again to nest the input, and compute the output eventaully. It is rather a non-linear classifier than linear classifier such as Linear Regression and Logistic Regression.</p>
-<h3 id="More-Complicated-Network"><a href="#More-Complicated-Network" class="headerlink" title="More Complicated Network"></a>More Complicated Network</h3><p>A Neural Network can be very complex, as long as we add more hidden layer into the network, the figure showed below is a neural network which has 20 layers, which means it has 1 input layer, 1 output layer and 18 hidden layers. From the connected weight we can imagine how much many weight we would calculate if we want to train such a big Neural Network. Notice that we add a bias subscript with zero on each layer except the output layer. And in each layer, we can add different amount of nerons. If we want to recognize numer image in zipcode from 0~9, we can design the Neural Network with 10 outputs in the output layer.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-135243.jpg" alt></p>
-<h3 id="Simple-Applications"><a href="#Simple-Applications" class="headerlink" title="Simple Applications"></a>Simple Applications</h3><p>This section, I’d like to construct a Neural Network to simulate a logic gate. Remember that bias $x_0$ is always $1$. Now let set $w_{10},$$w_{11}$ and $w_{12}$, and find what will h(x) become:<br>$$w_{10}=-30\,,w_{11}=20\,,w_{12}=20\,$$</p>
-<table>
-<thead>
-<tr>
-<th>$x_1$</th>
-<th>$x_2$</th>
-<th>$z_1$</th>
-<th>$a_1$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>-30</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>-10</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>-10</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>10</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-<p>Here we take advantge the property of sigmoid function, $g(-10)=4.5\times 10^{-5}\approx 0$ and $g(10)=0.99995\approx 1$. From the table we have constructed an $AND$ logic gate. It is easy to construct an $OR$ logic gate. We just set:<br>    $$w_{10}=-30\,,w_{11}=50\,,w_{12}=50\,$$<br>Then we get an $OR$ logic gate. We can construct $NOR$ gate as well, just set:<br>$$w_{10}=10\,,w_{11}=-20\,,w_{12}=-20\,$$<br>Question: can we construct a $XOR$ gate?<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-052259.jpg" alt><br>In fact, we can get a more powerful logic gate through adding more hidden layers. Only 2 layers of Neural Network can not construct a $XOR$ gate but 3 layers can. Neural Network shown below can implement function as $XOR$ logic gate.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-085822.jpg" alt><br>The weights matrices is as followed, we can testify through table listed.<br>\begin{align}<br>&amp;W^{(1)}=\begin{bmatrix}-30&amp;20&amp;20\<br>10&amp;-20&amp;-20<br>\end{bmatrix}\<br>&amp;W^{(2)}=\begin{bmatrix}10&amp;-20&amp;-20<br>\end{bmatrix}<br>\end{align}</p>
-<table>
-<thead>
-<tr>
-<th>$x_1$</th>
-<th>$x_2$</th>
-<th>$a_1^{(2)}$</th>
-<th>$a_2^{(2)}$</th>
-<th>$a_1^{(3)}$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<p>From examples we have seen, hope you can gain intuition about Neural Network. We can generate more abstract features through adding hidden layers.</p>
-<h3 id="Summerize"><a href="#Summerize" class="headerlink" title="Summerize"></a>Summerize</h3><p>Today we used Logistic Regression adding hidden layers to generate Neural Network. Then we talked about how to represent a Neural Network. In the end, we found that Neural Network can simulate logic gate. We do not talk about how to train a Neural Network here. Usually we use Backpropagation Algorithm to train a Neural Network. </p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
-<li><a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="noopener">https://www.coursera.org/learn/machine-learning</a></li>
-<li>《Neural Networks》by Raul Rojas</li>
-</ol>
+        <p>只剩下办银行卡的事情了。<br>无犯罪证明</p>
 
       
     </div>
@@ -439,12 +341,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/ML/" rel="tag"># ML</a>
-          
-        </div>
-      
 
       
       
@@ -454,8 +350,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/04/linear-regression/" rel="next" title="Linear Regression for Trump">
-                <i class="fa fa-chevron-left"></i> Linear Regression for Trump
+              <a href="/2019/03/13/register-to-the-city/" rel="next" title="注册再去办银行卡">
+                <i class="fa fa-chevron-left"></i> 注册再去办银行卡
               </a>
             
           </div>
@@ -463,10 +359,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/18/Naive-Bayes/" rel="prev" title="Naive Bayes">
-                Naive Bayes <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,17 +418,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -551,7 +434,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -562,7 +445,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -659,22 +542,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intuition"><span class="nav-number">2.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neural-Network"><span class="nav-number">3.</span> <span class="nav-text">Neural Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#More-Complicated-Network"><span class="nav-number">4.</span> <span class="nav-text">More Complicated Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Applications"><span class="nav-number">5.</span> <span class="nav-text">Simple Applications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summerize"><span class="nav-number">6.</span> <span class="nav-text">Summerize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
