@@ -258,6 +258,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://commanber.com/2019/04/08/Set-Seurat-enviroment-through-Anaconda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mingbo Cheng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/08/Set-Seurat-enviroment-through-Anaconda/" itemprop="url">Set-Seurat-enviroment-through-Anaconda</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-08T19:37:26+02:00">
+                2019-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Research/" itemprop="url" rel="index">
+                    <span itemprop="name">Research</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>I’m using the computional cluster to run R enviroment. But I haven’t got the access to the root or sudoers.<br>Usually, I will choose Docker to set up a totally independent enviroment. This doesn’t work right now, because to launch a docker daemon, you have to get the permission to access root.</p>
+<p>I use linuxbrew to set up the enviroment at first. But sometimes it won’t work as well when it comes to the library dependencies.<br>The mainly reason is that linuxbrew just installs some softwares into the user’s directory, but we still depend on some system libraries and so on. For example, I found that the version of libstdc++ does not meet a software.<br>I installed all version of gcc and tried to substitute all correlated library to these system ones. However, even vim refuse to work right now. </p>
+<p>Good news are that I recently Anaconda can support building a R enviroment friendly.<br>First of all, download the Anaconda3-2018.12-Linux-x86_64.sh according your operating system.<br>Then install softwares, I need library Seurat, so some softwares are needed:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sh Anaconda3-2018.12-Linux-x86_64.sh</span><br><span class="line">cd Anaconda3</span><br><span class="line">source bin/activate</span><br><span class="line">conda create -n r_env r-essentials r-base</span><br><span class="line">conda activate r_env</span><br><span class="line">conda install hdf5</span><br><span class="line">conda install -c r r-git2r</span><br></pre></td></tr></table></figure>
+<p>Then install all library you need inner R</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">install.packages(<span class="string">"hdf5r"</span>)</span><br><span class="line">install.packages(<span class="string">"Seurat"</span>)</span><br><span class="line">install.packages(c(<span class="string">"WriteXLS"</span>, <span class="string">"devtools"</span>, <span class="string">"urltools"</span>, <span class="string">"pheatmap"</span>, <span class="string">"shinythemes"</span>,<span class="string">"BiocManager"</span>))</span><br><span class="line">libraray(devtools)</span><br><span class="line">install_github(<span class="string">"ggjlab/scMCA"</span>)</span><br><span class="line">BiocManager::install(<span class="string">"clusterProfiler"</span>, version = <span class="string">"3.8"</span>)</span><br><span class="line">BiocManager::install(<span class="string">"piano"</span>, version = <span class="string">"3.8"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="rmarkdown-generate-pdf"><a href="#rmarkdown-generate-pdf" class="headerlink" title="rmarkdown generate pdf"></a>rmarkdown generate pdf</h3><p>It is easy to generate html using through knit. However, sometimes pdf generating will be an obstacle. The most common advise is Pandoc.<br>However, when I try to generate pdfs, I found all format good in html became really unacceptable. After some search, I decided to generate PDF through webshot library in R. The installation step is as follows:<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages(<span class="string">"webshot"</span>)</span><br><span class="line">webshot::install_phantomjs()</span><br></pre></td></tr></table></figure></p>
+<p>Now you can generate pdf through Rscript:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(webshot)</span><br><span class="line">webshot(<span class="string">"x.html"</span>, <span class="string">"y.pdf"</span>)</span><br></pre></td></tr></table></figure>
+<p>Problems emerged when opened the pdf file due to the pages. Because webshot generates pdf with a huge page without break, it is hard for pdf viewer to load a page. So I had to find anothe software. html-pdf can solve the pages problem, to install:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda install nodejs</span><br><span class="line">npm install -g html-pdf</span><br></pre></td></tr></table></figure>
+<h3 id="Estar-egg-knitter-script-for-Rmd-to-generate-html-or-pdfs"><a href="#Estar-egg-knitter-script-for-Rmd-to-generate-html-or-pdfs" class="headerlink" title="Estar egg: knitter script for Rmd to generate html or pdfs"></a>Estar egg: knitter script for Rmd to generate html or pdfs</h3><p>I just improve a script from stackoverflow</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>## Test usage; if incorrect, output correct usage and exit</span><br><span class="line">if [ "$#" -gt 2  -o  "$#" -lt 2 ]; then</span><br><span class="line">    echo "********************************************************************"</span><br><span class="line">    echo "*                        Knitter version 1.0                       *"</span><br><span class="line">    echo "********************************************************************"</span><br><span class="line">    echo -e "The 'knitter' script converts Rmd files into HTML or PDFs. \n"</span><br><span class="line">    echo -e "usage: knitter file.Rmd file.&#123;pdf,html&#125; \n"</span><br><span class="line">    echo -e "Spaces in the filename or directory name may cause failure. \n"</span><br><span class="line">    exit</span><br><span class="line">fi</span><br><span class="line"><span class="meta">#</span> Stem and extension of file</span><br><span class="line">extension1=`echo $1 | cut -f2 -d.`</span><br><span class="line">extension2=`echo $2 | cut -f2 -d.`</span><br><span class="line">name_without_ext=`echo $1 | cut -f1 -d.`</span><br><span class="line">out_without_ext=`echo $2 | cut -f1 -d.`</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>## Test if file exist</span><br><span class="line">if [[ ! -r $1 ]]; then</span><br><span class="line">    echo -e "\n File does not exist, or option mispecified \n"</span><br><span class="line">    exit</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>## Test file extension</span><br><span class="line">if [[ $extension1 != Rmd ]]; then</span><br><span class="line">    echo -e "\n Invalid input file, must be a Rmd-file \n"</span><br><span class="line">    exit</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> Create temporary script</span><br><span class="line"><span class="meta">#</span> Use user-defined 'TMPDIR' if possible; else, use /tmp</span><br><span class="line">if [[ -n $TMPDIR ]]; then</span><br><span class="line">    pathy=$TMPDIR</span><br><span class="line">else</span><br><span class="line">    pathy=/tmp</span><br><span class="line">fi</span><br><span class="line"><span class="meta">#</span> Tempfile for the script</span><br><span class="line">tempscript=`mktemp $pathy/tempscript.XXXXXX` || exit 1</span><br><span class="line">if [[ $extension2 == "pdf" ]]; then</span><br><span class="line">    echo "library(rmarkdown);rmarkdown::render('"$&#123;1&#125;"', 'html_document');" &gt;&gt; $tempscript</span><br><span class="line">    Rscript $tempscript</span><br><span class="line">	html-pdf "$&#123;name_without_ext&#125;".html "$&#123;2&#125;"</span><br><span class="line">	rm $&#123;name_without_ext&#125;.html</span><br><span class="line">	echo generate "$&#123;2&#125;"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [[ $extension2 == "html" ]]; then</span><br><span class="line">    echo "library(rmarkdown); rmarkdown::render('"$&#123;1&#125;"', 'html_document')" &gt;&gt; $tempscript</span><br><span class="line">    Rscript $tempscript</span><br><span class="line">	mv $&#123;name_without_ext&#125;.html $&#123;2&#125;</span><br><span class="line">	echo generate "$&#123;2&#125;"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">if [[ $extension2 == "both" ]]; then</span><br><span class="line">    echo "library(rmarkdown);rmarkdown::render('"$&#123;1&#125;"', 'html_document');" &gt;&gt; $tempscript</span><br><span class="line">    Rscript $tempscript</span><br><span class="line">	html-pdf "$&#123;name_without_ext&#125;".html "$&#123;2&#125;"</span><br><span class="line">	mv $&#123;name_without_ext&#125;.html $&#123;out_without_ext&#125;.html</span><br><span class="line">	echo generate  "$&#123;out_without_ext&#125;".html and  "$&#123;out_without_ext&#125;".pdf</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://commanber.com/2019/03/17/Mint-soft/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -299,6 +453,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/soft/" itemprop="url" rel="index">
+                    <span itemprop="name">soft</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -572,6 +748,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/德国生活/" itemprop="url" rel="index">
+                    <span itemprop="name">德国生活</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -755,6 +953,149 @@
 <h3 id="延签"><a href="#延签" class="headerlink" title="延签"></a>延签</h3><p>既然已经在这里了，那么何妨去2楼看看延签的事宜。跑去2楼，找了一大圈，就是没找到取号的机器。回到0层，继续咨询，咨询台的人告诉我，2楼有个和0楼一样的取号机，上去继续找不到。找了一个中国人模样的人，问是否懂文，他说不会，但是用英文问我有什么问题。我说怎么找到取号机，他说在对面大厅的角落里，有个取号机。我始终不得要领，我脑海里的取号机应该和一楼的大个子一样大。没想到，是一个大概30＊20的挂在墙上的铁盒子。这个帮我按了下按钮，出来个644，现在是598。这个亚裔小伙还告诉我，自己取号的这个厅是现场排队，人山人海。他在对面的厅，是提前预约的，只有五六个人。等了大概2个小时，终于轮到我，拿出护照给工作人员看，人家一看说，不用延签。到期前8周内过来延签。需要提前去Super C office。什么也做不了。那就回来吧。</p>
 <h3 id="Sparkasse预约开卡"><a href="#Sparkasse预约开卡" class="headerlink" title="Sparkasse预约开卡"></a>Sparkasse预约开卡</h3><p>已经计划好，直接坐车去Sparkasse总部。到了那里，说要open an account，前台咨询人员问我，[呐抹]，说了好几遍，我完全不知所云，边上一个穆斯林女孩告诉我是name，这才反应过来。原来是要名字，不断感谢。让我去H-O的区域排队。办事员英语很不熟，一长串德语，一句没听懂，然后说：Do you speak German. 赶紧说我说英语。然后说给我预约明天中午12:00，跟我说让我找Rebort 女士。然后说She speaks really good English。复印完我的an的材料以及invitation letter 和护照。愉快的离开了。</p>
 <h3 id="回住所"><a href="#回住所" class="headerlink" title="回住所"></a>回住所</h3><p>所有事情已经办完，可以回家了。天开始下雨，这边的雨可真奇怪，说下就下，说停就停。关键是刚来这段时间的感受是：下的雨是打伞觉得必要性不大，不打伞一会儿就淋湿。回家补觉去。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://commanber.com/2019/03/12/photos-hard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mingbo Cheng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/12/photos-hard/" itemprop="url">照片难道英雄汉</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-12T21:47:50+01:00">
+                2019-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/德国生活/" itemprop="url" rel="index">
+                    <span itemprop="name">德国生活</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>波音747-100飞机重大334,000公斤，但是飞行过程重只需要撞上几公斤的鸟，可能就机毁人亡。在国外生活没有这么凶险，但是有时候一个很小的事情，可能就让人抓耳挠腮，一时找不到解决方案。</p>
+<h3 id="护照照片"><a href="#护照照片" class="headerlink" title="护照照片"></a>护照照片</h3><p>本来在国内多照了一堆护照照片，想在过来需要很多照片的地方。无奈过于匆忙，出行前没把之前的护照照片不知放哪儿了，在网上搜到办理an需要的一堆材料，其中一项是照片。发现身上已经没有可以带的照片了。本来打算如果有时间，明天去碰碰运气看能不能把an的事情试着搞定。    </p>
 
           
         
@@ -1340,396 +1681,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/08/07/Expectation-and-variance-of-poisson-distribution/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/07/Expectation-and-variance-of-poisson-distribution/" itemprop="url">Expectation and Variance of Poisson Distribution</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-07T21:49:00+02:00">
-                2017-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Pmf of Poisson Distribution is as follows:</p>
-<p>$$f(X=k;\lambda)=\frac{\lambda^k e^{-\lambda}}{k!}$$</p>
-<p>Our aim is to derive the the expectation of $E(X)$ and the variance $Var(X)$.  Given that the formula of expectation:<br>$$<br>E(X)=\sum_{k=0}^{\infty} k \frac{\lambda^k e^{-\lambda }}{k!}<br>$$</p>
-<p>Notice that when $k=0$, the formula is equal to 0, that is:</p>
-<p>$$\sum_{k=0}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}\Large|_{k=0}=0$$</p>
-<p>Then, the formula become as followed:</p>
-<p>$$E(X)=\sum_{k=1}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}$$</p>
-<p>$$\begin{aligned}E(X)&amp;=\sum_{k=0}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}=\sum_{k=0}^{\infty} \frac{\lambda^ke^{-\lambda}}{(k-1)!}\&amp;=\sum_{k=0}^{\infty}  \frac{\lambda^{k-1}\lambda e^{-\lambda}}{(k-1)!}\&amp;=\lambda e^{-\lambda}\sum_{k=1}^{\infty}\frac{\lambda^{k-1}}{(k-1)!}\end{aligned}$$</p>
-<p>Now we need take advantage of Taylor Expansion, recall that:</p>
-<p>$$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots+\frac{x^{k-1}}{(k-1)!}=\sum_{k=1}^{\infty}\frac{x^{k-1}}{(k-1)!}$$</p>
-<p>Compare $E(X)$, we can get:</p>
-<p>$$E(X)=\lambda e^{-\lambda}e^\lambda=\lambda$$</p>
-<p>As known that $Var(X)=E(X^2)-(E(x))^2$,  we just get $E(X^2)$. Given that:</p>
-<p>$$E(X)=\sum_{k=1}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}=\lambda$$</p>
-<p>we can use this formula to derive the $E(X^2)$,</p>
-<p>$$\begin{aligned}E(X)=&amp;\sum_{k=1}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}=\lambda\\Leftrightarrow&amp;\sum_{k=1}^{\infty} k \frac{\lambda^k}{k!}=\lambda e^{\lambda}\\Leftrightarrow&amp;\frac{\partial\sum_{k=1}^{\infty} k \frac{\lambda^k}{k!}}{\partial \lambda}=\frac{\partial \lambda e^{\lambda}}{\partial \lambda}\\Leftrightarrow&amp;\sum_{k=1}^{\infty}k^2\frac{\lambda^{k-1}}{k!}=e^\lambda+\lambda e^\lambda\\Leftrightarrow&amp;\sum_{k=1}^{\infty}k^2\frac{\lambda^{k-1}e^{-\lambda}}{k!}=1+\lambda \\Leftrightarrow&amp;\sum_{k=1}^{\infty}k^2\frac{\lambda^{k}e^{-\lambda}}{k!}=\lambda+\lambda^2=E(X^2)\end{aligned}$$</p>
-<p>then,</p>
-<p>$$Var(X)=E(X^2)-(E(X))^2=\lambda+\lambda^2-(\lambda)^2=\lambda$$</p>
-<p>Thus,  we have proved that the Expectation and the Variance of Poisson Distribution are both $\lambda$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/06/17/sample-variance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/17/sample-variance/" itemprop="url">样本方差为什么除以N-1?（翻译）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-17T17:52:38+02:00">
-                2017-06-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原文作者：<a href="http://www.visiondummy.com/" target="_blank" rel="noopener">Vincent Spruy</a></p>
-<p>译者：程明波</p>
-<p><a href="http://www.visiondummy.com/2014/03/divide-variance-n-1/" target="_blank" rel="noopener">英文文章地址</a></p>
-<p><a href="http://commanber.com/2017/06/17/sample-variance/">译文地址</a></p>
-<p>译者注：由于历史原因，高斯分布(Gaussian Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如$\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$的分布。文中我会采用正态分布的提法。</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>本文，呼应标题，我将推导著名正态分布数据均值和方差的计算公式。如果一些读者对于这个问题的“为什么”并不感兴趣，仅仅是对“什么时候使用”感兴趣，那答案就非常简单了：</p>
-<p>如果你想预估一份数据的均值和方差(典型情况)，那么方差公式除的是$N-1$，即：</p>
-<p>$$\sigma^2 = \frac{1}{N-1}\sum_{i=1}^N (x_i - \mu)^2$$</p>
-<p>另一种情况，如果整体的真实均值已知，那么方差公式除的就是$N$，即：</p>
-<p>$$\sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2$$</p>
-<p>然而，前一种情况，会是你遇到更典型的情形。一会儿，我会举一个预估高斯白噪音的离散程度例子。例子中高斯白噪音的均值是已知的0，这种情况下，我们只需要估计方差。</p>
-<p>如果数据是正态分布，我们可以完全用均值$\mu$和方差$\sigma^2$刻画这个分布。其中，方差是标准差$\sigma$的平方，标准差代表了每个数据点偏离均值点的平均距离，也就是说，方差表示了数据离散程度。对于正态分布，68.3%的数据的值会介于$\mu-\sigma$和$\mu+\sigma$之间。下面图片展示是一个正态分布的概率密度函数，他的均值是$\mu=10$,方差是$\sigma^2=3^2=9$：</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110159.jpg" alt></p>
-<p><strong>图1.</strong> 正态分布概率密度函数. 对于正态分布数据，68%的样本落在均值$\pm$方差。</p>
-<p>通常，我们拿不到全部的全体数据。上面的例子中，典型的情况是我们有一些观察数据，但是，我们没有上图中x轴上所有可能的观察数据。例如我们可能有下面一些观察数据：</p>
-<p>表1</p>
-<table>
-<thead>
-<tr>
-<th>观察数据ID</th>
-<th>观察值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>观察数据 1</td>
-<td>10</td>
-</tr>
-<tr>
-<td>观察数据 2</td>
-<td>12</td>
-</tr>
-<tr>
-<td>观察数据 3</td>
-<td>7</td>
-</tr>
-<tr>
-<td>观察数据 4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>观察数据 5</td>
-<td>11</td>
-</tr>
-</tbody>
-</table>
-<p>现在如果我们通过把所有值相加并除以观察的次数，得到经验均值：</p>
-<p>$$\mu=\frac{10+12+7+5+11}{5}=9\tag{1}$$.</p>
-<p>通常，我们会假设经验均值接近分布的未知的真实均值，因此，我们可以假设观测数据来自于均值为$\mu=9$的正态分布。在这个例子中，分布真实均值是10， 也就是说，经验均值实际上接近于真实均值。</p>
-<p>数据的方差计算如下：</p>
-<p>$$\begin{aligned}\sigma^2&amp;= \frac{1}{N-1}\sum_{i=1}^N (x_i - \mu)^2\&amp;= \frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4})\&amp;= 8.5.\end{aligned}\tag{2}$$</p>
-<p>同样，我们一般假设经验方差接近于基于分布真实未知方差。在此例中，真实方差是9，所以，经验方差也是接近于真实方差。</p>
-<p>那么我们手上的问题现在就是为什么我们用于计算经验均值和经验方差的公式是正确的。事实上，另一个我们经常用于计算方差的公式是这样定义的：</p>
-<p>$$\begin{aligned}\sigma^2 &amp;= \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2 \&amp;= \frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4}) \&amp;= 6.8.\end{aligned}\tag{3}$$</p>
-<p>公式(2)和公式(3)的唯一不同是前一个公式除的是$N-1$，而后一个除的是$N$。两个公式都是对的，只是根据不同的场景使用不同的公式。</p>
-<p>接下来的部分，我们针对给定一个正态分布的样本集，完成对其未知方差和均值最好估计的完整推导。我们将会看到，一些情况下，方差除的是$N$，另一些情况除的是$N-1$。</p>
-<p>用一个公式近似一个参数(均值或方差)叫做估计量。下面，我们定义一个分布的真实但未知的参数为$\hat{\mu}$和$\hat{\sigma}^2$。而估计量，例如，经验的平均和经验方差，定义为$\mu$和$\sigma^2$。</p>
-<p>为了找到最优的估计量，首先，一个整体均值为$\mu$标准差为$\sigma$的正态分布，对于特定的观察点$x_i$，我们需要一个分析相似的表达式。对于一个已知参数的正态分布一般定义为$N(\mu,\sigma^2)$。似然函数为：</p>
-<p>$$x_i \sim N(\mu,\sigma^2) \Rightarrow P(x_i; \mu,\sigma)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}.\tag{4}$$</p>
-<p>为了计算均值和方差，显然，我们需要这个分布一个以上的样本。接下来，设$\vec{x}=(x_1,x_2,\cdots,x_N)$为包含所有的可用样本的向量（例如：表一中所有的值）。如果所有这些样本统计独立，我们可以写出联合似然函数为所有似然函数的乘积：</p>
-<p>$$\begin{aligned}P(\vec{x};\mu,\sigma^2)&amp;=P(x_1,x_2,\cdots,x_n;\mu,\sigma^2)\&amp;=P(x_1;\mu,\sigma^2)P(x_2;\mu,\sigma^2)\cdots P(x_N;\mu,\sigma^2)\&amp;=\prod_{i=1}^{N}P(x_i;\mu,\sigma^2)\end{aligned}.\tag{5}$$</p>
-<p>把公式(4)代入公式(5)，可得出联合概率密度函数的分析表达式：</p>
-<p>$$\begin{aligned}P({\vec{x};\mu,\sigma})&amp;=\prod_{i=1}^{N}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x_i-\mu)^2}\&amp;=\frac{1}{(2\pi\sigma^2)^{\frac{N}{2}}}e^{-\frac{1}{2\sigma^2}\sum_{i=1}^{N}(x_i-\mu)^2}\end{aligned}.\tag{6}$$</p>
-<p>公式(6)在接下来的部分将非常重要。我们会用它推导关于正态分布著名的估计量均值和方差。</p>
-<h3 id="最小方差，无偏估计量"><a href="#最小方差，无偏估计量" class="headerlink" title="最小方差，无偏估计量"></a>最小方差，无偏估计量</h3><p>决定一个估计量是不是“好”估计量，首先我们需要定义什么是真正的“好” 估计量。说一个估计量好，依赖于两个度量，叫做其偏差(bias)和方差(variance)(是的，我们要讨论均值估计量的方差，以及方差估计量的方差)。本节将简单的讨论这两个度量。</p>
-<h4 id="参数偏差"><a href="#参数偏差" class="headerlink" title="参数偏差"></a>参数偏差</h4><p>想象一下，如果我们能拿到全体不同的(互斥)数据子集。类比之前的的例子，假设，除了【表1】中的数据，我们还有完全不同观察结果表2及表3。那么，一个关于均值好的估计量，应该使得这个估计量平均下来等于真实的均值。我们可以接受其中一个自己的经验均值不等于真实均值，但是，一个好的估计量应该保证：对于所有子集均值估计的平均值等于真实均值。这个限制条件用数学化的表示，就是估计量的期望值(Expected Value)应该等于参数值：</p>
-<p>$$E(\mu)=\hat{\mu}\qquad E(\sigma^2)=\hat{\sigma}^2.\tag{7}$$</p>
-<p>如果满足上面的条件，那么这些估计量就被称之为“无偏估计”。反之，如果上面的条件不满足，这些估计量叫做“有偏的”，也就是说平均来看，他们或者低估或者高估了参数的真实值。</p>
-<h4 id="参数方差"><a href="#参数方差" class="headerlink" title="参数方差"></a>参数方差</h4><p>无偏估计量保证平均来看，它们估计的值等于真是参数。但是，这并不意味着每次估计是一个好的估计。比如，如果真实均值为10，一个无偏估计量可以估计全体的其中一个子集的均值为50，而另一个均值为-30。期望的估计的值确实是10，也等于真是的参数值，但是，估计量的质量明显依赖每次估计的离散程度。对于全体5个不同子集，一个估计量产生的估计值(10,15,5,12,8)是无偏的和另一个估计量产生的估计值（50，-30，100，-90，20）（译者注：原文作者最后一个是10，我计算换成20，这样均值才是10）。但是第一个估计量的所有估计值明显比第二个估计量的估计值更接近真实值。</p>
-<p>因此，一个好的估计量不仅需要有低偏差，同时也需要低方差。这个方差表示为平均平方误差的估计量：</p>
-<p>$$Var(\mu)=E[(\hat{\mu}-\mu)^2]$$</p>
-<p>$$Var(\sigma^2)=E[(\hat{\sigma}-\sigma)^2]$$</p>
-<p>因此一个好的估计量是低偏差，低方差的。如果存在最优的估计量，那么这个估计应该是无偏的，而且方差比所有的其他可能估计量都要低。这样的一个估计量被称之为最小方差，无偏（MVU）估计量。下一节，我们将会针对一个正态分布推导均值和方差估计量的数学表达式。我们将会看到，一个正态分布的方差MVU估计量在一些假设下需要除以$N$，而在另一些假设下需要除以$N-1$。</p>
-<h3 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h3><p>基于整体的一个子集，尽管有大量的获取一个参数估计量的技术，所有这些技术中最简单的可能就数最大似然估计了。</p>
-<p>观察值$\vec{x}$的概率在公式(6)定义为$P(\vec{x};\mu,\sigma^2)$. 如果我们在此函数中固定$x$和$\sigma^2$，当使$\vec{x}$变化时，我们就可以获得图(1)的正态分布。但是，我们也可以固定$\vec{x}$，使$\mu$和（或）$\sigma^2$变化。比如，我们可以选择类似前面例子中的$\vec{x}=(10,12,7,5,11)$。我们选择固定$\mu=10$，同时使$\sigma^2$变化。图(2)展示了当$x$和$\mu$固定时，$\sigma^2$对于这个分布取不同值的变化曲线：</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110329.jpg" alt></p>
-<p>图 2. 此图表示了似然函数在特定观察数据$\vec{x}$，下固定$\mu=10$，$\sigma^2$变化曲线。</p>
-<p>上图，我们通过固定$\mu=10$，令$\sigma^2$变化计算了$P(\vec{x};\sigma^2)$的似然函数。在结果曲线的每一个数据点代表了似然度，观察值$\vec{x}$是一个正态分布在参数$\sigma^2$下的样本。那么对应最大似然度的参数值最有可能是从我们定义的分布中产生数据的参数。因此，我们能通过找到似然度曲线的最大值决定最优的$\sigma^2$。在此例中，最大值在$\sigma^2=7.8$，这样标准差就是$\sqrt{(\sigma^2)=2.8}$。事实上，如果给定$\mu=10$，通过传统的方法计算，我们会发明方差就是7.8：</p>
-<p>$$\frac{(10-10)^2+(12-10)^2+(7-10)^2+(5-10)^2+(11-10)^2}{5}=7.8$$</p>
-<p>因此，基于样本数据的方差计算公式只需要简单的通过找到最大的似然函数的最高点。此外，除了固定$\mu$，我们可以使$\mu$和$\sigma^2$同时变化。然后找到两个估计量对应在两个维度的似然函数的最大值。</p>
-<p>要找一个函数的最大值，也很简单，只需要求导使其等于0。如果想找一个有两个变量函数的最大值，我们需要计算每个变量的偏导，再把两个偏导全部设置为0。接下来，设$\hat{\mu}_{ML}$为通过极大似然方法得到的总体均值的最优估计量，设$\hat{\sigma}^2_ML$为方差的最优估计量。要最大化似然函数，我们可以简单的计算它的(偏)导数，然后赋值为0，如下：</p>
-<p>$$\begin{aligned} &amp;\hat{\mu}<em>{ML} = \arg\max</em>\mu P(\vec{x}; \mu, \sigma^2)\ &amp;\Rightarrow \frac{\partial P(\vec{x}; \mu, \sigma^2)}{\partial \mu} = 0 \end{aligned}$$</p>
-<p>及</p>
-<p>$$\begin{aligned} &amp;\hat{\sigma}^2_{ML} = \arg\max_{\sigma^2} P(\vec{x}; \mu, \sigma^2)\ &amp;\Rightarrow \frac{\partial P(\vec{x}; \mu, \sigma^2)}{\partial \sigma^2} = 0 \end{aligned}$$</p>
-<p>下一节，我们将利用这个技术得到$\mu$和$\sigma^2$的MVU估计量。我们考虑两种情形：</p>
-<p>第一种情形，我们假设分布的真正的均值$\hat{\mu}$是已知的，因此，我们只需要估计方差，那么问题就变成在参数为$\sigma^2$的一维的极大似然函数中对应找其最大值。这种情况不经常出现，但是，在实际应用中确实存在。例如，如果我们知道一个信号(比如：一幅图中一个像素的颜色值)本来应该有特定的值，但是，信号被白噪音污染了（均值为0的高斯噪音），这时分布的均值是已知的，我们只需要估计方差。</p>
-<p>第二种情形就是处理均值和方差的真实值都不知道的情况。这种情况最常见，这时，我们需要基于样本数据估计均值和方差。</p>
-<p>后面我们将看到，每种情形产生不同的MVU估计量。具体来说，第一种情形方差估计量需要除以$N$来标准化MVU。而第二种除的是$N-1$。</p>
-<h3 id="均值已知的方差估计"><a href="#均值已知的方差估计" class="headerlink" title="均值已知的方差估计"></a>均值已知的方差估计</h3><h4 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h4><p>如果分布的均值真实值已知，那么似然函数只有一个参数$\sigma^2$。求最大似然估计量也就是解决：</p>
-<p>$$\hat{\sigma^2}<em>{ML}=\arg\max</em>{\sigma^2} P(\vec{x};\sigma^2).\tag{8}$$</p>
-<p>但是，根据公式(6)的定义，如果计算$P(\vec{x};\sigma^2)$涉及到计算函数中指数的偏导。事实上，计算对数似然函数比计算似然函数本身的导数要简单的多。因为对数函数是单调递增函数，其最大值取值位置与原似然函数是一样的。因此我们用下面的式子替换：</p>
-<p>$$\hat{\sigma}^2_{ML}=\arg\max_{\sigma^2}\log(P(\vec{x};\sigma^2)).\tag{9}$$</p>
-<p>下面，我令$s=\sigma^2$简化式子。我们通过计算公式(6)的对数的导数赋值为0来最大化对数似然函数：</p>
-<p>$$\begin{aligned}&amp;\frac{\partial \log(P(\vec{x};\sigma^2))}{\partial \sigma^2}=0\&amp;\Leftrightarrow\frac{\partial\log(P(\vec{x};s))}{\partial s}=0\&amp;\Leftrightarrow\frac{\partial}{\partial s}\log\left(\frac{1}{(2\pi s)^{\frac{N}{2}}}e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2} \right)=0\&amp;\Leftrightarrow\frac{\partial}{\partial s}\log\left(\frac{1}{(2\pi)^{\frac{N}{2}}}\right)+\frac{\partial}{\partial s}\log\left(\frac{1}{\sqrt{s}^\frac{N}{2}}\right)+\frac{\partial}{\partial s} \log\left(e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2}\right )=0\&amp;\Leftrightarrow0+\frac{\partial}{\partial s}\log\left((s)^{-\frac{N}{2}}\right)+\frac{\partial}{\partial s}\left(-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\&amp;\Leftrightarrow -\frac{N}{2}\log (s)+\frac{1}{2 s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\&amp;\Leftrightarrow -\frac{N}{2s}+\frac{1}{2s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\&amp;\Leftrightarrow \frac{N}{2s^2}\left(-s+\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\&amp;\Leftrightarrow\frac{N}{2s^2}\left(\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2-s\right)=0\end{aligned}$$</p>
-<p>很明显，如果$N&gt;0$，那么上面等式唯一的解就是：</p>
-<p>$$s=\sigma^2=\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2.\tag{10}$$</p>
-<p>注意到，实际上$\hat{\sigma}^2$的极大似然估计估计量就是传统上一般计算方差的公式。这里标准化因子是$\frac{1}{N}$.</p>
-<p>但是，极大似然估计并不保证得出的是一个无偏估计量。另外，就算得到的估计量是无偏的，极大似然估计也不能保证估计是最小方差，即MVU。因此，我们需要检查公式(10)的的估计量是否是无偏的。</p>
-<h4 id="表现评价"><a href="#表现评价" class="headerlink" title="表现评价"></a>表现评价</h4><p>我们需要检查公式(7)的等式是否成立，来确定是否公式(10)中的估计量是无偏的。即判断：</p>
-<p>$$E(s)=\hat{s}.$$</p>
-<p>我们把公式(10)代入到$E(s)$，计算：</p>
-<p>$$\begin{aligned}E[s] &amp;= E \left[\frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2 \right] = \frac{1}{N} \sum_{i=1}^N E \left[(x_i - \mu)^2 \right] = \frac{1}{N} \sum_{i=1}^N E \left[x_i^2 - 2x_i \mu + \mu^2 \right]\&amp;= \frac{1}{N} \left( N E[x_i^2] -2N \mu E[x_i] + N \mu^2 \right)\&amp;= \frac{1}{N} \left( N E[x_i^2] -2N \mu^2 + N \mu^2 \right)\&amp;= \frac{1}{N} \left( N E[x_i^2] -N \mu^2 \right)\end{aligned}$$</p>
-<p>另外，真实方差$\hat{s}$有一个<a href="https://en.wikipedia.org/wiki/Variance#Definition" target="_blank" rel="noopener">非常重要的性质</a>为$\hat{s}=E[x_i^2]-E[x_i]^2$，可变换公式为$E[x_i^2]=\hat{s}+E[x_i]^2=\hat{s}+\mu^2$。使用此性质我们可能从上面的公式推出：</p>
-<p>$$\begin{aligned}E[s]&amp;=\frac{1}{N}(N E[x_i^2]-N\mu^2)\&amp;=\frac{1}{N}(N\hat{s}+N\mu^2-N\mu^2)\&amp;=\frac{1}{N}(N\hat{s})\&amp;=\hat{s}\end{aligned}$$</p>
-<p>满足了公式(7)的条件$E[s]=\hat s$，因此，我们得到的数据方差$\hat s$的统计量是无偏的。此外，因为极大似然估计的如果是一个无偏的估计量，那么也是最小方差(MVU)，也就是说，我们得到的估计量比任何一个其他的估计量都大。</p>
-<p>因此，在分布真实均值已知的情况下，我们不用除以$N-1$，而是用除$N$计算正态分布的方差。</p>
-<h3 id="均值未知的方差估计"><a href="#均值未知的方差估计" class="headerlink" title="均值未知的方差估计"></a>均值未知的方差估计</h3><h4 id="参数估计-1"><a href="#参数估计-1" class="headerlink" title="参数估计"></a>参数估计</h4><p>上一节，分布的真实均值已知，因此，我们只需要估计数据的方差。但是，如果真实的均值未知，我们均值的估计量就也需要计算了。</p>
-<p>此外，方差的估计量需要使用均值的估计量。我们会看到，这时，之前我们得到的方差的估计量就不再无偏了。我们一会儿会通过除以N-1，而不是N来稍微的增加方差估计量的值，从而使方差估计无偏。</p>
-<p>与之前一样，基于log似然函数，我们用极大似然估计计算两个估计量。首先我们先计算$\hat\mu$的极大似然估计量：</p>
-<p>$$\begin{aligned}&amp;\frac{\partial \log(P(\vec{x}; s, \mu))}{\partial \mu} = 0\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \log \left( \frac{1}{(2 \pi s)^{\frac{N}{2}}} e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) = 0\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \log \left( \frac{1}{(2 \pi)^{\frac{N}{2}}} \right) + \frac{\partial}{\partial \mu} \log \left(e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) = 0\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \left(-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2 \right) = 0\&amp;\Leftrightarrow -\frac{1}{2s}\frac{\partial}{\partial \mu} \left(\sum_{i=1}^N(x_i - \mu)^2 \right) = 0\&amp;\Leftrightarrow -\frac{1}{2s} \left(\sum_{i=1}^N -2(x_i - \mu) \right) = 0\&amp;\Leftrightarrow \frac{1}{s} \left(\sum_{i=1}^N (x_i - \mu) \right) = 0 \&amp;\Leftrightarrow \frac{N}{s} \left( \frac{1}{N} \sum_{i=1}^N (x_i) - \mu \right) = 0 \end{aligned}$$</p>
-<p>显然，如果$N&gt;0$，那么上面的等式只有一种解：</p>
-<p>$$\mu=\frac{1}{N}\sum_{i=1}^{N}x_i.\tag{11}$$</p>
-<p>注意到，实际的这是计算一个分布均值的著名公式。虽然我们知道这个公式，但我们现在证明了极大似然估计量估计了一个正态分布未知均值的真实值。现在我们先假定我们之前公式(10)计算的方差$\hat s$的估计量仍然是MVU方差估计量。但下一节我们会证明这个估计量已经是有偏的了。</p>
-<h4 id="表现评价-1"><a href="#表现评价-1" class="headerlink" title="表现评价"></a>表现评价</h4><p>我们需要通过检查估计量$\mu$对真实$\hat \mu$的估计是否无偏来确定公式(7)的条件能否成立：</p>
-<p>$$E[\mu]=E\left[\frac{1}{N}\sum_{i=1}^{N}x_i\right]=\frac{1}{N}\sum_{i=1}^N E[x_i]=\frac{1}{N}N E[x_i]=\frac{1}{N} N \hat\mu=\hat\mu.$$</p>
-<p>既然$E[\mu]=\hat\mu$，那么也就是说我们对分布均值的估计量是无偏的。因为极大似然估计可以保证在估计是无偏的情况下得到的是最小方差估计量，所以我们就已经是证明了$\mu$是均值的MVU估计量。</p>
-<p>现在我们检查基于经验均值$\mu$，而不是真实均值$\hat\mu$的方差估计量$s$对真实方差$\hat s$的估计身上仍然是无偏的。我们只需要把得到的估计量$\mu$带入到之前在公式(10)推导出的公式：</p>
-<p>$$\begin{aligned} s &amp;= \sigma^2 = \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\&amp;=\frac{1}{N}\sum_{i=1}^N \left(x_i - \frac{1}{N} \sum_{i=1}^N (x_i) \right)^2\&amp;=\frac{1}{N}\sum_{i=1}^N \left[x_i^2 - 2 x_i \frac{1}{N} \sum_{i=1}^N (x_i) + \left(\frac{1}{N} \sum_{i=1}^N (x_i) \right)^2 \right]\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i \sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i \sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2\end{aligned}$$</p>
-<p>现在我们需要再次检查公式(7)的条件是否成立，来决定估计量是否无偏：</p>
-<p>$$\begin{aligned} E[s]&amp;= E \left[ \frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2 \right ]\&amp;= \frac{\sum_{i=1}^N E[x_i^2]}{N} - \frac{E[(\sum_{i=1}^N x_i)^2]}{N^2} \end{aligned}$$</p>
-<p>记得我们在之前用过方差一个非常重要的性质，真实方差$\hat s$可以写成$\hat s = E[x_i^2]-E[x_i]^2$，即，$E[x_i^2]=\hat s + E[x_i]^2=\hat s +\mu^2$。利用这个性质我们可以推出：</p>
-<p>$$\begin{aligned} E[s] &amp;= \frac{\sum_{i=1}^N E[x_i^2]}{N} - \frac{E[(\sum_{i=1}^N x_i)^2]}{N^2}\&amp;= s + \mu^2 - \frac{E[(\sum_{i=1}^N x_i)^2]}{N^2}\&amp;= s + \mu^2 - \frac{E[\sum_{i=1}^N x_i^2 + \sum_i^N \sum_{j\neq i}^N x_i x_j]}{N^2}\&amp;= s + \mu^2 - \frac{E[N(s+\mu^2) + \sum_i^N \sum_{j\neq i}^N x_i x_j]}{N^2}\&amp;= s + \mu^2 - \frac{N(s+\mu^2) + \sum_i^N \sum_{j\neq i}^N E[x_i] E[x_j]}{N^2}\&amp;= s + \mu^2 - \frac{N(s+\mu^2) + N(N-1)\mu^2}{N^2}\&amp;= s + \mu^2 - \frac{N(s+\mu^2) + N^2\mu^2 -N\mu^2}{N^2}\&amp;= s + \mu^2 - \frac{s+\mu^2 + N\mu^2 -\mu^2}{N}\&amp;= s + \mu^2 - \frac{s}{N} - \frac{\mu^2}{N} - \mu^2 + \frac{\mu^2}{N}\&amp;= s - \frac{s}{N}\&amp;= s \left( 1 - \frac{1}{N} \right)\&amp;= s \left(\frac{N-1}{N} \right) \end{aligned}$$</p>
-<p>显然$E[s]\neq\hat s$，上面公式可知分布的方差估计量不再是无偏的了。事实上，平均来看，这个估计量低估了真实方差，比例为$\frac{N-1}{N}$。当样本的数量趋于无穷时($N\rightarrow\infty$)，这个偏差趋近于0。但是对于小的样本集，这个偏差就意义了，需要被消除。</p>
-<h4 id="修正偏差"><a href="#修正偏差" class="headerlink" title="修正偏差"></a>修正偏差</h4><p>因为偏差不过是一个因子，我们只需通过对公式(10)的估计量乘以偏差的倒数。这样我们就可以定义一个如下的无偏的估计量$s\prime$：</p>
-<p>$$\begin{aligned} s\prime &amp;= \left ( \frac{N-1}{N} \right )^{-1} s\s\prime &amp;= \left ( \frac{N-1}{N} \right )^{-1} \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\s\prime &amp;=\left ( \frac{N}{N-1} \right ) \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\s\prime &amp;= \frac{1}{N-1}\sum_{i=1}^N(x_i - \mu)^2\end{aligned}$$</p>
-<p>  这个估计量现在就是无偏的了，事实上，这个公式与传统计算方差的公式非常像，不同的是除的是$N-1$而不是$N$。然而，你可能注意到这个估计量不再是最小方差估计量，但是这个估计量是所有无偏估计量中最小方差的一个。如果我们除以$N$，那么估计量就是有偏的了，如果我们除以$N-1$，估计量就不是最小方差估计量。但大体来说，一个有偏的估计量要比一个稍高一点方差的估计量要糟糕的多。因此，如果当总体的均值是未知的情况下，方差除的是$N-1$，而不是$N$。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文，我们推导了如果从分布数据中计算常见的方差和均值公式。此外，我们还证明了在方差估计中，标准化因子在总体均值已知时是$\frac{1}{N}$，在均值也需要估计时是$\frac{1}{N-1}$。</p>
-<p><a href="http://cmb.oss-cn-qingdao.aliyuncs.com/%E6%A0%B7%E6%9C%AC%E6%96%B9%E5%B7%AE%E4%B8%BA%E4%BB%80%E4%B9%88%E9%99%A4%E4%BB%A5N-1%3F%EF%BC%88%E7%BF%BB%E8%AF%91%EF%BC%89.pdf" target="_blank" rel="noopener">本文PDF</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1775,7 +1731,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1786,7 +1742,7 @@
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -1797,7 +1753,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -1872,6 +1828,10 @@
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://yxzf.github.io/" title="YXZF'S BLOG" target="_blank">YXZF'S BLOG</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://vonng.com" title="VONNG" target="_blank">VONNG</a>
                   </li>
                 
               </ul>
