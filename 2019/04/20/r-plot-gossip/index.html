@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Mingbo" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="At the end of March, I began to apply R to some subjects.  There are lots of traps during the programming. Sometimes, it took me hours only found that the speciality of some structures or function. Fo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R plot gossip">
+<meta property="og:url" content="http://commanber.com/2019/04/20/r-plot-gossip/index.html">
+<meta property="og:site_name" content="Mingbo">
+<meta property="og:description" content="At the end of March, I began to apply R to some subjects.  There are lots of traps during the programming. Sometimes, it took me hours only found that the speciality of some structures or function. Fo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/plots-disorder.png">
+<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/compare-names-cutoff.png">
+<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/10length.png">
+<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/negative-r.png">
+<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/stack-together.png">
+<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/hash-label.png">
+<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/identitical-plots.png">
+<meta property="og:updated_time" content="2019-05-01T09:45:47.134Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R plot gossip">
+<meta name="twitter:description" content="At the end of March, I began to apply R to some subjects.  There are lots of traps during the programming. Sometimes, it took me hours only found that the speciality of some structures or function. Fo">
+<meta name="twitter:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/plots-disorder.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://commanber.com/2019/04/20/r-plot-gossip/">
+
+
+
+
+
+  <title>R plot gossip | Mingbo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mingbo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-slides">
+          <a href="/slides/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-area-chart"></i> <br>
+            
+            slides
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://commanber.com/2019/04/20/r-plot-gossip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mingbo Cheng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">R plot gossip</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-20T10:15:34+02:00">
+                2019-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming/" itemprop="url" rel="index">
+                    <span itemprop="name">Programming</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>At the end of March, I began to apply R to some subjects.  There are lots of traps during the programming. Sometimes, it took me hours only found that the speciality of some structures or function. For example, at first, I thought it would be extremely easy when I tried to plot through <strong>ggplot</strong> in a loop. However, days after I have implemented a serials of plots, I found all the plots have the same outlook. S3 and s4 object as well as vector, list, dataframe sometimes draw me crazy. </p>
+<h3 id="strange-plots"><a href="#strange-plots" class="headerlink" title="strange plots"></a>strange plots</h3><p>When I tried to plot bars, I found there were some strange guys in the several bar plots. Here is the task: I need plot a list of data, each element will be a bar plot. First of all, I initialize the plot parameters as followed:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">plot.list = lapply(up.list, <span class="keyword">function</span>(y)&#123; </span><br><span class="line">            df = fortify(y, showCategory=<span class="literal">Inf</span>)</span><br><span class="line">            log.m = as.data.frame(-log10(df$p.adjust))</span><br><span class="line">            log.m$names = df$Description</span><br><span class="line">            log.m &lt;- log.m[order(log.m[,<span class="number">1</span>],decreasing = <span class="literal">TRUE</span>),]</span><br><span class="line">            showCategory = min(length(log.m[,<span class="number">1</span>]), <span class="number">20</span>)</span><br><span class="line">            log.m &lt;- log.m[<span class="number">1</span>:showCategory, ]</span><br><span class="line">            log.m &lt;- log.m[order(log.m[,<span class="number">1</span>],decreasing = <span class="literal">FALSE</span>),]        </span><br><span class="line">            <span class="keyword">return</span>(log.m)</span><br><span class="line">            &#125; )</span><br></pre></td></tr></table></figure>
+<p>fortify is a way of coverting a list to dataframe. To sort log.m, just put order(log.m[,1]) as new idx. Next step is to get top 20 of log.m and then sort the 20 elements.</p>
+<p>The descriptions are too long sometimes so that I tried to find a way to cutoff longer strings. That is, to change the <strong>log.m\$names = df\$Description</strong> line. I searched for substring function and found str_sub from package stringr to finish the job:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(stringr)</span><br><span class="line">log.m$names = unlist(lapply(df$Description, <span class="keyword">function</span>(y)&#123;y&lt;-trimws(y) </span><br><span class="line">              <span class="keyword">if</span>(str_length(y)&gt;=<span class="number">53</span>) &#123;y =  paste(str_sub(x, <span class="number">1</span>, <span class="number">50</span>), <span class="string">"..."</span>)&#125;</span><br><span class="line">              <span class="keyword">return</span>(y)&#125;))</span><br></pre></td></tr></table></figure>
+<p>The code seems to work well, bar plots are supposed to list in order but they’re not:<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/plots-disorder.png" alt></p>
+<p>To inspect the differences between cutoff and the original<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/compare-names-cutoff.png" alt><br>Note that, the type of two names are different: the former list is string list whereas the latter one is factor. To keep the same type, I use <strong>as.factor()</strong> function to convert string list as factor:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log.m$names = as.factor(sapply(df$Description, <span class="keyword">function</span>(y)&#123;y&lt;-trimws(y) </span><br><span class="line">              <span class="keyword">if</span>(str_length(x)&gt;=<span class="number">53</span>) &#123;y =  paste(str_sub(y, <span class="number">1</span>, <span class="number">50</span>), <span class="string">"..."</span>)&#125;</span><br><span class="line">              <span class="keyword">return</span>(y)&#125;))</span><br></pre></td></tr></table></figure>
+<p>It turns out that plots still performance abnormally although the type of <strong>names</strong> has become as factor. Now, the only differences is the levels for the two list. I just mask the str_sub function to see if the other parts work well or not. </p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log.m$names = as.factor(sapply(df$Description, <span class="keyword">function</span>(y)&#123;y&lt;-trimws(x) </span><br><span class="line">              <span class="keyword">if</span>(str_length(x)&gt;=<span class="number">503</span>) &#123;y =  paste(str_sub(y, <span class="number">1</span>, <span class="number">500</span>), <span class="string">"..."</span>)&#125;</span><br><span class="line">              <span class="keyword">return</span>(y)&#125;))</span><br></pre></td></tr></table></figure>
+<p>Yeah, the stacked bars on plots disappear now. I should draw the conclusion that it is the function str_sub which lead to the abnormal plots. So the following code should work well as I expected:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log.m$names = as.factor(sapply(df$Description, <span class="keyword">function</span>(y)&#123;y&lt;-trimws(y) </span><br><span class="line">              <span class="keyword">if</span>(str_length(y)&gt;=<span class="number">33</span>) &#123;y =  paste(substr(y, <span class="number">1</span>, <span class="number">33</span>), <span class="string">"..."</span>)&#125;</span><br><span class="line">              <span class="keyword">return</span>(y)&#125;))</span><br></pre></td></tr></table></figure>
+<p>But wait. ʕฅ•ω•ฅʔ, when I check the name factor after I changed the code as:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(str_length(y)&gt;<span class="number">10</span>) &#123;y =substr(y, <span class="number">1</span>, <span class="number">10</span>) &#125;<span class="comment">#paste(str_sub(x, 1, 20), "...")&#125;</span></span><br></pre></td></tr></table></figure>
+<p>It seems that the shorter kept length of string, the more serious on the plot:</p>
+<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/10length.png" alt></p>
+<p>When I looked at the plot, I found the label <strong>negative r</strong>. It seems this <strong>negative r </strong> can plot for more than one times. Is there a possibility that all the bars with the <strong>negative r</strong> label are ploted together?. First, let’s look at how many negative r in the factor? 7 times.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> plot.list[[1]]<span class="variable">$names</span></span><br><span class="line"></span><br><span class="line"> [1] ameboidal- negative r negative r endotheliu negative r negative r regulation negative r endothelia endothelia negative r epithelial</span><br><span class="line">[13] negative r basement m collagen-c apical par positive r positive r regulation regulation</span><br><span class="line">103 Levels: actin fila adrenal gl ameboidal- amyloid <span class="keyword">fi</span> apical jun apical par apical pla basement m bicellular blood circ ... Z disc</span><br></pre></td></tr></table></figure>
+<p>Now, for <strong>plot.list[[1]]</strong>, there are 6 joint line which means 7 bars on one line</p>
+<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/negative-r.png" alt></p>
+<p>See the extreme condition, now we can set only one level for the name factor, that is:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">log.m$names = as.factor(sapply(df$Description, <span class="keyword">function</span>(y)&#123;y&lt;-as.character(trimws(y) )</span><br><span class="line">              <span class="keyword">if</span>(str_length(y)&gt;<span class="number">10</span>) &#123;y =substr(y, <span class="number">1</span>, <span class="number">10</span>) &#125;</span><br><span class="line">              <span class="keyword">return</span>(<span class="string">"aaa"</span>)&#125;))</span><br></pre></td></tr></table></figure>
+<p>Maybe you can imagine how the plot looks like. All 20 bars stack together in one line. </p>
+<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/stack-together.png" alt></p>
+<p>If we want to keep shorter string, in the mean time, we still hope not be borthered by the same label problem, we can introduce hash function to solve the problem.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(digest)</span><br><span class="line">log.m$names = as.factor(sapply(df$Description, <span class="keyword">function</span>(y)&#123;y&lt;-as.character(trimws(y) )</span><br><span class="line">              <span class="keyword">if</span>(str_length(y)&gt;<span class="number">10</span>) &#123;</span><br><span class="line">                hs &lt;- digest(y, <span class="string">"xxhash32"</span>)</span><br><span class="line">                y =paste(substr(y, <span class="number">1</span>, <span class="number">10</span>), hs)&#125;</span><br><span class="line">              <span class="keyword">return</span>(y)&#125;))</span><br></pre></td></tr></table></figure>
+<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/hash-label.png" alt></p>
+<p>The code of plots is as follows</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">lapply(seq_along(plot.list), <span class="keyword">function</span>(y, i) &#123;</span><br><span class="line">        col &lt;- y[[i]] </span><br><span class="line">        ggplot(col, aes(reorder(x=col[,<span class="number">2</span>], col[,<span class="number">1</span>]), y=col[,<span class="number">1</span>])) + </span><br><span class="line">        geom_bar(stat=<span class="string">"identity"</span>, fill= <span class="string">"#3399CC"</span>, color=<span class="string">"grey50"</span>) +</span><br><span class="line">        ggtitle(paste(<span class="string">"title"</span>, i)) +</span><br><span class="line">        theme(axis.text.y  = element_text(size=<span class="number">15</span>)) +</span><br><span class="line">        scale_y_continuous(name=<span class="string">"-log10(p-value)"</span>) +</span><br><span class="line">        scale_x_discrete(name= <span class="string">""</span>) +</span><br><span class="line">        coord_flip()&#125;</span><br><span class="line">       ,</span><br><span class="line">       y=plot.list)</span><br></pre></td></tr></table></figure>
+<h2 id="All-same-plots"><a href="#All-same-plots" class="headerlink" title="All same plots"></a>All same plots</h2><p>There are too many plots so that it is a good idea to put multiple graphs on one page.</p>
+<p>This is what happened, all plots were the same after plot in a loop. At first I thought, I didn’t allocate memory for the <strong>up.list</strong> because I initialized up.list as followed:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plots = list()</span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> seq(<span class="number">1</span>, n, by=<span class="number">1</span>))&#123;</span><br><span class="line">  up.list[[i]] &lt;- new-element</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then, I changed the initialization:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plots = vector(<span class="string">"list"</span>, length(cluster.de))</span><br></pre></td></tr></table></figure>
+<p>Still, all plots are identical. Code for ploting seems correct:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">plots = vector(<span class="string">"list"</span>, length(cluster.de))</span><br><span class="line"><span class="keyword">for</span> (id <span class="keyword">in</span> seq(<span class="number">1</span>, length(plot.list), by=<span class="number">1</span>)) &#123;</span><br><span class="line">        col &lt;- plot.list[[id]]   </span><br><span class="line">        plots[[id]] &lt;- ggplot(col, aes(reorder(x=col[,<span class="number">2</span>], col[,<span class="number">1</span>]), y=col[,<span class="number">1</span>])) + </span><br><span class="line">                geom_bar(stat=<span class="string">"identity"</span>, fill= <span class="string">"#3399CC"</span>, color=<span class="string">"grey50"</span>) +</span><br><span class="line">                ggtitle(paste(<span class="string">"title"</span>, id)) +</span><br><span class="line">                theme(axis.text.y  = element_text(size=<span class="number">8</span>)) +</span><br><span class="line">                scale_y_continuous(name=<span class="string">"-log10(p-value)"</span>) +</span><br><span class="line">                scale_x_discrete(name= <span class="string">""</span>) +</span><br><span class="line">                coord_flip()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i <span class="keyword">in</span> seq(<span class="number">1</span>, length(plots), by=<span class="number">4</span>))&#123;</span><br><span class="line">  ni = min(i+<span class="number">3</span>, length(plots))</span><br><span class="line">  p &lt;-plot_grid(plotlist=plots[i:ni], ncol=<span class="number">2</span>)</span><br><span class="line">  print(p)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>But from the 4 plots in one page we can see that every plot is the same as the others.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/identitical-plots.png" alt></p>
+<p>For now, I haven’t found solution to this problem.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/08/Set-Seurat-enviroment-through-Anaconda/" rel="next" title="Set Seurat enviroment through Anaconda">
+                <i class="fa fa-chevron-left"></i> Set Seurat enviroment through Anaconda
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+        
+  <script src="https://utteranc.es/client.js" repo="chengmingbo/gitment-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+  </script>
+
+
+    </div> 
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
+              <p class="site-description motion-element" itemprop="description">Mingbo</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chengmingbo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.flickering.cn/" title="flickering" target="_blank">flickering</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.zybuluo.com/codeep/note/163962" title="mathjax grammar" target="_blank">mathjax grammar</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://vividfree.github.io/" title="vividfree" target="_blank">vividfree</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://colah.github.io/" title="colah" target="_blank">colah</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.autonlab.org/tutorials" title="Andrew Moore" target="_blank">Andrew Moore</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://plot.ly/matlab/plot/" title="matlabplot" target="_blank">matlabplot</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ryanzhang.info/blog/" title="Ryan’s Cabinet" target="_blank">Ryan’s Cabinet</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="JerryLead" target="_blank">JerryLead</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://yxzf.github.io/" title="YXZF'S BLOG" target="_blank">YXZF'S BLOG</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://vonng.com" title="VONNG" target="_blank">VONNG</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#strange-plots"><span class="nav-number">1.</span> <span class="nav-text">strange plots</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#All-same-plots"><span class="nav-number"></span> <span class="nav-text">All same plots</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

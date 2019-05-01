@@ -258,928 +258,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/08/07/Expectation-and-variance-of-poisson-distribution/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/07/Expectation-and-variance-of-poisson-distribution/" itemprop="url">Expectation and Variance of Poisson Distribution</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-07T21:49:00+02:00">
-                2017-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Pmf of Poisson Distribution is as follows:</p>
-<p>$$f(X=k;\lambda)=\frac{\lambda^k e^{-\lambda}}{k!}$$</p>
-<p>Our aim is to derive the the expectation of $E(X)$ and the variance $Var(X)$.  Given that the formula of expectation:<br>$$<br>E(X)=\sum_{k=0}^{\infty} k \frac{\lambda^k e^{-\lambda }}{k!}<br>$$</p>
-<p>Notice that when $k=0$, the formula is equal to 0, that is:</p>
-<p>$$\sum_{k=0}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}\Large|_{k=0}=0$$</p>
-<p>Then, the formula become as followed:</p>
-<p>$$E(X)=\sum_{k=1}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}$$</p>
-<p>$$\begin{aligned}E(X)&amp;=\sum_{k=0}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}=\sum_{k=0}^{\infty} \frac{\lambda^ke^{-\lambda}}{(k-1)!}\&amp;=\sum_{k=0}^{\infty}  \frac{\lambda^{k-1}\lambda e^{-\lambda}}{(k-1)!}\&amp;=\lambda e^{-\lambda}\sum_{k=1}^{\infty}\frac{\lambda^{k-1}}{(k-1)!}\end{aligned}$$</p>
-<p>Now we need take advantage of Taylor Expansion, recall that:</p>
-<p>$$e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots+\frac{x^{k-1}}{(k-1)!}=\sum_{k=1}^{\infty}\frac{x^{k-1}}{(k-1)!}$$</p>
-<p>Compare $E(X)$, we can get:</p>
-<p>$$E(X)=\lambda e^{-\lambda}e^\lambda=\lambda$$</p>
-<p>As known that $Var(X)=E(X^2)-(E(x))^2$,  we just get $E(X^2)$. Given that:</p>
-<p>$$E(X)=\sum_{k=1}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}=\lambda$$</p>
-<p>we can use this formula to derive the $E(X^2)$,</p>
-<p>$$\begin{aligned}E(X)=&amp;\sum_{k=1}^{\infty} k \frac{\lambda^ke^{-\lambda}}{k!}=\lambda\\Leftrightarrow&amp;\sum_{k=1}^{\infty} k \frac{\lambda^k}{k!}=\lambda e^{\lambda}\\Leftrightarrow&amp;\frac{\partial\sum_{k=1}^{\infty} k \frac{\lambda^k}{k!}}{\partial \lambda}=\frac{\partial \lambda e^{\lambda}}{\partial \lambda}\\Leftrightarrow&amp;\sum_{k=1}^{\infty}k^2\frac{\lambda^{k-1}}{k!}=e^\lambda+\lambda e^\lambda\\Leftrightarrow&amp;\sum_{k=1}^{\infty}k^2\frac{\lambda^{k-1}e^{-\lambda}}{k!}=1+\lambda \\Leftrightarrow&amp;\sum_{k=1}^{\infty}k^2\frac{\lambda^{k}e^{-\lambda}}{k!}=\lambda+\lambda^2=E(X^2)\end{aligned}$$</p>
-<p>then,</p>
-<p>$$Var(X)=E(X^2)-(E(X))^2=\lambda+\lambda^2-(\lambda)^2=\lambda$$</p>
-<p>Thus,  we have proved that the Expectation and the Variance of Poisson Distribution are both $\lambda$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/06/17/sample-variance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/17/sample-variance/" itemprop="url">样本方差为什么除以N-1?（翻译）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-17T17:52:38+02:00">
-                2017-06-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原文作者：<a href="http://www.visiondummy.com/" target="_blank" rel="noopener">Vincent Spruy</a></p>
-<p>译者：程明波</p>
-<p><a href="http://www.visiondummy.com/2014/03/divide-variance-n-1/" target="_blank" rel="noopener">英文文章地址</a></p>
-<p><a href="http://commanber.com/2017/06/17/sample-variance/">译文地址</a></p>
-<p>译者注：由于历史原因，高斯分布(Gaussian Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如$\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$的分布。文中我会采用正态分布的提法。</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>本文，呼应标题，我将推导著名正态分布数据均值和方差的计算公式。如果一些读者对于这个问题的“为什么”并不感兴趣，仅仅是对“什么时候使用”感兴趣，那答案就非常简单了：</p>
-<p>如果你想预估一份数据的均值和方差(典型情况)，那么方差公式除的是$N-1$，即：</p>
-<p>$$\sigma^2 = \frac{1}{N-1}\sum_{i=1}^N (x_i - \mu)^2$$</p>
-<p>另一种情况，如果整体的真实均值已知，那么方差公式除的就是$N$，即：</p>
-<p>$$\sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2$$</p>
-<p>然而，前一种情况，会是你遇到更典型的情形。一会儿，我会举一个预估高斯白噪音的离散程度例子。例子中高斯白噪音的均值是已知的0，这种情况下，我们只需要估计方差。</p>
-<p>如果数据是正态分布，我们可以完全用均值$\mu$和方差$\sigma^2$刻画这个分布。其中，方差是标准差$\sigma$的平方，标准差代表了每个数据点偏离均值点的平均距离，也就是说，方差表示了数据离散程度。对于正态分布，68.3%的数据的值会介于$\mu-\sigma$和$\mu+\sigma$之间。下面图片展示是一个正态分布的概率密度函数，他的均值是$\mu=10$,方差是$\sigma^2=3^2=9$：</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110159.jpg" alt></p>
-<p><strong>图1.</strong> 正态分布概率密度函数. 对于正态分布数据，68%的样本落在均值$\pm$方差。</p>
-<p>通常，我们拿不到全部的全体数据。上面的例子中，典型的情况是我们有一些观察数据，但是，我们没有上图中x轴上所有可能的观察数据。例如我们可能有下面一些观察数据：</p>
-<p>表1</p>
-<table>
-<thead>
-<tr>
-<th>观察数据ID</th>
-<th>观察值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>观察数据 1</td>
-<td>10</td>
-</tr>
-<tr>
-<td>观察数据 2</td>
-<td>12</td>
-</tr>
-<tr>
-<td>观察数据 3</td>
-<td>7</td>
-</tr>
-<tr>
-<td>观察数据 4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>观察数据 5</td>
-<td>11</td>
-</tr>
-</tbody>
-</table>
-<p>现在如果我们通过把所有值相加并除以观察的次数，得到经验均值：</p>
-<p>$$\mu=\frac{10+12+7+5+11}{5}=9\tag{1}$$.</p>
-<p>通常，我们会假设经验均值接近分布的未知的真实均值，因此，我们可以假设观测数据来自于均值为$\mu=9$的正态分布。在这个例子中，分布真实均值是10， 也就是说，经验均值实际上接近于真实均值。</p>
-<p>数据的方差计算如下：</p>
-<p>$$\begin{aligned}\sigma^2&amp;= \frac{1}{N-1}\sum_{i=1}^N (x_i - \mu)^2\&amp;= \frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4})\&amp;= 8.5.\end{aligned}\tag{2}$$</p>
-<p>同样，我们一般假设经验方差接近于基于分布真实未知方差。在此例中，真实方差是9，所以，经验方差也是接近于真实方差。</p>
-<p>那么我们手上的问题现在就是为什么我们用于计算经验均值和经验方差的公式是正确的。事实上，另一个我们经常用于计算方差的公式是这样定义的：</p>
-<p>$$\begin{aligned}\sigma^2 &amp;= \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2 \&amp;= \frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4}) \&amp;= 6.8.\end{aligned}\tag{3}$$</p>
-<p>公式(2)和公式(3)的唯一不同是前一个公式除的是$N-1$，而后一个除的是$N$。两个公式都是对的，只是根据不同的场景使用不同的公式。</p>
-<p>接下来的部分，我们针对给定一个正态分布的样本集，完成对其未知方差和均值最好估计的完整推导。我们将会看到，一些情况下，方差除的是$N$，另一些情况除的是$N-1$。</p>
-<p>用一个公式近似一个参数(均值或方差)叫做估计量。下面，我们定义一个分布的真实但未知的参数为$\hat{\mu}$和$\hat{\sigma}^2$。而估计量，例如，经验的平均和经验方差，定义为$\mu$和$\sigma^2$。</p>
-<p>为了找到最优的估计量，首先，一个整体均值为$\mu$标准差为$\sigma$的正态分布，对于特定的观察点$x_i$，我们需要一个分析相似的表达式。对于一个已知参数的正态分布一般定义为$N(\mu,\sigma^2)$。似然函数为：</p>
-<p>$$x_i \sim N(\mu,\sigma^2) \Rightarrow P(x_i; \mu,\sigma)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}.\tag{4}$$</p>
-<p>为了计算均值和方差，显然，我们需要这个分布一个以上的样本。接下来，设$\vec{x}=(x_1,x_2,\cdots,x_N)$为包含所有的可用样本的向量（例如：表一中所有的值）。如果所有这些样本统计独立，我们可以写出联合似然函数为所有似然函数的乘积：</p>
-<p>$$\begin{aligned}P(\vec{x};\mu,\sigma^2)&amp;=P(x_1,x_2,\cdots,x_n;\mu,\sigma^2)\&amp;=P(x_1;\mu,\sigma^2)P(x_2;\mu,\sigma^2)\cdots P(x_N;\mu,\sigma^2)\&amp;=\prod_{i=1}^{N}P(x_i;\mu,\sigma^2)\end{aligned}.\tag{5}$$</p>
-<p>把公式(4)代入公式(5)，可得出联合概率密度函数的分析表达式：</p>
-<p>$$\begin{aligned}P({\vec{x};\mu,\sigma})&amp;=\prod_{i=1}^{N}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x_i-\mu)^2}\&amp;=\frac{1}{(2\pi\sigma^2)^{\frac{N}{2}}}e^{-\frac{1}{2\sigma^2}\sum_{i=1}^{N}(x_i-\mu)^2}\end{aligned}.\tag{6}$$</p>
-<p>公式(6)在接下来的部分将非常重要。我们会用它推导关于正态分布著名的估计量均值和方差。</p>
-<h3 id="最小方差，无偏估计量"><a href="#最小方差，无偏估计量" class="headerlink" title="最小方差，无偏估计量"></a>最小方差，无偏估计量</h3><p>决定一个估计量是不是“好”估计量，首先我们需要定义什么是真正的“好” 估计量。说一个估计量好，依赖于两个度量，叫做其偏差(bias)和方差(variance)(是的，我们要讨论均值估计量的方差，以及方差估计量的方差)。本节将简单的讨论这两个度量。</p>
-<h4 id="参数偏差"><a href="#参数偏差" class="headerlink" title="参数偏差"></a>参数偏差</h4><p>想象一下，如果我们能拿到全体不同的(互斥)数据子集。类比之前的的例子，假设，除了【表1】中的数据，我们还有完全不同观察结果表2及表3。那么，一个关于均值好的估计量，应该使得这个估计量平均下来等于真实的均值。我们可以接受其中一个自己的经验均值不等于真实均值，但是，一个好的估计量应该保证：对于所有子集均值估计的平均值等于真实均值。这个限制条件用数学化的表示，就是估计量的期望值(Expected Value)应该等于参数值：</p>
-<p>$$E(\mu)=\hat{\mu}\qquad E(\sigma^2)=\hat{\sigma}^2.\tag{7}$$</p>
-<p>如果满足上面的条件，那么这些估计量就被称之为“无偏估计”。反之，如果上面的条件不满足，这些估计量叫做“有偏的”，也就是说平均来看，他们或者低估或者高估了参数的真实值。</p>
-<h4 id="参数方差"><a href="#参数方差" class="headerlink" title="参数方差"></a>参数方差</h4><p>无偏估计量保证平均来看，它们估计的值等于真是参数。但是，这并不意味着每次估计是一个好的估计。比如，如果真实均值为10，一个无偏估计量可以估计全体的其中一个子集的均值为50，而另一个均值为-30。期望的估计的值确实是10，也等于真是的参数值，但是，估计量的质量明显依赖每次估计的离散程度。对于全体5个不同子集，一个估计量产生的估计值(10,15,5,12,8)是无偏的和另一个估计量产生的估计值（50，-30，100，-90，20）（译者注：原文作者最后一个是10，我计算换成20，这样均值才是10）。但是第一个估计量的所有估计值明显比第二个估计量的估计值更接近真实值。</p>
-<p>因此，一个好的估计量不仅需要有低偏差，同时也需要低方差。这个方差表示为平均平方误差的估计量：</p>
-<p>$$Var(\mu)=E[(\hat{\mu}-\mu)^2]$$</p>
-<p>$$Var(\sigma^2)=E[(\hat{\sigma}-\sigma)^2]$$</p>
-<p>因此一个好的估计量是低偏差，低方差的。如果存在最优的估计量，那么这个估计应该是无偏的，而且方差比所有的其他可能估计量都要低。这样的一个估计量被称之为最小方差，无偏（MVU）估计量。下一节，我们将会针对一个正态分布推导均值和方差估计量的数学表达式。我们将会看到，一个正态分布的方差MVU估计量在一些假设下需要除以$N$，而在另一些假设下需要除以$N-1$。</p>
-<h3 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h3><p>基于整体的一个子集，尽管有大量的获取一个参数估计量的技术，所有这些技术中最简单的可能就数最大似然估计了。</p>
-<p>观察值$\vec{x}$的概率在公式(6)定义为$P(\vec{x};\mu,\sigma^2)$. 如果我们在此函数中固定$x$和$\sigma^2$，当使$\vec{x}$变化时，我们就可以获得图(1)的正态分布。但是，我们也可以固定$\vec{x}$，使$\mu$和（或）$\sigma^2$变化。比如，我们可以选择类似前面例子中的$\vec{x}=(10,12,7,5,11)$。我们选择固定$\mu=10$，同时使$\sigma^2$变化。图(2)展示了当$x$和$\mu$固定时，$\sigma^2$对于这个分布取不同值的变化曲线：</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110329.jpg" alt></p>
-<p>图 2. 此图表示了似然函数在特定观察数据$\vec{x}$，下固定$\mu=10$，$\sigma^2$变化曲线。</p>
-<p>上图，我们通过固定$\mu=10$，令$\sigma^2$变化计算了$P(\vec{x};\sigma^2)$的似然函数。在结果曲线的每一个数据点代表了似然度，观察值$\vec{x}$是一个正态分布在参数$\sigma^2$下的样本。那么对应最大似然度的参数值最有可能是从我们定义的分布中产生数据的参数。因此，我们能通过找到似然度曲线的最大值决定最优的$\sigma^2$。在此例中，最大值在$\sigma^2=7.8$，这样标准差就是$\sqrt{(\sigma^2)=2.8}$。事实上，如果给定$\mu=10$，通过传统的方法计算，我们会发明方差就是7.8：</p>
-<p>$$\frac{(10-10)^2+(12-10)^2+(7-10)^2+(5-10)^2+(11-10)^2}{5}=7.8$$</p>
-<p>因此，基于样本数据的方差计算公式只需要简单的通过找到最大的似然函数的最高点。此外，除了固定$\mu$，我们可以使$\mu$和$\sigma^2$同时变化。然后找到两个估计量对应在两个维度的似然函数的最大值。</p>
-<p>要找一个函数的最大值，也很简单，只需要求导使其等于0。如果想找一个有两个变量函数的最大值，我们需要计算每个变量的偏导，再把两个偏导全部设置为0。接下来，设$\hat{\mu}_{ML}$为通过极大似然方法得到的总体均值的最优估计量，设$\hat{\sigma}^2_ML$为方差的最优估计量。要最大化似然函数，我们可以简单的计算它的(偏)导数，然后赋值为0，如下：</p>
-<p>$$\begin{aligned} &amp;\hat{\mu}<em>{ML} = \arg\max</em>\mu P(\vec{x}; \mu, \sigma^2)\ &amp;\Rightarrow \frac{\partial P(\vec{x}; \mu, \sigma^2)}{\partial \mu} = 0 \end{aligned}$$</p>
-<p>及</p>
-<p>$$\begin{aligned} &amp;\hat{\sigma}^2_{ML} = \arg\max_{\sigma^2} P(\vec{x}; \mu, \sigma^2)\ &amp;\Rightarrow \frac{\partial P(\vec{x}; \mu, \sigma^2)}{\partial \sigma^2} = 0 \end{aligned}$$</p>
-<p>下一节，我们将利用这个技术得到$\mu$和$\sigma^2$的MVU估计量。我们考虑两种情形：</p>
-<p>第一种情形，我们假设分布的真正的均值$\hat{\mu}$是已知的，因此，我们只需要估计方差，那么问题就变成在参数为$\sigma^2$的一维的极大似然函数中对应找其最大值。这种情况不经常出现，但是，在实际应用中确实存在。例如，如果我们知道一个信号(比如：一幅图中一个像素的颜色值)本来应该有特定的值，但是，信号被白噪音污染了（均值为0的高斯噪音），这时分布的均值是已知的，我们只需要估计方差。</p>
-<p>第二种情形就是处理均值和方差的真实值都不知道的情况。这种情况最常见，这时，我们需要基于样本数据估计均值和方差。</p>
-<p>后面我们将看到，每种情形产生不同的MVU估计量。具体来说，第一种情形方差估计量需要除以$N$来标准化MVU。而第二种除的是$N-1$。</p>
-<h3 id="均值已知的方差估计"><a href="#均值已知的方差估计" class="headerlink" title="均值已知的方差估计"></a>均值已知的方差估计</h3><h4 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h4><p>如果分布的均值真实值已知，那么似然函数只有一个参数$\sigma^2$。求最大似然估计量也就是解决：</p>
-<p>$$\hat{\sigma^2}<em>{ML}=\arg\max</em>{\sigma^2} P(\vec{x};\sigma^2).\tag{8}$$</p>
-<p>但是，根据公式(6)的定义，如果计算$P(\vec{x};\sigma^2)$涉及到计算函数中指数的偏导。事实上，计算对数似然函数比计算似然函数本身的导数要简单的多。因为对数函数是单调递增函数，其最大值取值位置与原似然函数是一样的。因此我们用下面的式子替换：</p>
-<p>$$\hat{\sigma}^2_{ML}=\arg\max_{\sigma^2}\log(P(\vec{x};\sigma^2)).\tag{9}$$</p>
-<p>下面，我令$s=\sigma^2$简化式子。我们通过计算公式(6)的对数的导数赋值为0来最大化对数似然函数：</p>
-<p>$$\begin{aligned}&amp;\frac{\partial \log(P(\vec{x};\sigma^2))}{\partial \sigma^2}=0\&amp;\Leftrightarrow\frac{\partial\log(P(\vec{x};s))}{\partial s}=0\&amp;\Leftrightarrow\frac{\partial}{\partial s}\log\left(\frac{1}{(2\pi s)^{\frac{N}{2}}}e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2} \right)=0\&amp;\Leftrightarrow\frac{\partial}{\partial s}\log\left(\frac{1}{(2\pi)^{\frac{N}{2}}}\right)+\frac{\partial}{\partial s}\log\left(\frac{1}{\sqrt{s}^\frac{N}{2}}\right)+\frac{\partial}{\partial s} \log\left(e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2}\right )=0\&amp;\Leftrightarrow0+\frac{\partial}{\partial s}\log\left((s)^{-\frac{N}{2}}\right)+\frac{\partial}{\partial s}\left(-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\&amp;\Leftrightarrow -\frac{N}{2}\log (s)+\frac{1}{2 s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\&amp;\Leftrightarrow -\frac{N}{2s}+\frac{1}{2s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\&amp;\Leftrightarrow \frac{N}{2s^2}\left(-s+\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\&amp;\Leftrightarrow\frac{N}{2s^2}\left(\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2-s\right)=0\end{aligned}$$</p>
-<p>很明显，如果$N&gt;0$，那么上面等式唯一的解就是：</p>
-<p>$$s=\sigma^2=\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2.\tag{10}$$</p>
-<p>注意到，实际上$\hat{\sigma}^2$的极大似然估计估计量就是传统上一般计算方差的公式。这里标准化因子是$\frac{1}{N}$.</p>
-<p>但是，极大似然估计并不保证得出的是一个无偏估计量。另外，就算得到的估计量是无偏的，极大似然估计也不能保证估计是最小方差，即MVU。因此，我们需要检查公式(10)的的估计量是否是无偏的。</p>
-<h4 id="表现评价"><a href="#表现评价" class="headerlink" title="表现评价"></a>表现评价</h4><p>我们需要检查公式(7)的等式是否成立，来确定是否公式(10)中的估计量是无偏的。即判断：</p>
-<p>$$E(s)=\hat{s}.$$</p>
-<p>我们把公式(10)代入到$E(s)$，计算：</p>
-<p>$$\begin{aligned}E[s] &amp;= E \left[\frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2 \right] = \frac{1}{N} \sum_{i=1}^N E \left[(x_i - \mu)^2 \right] = \frac{1}{N} \sum_{i=1}^N E \left[x_i^2 - 2x_i \mu + \mu^2 \right]\&amp;= \frac{1}{N} \left( N E[x_i^2] -2N \mu E[x_i] + N \mu^2 \right)\&amp;= \frac{1}{N} \left( N E[x_i^2] -2N \mu^2 + N \mu^2 \right)\&amp;= \frac{1}{N} \left( N E[x_i^2] -N \mu^2 \right)\end{aligned}$$</p>
-<p>另外，真实方差$\hat{s}$有一个<a href="https://en.wikipedia.org/wiki/Variance#Definition" target="_blank" rel="noopener">非常重要的性质</a>为$\hat{s}=E[x_i^2]-E[x_i]^2$，可变换公式为$E[x_i^2]=\hat{s}+E[x_i]^2=\hat{s}+\mu^2$。使用此性质我们可能从上面的公式推出：</p>
-<p>$$\begin{aligned}E[s]&amp;=\frac{1}{N}(N E[x_i^2]-N\mu^2)\&amp;=\frac{1}{N}(N\hat{s}+N\mu^2-N\mu^2)\&amp;=\frac{1}{N}(N\hat{s})\&amp;=\hat{s}\end{aligned}$$</p>
-<p>满足了公式(7)的条件$E[s]=\hat s$，因此，我们得到的数据方差$\hat s$的统计量是无偏的。此外，因为极大似然估计的如果是一个无偏的估计量，那么也是最小方差(MVU)，也就是说，我们得到的估计量比任何一个其他的估计量都大。</p>
-<p>因此，在分布真实均值已知的情况下，我们不用除以$N-1$，而是用除$N$计算正态分布的方差。</p>
-<h3 id="均值未知的方差估计"><a href="#均值未知的方差估计" class="headerlink" title="均值未知的方差估计"></a>均值未知的方差估计</h3><h4 id="参数估计-1"><a href="#参数估计-1" class="headerlink" title="参数估计"></a>参数估计</h4><p>上一节，分布的真实均值已知，因此，我们只需要估计数据的方差。但是，如果真实的均值未知，我们均值的估计量就也需要计算了。</p>
-<p>此外，方差的估计量需要使用均值的估计量。我们会看到，这时，之前我们得到的方差的估计量就不再无偏了。我们一会儿会通过除以N-1，而不是N来稍微的增加方差估计量的值，从而使方差估计无偏。</p>
-<p>与之前一样，基于log似然函数，我们用极大似然估计计算两个估计量。首先我们先计算$\hat\mu$的极大似然估计量：</p>
-<p>$$\begin{aligned}&amp;\frac{\partial \log(P(\vec{x}; s, \mu))}{\partial \mu} = 0\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \log \left( \frac{1}{(2 \pi s)^{\frac{N}{2}}} e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) = 0\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \log \left( \frac{1}{(2 \pi)^{\frac{N}{2}}} \right) + \frac{\partial}{\partial \mu} \log \left(e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) = 0\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \left(-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2 \right) = 0\&amp;\Leftrightarrow -\frac{1}{2s}\frac{\partial}{\partial \mu} \left(\sum_{i=1}^N(x_i - \mu)^2 \right) = 0\&amp;\Leftrightarrow -\frac{1}{2s} \left(\sum_{i=1}^N -2(x_i - \mu) \right) = 0\&amp;\Leftrightarrow \frac{1}{s} \left(\sum_{i=1}^N (x_i - \mu) \right) = 0 \&amp;\Leftrightarrow \frac{N}{s} \left( \frac{1}{N} \sum_{i=1}^N (x_i) - \mu \right) = 0 \end{aligned}$$</p>
-<p>显然，如果$N&gt;0$，那么上面的等式只有一种解：</p>
-<p>$$\mu=\frac{1}{N}\sum_{i=1}^{N}x_i.\tag{11}$$</p>
-<p>注意到，实际的这是计算一个分布均值的著名公式。虽然我们知道这个公式，但我们现在证明了极大似然估计量估计了一个正态分布未知均值的真实值。现在我们先假定我们之前公式(10)计算的方差$\hat s$的估计量仍然是MVU方差估计量。但下一节我们会证明这个估计量已经是有偏的了。</p>
-<h4 id="表现评价-1"><a href="#表现评价-1" class="headerlink" title="表现评价"></a>表现评价</h4><p>我们需要通过检查估计量$\mu$对真实$\hat \mu$的估计是否无偏来确定公式(7)的条件能否成立：</p>
-<p>$$E[\mu]=E\left[\frac{1}{N}\sum_{i=1}^{N}x_i\right]=\frac{1}{N}\sum_{i=1}^N E[x_i]=\frac{1}{N}N E[x_i]=\frac{1}{N} N \hat\mu=\hat\mu.$$</p>
-<p>既然$E[\mu]=\hat\mu$，那么也就是说我们对分布均值的估计量是无偏的。因为极大似然估计可以保证在估计是无偏的情况下得到的是最小方差估计量，所以我们就已经是证明了$\mu$是均值的MVU估计量。</p>
-<p>现在我们检查基于经验均值$\mu$，而不是真实均值$\hat\mu$的方差估计量$s$对真实方差$\hat s$的估计身上仍然是无偏的。我们只需要把得到的估计量$\mu$带入到之前在公式(10)推导出的公式：</p>
-<p>$$\begin{aligned} s &amp;= \sigma^2 = \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\&amp;=\frac{1}{N}\sum_{i=1}^N \left(x_i - \frac{1}{N} \sum_{i=1}^N (x_i) \right)^2\&amp;=\frac{1}{N}\sum_{i=1}^N \left[x_i^2 - 2 x_i \frac{1}{N} \sum_{i=1}^N (x_i) + \left(\frac{1}{N} \sum_{i=1}^N (x_i) \right)^2 \right]\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i \sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i \sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2\end{aligned}$$</p>
-<p>现在我们需要再次检查公式(7)的条件是否成立，来决定估计量是否无偏：</p>
-<p>$$\begin{aligned} E[s]&amp;= E \left[ \frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2 \right ]\&amp;= \frac{\sum_{i=1}^N E[x_i^2]}{N} - \frac{E[(\sum_{i=1}^N x_i)^2]}{N^2} \end{aligned}$$</p>
-<p>记得我们在之前用过方差一个非常重要的性质，真实方差$\hat s$可以写成$\hat s = E[x_i^2]-E[x_i]^2$，即，$E[x_i^2]=\hat s + E[x_i]^2=\hat s +\mu^2$。利用这个性质我们可以推出：</p>
-<p>$$\begin{aligned} E[s] &amp;= \frac{\sum_{i=1}^N E[x_i^2]}{N} - \frac{E[(\sum_{i=1}^N x_i)^2]}{N^2}\&amp;= s + \mu^2 - \frac{E[(\sum_{i=1}^N x_i)^2]}{N^2}\&amp;= s + \mu^2 - \frac{E[\sum_{i=1}^N x_i^2 + \sum_i^N \sum_{j\neq i}^N x_i x_j]}{N^2}\&amp;= s + \mu^2 - \frac{E[N(s+\mu^2) + \sum_i^N \sum_{j\neq i}^N x_i x_j]}{N^2}\&amp;= s + \mu^2 - \frac{N(s+\mu^2) + \sum_i^N \sum_{j\neq i}^N E[x_i] E[x_j]}{N^2}\&amp;= s + \mu^2 - \frac{N(s+\mu^2) + N(N-1)\mu^2}{N^2}\&amp;= s + \mu^2 - \frac{N(s+\mu^2) + N^2\mu^2 -N\mu^2}{N^2}\&amp;= s + \mu^2 - \frac{s+\mu^2 + N\mu^2 -\mu^2}{N}\&amp;= s + \mu^2 - \frac{s}{N} - \frac{\mu^2}{N} - \mu^2 + \frac{\mu^2}{N}\&amp;= s - \frac{s}{N}\&amp;= s \left( 1 - \frac{1}{N} \right)\&amp;= s \left(\frac{N-1}{N} \right) \end{aligned}$$</p>
-<p>显然$E[s]\neq\hat s$，上面公式可知分布的方差估计量不再是无偏的了。事实上，平均来看，这个估计量低估了真实方差，比例为$\frac{N-1}{N}$。当样本的数量趋于无穷时($N\rightarrow\infty$)，这个偏差趋近于0。但是对于小的样本集，这个偏差就意义了，需要被消除。</p>
-<h4 id="修正偏差"><a href="#修正偏差" class="headerlink" title="修正偏差"></a>修正偏差</h4><p>因为偏差不过是一个因子，我们只需通过对公式(10)的估计量乘以偏差的倒数。这样我们就可以定义一个如下的无偏的估计量$s\prime$：</p>
-<p>$$\begin{aligned} s\prime &amp;= \left ( \frac{N-1}{N} \right )^{-1} s\s\prime &amp;= \left ( \frac{N-1}{N} \right )^{-1} \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\s\prime &amp;=\left ( \frac{N}{N-1} \right ) \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\s\prime &amp;= \frac{1}{N-1}\sum_{i=1}^N(x_i - \mu)^2\end{aligned}$$</p>
-<p>  这个估计量现在就是无偏的了，事实上，这个公式与传统计算方差的公式非常像，不同的是除的是$N-1$而不是$N$。然而，你可能注意到这个估计量不再是最小方差估计量，但是这个估计量是所有无偏估计量中最小方差的一个。如果我们除以$N$，那么估计量就是有偏的了，如果我们除以$N-1$，估计量就不是最小方差估计量。但大体来说，一个有偏的估计量要比一个稍高一点方差的估计量要糟糕的多。因此，如果当总体的均值是未知的情况下，方差除的是$N-1$，而不是$N$。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文，我们推导了如果从分布数据中计算常见的方差和均值公式。此外，我们还证明了在方差估计中，标准化因子在总体均值已知时是$\frac{1}{N}$，在均值也需要估计时是$\frac{1}{N-1}$。</p>
-<p><a href="http://cmb.oss-cn-qingdao.aliyuncs.com/%E6%A0%B7%E6%9C%AC%E6%96%B9%E5%B7%AE%E4%B8%BA%E4%BB%80%E4%B9%88%E9%99%A4%E4%BB%A5N-1%3F%EF%BC%88%E7%BF%BB%E8%AF%91%EF%BC%89.pdf" target="_blank" rel="noopener">本文PDF</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/05/21/decision-tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/21/decision-tree/" itemprop="url">Decision Tree (ID3)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-21T15:10:50+02:00">
-                2017-05-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Alogorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Alogorithm</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>In April 9th, 2017, incident occurred in United Airlines where crew of UA beat up a passenger and dragged him out of the plane before which was about to take off attracted attention all around the world. Many would gave out doubt: why a company being so rude to passengers can exist in this world? Actually, UA is going well is just because they have an extremely precise emergency situation procedure which is calculate by compute depending on big-data analysis. Computer can help us make decisions though, it has no emotions, which is effective in most cases, but can not be approved by our human beings. Let’s take a look at how algorithm make a decision:<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-United%20Airlines.png" alt><br>It is a decision tree, which simply represents the procedure of how UA algorithm make the decision. First of all, before taking off, four employees of UA need fly from Chicago to Kentucky. Then the algorithm check if there is any seats left, if so, passengers were safe for the moment. But UA3411 was full, the algorithm began assessing the importance of employees or passengers. Obviously, the algorithm think crew is more important due to business consideration. Then how to choose who should be evicted from the plane. The algorithm was more complicated than the tree I drew, however, Asian or not was one of the criterion. But why? Because Asian are pushovers. The passenger agreed at first, however, when he heard that he had to wait for one day, he realized that he could not treat his patient, then he refused. Then he was beat up and dragged off the plane.</p>
-<p>As you have seen, it is a decision tree, which is similar to human decision-making process. Decision tree is a simple but powerful algorithm in machine learning. In fact, you are often using decision tree theory when making decision, for example<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-homework.png" alt></p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Decision tree is a classification and regression algorithm, we build a tree through statistics. Today we only talk about how to classify dataset using Decision Tree. First we will introduce some information theory background knowledge, then we use iris data build a decision tree using IDC3 algorithm.</p>
-<h2 id="Iris-data"><a href="#Iris-data" class="headerlink" title="Iris data"></a>Iris data</h2><p><a href="https://archive.ics.uci.edu/ml/datasets/Iris" target="_blank" rel="noopener">Iris dataset</a> is a very famous dataset deposited on UCI machine learning repository, which described three kinds of iris. there are four columns corresponding for features as followed：</p>
-<ul>
-<li>sepal length in cm</li>
-<li>sepal width in cm</li>
-<li>petal length in cm</li>
-<li>petal width in cm</li>
-</ul>
-<p>The last column represents iris categories:</p>
-<ul>
-<li>Iris-setosa (n=50)</li>
-<li>Iris-versicolor (n=50)</li>
-<li>Iris-virginica (n=50)</li>
-</ul>
-<p>Here, our task is to use the dataset to train a model and generate a decision tree.  During the process we need calculate some statistics values to decide how to generate a better one.</p>
-<p>The dataset is very small so that you can easily download it and take a look.</p>
-<h2 id="Entropy-and-Information-Gain"><a href="#Entropy-and-Information-Gain" class="headerlink" title="Entropy and Information Gain"></a>Entropy and Information Gain</h2><h4 id="Entropy"><a href="#Entropy" class="headerlink" title="Entropy"></a>Entropy</h4><p>Before Decision Tree, I’d like to talk about some concept in Information Theory. Entropy is a concept from thermodynamics at first, C.E.Shannon introduced which into information theory which represent redundancy in 1948. It sounds a very strange concept. In fact, it is very easy to understand. For example, during the knockout stages in world Cup Games, there are 16 teams. Now I let you guess which team will win the champion which assume I know the answer, how many times do you need to get the outcome? First of all, you cut 16 teams to 8-8 parts, you asked me if the team in first 8 teams or the other. I told you that the team was in the other 8 teams. Then you cut the the 8 teams again, you ask me if the team is in the first 4 teams or the other, I told you that the champion would be in the first 4 teams, and so forth and so on. And how many times is the entropy of who wining the champion.</p>
-<p>$$ Entropy(champion) = {\rm log}_2^{16}=4 $$</p>
-<p>That is, we can use 4 bits to represents which team will win the game. Clever you may ask why we divide team to two parts other than three or four parts. That is because we use binary represents the world in computer world. $ 2^4=16 $ means we can use 4 bit represents 16 conditions. We can use entropy represent all information in this world. And if you have known that which team will win the campion, the entropy is 0, because, you do not need any more information to deduce the outcome.</p>
-<p>Entropy represents uncertainty indeed. Ancient China, we have to record history on bamboo    slips, which demanded us decrease words. That means entropy of every single ancient Chinese character is higher than words we are saying today. That is, if we lost just some of these words, we would lose lots of stories. There are many songs starts with:”Yoo, yoo, check now”, which barely offer us information, which means we can drop those words and interpret the these songs precisely as well. The entropy of these sentence is low.</p>
-<p>Assume $X$ is discrete random variable, the distribution is:<br>$$P(X=x_i)=p_i$$<br>then the entropy of X is:<br>$$H(X)=-\sum_{i=1}^{n}p_i {\rm log}_2 p_i$$<br>where if p_0=0, we define 0log0 = 0.</p>
-<p>It seems that the equation has nothing to do with the entropy we have calculated in the champion example. Now let’s calculate the example. First of all $X$ represents the probability of each team which would win the game. we assume all teams were at the same level, so we have<br>$$p(X=x_1)=p(X=x_2)=p(X=x_3)=\cdots = p(X=x_{16})=\frac{1}{16}$$<br>the entropy is<br>$$H(X)=-\sum_{i=1}^{16}\frac{1}{16}{\rm log}_2 \frac{1}{16}=-16\times\frac{1}{16}\times {\rm log}_2 {2^{-4}}=4$$</p>
-<p>Bingo, the the answer is same. In fact, if we know some more information, the entropy is lower than 4. for example, the probability of Germany is higher than some Asian teams.</p>
-<h4 id="Entropy-and-Iris-Data"><a href="#Entropy-and-Iris-Data" class="headerlink" title="Entropy and Iris Data"></a>Entropy and Iris Data</h4><p>Now we calculate entropy of Iris Data which will be used to fit a decision tree in following sections. We concern about the categories(setosa, versicolor and virginica). Remember the equation of how to calculate entropy:<br>$$H(X)=-\sum_{i=1}^{n}p_i {\rm log}_2 p_i$$</p>
-<p>Three kinds of flowers are all 50s, so the probability of each category is the same:<br>$$p_1=p_2=p_3=\frac{50}{50+50+50}=\frac{1}{3}$$<br>Then, the entropy is pretty easy to calculate<br>$$H(X)=-1\times (\frac{1}{3}{\rm log}_2\frac{1}{3}+\frac{1}{3}{\rm log}_2\frac{1}{3}+\frac{1}{3}{\rm log}_2\frac{1}{3})=1.5850$$</p>
-<h4 id="Conditional-Entropy"><a href="#Conditional-Entropy" class="headerlink" title="Conditional Entropy"></a>Conditional Entropy</h4><p>The meaning of Conditional Entropy is as its name.  With respect with random variable$(X, Y)$, the joint distribution is<br>$$P(X=x_i, Y=y_j)=p_{ij}, i=1,2,3\cdots m; j=1,2,3,\cdots n$$<br>Conditional Entropy H(Y|X) represents that given we have known random variable $X$ , the disorder or uncertainty of $Y$.  The definition is as followed:<br>$$H(Y|X)=\sum_{i=1}^m p_i H(Y|X=x_i)$$<br>Here, $p_i=P(X=x_i)$.</p>
-<h4 id="Conditional-Entropy-and-Iris-Data"><a href="#Conditional-Entropy-and-Iris-Data" class="headerlink" title="Conditional Entropy and Iris Data"></a>Conditional Entropy and Iris Data</h4><p>We calculate some Conditional Entropy as examples. First of all, I random choose 15 columns of sepal length with respect to their categories. the result is as followed：</p>
-<table>
-<thead>
-<tr>
-<th>No.</th>
-<th>sepal length in cm</th>
-<th>categories</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>5.90</td>
-<td>Iris-versicolor</td>
-</tr>
-<tr>
-<td>2</td>
-<td>7.20</td>
-<td>Iris-virginica</td>
-</tr>
-<tr>
-<td>3</td>
-<td>5.00</td>
-<td>Iris-versicolor</td>
-</tr>
-<tr>
-<td>4</td>
-<td>5.00</td>
-<td>Iris-setosa</td>
-</tr>
-<tr>
-<td>5</td>
-<td>5.90</td>
-<td>Iris-versicolor</td>
-</tr>
-<tr>
-<td>6</td>
-<td>5.70</td>
-<td>Iris-setosa</td>
-</tr>
-<tr>
-<td>7</td>
-<td>5.20</td>
-<td>Iris-versicolor</td>
-</tr>
-<tr>
-<td>8</td>
-<td>5.50</td>
-<td>Iris-versicolor</td>
-</tr>
-<tr>
-<td>9</td>
-<td>4.80</td>
-<td>Iris-setosa</td>
-</tr>
-<tr>
-<td>10</td>
-<td>4.60</td>
-<td>Iris-setosa</td>
-</tr>
-<tr>
-<td>11</td>
-<td>6.50</td>
-<td>Iris-versicolor</td>
-</tr>
-<tr>
-<td>12</td>
-<td>5.20</td>
-<td>Iris-setosa</td>
-</tr>
-<tr>
-<td>13</td>
-<td>7.70</td>
-<td>Iris-virginica</td>
-</tr>
-<tr>
-<td>14</td>
-<td>6.40</td>
-<td>Iris-virginica</td>
-</tr>
-<tr>
-<td>15</td>
-<td>6.00</td>
-<td>Iris-versicolor</td>
-</tr>
-</tbody>
-</table>
-<p>The octave code is<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%% octave</span><br><span class="line">[a,b,c,d, cate] = textread(<span class="string">"iris.data"</span>, <span class="string">"%f%f%f%f%s"</span>,<span class="string">"delimiter"</span>, <span class="string">","</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i=<span class="number">1</span>:<span class="number">15</span></span><br><span class="line">  <span class="keyword">x</span> = floor(<span class="keyword">rand</span>()*<span class="number">150</span>);</span><br><span class="line">  fprintf(<span class="string">'%f %s\n'</span>, a(<span class="keyword">x</span>), cate<span class="string">&#123;x&#125;</span> );</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>We just take this 15 items for examples, I assume that we divide sepal length into two parts: greater than mean and less than mean. The mean is<br>$$mean = (5.90+7.2+\cdots+6.00)/15 = 5.7733$$<br>There are 8 elements less then 5.7733 and 7 bigger ones. That is</p>
-<table>
-<thead>
-<tr>
-<th>mean</th>
-<th>idx of greater than mean</th>
-<th>idx of less than mean</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>5.7733</td>
-<td>1,2,5,11,13,14,15</td>
-<td>3,4,6,7,8,9,10,12</td>
-</tr>
-</tbody>
-</table>
-<p>We let $x_1=greater$(1,2,5,11,13,14,15),  $x_2=less$(3,4,6,7,8,9,10,12) then<br>$$H(Y|X=x_1)=-(p_1 {\rm log}_2 p_1 + p_2 {\rm log}_2 p_2 + p_3 {\rm log}_2 p_3)=\frac{4}{7}{\rm log}_2\frac{4}{7}+\frac{3}{7}{\rm log}_2\frac{3}{7}+0{\rm log}_2 0=0.98523$$<br>$$H(Y|X=x_2)=-(p_1 {\rm log}_2 p_1 + p_2 {\rm log}_2 p_2+p_3 {\rm log}_2 p_3)=\frac{3}{8}{\rm log}_2\frac{3}{8}+0{\rm log}_2 0+\frac{5}{8}{\rm log}_2\frac{5}{8}=0.95443$$</p>
-<p>The Conditional Entropy then is<br>$$H(Y|X)=\sum_{i=1}^{2}p_i H(Y|x_i)=\frac{7}{15}\times 0.98523+\frac{8}{15}\times 0.95443=0.96880$$</p>
-<h4 id="Information-Gain"><a href="#Information-Gain" class="headerlink" title="Information Gain"></a>Information Gain</h4><p>Just as its name implies, Information Gain means the information we have gained after adding some features. That is, we can vanish some uncertainty when we add some information. For example, I want you to guess an NBA player, the uncertainty is very high, however, there are only several persons in the list if I tell you that he is a Chinese. You gained information after knowing the Chinese feature to decrease the uncertainty. The calculation of Information Gain is<br>$$IG(Y, X)= H(Y)-H(Y|X)$$<br>Here, we want to decide $Y$ with feature $X$. It is easy, just Entropy of $Y$ minus Conditional Entropy $Y$ given $X$. The meaning is obvious too: $H(Y)$ represents uncertainty, $H(Y|X)$ represents uncertainty of $Y$ given $X$, the difference is the Information Gain.</p>
-<h4 id="Information-Gain-and-Iris-Data"><a href="#Information-Gain-and-Iris-Data" class="headerlink" title="Information Gain and Iris Data"></a>Information Gain and Iris Data</h4><p>In this section, I will apply Information Gain equations to the whole Iris data. First of all, let $Y$ represent categories of iris, and $X_1,X_2,X_3, X_4$ represent sepal length, sepal width, petal length petal width respectively.</p>
-<p>We have computed that $H(Y)=1.0986$, next, we will calculate 4 Conditional Entropy $H(Y|X_1),H(Y|X_2),H(Y|X_3),H(Y|X_4)$. In light of continuousness of $X$, we divide them by mean of each feature. Then<br>$$\overline{X_1}=5.8433,\,\overline{X_2}=3.0540,\,\overline{X_3}=3.7587,\,\overline{X_4}=1.1987$$</p>
-<p>$$H(Y|X_1)=-\sum_{i=1}^3 p_i H(Y|X_{1i})=-(\frac{70}{150}(\frac{0}{70}{\rm log}_2\frac{0}{70}+\frac{26}{70}{\rm log}_2\frac{26}{70} +\frac{44}{70}{\rm log}_2\frac{44}{70})+\frac{80}{150}(\frac{50}{80}{\rm log}_2\frac{50}{80}+\frac{24}{80}{\rm log}_2\frac{24}{80}+\frac{6}{80}{\rm log}_2\frac{6}{80}))=1.09757$$</p>
-<p>$$H(Y|X_2)=-\sum_{i=1}^3 p_i H(Y|X_{2i})=-(\frac{67}{150}(\frac{42}{67}{\rm log}_2\frac{42}{67}+\frac{8}{67}{\rm log}_2\frac{8}{67}+\frac{17}{67}{\rm log}_2\frac{17}{67}+\frac{83}{150}(\frac{8}{83}{\rm log}_2\frac{8}{83}+\frac{42}{83}{\rm log}_2\frac{42}{83}+\frac{33}{83}{\rm log}_2\frac{33}{83}))=1.32433$$</p>
-<p>$$H(Y|X_3)=-\sum_{i=1}^3 p_i H(Y|X_{3i})=-(\frac{93}{150}(\frac{0}{93}{\rm log}_2\frac{0}{93}+\frac{43}{93}{\rm log}_2\frac{43}{93}+\frac{50}{93}{\rm log}_2\frac{50}{93}+\frac{57}{150}(\frac{50}{57}{\rm log}_2\frac{50}{57}+\frac{7}{57}{\rm log}_2\frac{7}{57}+\frac{0}{57}{\rm log}_2\frac{0}{57}))=0.821667$$</p>
-<p>$$H(Y|X_4)=-\sum_{i=1}^3 p_i H(Y|X_{4i})=-(\frac{90}{150}(\frac{0}{90}{\rm log}_2\frac{0}{90}+\frac{40}{90}{\rm log}_2\frac{40}{90}+\frac{50}{90}{\rm log}_2\frac{50}{90}+\frac{60}{150}(\frac{50}{60}{\rm log}_2\frac{50}{60}+\frac{10}{60}{\rm log}_2\frac{10}{60}+\frac{0}{60}{\rm log}_2\frac{0}{60}))=0.854655<br>$$<br>Information Gains is easy to get<br>$$IG(Y, X_1)=H(Y)-H(Y|X_1)=1.5850-1.09757=0.487427$$</p>
-<p>$$IG(Y, X_2)=H(Y)-H(Y|X_2)=1.5850-1.32433=0.260669$$</p>
-<p>$$IG(Y, X_3)=H(Y)-H(Y|X_3)=1.5850-0.821667=0.763333$$</p>
-<p>$$IG(Y, X_4)=H(Y)-H(Y|X_4)=1.5850-0.854655=0.730345$$<br>By now, we find that $IG(Y, X_3)$ is bigger than others, which means feature $X_3$ supplies more information.</p>
-<h2 id="ID3-Iterative-Dichotomiser-3"><a href="#ID3-Iterative-Dichotomiser-3" class="headerlink" title="ID3(Iterative Dichotomiser 3)"></a>ID3(Iterative Dichotomiser 3)</h2><p>ID3 algorithm was developed by Ross Quinlan in 1986, which is a very classic algorithm as well as C4.5 and CART. We First apply Information Gain of each feature with respect to iris data. Then to choose the maximum to divide data into 2 parts. For each part we apply Information Gain recursively until we put all parents data to one node. Now that we have know Information Gain from the last section, obviously we choose X3 as the feature dividing data into 2 parts in the first place.</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-17-2.png" alt></p>
-<p>Let’s take a look at the first cut using feature $X_3$. We have 150 items at first, after comparing if $X_3&gt;3.7587$, we divide data into two parts, one has 93 items, the other got 57. From the data, we know that there is no setosa in node B, meanwhile, no virginica in node C, which means that this feature is very good for split data due to exclude setosa and virginica.</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Node B</th>
-<th>Node C</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>setosa</td>
-<td>0</td>
-<td>50</td>
-</tr>
-<tr>
-<td>versicolor</td>
-<td>43</td>
-<td>7</td>
-</tr>
-<tr>
-<td>virginica</td>
-<td>50</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<p>The end condition of the algorithm is decided by IG. When IG is less then some threshold or if there is only one category left, we can end the algorithm. If IG less than some value(e.g. 0.01) and more than one category left simultaneously, we have to choose a final category to be the leaf, the rule is to set the category having samples more than the others.</p>
-<p>Take Node H for example, we set IG threshold to 0.01 in the first place. Then we calculate the Information Gain for each feature, the biggest IG from feature 2(sepal width in cm), which is 0.003204 and less than 0.01. So we have to set H as a leaf. There are 0 Iris-setosa, 25 Iris-versicolor and 44  Iris-virginica in the leaf, so we set the bigger one(i.e. Iris-virginica) to the leaf.</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-19-2.png" alt></p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Today we have talked about what is decision tree algorithm. Firstly, I introduce three background concept Entropy, Conditional Entropy and Information Gain. Next we apply ID3 algorithm to Iris data to build a decision.</p>
-<p>One of the most significant advantages of decision tree is that we can explain the result. If the algorithm decided UA should beat the their passengers, they could trace the tree to find the path of reason chain. It is very useful to tell consumers why we recommend them something, under such circumstance, we can use decision tree to train a model.  </p>
-<p>There is a shortcoming that Information Gain tends to use feature with more values. In order to resolve the problem, Ross Quinlan improved the algorithm through Information Gain Rate Rather than IG. <a href="https://en.wikipedia.org/wiki/Leo_Breiman" target="_blank" rel="noopener">Breiman</a> introduced CART algorithm subsequently, which can be applied to classification as well as regression. Recently, Scientists have developed more powerful algorithm such as Random Forest and Gradient Boosting Decision Tree etc.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li>《统计学习方法》，李航</li>
-<li>《数学之美》，吴军</li>
-<li><a href="http://www.shogun-toolbox.org/static/notebook/current/DecisionTrees.html" target="_blank" rel="noopener">http://www.shogun-toolbox.org/static/notebook/current/DecisionTrees.html</a></li>
-<li><a href="https://en.wikipedia.org/" target="_blank" rel="noopener">https://en.wikipedia.org/</a></li>
-</ol>
-<h2 id="Appendix-code"><a href="#Appendix-code" class="headerlink" title="Appendix code"></a>Appendix code</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% octave main function file</span></span><br><span class="line"><span class="comment">%% iris data dowload link: https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data</span></span><br><span class="line">[a,b,c,d, cate] = textread(<span class="string">"iris.data"</span>, <span class="string">"%f%f%f%f%s"</span>,<span class="string">"delimiter"</span>, <span class="string">","</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%for i=1:15</span></span><br><span class="line"><span class="comment">%	x = floor(rand()*150);</span></span><br><span class="line"><span class="comment">%	fprintf('%f %s\n', a(x), cate&#123;x&#125; );</span></span><br><span class="line"><span class="comment">%end;</span></span><br><span class="line"></span><br><span class="line">features = [a, b, c, d];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(features(<span class="number">1</span>, :))</span><br><span class="line">	col = features(:, <span class="built_in">i</span>);</span><br><span class="line">	me = <span class="built_in">mean</span>(col);</span><br><span class="line">	<span class="built_in">disp</span>(me);</span><br><span class="line">	feat(<span class="built_in">i</span>).greater = <span class="built_in">find</span>(col &gt; me);</span><br><span class="line">	feat(<span class="built_in">i</span>).less = <span class="built_in">find</span>(col &lt;= me);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">total = (<span class="number">1</span>:<span class="number">150</span>)';</span><br><span class="line">decision(feat, <span class="built_in">length</span>(features(<span class="number">1</span>, :)), cate, total);</span><br><span class="line">fprintf(<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% octave: decsion tree file</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decision</span><span class="params">(feat, feat_size, cate, total)</span></span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">length</span>(total) == <span class="number">0</span></span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	fprintf(<span class="string">'(-%d-)'</span>, <span class="built_in">length</span>(total));</span><br><span class="line">	<span class="comment">%plogp = @(x)[x*log2(x)];</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">e</span> = <span class="title">plogp</span><span class="params">(pi)</span></span></span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">pi</span> == <span class="number">0</span></span><br><span class="line">			e = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			e = <span class="built_in">pi</span>*<span class="built_in">log2</span>(<span class="built_in">pi</span>);</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">d</span> = <span class="title">div</span><span class="params">(a, b)</span></span></span><br><span class="line">		<span class="keyword">if</span> b == <span class="number">0</span></span><br><span class="line">			d = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			d = a/b;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	debug = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">m</span> = <span class="title">maxc</span><span class="params">(cate, cates, total)</span></span></span><br><span class="line">		maxidx = <span class="number">1</span>;</span><br><span class="line">		max_c = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(cates)</span><br><span class="line">			c =<span class="built_in">find</span>(strcmp(cate, cates&#123;<span class="built_in">i</span>&#125;));</span><br><span class="line">			cl = <span class="built_in">length</span>(<span class="built_in">intersect</span>(c, total));</span><br><span class="line">			<span class="keyword">if</span> debug == <span class="number">1</span> fprintf(<span class="string">'\n%d##%d  %s###'</span>,<span class="built_in">i</span>, cl, char(cates&#123;<span class="built_in">i</span>&#125;)) <span class="keyword">end</span></span><br><span class="line">			<span class="comment">%if (debug == 1 &amp;&amp; cl &lt;10 &amp;&amp; cl &gt;0) disp(intersect(c, total)') end</span></span><br><span class="line">			<span class="keyword">if</span> cl &gt; max_c</span><br><span class="line">				max_c = cl;</span><br><span class="line">				maxidx = <span class="built_in">i</span>;</span><br><span class="line">			<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">if</span> debug == <span class="number">1</span> fprintf(<span class="string">'\n****%d    %d******\n'</span>, maxidx, max_c) <span class="keyword">end</span></span><br><span class="line">		<span class="comment">%m = cates(maxidx);</span></span><br><span class="line">		m = maxidx;</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">% compute h(y)</span></span><br><span class="line">	cates = unique(cate);</span><br><span class="line">	hx = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(cates)</span><br><span class="line">		c = <span class="built_in">find</span>(strcmp(cate, cates&#123;<span class="built_in">i</span>&#125;));</span><br><span class="line">		rc = <span class="built_in">intersect</span>(c, total);</span><br><span class="line">		hx -= plogp(<span class="built_in">length</span>(rc)/<span class="built_in">length</span>(total));</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	<span class="comment">%fprintf('hx = %f\n', hx)			</span></span><br><span class="line">	<span class="comment">% compute h(y|x)</span></span><br><span class="line">	max_feature = <span class="number">1</span>;</span><br><span class="line">	max_ig = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	max_left = <span class="built_in">intersect</span>(feat(<span class="number">1</span>).greater, total);</span><br><span class="line">	max_right = <span class="built_in">intersect</span>(feat(<span class="number">1</span>).less, total);</span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:feat_size</span><br><span class="line">		hxh = <span class="number">0</span>;</span><br><span class="line">		hxl = <span class="number">0</span>;</span><br><span class="line">		feat_greater = <span class="built_in">intersect</span>(feat(<span class="built_in">i</span>).greater, total);</span><br><span class="line">		feat_less = <span class="built_in">intersect</span>(feat(<span class="built_in">i</span>).less, total);</span><br><span class="line">		ge = <span class="built_in">length</span>(feat_greater);</span><br><span class="line">		le = <span class="built_in">length</span>(feat_less);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (ge+le) == <span class="number">0</span></span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:<span class="built_in">length</span>(cates);</span><br><span class="line">			c = <span class="built_in">find</span>(strcmp(cate, cates&#123;<span class="built_in">j</span>&#125;));</span><br><span class="line">			xh = <span class="built_in">length</span>(<span class="built_in">intersect</span>(feat_greater, c));</span><br><span class="line">			xl = <span class="built_in">length</span>(<span class="built_in">intersect</span>(feat_less, c));</span><br><span class="line">			hxh -= plogp(div(xh, ge));</span><br><span class="line">			hxl -= plogp(div(xl, le));</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="comment">% compute hx - h(y|x)</span></span><br><span class="line">		hxy = (ge/(ge+le))*hxh + ((le)/(ge+le))*hxl;</span><br><span class="line">		ig = hx - hxy;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> ig &gt; max_ig</span><br><span class="line">			max_ig = ig;</span><br><span class="line">			max_feature = <span class="built_in">i</span>;</span><br><span class="line">			max_left= feat_less;</span><br><span class="line">			max_right = feat_greater;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	left = max_left;</span><br><span class="line">	right = max_right;</span><br><span class="line">	<span class="comment">%fprintf('feature:ig  %d %f %d %d ------ \n', max_feature, max_ig, length(left), length(right));</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> debug == <span class="number">1</span> printf(<span class="string">"\033[0;32;1m-ig--%f \033[0m"</span>,  max_ig); <span class="keyword">end</span></span><br><span class="line">	<span class="keyword">if</span>(max_ig &lt; <span class="number">0.01</span>)</span><br><span class="line">		<span class="comment">%fprintf('&lt;%s&gt;', char(maxc(cate, cates, total)))</span></span><br><span class="line">		printf(<span class="string">"\033[0;31;1m&lt;%d&gt;\033[0m"</span>,  maxc(cate, cates, total));</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	fprintf(<span class="string">"\033[0;34;1m#%d \033[0m"</span>,  max_feature);</span><br><span class="line">	fprintf(<span class="string">'&#123;'</span> )</span><br><span class="line">	decision(feat, feat_size, cate, left);</span><br><span class="line">	decision(feat, feat_size, cate, right);</span><br><span class="line">	fprintf(<span class="string">'&#125;'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/" itemprop="url">A Tutorial on Singular Value Decomposition</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-01T21:49:00+02:00">
-                2017-05-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Alogorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Alogorithm</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h3><p>Under some circumstance, we want to compress data to save storage space. For example, when iPhone7 was released, many were trapped in a dilemma: Should I buy a 32G iPhone without enough free space or that of 128G with a lot of storage being wasted? I had been trapped in such dilemma indeed. I still remember that I only had 8G storage totally when I was using my first Android phone. What annoyed me most was my thousands of photos. Well, I confess that I was being always a mad picture taker. I knew that there were some technique which could compress a picture through reducing pixel. However, it is not enough, because, as you know, in some arbitrary position in a picture, we can tell that the picture share the same color. An extreme Example: if we have a pure color picture, what we just need know is the RGB value and the size, then reproducing the picture is done without extra effort. What I was dreaming is done perfectly by Singular Value Decomposition(SVD).</p>
-<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Before SVD, in this article, I will introduce some mathmatical concepts in the first place which cover Linear transformation and EigenVector&amp;EigenValue. This Background knowledge is meant to make SVD straightforward. You can skip if you are familar with this knowledge.</p>
-<h3 id="Linear-transformation"><a href="#Linear-transformation" class="headerlink" title="Linear transformation"></a>Linear transformation</h3><p>Given a matrice $A$ and vector $\vec{x}$, we want to compute the mulplication of $A$ and $\vec{x}$ </p>
-<p>$$\vec{x}=\begin{pmatrix}1\3\end{pmatrix}\qquad A=\begin{pmatrix}2 &amp; 1 \\ -1 &amp; 1 \end{pmatrix}\qquad\vec{y}=A\vec{x}$$</p>
-<p>But when we do this multiplication, what happens? Acutually, when we multiply $A$ and $\vec{x}$, we are changing the coordinate axes of the vector $x$ to another new axes. Begin with a simpler example, we let</p>
-<p>$$A=\begin{pmatrix}1 &amp; 0\\ 0 &amp;1\end{pmatrix}$$</p>
-<p>then we have<br>$$A\vec{x}=\begin{pmatrix}1 &amp; 0\\ 0 &amp;1\end{pmatrix}\begin{pmatrix}1\3\end{pmatrix}=\begin{pmatrix}1\3\end{pmatrix}$$</p>
-<p>You may have noticed that we can always get the same $\vec{x}$ after left multiply by A. In this case, we use coordinate axes $i=\begin{pmatrix}1 \\ 0\end{pmatrix}$ and $j=\begin{pmatrix}0 \\ 1\end{pmatrix}$ as the figure below demonstrated. That is, if we want to represent $\begin{pmatrix}1\3\end{pmatrix}$ under the coordination, we can calculate the transformation as followed:</p>
-<p>\begin{align} A\vec{x}=1\cdot i + 3\cdot j = 1\cdot \begin{pmatrix}1 \\ 0\end{pmatrix} + 3\cdot \begin{pmatrix}0 \\ 1\end{pmatrix}=\begin{pmatrix}1\3\end{pmatrix}\end{align}</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-073041.jpg" alt></p>
-<p>As we know, we can put a vector to anywhere in space, and if we want to calculate sum of two vectors, the simplest way is to connect the to vector from one’s head to the other’s tail. Our example, we compute $A\vec{x}$ means add two vector(green imaginary lines) up. And the answer is still $\begin{pmatrix}1\3\end{pmatrix}$.</p>
-<p>Now we change $i=\begin{pmatrix}2\\ -1\end{pmatrix}$ and $j=\begin{pmatrix}1\1\end{pmatrix}$ as the coordinate axes(the red vectors), which means $A=\begin{pmatrix}2 &amp; 1 \\ -1 &amp; 1\end{pmatrix}$. I put vectors(black ones) to this figure as well. We can see what happens when we change a new coordinate axes.</p>
-<p>First of all, we multiply $j$ by $3$ and $i$ by 1. Then we move vector j and let the head of $i$ connect the tail of $3\cdot j$. We can now find what is the coordination of $1\cdot i+3\cdot j$(the blue one). We now verify the result using mutiplication of $A$ and $\vec{x}$:</p>
-<p>$$A\vec{x}=\begin{pmatrix}2 &amp; 1 \\ -1 &amp; 1\end{pmatrix}\begin{pmatrix}1\3\end{pmatrix}=1\cdot \begin{pmatrix}2 \\ -1\end{pmatrix} + 3\cdot  \begin{pmatrix}1 \\ 1\end{pmatrix}=\begin{pmatrix}5\2\end{pmatrix}$$</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-013710.jpg" alt><br>Here, you can imagine that matrice $A$ is just like a function $f(x)\rightarrow y$, when you subsitute $x$, we get the exact $y$ using the principle $f(x)\rightarrow y$. In fact, the multiplication is tranform the vector from one coordination to another. </p>
-<h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><ol>
-<li>$A=\begin{pmatrix}1 &amp; 2 \\ 3 &amp; 4\end{pmatrix}$, draw the picture to stretch and rotate $x=\begin{pmatrix}1\3\end{pmatrix}$.</li>
-<li>Find a $A$ matrix to rotate $\vec{x}=\begin{pmatrix}1\3\end{pmatrix}$ to $90^{\circ}$ and $180^{\circ}$. </li>
-<li>what if $A=\begin{pmatrix}1 &amp; 2 \\ 2 &amp; 4\end{pmatrix}$.</li>
-</ol>
-<h3 id="EigenVector-and-EigenValue"><a href="#EigenVector-and-EigenValue" class="headerlink" title="EigenVector and EigenValue"></a>EigenVector and EigenValue</h3><p>EigenVector and EigenValue is an extremely important concept in linear algebra, and is commonly used everywhere including SVD we are talking today. However, many do not know how to interpret it. In fact, EigenVector and EigenValue is very easy as long as we know about what is linear transformation. </p>
-<h4 id="A-Problem"><a href="#A-Problem" class="headerlink" title="A Problem"></a>A Problem</h4><p>Before start, let’s take a look at a question: if we want to multiply matrices for 1000 times, how to calculate effectively?<br>$$AAA\cdots A= \begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\cdots \begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}=\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}$$</p>
-<h4 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h4><p>Last section, we have talked that if we multiply a vector by a matrix $A$, means that we use $A$ to stretch and rotate the vector in order to represent the vector in a new coordinate axes. However, there are some vectors for $A$, they can only be stretched but can not be rotated. Assume $A=\begin{pmatrix}3 &amp; 1 \\ 0 &amp; 2\end{pmatrix}$, let $\vec{x}=\begin{pmatrix}1 \\ -1\end{pmatrix}$. When we multiply $A$ and $\vec{x}$</p>
-<p>$$A\vec{x}=\begin{pmatrix}3 &amp; 1 \\ 0 &amp; 2\end{pmatrix}\begin{pmatrix}1 \\ -1\end{pmatrix}=\begin{pmatrix}2 \\ -2\end{pmatrix}=2\cdot \begin{pmatrix}1 \\ -1\end{pmatrix}$$</p>
-<p>It turns out we can choose any vector along $\vec{x}$, the outcome is the same, for example:</p>
-<p>$$A\vec{x}=\begin{pmatrix}3 &amp; 1 \\ 0 &amp; 2\end{pmatrix}\begin{pmatrix}-3 \\ 3\end{pmatrix}=\begin{pmatrix}-6 \\ -6\end{pmatrix}=2\cdot \begin{pmatrix}-3 \\ 3\end{pmatrix}$$</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-052135.jpg" alt></p>
-<p>We name vectors like $\begin{pmatrix}-3 \\ 3\end{pmatrix}$ and $\begin{pmatrix}1 \\ -1\end{pmatrix}$ <strong>EigenVectors</strong> and 2 the conresponse <strong>EigenValues</strong>. In practice, we usually choose unit eigenvectors(length equals to 1) given that there are innumerable EigenVectors along the line.</p>
-<p>I won’t cover how to compute these vectors and vaules and just list the answer as followed</p>
-<p>\begin{align}&amp;\begin{pmatrix}3 &amp; 1 \0&amp; 2\end{pmatrix}<br>\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix}=<br>2\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix} \qquad\qquad\vec{x_1}=\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix} &amp;\lambda_1=2\<br>&amp;\begin{pmatrix}3 &amp; 1 \0&amp; 2\end{pmatrix}<br>\begin{pmatrix}1 \\ 0\end{pmatrix}\qquad=\qquad<br>3\begin{pmatrix}1 \\ 0\end{pmatrix}\qquad\qquad\quad\,\,\,\vec{x_2}=\begin{pmatrix}1 \\ 0\end{pmatrix}<br>&amp;\lambda_2=3<br>\end{align}<br>Notice that $|\vec{x_1}|=1$ and $|\vec{x_2}|=1$</p>
-<h4 id="EigenValue-Decomposition"><a href="#EigenValue-Decomposition" class="headerlink" title="EigenValue Decomposition"></a>EigenValue Decomposition</h4><p>If we put two EigenVectors and corresponding EigenValues together, we can get the following equation:<br>$$AQ=\begin{pmatrix}3 &amp; 1 \0&amp; 2\end{pmatrix}<br>\begin{pmatrix}<br>{-1}/{\sqrt(2)}&amp;1\<br>{1}/{\sqrt(2)}&amp;0<br>\end{pmatrix}=<br>\begin{pmatrix}<br>{-1}/{\sqrt(2)}&amp;1 \\ {1}/{\sqrt(2)}&amp;0<br>\end{pmatrix}<br>\begin{pmatrix}<br>2 &amp; 0\<br>0 &amp; 3<br>\end{pmatrix}=Q\Lambda<br>$$<br>Then we have $AQ=Q\Lambda$, the conclusion is still right if we introduce more dimensions, that is<br>\begin{align}<br>A\vec{x_1}=\lambda\vec{x_1}\<br>A\vec{x_2}=\lambda\vec{x_2}\<br>\vdots\qquad\<br>A\vec{x_k}=\lambda\vec{x_k}<br>\end{align}</p>
-<p>$$Q=<br>\begin{pmatrix}<br>    x_{11}&amp; x_{21} &amp;\cdots x_{k1}&amp;\<br>    x_{12}&amp; x_{22} &amp;\cdots x_{k2}&amp;\<br>    &amp;\vdots&amp;&amp;\<br>    x_{1m}&amp; x_{22} &amp;\cdots x_{km}&amp;<br>\end{pmatrix}<br>\qquad\Lambda=<br>\begin{pmatrix}<br>\lambda_1 &amp; 0 &amp; \cdots&amp;0\<br>0 &amp;\lambda_2&amp;\cdots&amp;0\<br>\vdots&amp;\vdots&amp;\ddots\<br>0&amp;\cdots&amp;\cdots&amp;\lambda_k<br>\end{pmatrix}$$</p>
-<p>If we do something on the equation $AQ=Q\Lambda$, then we have:<br>$$AQQ^{-1}=A=Q\Lambda Q^{-1}$$<br>It is EigenVaule Decomposition.</p>
-<h4 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h4><p>Now, Let’s look at the question in the beginning of this section<br>\begin{align}<br>AAA\cdots A&amp;= \begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\cdots \begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}=\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\<br>AAA\cdots A &amp;= Q\Lambda Q^{-1}Q\Lambda Q^{-1}Q\Lambda Q^{-1}\cdots Q\Lambda Q^{-1}=Q\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}Q^{-1}\<br>AAA\cdots A &amp;=Q\Lambda\Lambda\cdots \Lambda Q^{-1}=<br>Q\begin{pmatrix}2^{1000} &amp; 0 \\0 &amp; 3^{1000}\end{pmatrix}Q^{-1}<br>\end{align}<br>The calculation is extremely simple using EVD.</p>
-<h4 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise"></a>Exercise</h4><ol>
-<li>Research how to compute EigenVectors and EigenValues, then compute$\begin{pmatrix}1 &amp; 2 &amp; 3\4 &amp; 5 &amp;6\7 &amp; 8 &amp; 9\end{pmatrix}$. </li>
-<li>Think about the decisive factor affects how many EigenValues we can get.</li>
-</ol>
-<h3 id="Singular-Value-Decompositon"><a href="#Singular-Value-Decompositon" class="headerlink" title="Singular Value Decompositon"></a>Singular Value Decompositon</h3><p>Notice that EigenVector Decomposition is applied to decompose square matrices. Is there any approach to decompose non-square matrices? The answer is a YES, and the name is Singular Value Decompositon.</p>
-<h4 id="Intuition-1"><a href="#Intuition-1" class="headerlink" title="Intuition"></a>Intuition</h4><p>First of all, let’s take a look at what SVD looks like<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-rectangle1.png" alt><br>From the picture, we can find that matrice $A$ is decomposed to 3 components: $U$, $\Sigma$ and $V^{T}$. $U$ and$V^T$ are both sqaure matrices and $\Sigma$ has the same size as $A$. Still, I want to emphasize that $U$ and$V^T$ are both unitary matrix, which means the Determinant of $U$ and $V^T$ is 1 and $U^T=U^{-1}\quad V^T=V^{-1}$.</p>
-<h4 id="Deduction"><a href="#Deduction" class="headerlink" title="Deduction"></a>Deduction</h4><p>In the Linear Transformation section, we can transform a vector to another coordinate axes. Assume you have a non-square matrice, and you want to transform A from  vectors $V=(\vec{v_1}, \vec{v_2},\cdots,\vec{v_n})^T$ to antoher coordinate axes which is $U=(\vec{u_1}, \vec{u_2},\cdots,\vec{u_n})^T$, the thing is, $\vec{v_i}$ and $\vec{u_i}$ have unit length, and all directions are perpendicular, that is, each of $\vec{v_i}$ are at right angles to other $\vec{v_j}$, we name such matrices as orthogonal matrices. In addition, I need add a factor $\Sigma=(\sigma_1,\sigma_2, \sigma_3,\cdots,\sigma_n)$ which represent the times of each direction of $\vec{u_i}$, i.e., We need transform A from $V=(\vec{v_1}, \vec{v_2},\cdots,\vec{v_n})^T$ to $(\sigma_1 \vec{u_1},\sigma_2 \vec{u_2}, \sigma_3 \vec{u_3},…\sigma_n \vec{u_n})^T$. From the picture below we can find that we want to transform from the circle coordinate axes to the ellipse axes.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-circle.png" alt><br>\begin{align}<br>\vec{v_1} \vec{v_2} \vec{v_3},…\vec{v_n} \qquad\rightarrow \qquad &amp;\vec{u_1},\vec{u_2},\vec{u_3},…\vec{u_n}\<br>&amp;\sigma_1,\sigma_2, \sigma_3,…\sigma_n<br>\end{align}</p>
-<p>Recall that we can transform $A$ at every direction, then generate another direction as new coordinate direction. So we have<br>$$ A \vec{v_1}=\sigma_1 \vec{u_1}\<br>A \vec{v_2}=\sigma_2 \vec{u_2}\<br>\vdots\<br> A \vec{v_j}=\sigma_j \vec{u_j}$$</p>
-<p>\begin{align}<br>&amp;\begin{pmatrix}\\A\\\end{pmatrix}\begin{pmatrix}\\ \vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\end{pmatrix}=\begin{pmatrix}\\ \vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\ \end{pmatrix}\begin{pmatrix}<br>\sigma_1 &amp; 0 &amp; \cdots &amp; 0 \<br>0 &amp; \sigma_2 &amp; \cdots &amp; 0 \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>0 &amp; 0 &amp; \cdots &amp; \sigma_n<br>\end{pmatrix}\<br>&amp;C^{m\times n}\qquad\quad C^{n\times n}\qquad\qquad\qquad C^{m\times n}\qquad \qquad \qquad C^{n\times n}<br>\end{align}<br>Which is<br>$$A_{m\times n}V_{n\times n} = \hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}$$</p>
-<p>\begin{align}<br>A_{m\times n}V_{n\times n} &amp;= \hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}\<br>(A_{m\times n}V_{n\times n}V_{n\times n}^{-1} &amp;= \hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}V_{n\times n}^{-1}\<br>A_{m\times n}&amp;=\hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}V_{n\times n}^{-1}\&amp;=\hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}V_{n\times n}^{T}<br>\end{align}</p>
-<p>We need do something to the equation in order to continue the deduction. First we stretch matrice $\hat{\Sigma}$ vertically to $m \times n$ size. Then stretch $\hat{U}$ horizonly to $m\times m$, we can set any value to the right entries.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-27-RSVD.png" alt></p>
-<p>Due to the fact we need calculate $U^{-1}$ and $V^{-1}$, the equation is adjusted to<br>$$A_{m\times n} = U_{m\times m}\Sigma_{m\times n}V^T_{n\times n}$$<br>For furture convenience, we need sort all $\sigma s$, which means:<br>$$\sigma_1\geq\sigma_2\geq\sigma_3 \geq\cdots\geq \sigma_m$$.</p>
-<h4 id="How-to-calculate-U-V-T-and-Sigma"><a href="#How-to-calculate-U-V-T-and-Sigma" class="headerlink" title="How to calculate $U$, $V^T$ and $\Sigma$"></a>How to calculate $U$, $V^T$ and $\Sigma$</h4><p>To Decompose matrice $A$, we need calculate $U$, $V^T$ and $\Sigma$. Remember that $U^T = U^{-1}$ and $V^T = V^{-1}$, we will use the property next. </p>
-<p>\begin{align}<br>A &amp;= U\Sigma V^T\<br>\end{align}</p>
-<p>\begin{align}<br>AA^T&amp;=U\Sigma V^T(U\Sigma V^T)^T\<br>&amp;=U\Sigma V^TV\Sigma^T U^T\<br>&amp;=U\Sigma V^{-1}V\Sigma^T U^T\<br>&amp;=U\Sigma I\Sigma^T U^T\<br>&amp;=U\Sigma^2 U^T<br>\end{align}</p>
-<p>\begin{align}<br>(AA^T)U&amp;=(U\Sigma^2 U^T)U\<br>&amp;=(U\Sigma^2 )U^{-1}U\<br>&amp;=U\Sigma^2<br>\end{align}</p>
-<hr>
-<p>\begin{align}<br>A^TA<br>&amp;=(U\Sigma V^T)^TU\Sigma V^T\<br>&amp;=V\Sigma^T U^TU\Sigma V^T\<br>&amp;=V\Sigma^T U^TU\Sigma V^T\<br>&amp;=V\Sigma^T U^{-1}U\Sigma V^T\<br>&amp;=V\Sigma^T I\Sigma V^T\<br>&amp;=V\Sigma^2 V^T\<br>\end{align}</p>
-<p>\begin{align}(A^TA)V&amp;=(V\Sigma^2 V^T)V\<br>&amp;=(V\Sigma^2)V^{-1}V\<br>&amp;=V\Sigma^2<br>\end{align}</p>
-<h3 id="Image-Compression"><a href="#Image-Compression" class="headerlink" title="Image Compression"></a>Image Compression</h3><p>Firstly, let’s look at the process of compressing a picture, the left picture is original grayscale image. On the right, under different compress rate, we can see pictures after reproducing. Before compress, the size of the picture is 1775K byte. Then the picture is almost the same, when we compress which into 100K byte size, which means we can save 90% storage space<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-29-image.gif" alt></p>
-<p>To compress a piture, you just decompose the matrice through SVD, then instead of using the original $U_{m\times m}$, $\Sigma_{m\times n}$ and $U_{n\times n}$, we shrink every matrice to new size $U_{m\times r}$, $\Sigma_{r\times r}$ and $U_{r\times n}$. The final $size(R)$ is still $m\times n$, but we abandon some entries since these entries are not so important than these we have reserved.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-30-rect.png" alt> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%% octave: core code of svd compressions</span><br><span class="line">X = imread(filename);  </span><br><span class="line">[U S V] = svd(double(X));</span><br><span class="line">R = U(:,1:r)*S(1:r,1:r)*V(:,1:r)&apos;;</span><br></pre></td></tr></table></figure>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Today we have learned mathmatics backgroud on SVD, including linear transformation and EigenVector&amp;EigenVaule. Before SVD, we first talked about EigenValue Decomposition. Finally, Singular Vaule Decomposition is very easy to be deduced. In the last section, we took an example see how SVD be applied to image compression field. </p>
-<p>Now, it comes to the topic how to save our storage of a 32G iPhone7, the coclusion is obvious: using SVD compress image to shrink the size of our photos. </p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
-<li><a href="https://www.youtube.com/watch?v=EokL7E6o1AE" target="_blank" rel="noopener">https://www.youtube.com/watch?v=EokL7E6o1AE</a></li>
-<li><a href="https://www.youtube.com/watch?v=cOUTpqlX-Xs" target="_blank" rel="noopener">https://www.youtube.com/watch?v=cOUTpqlX-Xs</a></li>
-<li><a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw" target="_blank" rel="noopener">https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw</a></li>
-<li><a href="https://yhatt.github.io/marp/" target="_blank" rel="noopener">https://yhatt.github.io/marp/</a></li>
-<li><a href="https://itunes.apple.com/cn/itunes-u/linear-algebra/id354869137" target="_blank" rel="noopener">https://itunes.apple.com/cn/itunes-u/linear-algebra/id354869137</a></li>
-<li><a href="http://www.ams.org/samplings/feature-column/fcarc-svd" target="_blank" rel="noopener">http://www.ams.org/samplings/feature-column/fcarc-svd</a></li>
-<li><a href="https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html" target="_blank" rel="noopener">https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/04/16/eigenvector-and-eigenvalue/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2184,11 +1262,284 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/02/18/Gredient-Descent-in-Logistic-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mingbo Cheng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/18/Gredient-Descent-in-Logistic-Regression/" itemprop="url">Gradient Descent in Logistic Regression</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-18T14:33:10+01:00">
+                2017-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>As a simple model, Logistic regression is very popular in Machine Learning, especially in computer industry while gradient descent is more of popularity as well among dozens of optimization methods. The aim of this article is to demonstrate how to reach these formulas conclusion. </p>
+<h3 id="1-Model-a-problem"><a href="#1-Model-a-problem" class="headerlink" title="1. Model a problem"></a>1. Model a problem</h3><p>First of all, we know that Logistic regression is a statistical model. Suppose we have a coin, we’d like to know the probability of the head and tail. Bernoulli distribution is a good distribution to model the coin. The hyphothsis is as followed:<br>$$P(y=1|\mu)=\mu  \qquad(1)$$.  </p>
+<p>$y=1$ means the probability of the head, then $y=0$ is that of the tail. $\mu$ here is the parameter, if $\mu=0.5$, then the probability of head equals to 0.5, which means we have half the probabilty reach the head as well as the tail. Now we have:<br>$$P(y=0|\mu)=1-\mu\qquad(2)$$ </p>
+<p>If we take a look at these two formula, we can conclude a more general formula:<br> $$P(y|\mu)={\mu}^y\cdot{(1-\mu)}^{(1-y)} \qquad(3)$$</p>
+<p>Let’s test it, $y$ only have two value $0$ and $1$, if $y=1$, $P(y|\mu)=\mu$, othewise, $P(y|\mu)=1-\mu$. Suppose we have a dataset $D={y_1,y_2,y_3…y_m}$ observed values, we want to estimate the parameter $\mu$, the problems become following question:<br>$$P(\mu|D)=?\qquad (4)$$</p>
+<h3 id="2-Estimate-Parameter"><a href="#2-Estimate-Parameter" class="headerlink" title="2. Estimate Parameter"></a>2. Estimate Parameter</h3><p>We use Bayes formula to transfer the problem to another:<br>$$P(\mu|D)=\frac{P(D|\mu)\cdot P(\mu)}{P(D)}=\frac{P(y_1,y_2,y_3…,y_m|\mu)\cdot P(\mu)}{P(D)}\qquad (5)$$</p>
+<p>Here denominator $P(D)$ is a constant as well as $P(\mu)$ if we see $\mu$ as variable rather than a distribution. Then we have:<br>$$P(\mu|D)\triangleq P(y_1,y_2,y_3…,y_m|\mu) \qquad(6)$$</p>
+<p>We can find a series of $\mu$(e.g, $\mu=0.1, \mu=0.72$), but we should find the maximum $P(\mu|D)$, because when $P(\mu|D)$ reaches its max means $\mu$ most likely is the right parameter. We assume that each $y$ is independent from the others given the parameter $\mu$. then we have:<br>$$P(\mu|D)\triangleq P(y_1|\mu)P(y_2|\mu)P(y_3|\mu)…,P(y_m|\mu)={\prod}_{i=1}^{m}P(y_i|\mu)\qquad(7)$$</p>
+<p>Now, the problem is to maximize the ${\prod}_{i=1}^{m}P(y_i|\mu)$, that is:<br>$$L = \underset{\mu}{argmax}{\prod}_{i=1}^{m}P(y_i|\mu)=\underset{\mu}{argmax}{\prod}_{i=1}^{m}[{\mu}^y\cdot{(1-\mu)}^{(1-y)}] \qquad(8)$$</p>
+<p>It is a little hard to find the maximum, we change the problem to another way:<br>$$L =\underset{\mu}{argmax}ln({\prod}_{i=1}^{m}[{\mu}^y\cdot{(1-\mu)}^{(1-y)}])\qquad(9)$$</p>
+<p>Then we have:<br>$$L = \underset{\mu}{argmax}{\sum}_{i=1}^{m}[{y ln(\mu}) + (1-y) ln({1-\mu)}]\qquad(10)$$</p>
+<h3 id="3-Logistic-Regression"><a href="#3-Logistic-Regression" class="headerlink" title="3. Logistic Regression"></a>3. Logistic Regression</h3><p>If we let $\mu=h_{\theta}(x)$, then we have:</p>
+<p>$$L = \underset{\theta}{argmax}{\sum}_{i=1}^{m}[{y ln(h_{\theta}(x)}) + (1-y) ln({1-h_{\theta}(x))}]\qquad(11)$$</p>
+<p>Here,<br>$$h_{\theta}(x)=\frac{1}{1+e^{-(\theta_0 x_0+\theta_1 x_1+\theta_2 x_2+\theta_m x_m)}}=\frac{1}{1+e^{-{\Theta}X}}\qquad (12)$$</p>
+<p>$h_{\theta}(x)$ is named sigmoid function and now we use parameter $\theta$ to estimate $\mu$. Simgoid function is a pretty good function, derivative of which is elegant. we let $\sigma=\frac{1}{1+e^{-x}}$, then:</p>
+<p>\begin{align}<br>\frac{\partial{\sigma}}{\partial x}<br>&amp;= \frac{-1}{(1+e^{-x})^2}\cdot e^{-x}\cdot(-1)\\<br>&amp;=\frac{e^{-x}}{(1+e^{-x})^2}=\frac{1+e^{-x}-1}{(1+e^{-x})^2}\\<br>&amp;=\frac{1}{1+e^{-x}}-\frac{1}{(1+e^{-x})^2}\\<br>&amp;=\sigma(1-\sigma)\qquad \qquad   (13)<br>\end{align}</p>
+<h3 id="4-Gradient-Descent"><a href="#4-Gradient-Descent" class="headerlink" title="4. Gradient Descent"></a>4. Gradient Descent</h3><p>We transfer the maximizing to a minimizing problem, we define the cost function:</p>
+<p>$$J(\theta) = -\frac{1}{m}{\sum}_{i=1}^{m}[{yln(h_{\theta}(x)}) + (1-y)ln({1-h_{\theta}(x))}]\qquad (14) $$</p>
+<p>if we want to minimize $J(\theta)$, we need know the gradient of $\frac{\partial J(\theta)}{\partial\theta_j}$, that is:<br>\begin{align}<br>\frac{\partial J(\theta)}{\partial\theta_j}<br>&amp;=\frac{\partial}{\partial\theta_j}(-\frac{1}{m}{\sum}_{i=1}^{m}[yln(h_\theta(x)) + (1-y)ln(1-h_\theta(x))])\\<br>&amp;= -\frac{1}{m}{\sum}_{i=1}^{m}[\frac{y}{h_\theta(x)} + \frac{y-1}{1-{h_\theta(x)}} ]\frac{\partial h_\theta (x)}{\partial\theta_j}\\<br>&amp;= -\frac{1}{m}{\sum}_{i=1}^{m}[{\frac{y}{\sigma}} + \frac{y-1}{1-\sigma} ]\frac{\partial\sigma}{\partial\theta_j}\\<br>&amp;= -\frac{1}{m}{\sum}_{i=1}^{m}[\frac{y-y\sigma}{\sigma(1-\sigma)} + \frac{\sigma y-\sigma}{\sigma(1-\sigma)}]\frac{\partial\sigma}{\partial\theta_j}\\<br>&amp;= -\frac{1}{m}{\sum}_{i=1}^{m}[\frac{y-\sigma}{\sigma\cdot(1-\sigma)}]\frac{\partial\sigma}{\partial\theta_j}\\<br>&amp;= -\frac{1}{m}{\sum}_{i=1}^{m}[\frac{y-\sigma}{\sigma(1-\sigma)}]\cdot\sigma(1-\sigma)\frac{\partial\Theta X}{\partial\theta_j}\\<br>&amp;= -\frac{1}{m}{\sum}_{i=1}^{m}[\frac{y-\sigma}{1}]\frac{\partial\Theta X}{\partial\theta_j}\\<br>&amp;= -\frac{1}{m}{\sum}_{i=1}^{m}[y-\sigma]{X_j}\\<br>&amp;= \frac{1}{m}{\sum}_{i=1}^{m}[h_{\theta}(x)-y]{X_j} \qquad(15)<br>\end{align}</p>
+<p>Notice that the gradient descent is same as that of square cost function in Linear Regression, which is an extremely grace equation.</p>
+<h3 id="Summarize"><a href="#Summarize" class="headerlink" title="Summarize"></a>Summarize</h3><p>Today We have talked about how to derive cost function of Logistic Regression, then we get the gradient descent equation of it. Next step is to use gradient descent to iterate the minimum of the cost function.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
+<li><a href="https://www.coursera.org/learn/machine-learning/home/welcome" target="_blank" rel="noopener">https://www.coursera.org/learn/machine-learning/home/welcome</a></li>
+<li>Parameter estimation for text analysis, Gregor Heinrich</li>
+<li>Pattern Recognition and Machine Learning, Christopher M. Bishop</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://commanber.com/2016/12/15/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mingbo Cheng">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/15/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-15T15:10:50+01:00">
+                2016-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 
@@ -2234,7 +1585,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2256,7 +1607,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
