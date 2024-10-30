@@ -1,146 +1,46 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chengmingbo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-
-  
-  
-  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Mingbo" type="application/atom+xml">
-
-
-
-
-
-
-<meta name="description" content="PrefaceUnder some circumstance, we want to compress data to save storage space. For example, when iPhone7 was released, many were trapped in a dilemma: Should I buy a 32G iPhone without enough free sp">
+    <meta name="description" content="Preface Under some circumstance, we want to compress data to save storage space. For example, when iPhone7 was released, many were trapped in a dilemma: Should I buy a 32G iPhone without enough free s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A Tutorial on Singular Value Decomposition">
-<meta property="og:url" content="http://commanber.com/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/index.html">
+<meta property="og:url" content="http://chengmingbo.github.io/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/index.html">
 <meta property="og:site_name" content="Mingbo">
-<meta property="og:description" content="PrefaceUnder some circumstance, we want to compress data to save storage space. For example, when iPhone7 was released, many were trapped in a dilemma: Should I buy a 32G iPhone without enough free sp">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-073041.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-013710.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-052135.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-rectangle1.png">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-circle.png">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-27-RSVD.png">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-29-image.gif">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-30-rect.png">
-<meta property="og:updated_time" content="2019-03-17T16:28:23.545Z">
+<meta property="og:description" content="Preface Under some circumstance, we want to compress data to save storage space. For example, when iPhone7 was released, many were trapped in a dilemma: Should I buy a 32G iPhone without enough free s">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-05-01T19:49:00.000Z">
+<meta property="article:modified_time" content="2019-03-17T16:28:23.000Z">
+<meta property="article:author" content="Mingbo Cheng">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Tutorial on Singular Value Decomposition">
-<meta name="twitter:description" content="PrefaceUnder some circumstance, we want to compress data to save storage space. For example, when iPhone7 was released, many were trapped in a dilemma: Should I buy a 32G iPhone without enough free sp">
-<meta name="twitter:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-073041.jpg">
+
+
+<link rel="canonical" href="http://chengmingbo.github.io/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://chengmingbo.github.io/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/","path":"2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/","title":"A Tutorial on Singular Value Decomposition"}</script>
 
-
-
-  <link rel="canonical" href="http://commanber.com/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/">
-
-
-
-
-
-  <title>A Tutorial on Singular Value Decomposition | Mingbo</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>A Tutorial on Singular Value Decomposition | Mingbo</title>
   
 
 
@@ -150,693 +50,705 @@
 
 
 
-</head>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
-  
-  
-    
-  
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Mingbo</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mingbo</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="Mingbo">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-slides">
-          <a href="/slides/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-area-chart"></i> <br>
-            
-            slides
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            About
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-slides"><a href="/slides/" rel="section"><i class="area-chart fa-fw"></i>slides</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-    </span>
-
-    
-      <header class="post-header">
-
+</header>
         
-        
-          <h1 class="post-title" itemprop="name headline">A Tutorial on Singular Value Decomposition</h1>
-        
+  
+  <aside class="sidebar">
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-01T21:49:00+02:00">
-                2017-05-01
-              </time>
-            
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Alogorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Alogorithm</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linear-transformation"><span class="nav-number">3.</span> <span class="nav-text">Linear transformation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#exercise"><span class="nav-number">3.1.</span> <span class="nav-text">Exercise</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eigenvector-and-eigenvalue"><span class="nav-number">4.</span> <span class="nav-text">EigenVector and EigenValue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-problem"><span class="nav-number">4.1.</span> <span class="nav-text">A Problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#intuition"><span class="nav-number">4.2.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#exercise-1"><span class="nav-number">4.3.</span> <span class="nav-text">Exercise</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#singular-value-decompositon"><span class="nav-number">5.</span> <span class="nav-text">Singular Value Decompositon</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#intuition-1"><span class="nav-number">5.1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deduction"><span class="nav-number">5.2.</span> <span class="nav-text">Deduction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#image-compression"><span class="nav-number">6.</span> <span class="nav-text">Image Compression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#summary"><span class="nav-number">7.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reference"><span class="nav-number">8.</span> <span class="nav-text">Reference</span></a></li></ol></div>
         </div>
-      </header>
-    
+        <!--/noindex-->
 
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h3><p>Under some circumstance, we want to compress data to save storage space. For example, when iPhone7 was released, many were trapped in a dilemma: Should I buy a 32G iPhone without enough free space or that of 128G with a lot of storage being wasted? I had been trapped in such dilemma indeed. I still remember that I only had 8G storage totally when I was using my first Android phone. What annoyed me most was my thousands of photos. Well, I confess that I was being always a mad picture taker. I knew that there were some technique which could compress a picture through reducing pixel. However, it is not enough, because, as you know, in some arbitrary position in a picture, we can tell that the picture share the same color. An extreme Example: if we have a pure color picture, what we just need know is the RGB value and the size, then reproducing the picture is done without extra effort. What I was dreaming is done perfectly by Singular Value Decomposition(SVD).</p>
-<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Before SVD, in this article, I will introduce some mathmatical concepts in the first place which cover Linear transformation and EigenVector&amp;EigenValue. This Background knowledge is meant to make SVD straightforward. You can skip if you are familar with this knowledge.</p>
-<h3 id="Linear-transformation"><a href="#Linear-transformation" class="headerlink" title="Linear transformation"></a>Linear transformation</h3><p>Given a matrice $A$ and vector $\vec{x}$, we want to compute the mulplication of $A$ and $\vec{x}$ </p>
-<p>$$\vec{x}=\begin{pmatrix}1\3\end{pmatrix}\qquad A=\begin{pmatrix}2 &amp; 1 \\ -1 &amp; 1 \end{pmatrix}\qquad\vec{y}=A\vec{x}$$</p>
-<p>But when we do this multiplication, what happens? Acutually, when we multiply $A$ and $\vec{x}$, we are changing the coordinate axes of the vector $x$ to another new axes. Begin with a simpler example, we let</p>
-<p>$$A=\begin{pmatrix}1 &amp; 0\\ 0 &amp;1\end{pmatrix}$$</p>
-<p>then we have<br>$$A\vec{x}=\begin{pmatrix}1 &amp; 0\\ 0 &amp;1\end{pmatrix}\begin{pmatrix}1\3\end{pmatrix}=\begin{pmatrix}1\3\end{pmatrix}$$</p>
-<p>You may have noticed that we can always get the same $\vec{x}$ after left multiply by A. In this case, we use coordinate axes $i=\begin{pmatrix}1 \\ 0\end{pmatrix}$ and $j=\begin{pmatrix}0 \\ 1\end{pmatrix}$ as the figure below demonstrated. That is, if we want to represent $\begin{pmatrix}1\3\end{pmatrix}$ under the coordination, we can calculate the transformation as followed:</p>
-<p>\begin{align} A\vec{x}=1\cdot i + 3\cdot j = 1\cdot \begin{pmatrix}1 \\ 0\end{pmatrix} + 3\cdot \begin{pmatrix}0 \\ 1\end{pmatrix}=\begin{pmatrix}1\3\end{pmatrix}\end{align}</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-073041.jpg" alt></p>
-<p>As we know, we can put a vector to anywhere in space, and if we want to calculate sum of two vectors, the simplest way is to connect the to vector from one’s head to the other’s tail. Our example, we compute $A\vec{x}$ means add two vector(green imaginary lines) up. And the answer is still $\begin{pmatrix}1\3\end{pmatrix}$.</p>
-<p>Now we change $i=\begin{pmatrix}2\\ -1\end{pmatrix}$ and $j=\begin{pmatrix}1\1\end{pmatrix}$ as the coordinate axes(the red vectors), which means $A=\begin{pmatrix}2 &amp; 1 \\ -1 &amp; 1\end{pmatrix}$. I put vectors(black ones) to this figure as well. We can see what happens when we change a new coordinate axes.</p>
-<p>First of all, we multiply $j$ by $3$ and $i$ by 1. Then we move vector j and let the head of $i$ connect the tail of $3\cdot j$. We can now find what is the coordination of $1\cdot i+3\cdot j$(the blue one). We now verify the result using mutiplication of $A$ and $\vec{x}$:</p>
-<p>$$A\vec{x}=\begin{pmatrix}2 &amp; 1 \\ -1 &amp; 1\end{pmatrix}\begin{pmatrix}1\3\end{pmatrix}=1\cdot \begin{pmatrix}2 \\ -1\end{pmatrix} + 3\cdot  \begin{pmatrix}1 \\ 1\end{pmatrix}=\begin{pmatrix}5\2\end{pmatrix}$$</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-013710.jpg" alt><br>Here, you can imagine that matrice $A$ is just like a function $f(x)\rightarrow y$, when you subsitute $x$, we get the exact $y$ using the principle $f(x)\rightarrow y$. In fact, the multiplication is tranform the vector from one coordination to another. </p>
-<h4 id="Exercise"><a href="#Exercise" class="headerlink" title="Exercise"></a>Exercise</h4><ol>
-<li>$A=\begin{pmatrix}1 &amp; 2 \\ 3 &amp; 4\end{pmatrix}$, draw the picture to stretch and rotate $x=\begin{pmatrix}1\3\end{pmatrix}$.</li>
-<li>Find a $A$ matrix to rotate $\vec{x}=\begin{pmatrix}1\3\end{pmatrix}$ to $90^{\circ}$ and $180^{\circ}$. </li>
-<li>what if $A=\begin{pmatrix}1 &amp; 2 \\ 2 &amp; 4\end{pmatrix}$.</li>
-</ol>
-<h3 id="EigenVector-and-EigenValue"><a href="#EigenVector-and-EigenValue" class="headerlink" title="EigenVector and EigenValue"></a>EigenVector and EigenValue</h3><p>EigenVector and EigenValue is an extremely important concept in linear algebra, and is commonly used everywhere including SVD we are talking today. However, many do not know how to interpret it. In fact, EigenVector and EigenValue is very easy as long as we know about what is linear transformation. </p>
-<h4 id="A-Problem"><a href="#A-Problem" class="headerlink" title="A Problem"></a>A Problem</h4><p>Before start, let’s take a look at a question: if we want to multiply matrices for 1000 times, how to calculate effectively?<br>$$AAA\cdots A= \begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\cdots \begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}=\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}$$</p>
-<h4 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h4><p>Last section, we have talked that if we multiply a vector by a matrix $A$, means that we use $A$ to stretch and rotate the vector in order to represent the vector in a new coordinate axes. However, there are some vectors for $A$, they can only be stretched but can not be rotated. Assume $A=\begin{pmatrix}3 &amp; 1 \\ 0 &amp; 2\end{pmatrix}$, let $\vec{x}=\begin{pmatrix}1 \\ -1\end{pmatrix}$. When we multiply $A$ and $\vec{x}$</p>
-<p>$$A\vec{x}=\begin{pmatrix}3 &amp; 1 \\ 0 &amp; 2\end{pmatrix}\begin{pmatrix}1 \\ -1\end{pmatrix}=\begin{pmatrix}2 \\ -2\end{pmatrix}=2\cdot \begin{pmatrix}1 \\ -1\end{pmatrix}$$</p>
-<p>It turns out we can choose any vector along $\vec{x}$, the outcome is the same, for example:</p>
-<p>$$A\vec{x}=\begin{pmatrix}3 &amp; 1 \\ 0 &amp; 2\end{pmatrix}\begin{pmatrix}-3 \\ 3\end{pmatrix}=\begin{pmatrix}-6 \\ -6\end{pmatrix}=2\cdot \begin{pmatrix}-3 \\ 3\end{pmatrix}$$</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-052135.jpg" alt></p>
-<p>We name vectors like $\begin{pmatrix}-3 \\ 3\end{pmatrix}$ and $\begin{pmatrix}1 \\ -1\end{pmatrix}$ <strong>EigenVectors</strong> and 2 the conresponse <strong>EigenValues</strong>. In practice, we usually choose unit eigenvectors(length equals to 1) given that there are innumerable EigenVectors along the line.</p>
-<p>I won’t cover how to compute these vectors and vaules and just list the answer as followed</p>
-<p>\begin{align}&amp;\begin{pmatrix}3 &amp; 1 \0&amp; 2\end{pmatrix}<br>\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix}=<br>2\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix} \qquad\qquad\vec{x_1}=\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix} &amp;\lambda_1=2\<br>&amp;\begin{pmatrix}3 &amp; 1 \0&amp; 2\end{pmatrix}<br>\begin{pmatrix}1 \\ 0\end{pmatrix}\qquad=\qquad<br>3\begin{pmatrix}1 \\ 0\end{pmatrix}\qquad\qquad\quad\,\,\,\vec{x_2}=\begin{pmatrix}1 \\ 0\end{pmatrix}<br>&amp;\lambda_2=3<br>\end{align}<br>Notice that $|\vec{x_1}|=1$ and $|\vec{x_2}|=1$</p>
-<h4 id="EigenValue-Decomposition"><a href="#EigenValue-Decomposition" class="headerlink" title="EigenValue Decomposition"></a>EigenValue Decomposition</h4><p>If we put two EigenVectors and corresponding EigenValues together, we can get the following equation:<br>$$AQ=\begin{pmatrix}3 &amp; 1 \0&amp; 2\end{pmatrix}<br>\begin{pmatrix}<br>{-1}/{\sqrt(2)}&amp;1\<br>{1}/{\sqrt(2)}&amp;0<br>\end{pmatrix}=<br>\begin{pmatrix}<br>{-1}/{\sqrt(2)}&amp;1 \\ {1}/{\sqrt(2)}&amp;0<br>\end{pmatrix}<br>\begin{pmatrix}<br>2 &amp; 0\<br>0 &amp; 3<br>\end{pmatrix}=Q\Lambda<br>$$<br>Then we have $AQ=Q\Lambda$, the conclusion is still right if we introduce more dimensions, that is<br>\begin{align}<br>A\vec{x_1}=\lambda\vec{x_1}\<br>A\vec{x_2}=\lambda\vec{x_2}\<br>\vdots\qquad\<br>A\vec{x_k}=\lambda\vec{x_k}<br>\end{align}</p>
-<p>$$Q=<br>\begin{pmatrix}<br>    x_{11}&amp; x_{21} &amp;\cdots x_{k1}&amp;\<br>    x_{12}&amp; x_{22} &amp;\cdots x_{k2}&amp;\<br>    &amp;\vdots&amp;&amp;\<br>    x_{1m}&amp; x_{22} &amp;\cdots x_{km}&amp;<br>\end{pmatrix}<br>\qquad\Lambda=<br>\begin{pmatrix}<br>\lambda_1 &amp; 0 &amp; \cdots&amp;0\<br>0 &amp;\lambda_2&amp;\cdots&amp;0\<br>\vdots&amp;\vdots&amp;\ddots\<br>0&amp;\cdots&amp;\cdots&amp;\lambda_k<br>\end{pmatrix}$$</p>
-<p>If we do something on the equation $AQ=Q\Lambda$, then we have:<br>$$AQQ^{-1}=A=Q\Lambda Q^{-1}$$<br>It is EigenVaule Decomposition.</p>
-<h4 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h4><p>Now, Let’s look at the question in the beginning of this section<br>\begin{align}<br>AAA\cdots A&amp;= \begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\cdots \begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}=\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}\<br>AAA\cdots A &amp;= Q\Lambda Q^{-1}Q\Lambda Q^{-1}Q\Lambda Q^{-1}\cdots Q\Lambda Q^{-1}=Q\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \0 &amp; 2\end{pmatrix}Q^{-1}\<br>AAA\cdots A &amp;=Q\Lambda\Lambda\cdots \Lambda Q^{-1}=<br>Q\begin{pmatrix}2^{1000} &amp; 0 \\0 &amp; 3^{1000}\end{pmatrix}Q^{-1}<br>\end{align}<br>The calculation is extremely simple using EVD.</p>
-<h4 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise"></a>Exercise</h4><ol>
-<li>Research how to compute EigenVectors and EigenValues, then compute$\begin{pmatrix}1 &amp; 2 &amp; 3\4 &amp; 5 &amp;6\7 &amp; 8 &amp; 9\end{pmatrix}$. </li>
-<li>Think about the decisive factor affects how many EigenValues we can get.</li>
-</ol>
-<h3 id="Singular-Value-Decompositon"><a href="#Singular-Value-Decompositon" class="headerlink" title="Singular Value Decompositon"></a>Singular Value Decompositon</h3><p>Notice that EigenVector Decomposition is applied to decompose square matrices. Is there any approach to decompose non-square matrices? The answer is a YES, and the name is Singular Value Decompositon.</p>
-<h4 id="Intuition-1"><a href="#Intuition-1" class="headerlink" title="Intuition"></a>Intuition</h4><p>First of all, let’s take a look at what SVD looks like<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-rectangle1.png" alt><br>From the picture, we can find that matrice $A$ is decomposed to 3 components: $U$, $\Sigma$ and $V^{T}$. $U$ and$V^T$ are both sqaure matrices and $\Sigma$ has the same size as $A$. Still, I want to emphasize that $U$ and$V^T$ are both unitary matrix, which means the Determinant of $U$ and $V^T$ is 1 and $U^T=U^{-1}\quad V^T=V^{-1}$.</p>
-<h4 id="Deduction"><a href="#Deduction" class="headerlink" title="Deduction"></a>Deduction</h4><p>In the Linear Transformation section, we can transform a vector to another coordinate axes. Assume you have a non-square matrice, and you want to transform A from  vectors $V=(\vec{v_1}, \vec{v_2},\cdots,\vec{v_n})^T$ to antoher coordinate axes which is $U=(\vec{u_1}, \vec{u_2},\cdots,\vec{u_n})^T$, the thing is, $\vec{v_i}$ and $\vec{u_i}$ have unit length, and all directions are perpendicular, that is, each of $\vec{v_i}$ are at right angles to other $\vec{v_j}$, we name such matrices as orthogonal matrices. In addition, I need add a factor $\Sigma=(\sigma_1,\sigma_2, \sigma_3,\cdots,\sigma_n)$ which represent the times of each direction of $\vec{u_i}$, i.e., We need transform A from $V=(\vec{v_1}, \vec{v_2},\cdots,\vec{v_n})^T$ to $(\sigma_1 \vec{u_1},\sigma_2 \vec{u_2}, \sigma_3 \vec{u_3},…\sigma_n \vec{u_n})^T$. From the picture below we can find that we want to transform from the circle coordinate axes to the ellipse axes.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-circle.png" alt><br>\begin{align}<br>\vec{v_1} \vec{v_2} \vec{v_3},…\vec{v_n} \qquad\rightarrow \qquad &amp;\vec{u_1},\vec{u_2},\vec{u_3},…\vec{u_n}\<br>&amp;\sigma_1,\sigma_2, \sigma_3,…\sigma_n<br>\end{align}</p>
-<p>Recall that we can transform $A$ at every direction, then generate another direction as new coordinate direction. So we have<br>$$ A \vec{v_1}=\sigma_1 \vec{u_1}\<br>A \vec{v_2}=\sigma_2 \vec{u_2}\<br>\vdots\<br> A \vec{v_j}=\sigma_j \vec{u_j}$$</p>
-<p>\begin{align}<br>&amp;\begin{pmatrix}\\A\\\end{pmatrix}\begin{pmatrix}\\ \vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\end{pmatrix}=\begin{pmatrix}\\ \vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\ \end{pmatrix}\begin{pmatrix}<br>\sigma_1 &amp; 0 &amp; \cdots &amp; 0 \<br>0 &amp; \sigma_2 &amp; \cdots &amp; 0 \<br>\vdots &amp; \vdots &amp; \ddots &amp; \vdots \<br>0 &amp; 0 &amp; \cdots &amp; \sigma_n<br>\end{pmatrix}\<br>&amp;C^{m\times n}\qquad\quad C^{n\times n}\qquad\qquad\qquad C^{m\times n}\qquad \qquad \qquad C^{n\times n}<br>\end{align}<br>Which is<br>$$A_{m\times n}V_{n\times n} = \hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}$$</p>
-<p>\begin{align}<br>A_{m\times n}V_{n\times n} &amp;= \hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}\<br>(A_{m\times n}V_{n\times n}V_{n\times n}^{-1} &amp;= \hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}V_{n\times n}^{-1}\<br>A_{m\times n}&amp;=\hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}V_{n\times n}^{-1}\&amp;=\hat{U}<em>{m\times n}\hat{\Sigma}</em>{n\times n}V_{n\times n}^{T}<br>\end{align}</p>
-<p>We need do something to the equation in order to continue the deduction. First we stretch matrice $\hat{\Sigma}$ vertically to $m \times n$ size. Then stretch $\hat{U}$ horizonly to $m\times m$, we can set any value to the right entries.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-27-RSVD.png" alt></p>
-<p>Due to the fact we need calculate $U^{-1}$ and $V^{-1}$, the equation is adjusted to<br>$$A_{m\times n} = U_{m\times m}\Sigma_{m\times n}V^T_{n\times n}$$<br>For furture convenience, we need sort all $\sigma s$, which means:<br>$$\sigma_1\geq\sigma_2\geq\sigma_3 \geq\cdots\geq \sigma_m$$.</p>
-<h4 id="How-to-calculate-U-V-T-and-Sigma"><a href="#How-to-calculate-U-V-T-and-Sigma" class="headerlink" title="How to calculate $U$, $V^T$ and $\Sigma$"></a>How to calculate $U$, $V^T$ and $\Sigma$</h4><p>To Decompose matrice $A$, we need calculate $U$, $V^T$ and $\Sigma$. Remember that $U^T = U^{-1}$ and $V^T = V^{-1}$, we will use the property next. </p>
-<p>\begin{align}<br>A &amp;= U\Sigma V^T\<br>\end{align}</p>
-<p>\begin{align}<br>AA^T&amp;=U\Sigma V^T(U\Sigma V^T)^T\<br>&amp;=U\Sigma V^TV\Sigma^T U^T\<br>&amp;=U\Sigma V^{-1}V\Sigma^T U^T\<br>&amp;=U\Sigma I\Sigma^T U^T\<br>&amp;=U\Sigma^2 U^T<br>\end{align}</p>
-<p>\begin{align}<br>(AA^T)U&amp;=(U\Sigma^2 U^T)U\<br>&amp;=(U\Sigma^2 )U^{-1}U\<br>&amp;=U\Sigma^2<br>\end{align}</p>
-<hr>
-<p>\begin{align}<br>A^TA<br>&amp;=(U\Sigma V^T)^TU\Sigma V^T\<br>&amp;=V\Sigma^T U^TU\Sigma V^T\<br>&amp;=V\Sigma^T U^TU\Sigma V^T\<br>&amp;=V\Sigma^T U^{-1}U\Sigma V^T\<br>&amp;=V\Sigma^T I\Sigma V^T\<br>&amp;=V\Sigma^2 V^T\<br>\end{align}</p>
-<p>\begin{align}(A^TA)V&amp;=(V\Sigma^2 V^T)V\<br>&amp;=(V\Sigma^2)V^{-1}V\<br>&amp;=V\Sigma^2<br>\end{align}</p>
-<h3 id="Image-Compression"><a href="#Image-Compression" class="headerlink" title="Image Compression"></a>Image Compression</h3><p>Firstly, let’s look at the process of compressing a picture, the left picture is original grayscale image. On the right, under different compress rate, we can see pictures after reproducing. Before compress, the size of the picture is 1775K byte. Then the picture is almost the same, when we compress which into 100K byte size, which means we can save 90% storage space<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-29-image.gif" alt></p>
-<p>To compress a piture, you just decompose the matrice through SVD, then instead of using the original $U_{m\times m}$, $\Sigma_{m\times n}$ and $U_{n\times n}$, we shrink every matrice to new size $U_{m\times r}$, $\Sigma_{r\times r}$ and $U_{r\times n}$. The final $size(R)$ is still $m\times n$, but we abandon some entries since these entries are not so important than these we have reserved.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-30-rect.png" alt> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%% octave: core code of svd compressions</span><br><span class="line">X = imread(filename);  </span><br><span class="line">[U S V] = svd(double(X));</span><br><span class="line">R = U(:,1:r)*S(1:r,1:r)*V(:,1:r)&apos;;</span><br></pre></td></tr></table></figure>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Today we have learned mathmatics backgroud on SVD, including linear transformation and EigenVector&amp;EigenVaule. Before SVD, we first talked about EigenValue Decomposition. Finally, Singular Vaule Decomposition is very easy to be deduced. In the last section, we took an example see how SVD be applied to image compression field. </p>
-<p>Now, it comes to the topic how to save our storage of a 32G iPhone7, the coclusion is obvious: using SVD compress image to shrink the size of our photos. </p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
-<li><a href="https://www.youtube.com/watch?v=EokL7E6o1AE" target="_blank" rel="noopener">https://www.youtube.com/watch?v=EokL7E6o1AE</a></li>
-<li><a href="https://www.youtube.com/watch?v=cOUTpqlX-Xs" target="_blank" rel="noopener">https://www.youtube.com/watch?v=cOUTpqlX-Xs</a></li>
-<li><a href="https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw" target="_blank" rel="noopener">https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw</a></li>
-<li><a href="https://yhatt.github.io/marp/" target="_blank" rel="noopener">https://yhatt.github.io/marp/</a></li>
-<li><a href="https://itunes.apple.com/cn/itunes-u/linear-algebra/id354869137" target="_blank" rel="noopener">https://itunes.apple.com/cn/itunes-u/linear-algebra/id354869137</a></li>
-<li><a href="http://www.ams.org/samplings/feature-column/fcarc-svd" target="_blank" rel="noopener">http://www.ams.org/samplings/feature-column/fcarc-svd</a></li>
-<li><a href="https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html" target="_blank" rel="noopener">https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html</a></li>
-</ol>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/04/16/eigenvector-and-eigenvalue/" rel="next" title="怎样理解特征向量和特征值（翻译）">
-                <i class="fa fa-chevron-left"></i> 怎样理解特征向量和特征值（翻译）
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/21/decision-tree/" rel="prev" title="Decision Tree (ID3)">
-                Decision Tree (ID3) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
+  <div class="site-description" itemprop="description">Mingbo</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chengmingbo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chengmingbo" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
   </div>
 
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-        
-  <script src="https://utteranc.es/client.js" repo="chengmingbo/gitment-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
-  </script>
-
-
-    </div> 
-  
-
-
-
         </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </div>
     </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
     
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vividfree.github.io/" title="http:&#x2F;&#x2F;vividfree.github.io&#x2F;" rel="noopener" target="_blank">vividfree</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://colah.github.io/" title="http:&#x2F;&#x2F;colah.github.io&#x2F;" rel="noopener" target="_blank">colah</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.autonlab.org/tutorials" title="https:&#x2F;&#x2F;www.autonlab.org&#x2F;tutorials" rel="noopener" target="_blank">Andrew Moore</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://plot.ly/matlab/plot/" title="https:&#x2F;&#x2F;plot.ly&#x2F;matlab&#x2F;plot&#x2F;" rel="noopener" target="_blank">matlabplot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ryanzhang.info/blog/" title="http:&#x2F;&#x2F;www.ryanzhang.info&#x2F;blog&#x2F;" rel="noopener" target="_blank">Ryan’s Cabinet</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="http:&#x2F;&#x2F;www.cnblogs.com&#x2F;jerrylead&#x2F;tag&#x2F;Machine%20Learning&#x2F;" rel="noopener" target="_blank">JerryLead</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://yxzf.github.io/" title="https:&#x2F;&#x2F;yxzf.github.io&#x2F;" rel="noopener" target="_blank">YXZF'S BLOG</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vonng.com/" title="http:&#x2F;&#x2F;vonng.com" rel="noopener" target="_blank">VONNG</a>
+            </li>
         </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
-              <p class="site-description motion-element" itemprop="description">Mingbo</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">18</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">categories</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/chengmingbo" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.flickering.cn/" title="flickering" target="_blank">flickering</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.zybuluo.com/codeep/note/163962" title="mathjax grammar" target="_blank">mathjax grammar</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vividfree.github.io/" title="vividfree" target="_blank">vividfree</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://colah.github.io/" title="colah" target="_blank">colah</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.autonlab.org/tutorials" title="Andrew Moore" target="_blank">Andrew Moore</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://plot.ly/matlab/plot/" title="matlabplot" target="_blank">matlabplot</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ryanzhang.info/blog/" title="Ryan’s Cabinet" target="_blank">Ryan’s Cabinet</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="JerryLead" target="_blank">JerryLead</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://yxzf.github.io/" title="YXZF'S BLOG" target="_blank">YXZF'S BLOG</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vonng.com" title="VONNG" target="_blank">VONNG</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-transformation"><span class="nav-number">3.</span> <span class="nav-text">Linear transformation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise"><span class="nav-number">3.1.</span> <span class="nav-text">Exercise</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EigenVector-and-EigenValue"><span class="nav-number">4.</span> <span class="nav-text">EigenVector and EigenValue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-Problem"><span class="nav-number">4.1.</span> <span class="nav-text">A Problem</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Intuition"><span class="nav-number">4.2.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EigenValue-Decomposition"><span class="nav-number">4.3.</span> <span class="nav-text">EigenValue Decomposition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Resolution"><span class="nav-number">4.4.</span> <span class="nav-text">Resolution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exercise-1"><span class="nav-number">4.5.</span> <span class="nav-text">Exercise</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Singular-Value-Decompositon"><span class="nav-number">5.</span> <span class="nav-text">Singular Value Decompositon</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Intuition-1"><span class="nav-number">5.1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Deduction"><span class="nav-number">5.2.</span> <span class="nav-text">Deduction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-to-calculate-U-V-T-and-Sigma"><span class="nav-number">5.3.</span> <span class="nav-text">How to calculate $U$, $V^T$ and $\Sigma$</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Image-Compression"><span class="nav-number">6.</span> <span class="nav-text">Image Compression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">7.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">8.</span> <span class="nav-text">Reference</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
-
+      </div>
     </div>
   </aside>
 
 
-        
-      </div>
-    </main>
+    </div>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="A Tutorial on Singular Value Decomposition | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          A Tutorial on Singular Value Decomposition
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-05-01 21:49:00" itemprop="dateCreated datePublished" datetime="2017-05-01T21:49:00+02:00">2017-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Alogorithm/" itemprop="url" rel="index"><span itemprop="name">Alogorithm</span></a>
+        </span>
+    </span>
 
   
 </div>
 
+        </div>
+      </header>
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="preface">Preface</h3>
+<p>Under some circumstance, we want to compress data to save storage
+space. For example, when iPhone7 was released, many were trapped in a
+dilemma: Should I buy a 32G iPhone without enough free space or that of
+128G with a lot of storage being wasted? I had been trapped in such
+dilemma indeed. I still remember that I only had 8G storage totally when
+I was using my first Android phone. What annoyed me most was my
+thousands of photos. Well, I confess that I was being always a mad
+picture taker. I knew that there were some technique which could
+compress a picture through reducing pixel. However, it is not enough,
+because, as you know, in some arbitrary position in a picture, we can
+tell that the picture share the same color. An extreme Example: if we
+have a pure color picture, what we just need know is the RGB value and
+the size, then reproducing the picture is done without extra effort.
+What I was dreaming is done perfectly by Singular Value
+Decomposition(SVD).</p>
+<h3 id="introduction">Introduction</h3>
+<p>Before SVD, in this article, I will introduce some mathmatical
+concepts in the first place which cover Linear transformation and
+EigenVector&amp;EigenValue. This Background knowledge is meant to make
+SVD straightforward. You can skip if you are familar with this
+knowledge.</p>
+<h3 id="linear-transformation">Linear transformation</h3>
+<p>Given a matrice <span class="math inline">\(A\)</span> and vector
+<span class="math inline">\(\vec{x}\)</span>, we want to compute the
+mulplication of <span class="math inline">\(A\)</span> and <span
+class="math inline">\(\vec{x}\)</span></p>
+<p><span
+class="math display">\[\vec{x}=\begin{pmatrix}1\\3\end{pmatrix}\qquad
+A=\begin{pmatrix}2 &amp; 1 \\\\ -1 &amp; 1
+\end{pmatrix}\qquad\vec{y}=A\vec{x}\]</span></p>
+<p>But when we do this multiplication, what happens? Acutually, when we
+multiply <span class="math inline">\(A\)</span> and <span
+class="math inline">\(\vec{x}\)</span>, we are changing the coordinate
+axes of the vector <span class="math inline">\(x\)</span> to another new
+axes. Begin with a simpler example, we let</p>
+<p><span class="math display">\[A=\begin{pmatrix}1 &amp; 0\\\\ 0
+&amp;1\end{pmatrix}\]</span></p>
+<p>then we have <span class="math display">\[A\vec{x}=\begin{pmatrix}1
+&amp; 0\\\\ 0
+&amp;1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=\begin{pmatrix}1\\3\end{pmatrix}\]</span></p>
+<p>You may have noticed that we can always get the same <span
+class="math inline">\(\vec{x}\)</span> after left multiply by A. In this
+case, we use coordinate axes <span
+class="math inline">\(i=\begin{pmatrix}1 \\\\ 0\end{pmatrix}\)</span>
+and <span class="math inline">\(j=\begin{pmatrix}0 \\\\
+1\end{pmatrix}\)</span> as the figure below demonstrated. That is, if we
+want to represent <span
+class="math inline">\(\begin{pmatrix}1\\3\end{pmatrix}\)</span> under
+the coordination, we can calculate the transformation as followed:</p>
+<p><span class="math display">\[\begin{align} A\vec{x}=1\cdot i + 3\cdot
+j = 1\cdot \begin{pmatrix}1 \\\\ 0\end{pmatrix} + 3\cdot
+\begin{pmatrix}0 \\\\
+1\end{pmatrix}=\begin{pmatrix}1\\3\end{pmatrix}\end{align}\]</span></p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-073041.jpg" /></p>
+<p>As we know, we can put a vector to anywhere in space, and if we want
+to calculate sum of two vectors, the simplest way is to connect the to
+vector from one's head to the other's tail. Our example, we compute
+<span class="math inline">\(A\vec{x}\)</span> means add two vector(green
+imaginary lines) up. And the answer is still <span
+class="math inline">\(\begin{pmatrix}1\\3\end{pmatrix}\)</span>.</p>
+<p>Now we change <span class="math inline">\(i=\begin{pmatrix}2\\\\
+-1\end{pmatrix}\)</span> and <span
+class="math inline">\(j=\begin{pmatrix}1\\1\end{pmatrix}\)</span> as the
+coordinate axes(the red vectors), which means <span
+class="math inline">\(A=\begin{pmatrix}2 &amp; 1 \\\\ -1 &amp;
+1\end{pmatrix}\)</span>. I put vectors(black ones) to this figure as
+well. We can see what happens when we change a new coordinate axes.</p>
+<p>First of all, we multiply <span class="math inline">\(j\)</span> by
+<span class="math inline">\(3\)</span> and <span
+class="math inline">\(i\)</span> by 1. Then we move vector j and let the
+head of <span class="math inline">\(i\)</span> connect the tail of <span
+class="math inline">\(3\cdot j\)</span>. We can now find what is the
+coordination of <span class="math inline">\(1\cdot i+3\cdot
+j\)</span>(the blue one). We now verify the result using mutiplication
+of <span class="math inline">\(A\)</span> and <span
+class="math inline">\(\vec{x}\)</span>:</p>
+<p><span class="math display">\[A\vec{x}=\begin{pmatrix}2 &amp; 1 \\\\
+-1 &amp; 1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=1\cdot
+\begin{pmatrix}2 \\\\ -1\end{pmatrix} + 3\cdot  \begin{pmatrix}1 \\\\
+1\end{pmatrix}=\begin{pmatrix}5\\2\end{pmatrix}\]</span></p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-013710.jpg" />
+Here, you can imagine that matrice <span
+class="math inline">\(A\)</span> is just like a function <span
+class="math inline">\(f(x)\rightarrow y\)</span>, when you subsitute
+<span class="math inline">\(x\)</span>, we get the exact <span
+class="math inline">\(y\)</span> using the principle <span
+class="math inline">\(f(x)\rightarrow y\)</span>. In fact, the
+multiplication is tranform the vector from one coordination to
+another.</p>
+<h4 id="exercise">Exercise</h4>
+<ol type="1">
+<li><span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\\\ 3 &amp;
+4\end{pmatrix}\)</span>, draw the picture to stretch and rotate <span
+class="math inline">\(x=\begin{pmatrix}1\\3\end{pmatrix}\)</span>.</li>
+<li>Find a <span class="math inline">\(A\)</span> matrix to rotate <span
+class="math inline">\(\vec{x}=\begin{pmatrix}1\\3\end{pmatrix}\)</span>
+to <span class="math inline">\(90^{\circ}\)</span> and <span
+class="math inline">\(180^{\circ}\)</span>.</li>
+<li>what if <span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\\\
+2 &amp; 4\end{pmatrix}\)</span>.</li>
+</ol>
+<h3 id="eigenvector-and-eigenvalue">EigenVector and EigenValue</h3>
+<p>EigenVector and EigenValue is an extremely important concept in
+linear algebra, and is commonly used everywhere including SVD we are
+talking today. However, many do not know how to interpret it. In fact,
+EigenVector and EigenValue is very easy as long as we know about what is
+linear transformation.</p>
+<h4 id="a-problem">A Problem</h4>
+<p>Before start, let's take a look at a question: if we want to multiply
+matrices for 1000 times, how to calculate effectively? <span
+class="math display">\[AAA\cdots A= \begin{pmatrix}3&amp; 1 \\0 &amp;
+2\end{pmatrix}\begin{pmatrix}3&amp; 1 \\0 &amp;
+2\end{pmatrix}\begin{pmatrix}3&amp; 1 \\0 &amp; 2\end{pmatrix}\cdots
+\begin{pmatrix}3&amp; 1 \\0 &amp;
+2\end{pmatrix}=\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \\0 &amp;
+2\end{pmatrix}\]</span></p>
+<h4 id="intuition">Intuition</h4>
+<p>Last section, we have talked that if we multiply a vector by a matrix
+<span class="math inline">\(A\)</span>, means that we use <span
+class="math inline">\(A\)</span> to stretch and rotate the vector in
+order to represent the vector in a new coordinate axes. However, there
+are some vectors for <span class="math inline">\(A\)</span>, they can
+only be stretched but can not be rotated. Assume <span
+class="math inline">\(A=\begin{pmatrix}3 &amp; 1 \\\\ 0 &amp;
+2\end{pmatrix}\)</span>, let <span
+class="math inline">\(\vec{x}=\begin{pmatrix}1 \\\\
+-1\end{pmatrix}\)</span>. When we multiply <span
+class="math inline">\(A\)</span> and <span
+class="math inline">\(\vec{x}\)</span></p>
+<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\\\ 0
+&amp; 2\end{pmatrix}\begin{pmatrix}1 \\\\
+-1\end{pmatrix}=\begin{pmatrix}2 \\\\ -2\end{pmatrix}=2\cdot
+\begin{pmatrix}1 \\\\ -1\end{pmatrix}\]</span></p>
+<p>It turns out we can choose any vector along <span
+class="math inline">\(\vec{x}\)</span>, the outcome is the same, for
+example:</p>
+<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\\\ 0
+&amp; 2\end{pmatrix}\begin{pmatrix}-3 \\\\
+3\end{pmatrix}=\begin{pmatrix}-6 \\\\ -6\end{pmatrix}=2\cdot
+\begin{pmatrix}-3 \\\\ 3\end{pmatrix}\]</span></p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-052135.jpg" /></p>
+<p>We name vectors like <span class="math inline">\(\begin{pmatrix}-3
+\\\\ 3\end{pmatrix}\)</span> and <span
+class="math inline">\(\begin{pmatrix}1 \\\\ -1\end{pmatrix}\)</span>
+<strong>EigenVectors</strong> and 2 the conresponse
+<strong>EigenValues</strong>. In practice, we usually choose unit
+eigenvectors(length equals to 1) given that there are innumerable
+EigenVectors along the line.</p>
+<p>I won't cover how to compute these vectors and vaules and just list
+the answer as followed</p>
+<p><span class="math display">\[\begin{align}&amp;\begin{pmatrix}3 &amp;
+1 \\0&amp; 2\end{pmatrix}
+\begin{pmatrix}{-1}/{\sqrt(2)} \\\\ {1}/{\sqrt(2)}\end{pmatrix}=
+2\begin{pmatrix}{-1}/{\sqrt(2)} \\\\ {1}/{\sqrt(2)}\end{pmatrix}
+\qquad\qquad\vec{x_1}=\begin{pmatrix}{-1}/{\sqrt(2)} \\\\
+{1}/{\sqrt(2)}\end{pmatrix} &amp;\lambda_1=2\\
+&amp;\begin{pmatrix}3 &amp; 1 \\0&amp; 2\end{pmatrix}
+\begin{pmatrix}1 \\\\ 0\end{pmatrix}\qquad=\qquad
+3\begin{pmatrix}1 \\\\
+0\end{pmatrix}\qquad\qquad\quad\,\,\,\vec{x_2}=\begin{pmatrix}1 \\\\
+0\end{pmatrix}
+&amp;\lambda_2=3
+\end{align}\]</span> Notice that <span
+class="math inline">\(|\vec{x_1}|=1\)</span> and <span
+class="math inline">\(|\vec{x_2}|=1\)</span> #### EigenValue
+Decomposition If we put two EigenVectors and corresponding EigenValues
+together, we can get the following equation: <span
+class="math display">\[AQ=\begin{pmatrix}3 &amp; 1 \\0&amp;
+2\end{pmatrix}
+\begin{pmatrix}
+{-1}/{\sqrt(2)}&amp;1\\
+{1}/{\sqrt(2)}&amp;0
+\end{pmatrix}=
+\begin{pmatrix}
+{-1}/{\sqrt(2)}&amp;1 \\\\ {1}/{\sqrt(2)}&amp;0
+\end{pmatrix}
+\begin{pmatrix}
+2 &amp; 0\\
+0 &amp; 3
+\end{pmatrix}=Q\Lambda
+\]</span> Then we have <span class="math inline">\(AQ=Q\Lambda\)</span>,
+the conclusion is still right if we introduce more dimensions, that is
+<span class="math display">\[\begin{align}
+A\vec{x_1}=\lambda\vec{x_1}\\
+A\vec{x_2}=\lambda\vec{x_2}\\
+\vdots\qquad\\
+A\vec{x_k}=\lambda\vec{x_k}
+\end{align}\]</span></p>
+<p><span class="math display">\[Q=
+\begin{pmatrix}
+    x_{11}&amp; x_{21} &amp;\cdots x_{k1}&amp;\\
+    x_{12}&amp; x_{22} &amp;\cdots x_{k2}&amp;\\
+    &amp;\vdots&amp;&amp;\\
+    x_{1m}&amp; x_{22} &amp;\cdots x_{km}&amp;
+\end{pmatrix}
+\qquad\Lambda=
+\begin{pmatrix}
+\lambda_1 &amp; 0 &amp; \cdots&amp;0\\
+0 &amp;\lambda_2&amp;\cdots&amp;0\\
+\vdots&amp;\vdots&amp;\ddots\\
+0&amp;\cdots&amp;\cdots&amp;\lambda_k
+\end{pmatrix}\]</span></p>
+<p>If we do something on the equation <span
+class="math inline">\(AQ=Q\Lambda\)</span>, then we have: <span
+class="math display">\[AQQ^{-1}=A=Q\Lambda Q^{-1}\]</span> It is
+EigenVaule Decomposition. #### Resolution Now, Let's look at the
+question in the beginning of this section <span
+class="math display">\[\begin{align}
+AAA\cdots A&amp;= \begin{pmatrix}3&amp; 1 \\0 &amp;
+2\end{pmatrix}\begin{pmatrix}3&amp; 1 \\0 &amp;
+2\end{pmatrix}\begin{pmatrix}3&amp; 1 \\0 &amp; 2\end{pmatrix}\cdots
+\begin{pmatrix}3&amp; 1 \\0 &amp;
+2\end{pmatrix}=\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \\0 &amp;
+2\end{pmatrix}\\
+AAA\cdots A &amp;= Q\Lambda Q^{-1}Q\Lambda Q^{-1}Q\Lambda Q^{-1}\cdots
+Q\Lambda Q^{-1}=Q\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \\0 &amp;
+2\end{pmatrix}Q^{-1}\\
+AAA\cdots A &amp;=Q\Lambda\Lambda\cdots \Lambda Q^{-1}=
+Q\begin{pmatrix}2^{1000} &amp; 0 \\\\0 &amp; 3^{1000}\end{pmatrix}Q^{-1}
+\end{align}\]</span> The calculation is extremely simple using EVD.</p>
+<h4 id="exercise-1">Exercise</h4>
+<ol type="1">
+<li>Research how to compute EigenVectors and EigenValues, then
+compute<span class="math inline">\(\begin{pmatrix}1 &amp; 2 &amp; 3\\4
+&amp; 5 &amp;6\\7 &amp; 8 &amp; 9\end{pmatrix}\)</span>.</li>
+<li>Think about the decisive factor affects how many EigenValues we can
+get.</li>
+</ol>
+<h3 id="singular-value-decompositon">Singular Value Decompositon</h3>
+<p>Notice that EigenVector Decomposition is applied to decompose square
+matrices. Is there any approach to decompose non-square matrices? The
+answer is a YES, and the name is Singular Value Decompositon.</p>
+<h4 id="intuition-1">Intuition</h4>
+<p>First of all, let's take a look at what SVD looks like <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-rectangle1.png" />
+From the picture, we can find that matrice <span
+class="math inline">\(A\)</span> is decomposed to 3 components: <span
+class="math inline">\(U\)</span>, <span
+class="math inline">\(\Sigma\)</span> and <span
+class="math inline">\(V^{T}\)</span>. <span
+class="math inline">\(U\)</span> and<span
+class="math inline">\(V^T\)</span> are both sqaure matrices and <span
+class="math inline">\(\Sigma\)</span> has the same size as <span
+class="math inline">\(A\)</span>. Still, I want to emphasize that <span
+class="math inline">\(U\)</span> and<span
+class="math inline">\(V^T\)</span> are both unitary matrix, which means
+the Determinant of <span class="math inline">\(U\)</span> and <span
+class="math inline">\(V^T\)</span> is 1 and <span
+class="math inline">\(U^T=U^{-1}\quad V^T=V^{-1}\)</span>.</p>
+<h4 id="deduction">Deduction</h4>
+<p>In the Linear Transformation section, we can transform a vector to
+another coordinate axes. Assume you have a non-square matrice, and you
+want to transform A from vectors <span
+class="math inline">\(V=(\vec{v_1},
+\vec{v_2},\cdots,\vec{v_n})^T\)</span> to antoher coordinate axes which
+is <span class="math inline">\(U=(\vec{u_1},
+\vec{u_2},\cdots,\vec{u_n})^T\)</span>, the thing is, <span
+class="math inline">\(\vec{v_i}\)</span> and <span
+class="math inline">\(\vec{u_i}\)</span> have unit length, and all
+directions are perpendicular, that is, each of <span
+class="math inline">\(\vec{v_i}\)</span> are at right angles to other
+<span class="math inline">\(\vec{v_j}\)</span>, we name such matrices as
+orthogonal matrices. In addition, I need add a factor <span
+class="math inline">\(\Sigma=(\sigma_1,\sigma_2,
+\sigma_3,\cdots,\sigma_n)\)</span> which represent the times of each
+direction of <span class="math inline">\(\vec{u_i}\)</span>, i.e., We
+need transform A from <span class="math inline">\(V=(\vec{v_1},
+\vec{v_2},\cdots,\vec{v_n})^T\)</span> to <span
+class="math inline">\((\sigma_1 \vec{u_1},\sigma_2 \vec{u_2}, \sigma_3
+\vec{u_3},...\sigma_n \vec{u_n})^T\)</span>. From the picture below we
+can find that we want to transform from the circle coordinate axes to
+the ellipse axes. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-circle.png" />
+<span class="math display">\[\begin{align}
+\vec{v_1} \vec{v_2} \vec{v_3},...\vec{v_n} \qquad\rightarrow \qquad
+&amp;\vec{u_1},\vec{u_2},\vec{u_3},...\vec{u_n}\\
+&amp;\sigma_1,\sigma_2, \sigma_3,...\sigma_n
+\end{align}\]</span></p>
+<p>Recall that we can transform <span class="math inline">\(A\)</span>
+at every direction, then generate another direction as new coordinate
+direction. So we have <span class="math display">\[ A \vec{v_1}=\sigma_1
+\vec{u_1}\\
+A \vec{v_2}=\sigma_2 \vec{u_2}\\
+\vdots\\
+A \vec{v_j}=\sigma_j \vec{u_j}\]</span></p>
+<p><span class="math display">\[\begin{align}
+&amp;\begin{pmatrix}\\\\A\\\\\end{pmatrix}\begin{pmatrix}\\\\
+\vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\\\end{pmatrix}=\begin{pmatrix}\\\\
+\vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\\\ \end{pmatrix}\begin{pmatrix}
+\sigma_1 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; \sigma_2 &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; \sigma_n
+\end{pmatrix}\\
+&amp;C^{m\times n}\qquad\quad C^{n\times n}\qquad\qquad\qquad C^{m\times
+n}\qquad \qquad \qquad C^{n\times n}
+\end{align}\]</span> Which is <span class="math display">\[A_{m\times
+n}V_{n\times n} = \hat{U}_{m\times n}\hat{\Sigma}_{n\times
+n}\]</span></p>
+<p><span class="math display">\[\begin{align}
+A_{m\times n}V_{n\times n} &amp;= \hat{U}_{m\times
+n}\hat{\Sigma}_{n\times n}\\
+(A_{m\times n}V_{n\times n}V_{n\times n}^{-1} &amp;= \hat{U}_{m\times
+n}\hat{\Sigma}_{n\times n}V_{n\times n}^{-1}\\
+A_{m\times n}&amp;=\hat{U}_{m\times n}\hat{\Sigma}_{n\times n}V_{n\times
+n}^{-1}\\&amp;=\hat{U}_{m\times n}\hat{\Sigma}_{n\times n}V_{n\times
+n}^{T}
+\end{align}\]</span></p>
+<p>We need do something to the equation in order to continue the
+deduction. First we stretch matrice <span
+class="math inline">\(\hat{\Sigma}\)</span> vertically to <span
+class="math inline">\(m \times n\)</span> size. Then stretch <span
+class="math inline">\(\hat{U}\)</span> horizonly to <span
+class="math inline">\(m\times m\)</span>, we can set any value to the
+right entries. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-27-RSVD.png" /></p>
+<p>Due to the fact we need calculate <span
+class="math inline">\(U^{-1}\)</span> and <span
+class="math inline">\(V^{-1}\)</span>, the equation is adjusted to <span
+class="math display">\[A_{m\times n} = U_{m\times m}\Sigma_{m\times
+n}V^T_{n\times n}\]</span> For furture convenience, we need sort all
+<span class="math inline">\(\sigma s\)</span>, which means: <span
+class="math display">\[\sigma_1\geq\sigma_2\geq\sigma_3 \geq\cdots\geq
+\sigma_m\]</span>. #### How to calculate <span
+class="math inline">\(U\)</span>, <span
+class="math inline">\(V^T\)</span> and <span
+class="math inline">\(\Sigma\)</span> To Decompose matrice <span
+class="math inline">\(A\)</span>, we need calculate <span
+class="math inline">\(U\)</span>, <span
+class="math inline">\(V^T\)</span> and <span
+class="math inline">\(\Sigma\)</span>. Remember that <span
+class="math inline">\(U^T = U^{-1}\)</span> and <span
+class="math inline">\(V^T = V^{-1}\)</span>, we will use the property
+next.</p>
+<p><span class="math display">\[\begin{align}
+A &amp;= U\Sigma V^T\\
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{align}
+AA^T&amp;=U\Sigma V^T(U\Sigma V^T)^T\\
+&amp;=U\Sigma V^TV\Sigma^T U^T\\
+&amp;=U\Sigma V^{-1}V\Sigma^T U^T\\
+&amp;=U\Sigma I\Sigma^T U^T\\
+&amp;=U\Sigma^2 U^T
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{align}
+(AA^T)U&amp;=(U\Sigma^2 U^T)U\\
+&amp;=(U\Sigma^2 )U^{-1}U\\
+&amp;=U\Sigma^2
+\end{align}\]</span></p>
+<hr />
+<p><span class="math display">\[\begin{align}
+A^TA
+&amp;=(U\Sigma V^T)^TU\Sigma V^T\\
+&amp;=V\Sigma^T U^TU\Sigma V^T\\
+&amp;=V\Sigma^T U^TU\Sigma V^T\\
+&amp;=V\Sigma^T U^{-1}U\Sigma V^T\\
+&amp;=V\Sigma^T I\Sigma V^T\\
+&amp;=V\Sigma^2 V^T\\
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{align}(A^TA)V&amp;=(V\Sigma^2
+V^T)V\\
+&amp;=(V\Sigma^2)V^{-1}V\\
+&amp;=V\Sigma^2
+\end{align}\]</span></p>
+<h3 id="image-compression">Image Compression</h3>
+<p>Firstly, let's look at the process of compressing a picture, the left
+picture is original grayscale image. On the right, under different
+compress rate, we can see pictures after reproducing. Before compress,
+the size of the picture is 1775K byte. Then the picture is almost the
+same, when we compress which into 100K byte size, which means we can
+save 90% storage space <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-29-image.gif" /></p>
+<p>To compress a piture, you just decompose the matrice through SVD,
+then instead of using the original <span
+class="math inline">\(U_{m\times m}\)</span>, <span
+class="math inline">\(\Sigma_{m\times n}\)</span> and <span
+class="math inline">\(U_{n\times n}\)</span>, we shrink every matrice to
+new size <span class="math inline">\(U_{m\times r}\)</span>, <span
+class="math inline">\(\Sigma_{r\times r}\)</span> and <span
+class="math inline">\(U_{r\times n}\)</span>. The final <span
+class="math inline">\(size(R)\)</span> is still <span
+class="math inline">\(m\times n\)</span>, but we abandon some entries
+since these entries are not so important than these we have reserved.
+<img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-30-rect.png" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%% octave: core code of svd compressions</span><br><span class="line">X = imread(filename);  </span><br><span class="line">[U S V] = svd(double(X));</span><br><span class="line">R = U(:,1:r)*S(1:r,1:r)*V(:,1:r)&#x27;;    </span><br></pre></td></tr></table></figure>
+<h3 id="summary">Summary</h3>
+<p>Today we have learned mathmatics backgroud on SVD, including linear
+transformation and EigenVector&amp;EigenVaule. Before SVD, we first
+talked about EigenValue Decomposition. Finally, Singular Vaule
+Decomposition is very easy to be deduced. In the last section, we took
+an example see how SVD be applied to image compression field.</p>
+<p>Now, it comes to the topic how to save our storage of a 32G iPhone7,
+the coclusion is obvious: using SVD compress image to shrink the size of
+our photos.</p>
+<h3 id="reference">Reference</h3>
+<ol type="1">
+<li>https://www.youtube.com/watch?v=EokL7E6o1AE</li>
+<li>https://www.youtube.com/watch?v=cOUTpqlX-Xs</li>
+<li>https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw</li>
+<li>https://yhatt.github.io/marp/</li>
+<li>https://itunes.apple.com/cn/itunes-u/linear-algebra/id354869137</li>
+<li>http://www.ams.org/samplings/feature-column/fcarc-svd</li>
+<li>https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html</li>
+</ol>
 
+    </div>
 
+    
+    
+    
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
-
-
-
+    <footer class="post-footer">
 
         
 
-
-
-
-
-
-
-        
-      </div>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/04/16/eigenvector-and-eigenvalue/" rel="prev" title="怎样理解特征向量和特征值（翻译）">
+                  <i class="fa fa-angle-left"></i> 怎样理解特征向量和特征值（翻译）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/21/decision-tree/" rel="next" title="Decision Tree (ID3)">
+                  Decision Tree (ID3) <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
+  </article>
+</div>
 
-    
 
-    
 
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class=""></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
 
-
-	
-
-
+  <script src="/js/third-party/fancybox.js"></script>
 
 
 
@@ -845,62 +757,14 @@
 
 
 
-
   
 
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"chengmingbo/gitment-comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
 
 </body>
 </html>

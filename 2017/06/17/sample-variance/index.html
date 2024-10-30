@@ -1,141 +1,48 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chengmingbo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-
-  
-  
-  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="中文,翻译,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Mingbo" type="application/atom+xml">
-
-
-
-
-
-
-<meta name="description" content="原文作者：Vincent Spruy 译者：程明波 英文文章地址 译文地址 译者注：由于历史原因，高斯分布(Gaussian Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如$\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$的分布。文中我会采用正态分布的提法。 简介本文，呼应标">
-<meta name="keywords" content="中文,翻译">
+    <meta name="description" content="原文作者：Vincent Spruy 译者：程明波 英文文章地址 译文地址 译者注：由于历史原因，高斯分布(Gaussian Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)的分布。文中我会采用正态分布的提法。 简介 本文，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="样本方差为什么除以N-1?（翻译）">
-<meta property="og:url" content="http://commanber.com/2017/06/17/sample-variance/index.html">
+<meta property="og:url" content="http://chengmingbo.github.io/2017/06/17/sample-variance/index.html">
 <meta property="og:site_name" content="Mingbo">
-<meta property="og:description" content="原文作者：Vincent Spruy 译者：程明波 英文文章地址 译文地址 译者注：由于历史原因，高斯分布(Gaussian Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如$\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$的分布。文中我会采用正态分布的提法。 简介本文，呼应标">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110159.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110329.jpg">
-<meta property="og:updated_time" content="2019-03-17T16:28:23.544Z">
+<meta property="og:description" content="原文作者：Vincent Spruy 译者：程明波 英文文章地址 译文地址 译者注：由于历史原因，高斯分布(Gaussian Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)的分布。文中我会采用正态分布的提法。 简介 本文，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-06-17T15:52:38.000Z">
+<meta property="article:modified_time" content="2024-10-30T15:41:48.547Z">
+<meta property="article:author" content="Mingbo Cheng">
+<meta property="article:tag" content="中文">
+<meta property="article:tag" content="翻译">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="样本方差为什么除以N-1?（翻译）">
-<meta name="twitter:description" content="原文作者：Vincent Spruy 译者：程明波 英文文章地址 译文地址 译者注：由于历史原因，高斯分布(Gaussian Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如$\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$的分布。文中我会采用正态分布的提法。 简介本文，呼应标">
-<meta name="twitter:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110159.jpg">
+
+
+<link rel="canonical" href="http://chengmingbo.github.io/2017/06/17/sample-variance/">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://chengmingbo.github.io/2017/06/17/sample-variance/","path":"2017/06/17/sample-variance/","title":"样本方差为什么除以N-1?（翻译）"}</script>
 
-
-
-  <link rel="canonical" href="http://commanber.com/2017/06/17/sample-variance/">
-
-
-
-
-
-  <title>样本方差为什么除以N-1?（翻译） | Mingbo</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>样本方差为什么除以N-1?（翻译） | Mingbo</title>
   
 
 
@@ -145,740 +52,645 @@
 
 
 
-</head>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
-  
-  
-    
-  
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Mingbo</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mingbo</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="Mingbo">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-slides">
-          <a href="/slides/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-area-chart"></i> <br>
-            
-            slides
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            About
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-slides"><a href="/slides/" rel="section"><i class="area-chart fa-fw"></i>slides</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
+</header>
+        
+  
+  <aside class="sidebar">
 
-  <div id="posts" class="posts-expand">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E6%96%B9%E5%B7%AE%E6%97%A0%E5%81%8F%E4%BC%B0%E8%AE%A1%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">最小方差，无偏估计量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%81%8F%E5%B7%AE"><span class="nav-number">2.1.</span> <span class="nav-text">参数偏差</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%96%B9%E5%B7%AE"><span class="nav-number">2.2.</span> <span class="nav-text">参数方差</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E4%BC%B0%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">最大似然估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%87%E5%80%BC%E5%B7%B2%E7%9F%A5%E7%9A%84%E6%96%B9%E5%B7%AE%E4%BC%B0%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">均值已知的方差估计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1"><span class="nav-number">4.1.</span> <span class="nav-text">参数估计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E7%8E%B0%E8%AF%84%E4%BB%B7"><span class="nav-number">4.2.</span> <span class="nav-text">表现评价</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%87%E5%80%BC%E6%9C%AA%E7%9F%A5%E7%9A%84%E6%96%B9%E5%B7%AE%E4%BC%B0%E8%AE%A1"><span class="nav-number">5.</span> <span class="nav-text">均值未知的方差估计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1-1"><span class="nav-number">5.1.</span> <span class="nav-text">参数估计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E7%8E%B0%E8%AF%84%E4%BB%B7-1"><span class="nav-number">5.2.</span> <span class="nav-text">表现评价</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%AD%A3%E5%81%8F%E5%B7%AE"><span class="nav-number">5.3.</span> <span class="nav-text">修正偏差</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
+  <div class="site-description" itemprop="description">Mingbo</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chengmingbo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chengmingbo" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
     
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vividfree.github.io/" title="http:&#x2F;&#x2F;vividfree.github.io&#x2F;" rel="noopener" target="_blank">vividfree</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://colah.github.io/" title="http:&#x2F;&#x2F;colah.github.io&#x2F;" rel="noopener" target="_blank">colah</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.autonlab.org/tutorials" title="https:&#x2F;&#x2F;www.autonlab.org&#x2F;tutorials" rel="noopener" target="_blank">Andrew Moore</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://plot.ly/matlab/plot/" title="https:&#x2F;&#x2F;plot.ly&#x2F;matlab&#x2F;plot&#x2F;" rel="noopener" target="_blank">matlabplot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ryanzhang.info/blog/" title="http:&#x2F;&#x2F;www.ryanzhang.info&#x2F;blog&#x2F;" rel="noopener" target="_blank">Ryan’s Cabinet</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="http:&#x2F;&#x2F;www.cnblogs.com&#x2F;jerrylead&#x2F;tag&#x2F;Machine%20Learning&#x2F;" rel="noopener" target="_blank">JerryLead</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://yxzf.github.io/" title="https:&#x2F;&#x2F;yxzf.github.io&#x2F;" rel="noopener" target="_blank">YXZF'S BLOG</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vonng.com/" title="http:&#x2F;&#x2F;vonng.com" rel="noopener" target="_blank">VONNG</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/06/17/sample-variance/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/06/17/sample-variance/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
     </span>
 
-    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="样本方差为什么除以N-1?（翻译） | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          样本方差为什么除以N-1?（翻译）
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">样本方差为什么除以N-1?（翻译）</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-17T17:52:38+02:00">
-                2017-06-17
-              </time>
-            
+      <time title="创建时间：2017-06-17 17:52:38" itemprop="dateCreated datePublished" datetime="2017-06-17T17:52:38+02:00">2017-06-17</time>
+    </span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>原文作者：<a href="http://www.visiondummy.com/" target="_blank" rel="noopener">Vincent Spruy</a></p>
+    <div class="post-body" itemprop="articleBody"><p>原文作者：<a target="_blank" rel="noopener" href="http://www.visiondummy.com/">Vincent Spruy</a></p>
 <p>译者：程明波</p>
-<p><a href="http://www.visiondummy.com/2014/03/divide-variance-n-1/" target="_blank" rel="noopener">英文文章地址</a></p>
-<p><a href="http://commanber.com/2017/06/17/sample-variance/">译文地址</a></p>
-<p>译者注：由于历史原因，高斯分布(Gaussian Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如$\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$的分布。文中我会采用正态分布的提法。</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>本文，呼应标题，我将推导著名正态分布数据均值和方差的计算公式。如果一些读者对于这个问题的“为什么”并不感兴趣，仅仅是对“什么时候使用”感兴趣，那答案就非常简单了：</p>
-<p>如果你想预估一份数据的均值和方差(典型情况)，那么方差公式除的是$N-1$，即：</p>
-<p>$$\sigma^2 = \frac{1}{N-1}\sum_{i=1}^N (x_i - \mu)^2$$</p>
-<p>另一种情况，如果整体的真实均值已知，那么方差公式除的就是$N$，即：</p>
-<p>$$\sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2$$</p>
+<p><a
+target="_blank" rel="noopener" href="http://www.visiondummy.com/2014/03/divide-variance-n-1/">英文文章地址</a></p>
+<p><a
+href="http://chengmingbo.github.io/2017/06/17/sample-variance/">译文地址</a></p>
+<p>译者注：由于历史原因，高斯分布(Gaussian
+Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如<span
+class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span>的分布。文中我会采用正态分布的提法。</p>
+<h3 id="简介">简介</h3>
+<p>本文，呼应标题，我将推导著名正态分布数据均值和方差的计算公式。如果一些读者对于这个问题的“为什么”并不感兴趣，仅仅是对“什么时候使用”感兴趣，那答案就非常简单了：</p>
+<p>如果你想预估一份数据的均值和方差(典型情况)，那么方差公式除的是<span
+class="math inline">\(N-1\)</span>，即：</p>
+<p><span class="math display">\[\sigma^2 = \frac{1}{N-1}\sum_{i=1}^N
+(x_i - \mu)^2\]</span></p>
+<p>另一种情况，如果整体的真实均值已知，那么方差公式除的就是<span
+class="math inline">\(N\)</span>，即：</p>
+<p><span class="math display">\[\sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i
+- \mu)^2\]</span></p>
 <p>然而，前一种情况，会是你遇到更典型的情形。一会儿，我会举一个预估高斯白噪音的离散程度例子。例子中高斯白噪音的均值是已知的0，这种情况下，我们只需要估计方差。</p>
-<p>如果数据是正态分布，我们可以完全用均值$\mu$和方差$\sigma^2$刻画这个分布。其中，方差是标准差$\sigma$的平方，标准差代表了每个数据点偏离均值点的平均距离，也就是说，方差表示了数据离散程度。对于正态分布，68.3%的数据的值会介于$\mu-\sigma$和$\mu+\sigma$之间。下面图片展示是一个正态分布的概率密度函数，他的均值是$\mu=10$,方差是$\sigma^2=3^2=9$：</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110159.jpg" alt></p>
-<p><strong>图1.</strong> 正态分布概率密度函数. 对于正态分布数据，68%的样本落在均值$\pm$方差。</p>
+<p>如果数据是正态分布，我们可以完全用均值<span
+class="math inline">\(\mu\)</span>和方差<span
+class="math inline">\(\sigma^2\)</span>刻画这个分布。其中，方差是标准差<span
+class="math inline">\(\sigma\)</span>的平方，标准差代表了每个数据点偏离均值点的平均距离，也就是说，方差表示了数据离散程度。对于正态分布，68.3%的数据的值会介于<span
+class="math inline">\(\mu-\sigma\)</span>和<span
+class="math inline">\(\mu+\sigma\)</span>之间。下面图片展示是一个正态分布的概率密度函数，他的均值是<span
+class="math inline">\(\mu=10\)</span>,方差是<span
+class="math inline">\(\sigma^2=3^2=9\)</span>：</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110159.jpg" /></p>
+<p><strong>图1.</strong> 正态分布概率密度函数.
+对于正态分布数据，68%的样本落在均值<span
+class="math inline">\(\pm\)</span>方差。</p>
 <p>通常，我们拿不到全部的全体数据。上面的例子中，典型的情况是我们有一些观察数据，但是，我们没有上图中x轴上所有可能的观察数据。例如我们可能有下面一些观察数据：</p>
 <p>表1</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>观察数据ID</th>
 <th>观察值</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>观察数据 1</td>
 <td>10</td>
 </tr>
-<tr>
+<tr class="even">
 <td>观察数据 2</td>
 <td>12</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>观察数据 3</td>
 <td>7</td>
 </tr>
-<tr>
+<tr class="even">
 <td>观察数据 4</td>
 <td>5</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>观察数据 5</td>
 <td>11</td>
 </tr>
 </tbody>
 </table>
 <p>现在如果我们通过把所有值相加并除以观察的次数，得到经验均值：</p>
-<p>$$\mu=\frac{10+12+7+5+11}{5}=9\tag{1}$$.</p>
-<p>通常，我们会假设经验均值接近分布的未知的真实均值，因此，我们可以假设观测数据来自于均值为$\mu=9$的正态分布。在这个例子中，分布真实均值是10， 也就是说，经验均值实际上接近于真实均值。</p>
+<p><span
+class="math display">\[\mu=\frac{10+12+7+5+11}{5}=9\tag{1}\]</span>.</p>
+<p>通常，我们会假设经验均值接近分布的未知的真实均值，因此，我们可以假设观测数据来自于均值为<span
+class="math inline">\(\mu=9\)</span>的正态分布。在这个例子中，分布真实均值是10，
+也就是说，经验均值实际上接近于真实均值。</p>
 <p>数据的方差计算如下：</p>
-<p>$$\begin{aligned}\sigma^2&amp;= \frac{1}{N-1}\sum_{i=1}^N (x_i - \mu)^2\&amp;= \frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4})\&amp;= 8.5.\end{aligned}\tag{2}$$</p>
+<p><span class="math display">\[\begin{aligned}\sigma^2&amp;=
+\frac{1}{N-1}\sum_{i=1}^N (x_i - \mu)^2\\&amp;=
+\frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4})\\&amp;=
+8.5.\end{aligned}\tag{2}\]</span></p>
 <p>同样，我们一般假设经验方差接近于基于分布真实未知方差。在此例中，真实方差是9，所以，经验方差也是接近于真实方差。</p>
 <p>那么我们手上的问题现在就是为什么我们用于计算经验均值和经验方差的公式是正确的。事实上，另一个我们经常用于计算方差的公式是这样定义的：</p>
-<p>$$\begin{aligned}\sigma^2 &amp;= \frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2 \&amp;= \frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4}) \&amp;= 6.8.\end{aligned}\tag{3}$$</p>
-<p>公式(2)和公式(3)的唯一不同是前一个公式除的是$N-1$，而后一个除的是$N$。两个公式都是对的，只是根据不同的场景使用不同的公式。</p>
-<p>接下来的部分，我们针对给定一个正态分布的样本集，完成对其未知方差和均值最好估计的完整推导。我们将会看到，一些情况下，方差除的是$N$，另一些情况除的是$N-1$。</p>
-<p>用一个公式近似一个参数(均值或方差)叫做估计量。下面，我们定义一个分布的真实但未知的参数为$\hat{\mu}$和$\hat{\sigma}^2$。而估计量，例如，经验的平均和经验方差，定义为$\mu$和$\sigma^2$。</p>
-<p>为了找到最优的估计量，首先，一个整体均值为$\mu$标准差为$\sigma$的正态分布，对于特定的观察点$x_i$，我们需要一个分析相似的表达式。对于一个已知参数的正态分布一般定义为$N(\mu,\sigma^2)$。似然函数为：</p>
-<p>$$x_i \sim N(\mu,\sigma^2) \Rightarrow P(x_i; \mu,\sigma)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}.\tag{4}$$</p>
-<p>为了计算均值和方差，显然，我们需要这个分布一个以上的样本。接下来，设$\vec{x}=(x_1,x_2,\cdots,x_N)$为包含所有的可用样本的向量（例如：表一中所有的值）。如果所有这些样本统计独立，我们可以写出联合似然函数为所有似然函数的乘积：</p>
-<p>$$\begin{aligned}P(\vec{x};\mu,\sigma^2)&amp;=P(x_1,x_2,\cdots,x_n;\mu,\sigma^2)\&amp;=P(x_1;\mu,\sigma^2)P(x_2;\mu,\sigma^2)\cdots P(x_N;\mu,\sigma^2)\&amp;=\prod_{i=1}^{N}P(x_i;\mu,\sigma^2)\end{aligned}.\tag{5}$$</p>
+<p><span class="math display">\[\begin{aligned}\sigma^2 &amp;=
+\frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2 \\&amp;=
+\frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4}) \\&amp;=
+6.8.\end{aligned}\tag{3}\]</span></p>
+<p>公式(2)和公式(3)的唯一不同是前一个公式除的是<span
+class="math inline">\(N-1\)</span>，而后一个除的是<span
+class="math inline">\(N\)</span>。两个公式都是对的，只是根据不同的场景使用不同的公式。</p>
+<p>接下来的部分，我们针对给定一个正态分布的样本集，完成对其未知方差和均值最好估计的完整推导。我们将会看到，一些情况下，方差除的是<span
+class="math inline">\(N\)</span>，另一些情况除的是<span
+class="math inline">\(N-1\)</span>。</p>
+<p>用一个公式近似一个参数(均值或方差)叫做估计量。下面，我们定义一个分布的真实但未知的参数为<span
+class="math inline">\(\hat{\mu}\)</span>和<span
+class="math inline">\(\hat{\sigma}^2\)</span>。而估计量，例如，经验的平均和经验方差，定义为<span
+class="math inline">\(\mu\)</span>和<span
+class="math inline">\(\sigma^2\)</span>。</p>
+<p>为了找到最优的估计量，首先，一个整体均值为<span
+class="math inline">\(\mu\)</span>标准差为<span
+class="math inline">\(\sigma\)</span>的正态分布，对于特定的观察点<span
+class="math inline">\(x_i\)</span>，我们需要一个分析相似的表达式。对于一个已知参数的正态分布一般定义为<span
+class="math inline">\(N(\mu,\sigma^2)\)</span>。似然函数为：</p>
+<p><span class="math display">\[x_i \sim N(\mu,\sigma^2) \Rightarrow
+P(x_i;
+\mu,\sigma)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}.\tag{4}\]</span></p>
+<p>为了计算均值和方差，显然，我们需要这个分布一个以上的样本。接下来，设<span
+class="math inline">\(\vec{x}=(x_1,x_2,\cdots,x_N)\)</span>为包含所有的可用样本的向量（例如：表一中所有的值）。如果所有这些样本统计独立，我们可以写出联合似然函数为所有似然函数的乘积：</p>
+<p><span
+class="math display">\[\begin{aligned}P(\vec{x};\mu,\sigma^2)&amp;=P(x_1,x_2,\cdots,x_n;\mu,\sigma^2)\\&amp;=P(x_1;\mu,\sigma^2)P(x_2;\mu,\sigma^2)\cdots
+P(x_N;\mu,\sigma^2)\\&amp;=\prod_{i=1}^{N}P(x_i;\mu,\sigma^2)\end{aligned}.\tag{5}\]</span></p>
 <p>把公式(4)代入公式(5)，可得出联合概率密度函数的分析表达式：</p>
-<p>$$\begin{aligned}P({\vec{x};\mu,\sigma})&amp;=\prod_{i=1}^{N}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x_i-\mu)^2}\&amp;=\frac{1}{(2\pi\sigma^2)^{\frac{N}{2}}}e^{-\frac{1}{2\sigma^2}\sum_{i=1}^{N}(x_i-\mu)^2}\end{aligned}.\tag{6}$$</p>
+<p><span
+class="math display">\[\begin{aligned}P({\vec{x};\mu,\sigma})&amp;=\prod_{i=1}^{N}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x_i-\mu)^2}\\&amp;=\frac{1}{(2\pi\sigma^2)^{\frac{N}{2}}}e^{-\frac{1}{2\sigma^2}\sum_{i=1}^{N}(x_i-\mu)^2}\end{aligned}.\tag{6}\]</span></p>
 <p>公式(6)在接下来的部分将非常重要。我们会用它推导关于正态分布著名的估计量均值和方差。</p>
-<h3 id="最小方差，无偏估计量"><a href="#最小方差，无偏估计量" class="headerlink" title="最小方差，无偏估计量"></a>最小方差，无偏估计量</h3><p>决定一个估计量是不是“好”估计量，首先我们需要定义什么是真正的“好” 估计量。说一个估计量好，依赖于两个度量，叫做其偏差(bias)和方差(variance)(是的，我们要讨论均值估计量的方差，以及方差估计量的方差)。本节将简单的讨论这两个度量。</p>
-<h4 id="参数偏差"><a href="#参数偏差" class="headerlink" title="参数偏差"></a>参数偏差</h4><p>想象一下，如果我们能拿到全体不同的(互斥)数据子集。类比之前的的例子，假设，除了【表1】中的数据，我们还有完全不同观察结果表2及表3。那么，一个关于均值好的估计量，应该使得这个估计量平均下来等于真实的均值。我们可以接受其中一个自己的经验均值不等于真实均值，但是，一个好的估计量应该保证：对于所有子集均值估计的平均值等于真实均值。这个限制条件用数学化的表示，就是估计量的期望值(Expected Value)应该等于参数值：</p>
-<p>$$E(\mu)=\hat{\mu}\qquad E(\sigma^2)=\hat{\sigma}^2.\tag{7}$$</p>
+<h3 id="最小方差无偏估计量">最小方差，无偏估计量</h3>
+<p>决定一个估计量是不是“好”估计量，首先我们需要定义什么是真正的“好”
+估计量。说一个估计量好，依赖于两个度量，叫做其偏差(bias)和方差(variance)(是的，我们要讨论均值估计量的方差，以及方差估计量的方差)。本节将简单的讨论这两个度量。</p>
+<h4 id="参数偏差">参数偏差</h4>
+<p>想象一下，如果我们能拿到全体不同的(互斥)数据子集。类比之前的的例子，假设，除了【表1】中的数据，我们还有完全不同观察结果表2及表3。那么，一个关于均值好的估计量，应该使得这个估计量平均下来等于真实的均值。我们可以接受其中一个自己的经验均值不等于真实均值，但是，一个好的估计量应该保证：对于所有子集均值估计的平均值等于真实均值。这个限制条件用数学化的表示，就是估计量的期望值(Expected
+Value)应该等于参数值：</p>
+<p><span class="math display">\[E(\mu)=\hat{\mu}\qquad
+E(\sigma^2)=\hat{\sigma}^2.\tag{7}\]</span></p>
 <p>如果满足上面的条件，那么这些估计量就被称之为“无偏估计”。反之，如果上面的条件不满足，这些估计量叫做“有偏的”，也就是说平均来看，他们或者低估或者高估了参数的真实值。</p>
-<h4 id="参数方差"><a href="#参数方差" class="headerlink" title="参数方差"></a>参数方差</h4><p>无偏估计量保证平均来看，它们估计的值等于真是参数。但是，这并不意味着每次估计是一个好的估计。比如，如果真实均值为10，一个无偏估计量可以估计全体的其中一个子集的均值为50，而另一个均值为-30。期望的估计的值确实是10，也等于真是的参数值，但是，估计量的质量明显依赖每次估计的离散程度。对于全体5个不同子集，一个估计量产生的估计值(10,15,5,12,8)是无偏的和另一个估计量产生的估计值（50，-30，100，-90，20）（译者注：原文作者最后一个是10，我计算换成20，这样均值才是10）。但是第一个估计量的所有估计值明显比第二个估计量的估计值更接近真实值。</p>
+<h4 id="参数方差">参数方差</h4>
+<p>无偏估计量保证平均来看，它们估计的值等于真是参数。但是，这并不意味着每次估计是一个好的估计。比如，如果真实均值为10，一个无偏估计量可以估计全体的其中一个子集的均值为50，而另一个均值为-30。期望的估计的值确实是10，也等于真是的参数值，但是，估计量的质量明显依赖每次估计的离散程度。对于全体5个不同子集，一个估计量产生的估计值(10,15,5,12,8)是无偏的和另一个估计量产生的估计值（50，-30，100，-90，20）（译者注：原文作者最后一个是10，我计算换成20，这样均值才是10）。但是第一个估计量的所有估计值明显比第二个估计量的估计值更接近真实值。</p>
 <p>因此，一个好的估计量不仅需要有低偏差，同时也需要低方差。这个方差表示为平均平方误差的估计量：</p>
-<p>$$Var(\mu)=E[(\hat{\mu}-\mu)^2]$$</p>
-<p>$$Var(\sigma^2)=E[(\hat{\sigma}-\sigma)^2]$$</p>
-<p>因此一个好的估计量是低偏差，低方差的。如果存在最优的估计量，那么这个估计应该是无偏的，而且方差比所有的其他可能估计量都要低。这样的一个估计量被称之为最小方差，无偏（MVU）估计量。下一节，我们将会针对一个正态分布推导均值和方差估计量的数学表达式。我们将会看到，一个正态分布的方差MVU估计量在一些假设下需要除以$N$，而在另一些假设下需要除以$N-1$。</p>
-<h3 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h3><p>基于整体的一个子集，尽管有大量的获取一个参数估计量的技术，所有这些技术中最简单的可能就数最大似然估计了。</p>
-<p>观察值$\vec{x}$的概率在公式(6)定义为$P(\vec{x};\mu,\sigma^2)$. 如果我们在此函数中固定$x$和$\sigma^2$，当使$\vec{x}$变化时，我们就可以获得图(1)的正态分布。但是，我们也可以固定$\vec{x}$，使$\mu$和（或）$\sigma^2$变化。比如，我们可以选择类似前面例子中的$\vec{x}=(10,12,7,5,11)$。我们选择固定$\mu=10$，同时使$\sigma^2$变化。图(2)展示了当$x$和$\mu$固定时，$\sigma^2$对于这个分布取不同值的变化曲线：</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110329.jpg" alt></p>
-<p>图 2. 此图表示了似然函数在特定观察数据$\vec{x}$，下固定$\mu=10$，$\sigma^2$变化曲线。</p>
-<p>上图，我们通过固定$\mu=10$，令$\sigma^2$变化计算了$P(\vec{x};\sigma^2)$的似然函数。在结果曲线的每一个数据点代表了似然度，观察值$\vec{x}$是一个正态分布在参数$\sigma^2$下的样本。那么对应最大似然度的参数值最有可能是从我们定义的分布中产生数据的参数。因此，我们能通过找到似然度曲线的最大值决定最优的$\sigma^2$。在此例中，最大值在$\sigma^2=7.8$，这样标准差就是$\sqrt{(\sigma^2)=2.8}$。事实上，如果给定$\mu=10$，通过传统的方法计算，我们会发明方差就是7.8：</p>
-<p>$$\frac{(10-10)^2+(12-10)^2+(7-10)^2+(5-10)^2+(11-10)^2}{5}=7.8$$</p>
-<p>因此，基于样本数据的方差计算公式只需要简单的通过找到最大的似然函数的最高点。此外，除了固定$\mu$，我们可以使$\mu$和$\sigma^2$同时变化。然后找到两个估计量对应在两个维度的似然函数的最大值。</p>
-<p>要找一个函数的最大值，也很简单，只需要求导使其等于0。如果想找一个有两个变量函数的最大值，我们需要计算每个变量的偏导，再把两个偏导全部设置为0。接下来，设$\hat{\mu}_{ML}$为通过极大似然方法得到的总体均值的最优估计量，设$\hat{\sigma}^2_ML$为方差的最优估计量。要最大化似然函数，我们可以简单的计算它的(偏)导数，然后赋值为0，如下：</p>
-<p>$$\begin{aligned} &amp;\hat{\mu}<em>{ML} = \arg\max</em>\mu P(\vec{x}; \mu, \sigma^2)\ &amp;\Rightarrow \frac{\partial P(\vec{x}; \mu, \sigma^2)}{\partial \mu} = 0 \end{aligned}$$</p>
+<p><span
+class="math display">\[Var(\mu)=E[(\hat{\mu}-\mu)^2]\]</span></p>
+<p><span
+class="math display">\[Var(\sigma^2)=E[(\hat{\sigma}-\sigma)^2]\]</span></p>
+<p>因此一个好的估计量是低偏差，低方差的。如果存在最优的估计量，那么这个估计应该是无偏的，而且方差比所有的其他可能估计量都要低。这样的一个估计量被称之为最小方差，无偏（MVU）估计量。下一节，我们将会针对一个正态分布推导均值和方差估计量的数学表达式。我们将会看到，一个正态分布的方差MVU估计量在一些假设下需要除以<span
+class="math inline">\(N\)</span>，而在另一些假设下需要除以<span
+class="math inline">\(N-1\)</span>。</p>
+<h3 id="最大似然估计">最大似然估计</h3>
+<p>基于整体的一个子集，尽管有大量的获取一个参数估计量的技术，所有这些技术中最简单的可能就数最大似然估计了。</p>
+<p>观察值<span
+class="math inline">\(\vec{x}\)</span>的概率在公式(6)定义为<span
+class="math inline">\(P(\vec{x};\mu,\sigma^2)\)</span>.
+如果我们在此函数中固定<span class="math inline">\(x\)</span>和<span
+class="math inline">\(\sigma^2\)</span>，当使<span
+class="math inline">\(\vec{x}\)</span>变化时，我们就可以获得图(1)的正态分布。但是，我们也可以固定<span
+class="math inline">\(\vec{x}\)</span>，使<span
+class="math inline">\(\mu\)</span>和（或）<span
+class="math inline">\(\sigma^2\)</span>变化。比如，我们可以选择类似前面例子中的<span
+class="math inline">\(\vec{x}=(10,12,7,5,11)\)</span>。我们选择固定<span
+class="math inline">\(\mu=10\)</span>，同时使<span
+class="math inline">\(\sigma^2\)</span>变化。图(2)展示了当<span
+class="math inline">\(x\)</span>和<span
+class="math inline">\(\mu\)</span>固定时，<span
+class="math inline">\(\sigma^2\)</span>对于这个分布取不同值的变化曲线：</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110329.jpg" /></p>
+<p>图 2. 此图表示了似然函数在特定观察数据<span
+class="math inline">\(\vec{x}\)</span>，下固定<span
+class="math inline">\(\mu=10\)</span>，<span
+class="math inline">\(\sigma^2\)</span>变化曲线。</p>
+<p>上图，我们通过固定<span
+class="math inline">\(\mu=10\)</span>，令<span
+class="math inline">\(\sigma^2\)</span>变化计算了<span
+class="math inline">\(P(\vec{x};\sigma^2)\)</span>的似然函数。在结果曲线的每一个数据点代表了似然度，观察值<span
+class="math inline">\(\vec{x}\)</span>是一个正态分布在参数<span
+class="math inline">\(\sigma^2\)</span>下的样本。那么对应最大似然度的参数值最有可能是从我们定义的分布中产生数据的参数。因此，我们能通过找到似然度曲线的最大值决定最优的<span
+class="math inline">\(\sigma^2\)</span>。在此例中，最大值在<span
+class="math inline">\(\sigma^2=7.8\)</span>，这样标准差就是<span
+class="math inline">\(\sqrt{(\sigma^2)=2.8}\)</span>。事实上，如果给定<span
+class="math inline">\(\mu=10\)</span>，通过传统的方法计算，我们会发明方差就是7.8：</p>
+<p><span
+class="math display">\[\frac{(10-10)^2+(12-10)^2+(7-10)^2+(5-10)^2+(11-10)^2}{5}=7.8\]</span></p>
+<p>因此，基于样本数据的方差计算公式只需要简单的通过找到最大的似然函数的最高点。此外，除了固定<span
+class="math inline">\(\mu\)</span>，我们可以使<span
+class="math inline">\(\mu\)</span>和<span
+class="math inline">\(\sigma^2\)</span>同时变化。然后找到两个估计量对应在两个维度的似然函数的最大值。</p>
+<p>要找一个函数的最大值，也很简单，只需要求导使其等于0。如果想找一个有两个变量函数的最大值，我们需要计算每个变量的偏导，再把两个偏导全部设置为0。接下来，设<span
+class="math inline">\(\hat{\mu}_{ML}\)</span>为通过极大似然方法得到的总体均值的最优估计量，设<span
+class="math inline">\(\hat{\sigma}^2_ML\)</span>为方差的最优估计量。要最大化似然函数，我们可以简单的计算它的(偏)导数，然后赋值为0，如下：</p>
+<p><span class="math display">\[\begin{aligned} &amp;\hat{\mu}_{ML} =
+\arg\max_\mu P(\vec{x}; \mu, \sigma^2)\\ &amp;\Rightarrow \frac{\partial
+P(\vec{x}; \mu, \sigma^2)}{\partial \mu} = 0 \end{aligned}\]</span></p>
 <p>及</p>
-<p>$$\begin{aligned} &amp;\hat{\sigma}^2_{ML} = \arg\max_{\sigma^2} P(\vec{x}; \mu, \sigma^2)\ &amp;\Rightarrow \frac{\partial P(\vec{x}; \mu, \sigma^2)}{\partial \sigma^2} = 0 \end{aligned}$$</p>
-<p>下一节，我们将利用这个技术得到$\mu$和$\sigma^2$的MVU估计量。我们考虑两种情形：</p>
-<p>第一种情形，我们假设分布的真正的均值$\hat{\mu}$是已知的，因此，我们只需要估计方差，那么问题就变成在参数为$\sigma^2$的一维的极大似然函数中对应找其最大值。这种情况不经常出现，但是，在实际应用中确实存在。例如，如果我们知道一个信号(比如：一幅图中一个像素的颜色值)本来应该有特定的值，但是，信号被白噪音污染了（均值为0的高斯噪音），这时分布的均值是已知的，我们只需要估计方差。</p>
+<p><span class="math display">\[\begin{aligned} &amp;\hat{\sigma}^2_{ML}
+= \arg\max_{\sigma^2} P(\vec{x}; \mu, \sigma^2)\\ &amp;\Rightarrow
+\frac{\partial P(\vec{x}; \mu, \sigma^2)}{\partial \sigma^2} = 0
+\end{aligned}\]</span></p>
+<p>下一节，我们将利用这个技术得到<span
+class="math inline">\(\mu\)</span>和<span
+class="math inline">\(\sigma^2\)</span>的MVU估计量。我们考虑两种情形：</p>
+<p>第一种情形，我们假设分布的真正的均值<span
+class="math inline">\(\hat{\mu}\)</span>是已知的，因此，我们只需要估计方差，那么问题就变成在参数为<span
+class="math inline">\(\sigma^2\)</span>的一维的极大似然函数中对应找其最大值。这种情况不经常出现，但是，在实际应用中确实存在。例如，如果我们知道一个信号(比如：一幅图中一个像素的颜色值)本来应该有特定的值，但是，信号被白噪音污染了（均值为0的高斯噪音），这时分布的均值是已知的，我们只需要估计方差。</p>
 <p>第二种情形就是处理均值和方差的真实值都不知道的情况。这种情况最常见，这时，我们需要基于样本数据估计均值和方差。</p>
-<p>后面我们将看到，每种情形产生不同的MVU估计量。具体来说，第一种情形方差估计量需要除以$N$来标准化MVU。而第二种除的是$N-1$。</p>
-<h3 id="均值已知的方差估计"><a href="#均值已知的方差估计" class="headerlink" title="均值已知的方差估计"></a>均值已知的方差估计</h3><h4 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h4><p>如果分布的均值真实值已知，那么似然函数只有一个参数$\sigma^2$。求最大似然估计量也就是解决：</p>
-<p>$$\hat{\sigma^2}<em>{ML}=\arg\max</em>{\sigma^2} P(\vec{x};\sigma^2).\tag{8}$$</p>
-<p>但是，根据公式(6)的定义，如果计算$P(\vec{x};\sigma^2)$涉及到计算函数中指数的偏导。事实上，计算对数似然函数比计算似然函数本身的导数要简单的多。因为对数函数是单调递增函数，其最大值取值位置与原似然函数是一样的。因此我们用下面的式子替换：</p>
-<p>$$\hat{\sigma}^2_{ML}=\arg\max_{\sigma^2}\log(P(\vec{x};\sigma^2)).\tag{9}$$</p>
-<p>下面，我令$s=\sigma^2$简化式子。我们通过计算公式(6)的对数的导数赋值为0来最大化对数似然函数：</p>
-<p>$$\begin{aligned}&amp;\frac{\partial \log(P(\vec{x};\sigma^2))}{\partial \sigma^2}=0\&amp;\Leftrightarrow\frac{\partial\log(P(\vec{x};s))}{\partial s}=0\&amp;\Leftrightarrow\frac{\partial}{\partial s}\log\left(\frac{1}{(2\pi s)^{\frac{N}{2}}}e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2} \right)=0\&amp;\Leftrightarrow\frac{\partial}{\partial s}\log\left(\frac{1}{(2\pi)^{\frac{N}{2}}}\right)+\frac{\partial}{\partial s}\log\left(\frac{1}{\sqrt{s}^\frac{N}{2}}\right)+\frac{\partial}{\partial s} \log\left(e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2}\right )=0\&amp;\Leftrightarrow0+\frac{\partial}{\partial s}\log\left((s)^{-\frac{N}{2}}\right)+\frac{\partial}{\partial s}\left(-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\&amp;\Leftrightarrow -\frac{N}{2}\log (s)+\frac{1}{2 s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\&amp;\Leftrightarrow -\frac{N}{2s}+\frac{1}{2s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\&amp;\Leftrightarrow \frac{N}{2s^2}\left(-s+\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\&amp;\Leftrightarrow\frac{N}{2s^2}\left(\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2-s\right)=0\end{aligned}$$</p>
-<p>很明显，如果$N&gt;0$，那么上面等式唯一的解就是：</p>
-<p>$$s=\sigma^2=\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2.\tag{10}$$</p>
-<p>注意到，实际上$\hat{\sigma}^2$的极大似然估计估计量就是传统上一般计算方差的公式。这里标准化因子是$\frac{1}{N}$.</p>
+<p>后面我们将看到，每种情形产生不同的MVU估计量。具体来说，第一种情形方差估计量需要除以<span
+class="math inline">\(N\)</span>来标准化MVU。而第二种除的是<span
+class="math inline">\(N-1\)</span>。</p>
+<h3 id="均值已知的方差估计">均值已知的方差估计</h3>
+<h4 id="参数估计">参数估计</h4>
+<p>如果分布的均值真实值已知，那么似然函数只有一个参数<span
+class="math inline">\(\sigma^2\)</span>。求最大似然估计量也就是解决：</p>
+<p><span class="math display">\[\hat{\sigma^2}_{ML}=\arg\max_{\sigma^2}
+P(\vec{x};\sigma^2).\tag{8}\]</span></p>
+<p>但是，根据公式(6)的定义，如果计算<span
+class="math inline">\(P(\vec{x};\sigma^2)\)</span>涉及到计算函数中指数的偏导。事实上，计算对数似然函数比计算似然函数本身的导数要简单的多。因为对数函数是单调递增函数，其最大值取值位置与原似然函数是一样的。因此我们用下面的式子替换：</p>
+<p><span
+class="math display">\[\hat{\sigma}^2_{ML}=\arg\max_{\sigma^2}\log(P(\vec{x};\sigma^2)).\tag{9}\]</span></p>
+<p>下面，我令<span
+class="math inline">\(s=\sigma^2\)</span>简化式子。我们通过计算公式(6)的对数的导数赋值为0来最大化对数似然函数：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\frac{\partial
+\log(P(\vec{x};\sigma^2))}{\partial
+\sigma^2}=0\\&amp;\Leftrightarrow\frac{\partial\log(P(\vec{x};s))}{\partial
+s}=0\\&amp;\Leftrightarrow\frac{\partial}{\partial
+s}\log\left(\frac{1}{(2\pi
+s)^{\frac{N}{2}}}e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2}
+\right)=0\\&amp;\Leftrightarrow\frac{\partial}{\partial
+s}\log\left(\frac{1}{(2\pi)^{\frac{N}{2}}}\right)+\frac{\partial}{\partial
+s}\log\left(\frac{1}{\sqrt{s}^\frac{N}{2}}\right)+\frac{\partial}{\partial
+s} \log\left(e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2}\right
+)=0\\&amp;\Leftrightarrow0+\frac{\partial}{\partial
+s}\log\left((s)^{-\frac{N}{2}}\right)+\frac{\partial}{\partial
+s}\left(-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\\&amp;\Leftrightarrow
+-\frac{N}{2}\log (s)+\frac{1}{2
+s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\\&amp;\Leftrightarrow
+-\frac{N}{2s}+\frac{1}{2s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\\&amp;\Leftrightarrow
+\frac{N}{2s^2}\left(-s+\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\\&amp;\Leftrightarrow\frac{N}{2s^2}\left(\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2-s\right)=0\end{aligned}\]</span></p>
+<p>很明显，如果<span
+class="math inline">\(N&gt;0\)</span>，那么上面等式唯一的解就是：</p>
+<p><span
+class="math display">\[s=\sigma^2=\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2.\tag{10}\]</span></p>
+<p>注意到，实际上<span
+class="math inline">\(\hat{\sigma}^2\)</span>的极大似然估计估计量就是传统上一般计算方差的公式。这里标准化因子是<span
+class="math inline">\(\frac{1}{N}\)</span>.</p>
 <p>但是，极大似然估计并不保证得出的是一个无偏估计量。另外，就算得到的估计量是无偏的，极大似然估计也不能保证估计是最小方差，即MVU。因此，我们需要检查公式(10)的的估计量是否是无偏的。</p>
-<h4 id="表现评价"><a href="#表现评价" class="headerlink" title="表现评价"></a>表现评价</h4><p>我们需要检查公式(7)的等式是否成立，来确定是否公式(10)中的估计量是无偏的。即判断：</p>
-<p>$$E(s)=\hat{s}.$$</p>
-<p>我们把公式(10)代入到$E(s)$，计算：</p>
-<p>$$\begin{aligned}E[s] &amp;= E \left[\frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2 \right] = \frac{1}{N} \sum_{i=1}^N E \left[(x_i - \mu)^2 \right] = \frac{1}{N} \sum_{i=1}^N E \left[x_i^2 - 2x_i \mu + \mu^2 \right]\&amp;= \frac{1}{N} \left( N E[x_i^2] -2N \mu E[x_i] + N \mu^2 \right)\&amp;= \frac{1}{N} \left( N E[x_i^2] -2N \mu^2 + N \mu^2 \right)\&amp;= \frac{1}{N} \left( N E[x_i^2] -N \mu^2 \right)\end{aligned}$$</p>
-<p>另外，真实方差$\hat{s}$有一个<a href="https://en.wikipedia.org/wiki/Variance#Definition" target="_blank" rel="noopener">非常重要的性质</a>为$\hat{s}=E[x_i^2]-E[x_i]^2$，可变换公式为$E[x_i^2]=\hat{s}+E[x_i]^2=\hat{s}+\mu^2$。使用此性质我们可能从上面的公式推出：</p>
-<p>$$\begin{aligned}E[s]&amp;=\frac{1}{N}(N E[x_i^2]-N\mu^2)\&amp;=\frac{1}{N}(N\hat{s}+N\mu^2-N\mu^2)\&amp;=\frac{1}{N}(N\hat{s})\&amp;=\hat{s}\end{aligned}$$</p>
-<p>满足了公式(7)的条件$E[s]=\hat s$，因此，我们得到的数据方差$\hat s$的统计量是无偏的。此外，因为极大似然估计的如果是一个无偏的估计量，那么也是最小方差(MVU)，也就是说，我们得到的估计量比任何一个其他的估计量都大。</p>
-<p>因此，在分布真实均值已知的情况下，我们不用除以$N-1$，而是用除$N$计算正态分布的方差。</p>
-<h3 id="均值未知的方差估计"><a href="#均值未知的方差估计" class="headerlink" title="均值未知的方差估计"></a>均值未知的方差估计</h3><h4 id="参数估计-1"><a href="#参数估计-1" class="headerlink" title="参数估计"></a>参数估计</h4><p>上一节，分布的真实均值已知，因此，我们只需要估计数据的方差。但是，如果真实的均值未知，我们均值的估计量就也需要计算了。</p>
+<h4 id="表现评价">表现评价</h4>
+<p>我们需要检查公式(7)的等式是否成立，来确定是否公式(10)中的估计量是无偏的。即判断：</p>
+<p><span class="math display">\[E(s)=\hat{s}.\]</span></p>
+<p>我们把公式(10)代入到<span
+class="math inline">\(E(s)\)</span>，计算：</p>
+<p><span class="math display">\[\begin{aligned}E[s] &amp;= E
+\left[\frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2 \right] = \frac{1}{N}
+\sum_{i=1}^N E \left[(x_i - \mu)^2 \right] = \frac{1}{N} \sum_{i=1}^N E
+\left[x_i^2 - 2x_i \mu + \mu^2 \right]\\&amp;= \frac{1}{N} \left( N
+E[x_i^2] -2N \mu E[x_i] + N \mu^2 \right)\\&amp;= \frac{1}{N} \left( N
+E[x_i^2] -2N \mu^2 + N \mu^2 \right)\\&amp;= \frac{1}{N} \left( N
+E[x_i^2] -N \mu^2 \right)\end{aligned}\]</span></p>
+<p>另外，真实方差<span class="math inline">\(\hat{s}\)</span>有一个<a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Variance#Definition">非常重要的性质</a>为<span
+class="math inline">\(\hat{s}=E[x_i^2]-E[x_i]^2\)</span>，可变换公式为<span
+class="math inline">\(E[x_i^2]=\hat{s}+E[x_i]^2=\hat{s}+\mu^2\)</span>。使用此性质我们可能从上面的公式推出：</p>
+<p><span class="math display">\[\begin{aligned}E[s]&amp;=\frac{1}{N}(N
+E[x_i^2]-N\mu^2)\\&amp;=\frac{1}{N}(N\hat{s}+N\mu^2-N\mu^2)\\&amp;=\frac{1}{N}(N\hat{s})\\&amp;=\hat{s}\end{aligned}\]</span></p>
+<p>满足了公式(7)的条件<span class="math inline">\(E[s]=\hat
+s\)</span>，因此，我们得到的数据方差<span class="math inline">\(\hat
+s\)</span>的统计量是无偏的。此外，因为极大似然估计的如果是一个无偏的估计量，那么也是最小方差(MVU)，也就是说，我们得到的估计量比任何一个其他的估计量都大。</p>
+<p>因此，在分布真实均值已知的情况下，我们不用除以<span
+class="math inline">\(N-1\)</span>，而是用除<span
+class="math inline">\(N\)</span>计算正态分布的方差。</p>
+<h3 id="均值未知的方差估计">均值未知的方差估计</h3>
+<h4 id="参数估计-1">参数估计</h4>
+<p>上一节，分布的真实均值已知，因此，我们只需要估计数据的方差。但是，如果真实的均值未知，我们均值的估计量就也需要计算了。</p>
 <p>此外，方差的估计量需要使用均值的估计量。我们会看到，这时，之前我们得到的方差的估计量就不再无偏了。我们一会儿会通过除以N-1，而不是N来稍微的增加方差估计量的值，从而使方差估计无偏。</p>
-<p>与之前一样，基于log似然函数，我们用极大似然估计计算两个估计量。首先我们先计算$\hat\mu$的极大似然估计量：</p>
-<p>$$\begin{aligned}&amp;\frac{\partial \log(P(\vec{x}; s, \mu))}{\partial \mu} = 0\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \log \left( \frac{1}{(2 \pi s)^{\frac{N}{2}}} e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) = 0\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \log \left( \frac{1}{(2 \pi)^{\frac{N}{2}}} \right) + \frac{\partial}{\partial \mu} \log \left(e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) = 0\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \left(-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2 \right) = 0\&amp;\Leftrightarrow -\frac{1}{2s}\frac{\partial}{\partial \mu} \left(\sum_{i=1}^N(x_i - \mu)^2 \right) = 0\&amp;\Leftrightarrow -\frac{1}{2s} \left(\sum_{i=1}^N -2(x_i - \mu) \right) = 0\&amp;\Leftrightarrow \frac{1}{s} \left(\sum_{i=1}^N (x_i - \mu) \right) = 0 \&amp;\Leftrightarrow \frac{N}{s} \left( \frac{1}{N} \sum_{i=1}^N (x_i) - \mu \right) = 0 \end{aligned}$$</p>
-<p>显然，如果$N&gt;0$，那么上面的等式只有一种解：</p>
-<p>$$\mu=\frac{1}{N}\sum_{i=1}^{N}x_i.\tag{11}$$</p>
-<p>注意到，实际的这是计算一个分布均值的著名公式。虽然我们知道这个公式，但我们现在证明了极大似然估计量估计了一个正态分布未知均值的真实值。现在我们先假定我们之前公式(10)计算的方差$\hat s$的估计量仍然是MVU方差估计量。但下一节我们会证明这个估计量已经是有偏的了。</p>
-<h4 id="表现评价-1"><a href="#表现评价-1" class="headerlink" title="表现评价"></a>表现评价</h4><p>我们需要通过检查估计量$\mu$对真实$\hat \mu$的估计是否无偏来确定公式(7)的条件能否成立：</p>
-<p>$$E[\mu]=E\left[\frac{1}{N}\sum_{i=1}^{N}x_i\right]=\frac{1}{N}\sum_{i=1}^N E[x_i]=\frac{1}{N}N E[x_i]=\frac{1}{N} N \hat\mu=\hat\mu.$$</p>
-<p>既然$E[\mu]=\hat\mu$，那么也就是说我们对分布均值的估计量是无偏的。因为极大似然估计可以保证在估计是无偏的情况下得到的是最小方差估计量，所以我们就已经是证明了$\mu$是均值的MVU估计量。</p>
-<p>现在我们检查基于经验均值$\mu$，而不是真实均值$\hat\mu$的方差估计量$s$对真实方差$\hat s$的估计身上仍然是无偏的。我们只需要把得到的估计量$\mu$带入到之前在公式(10)推导出的公式：</p>
-<p>$$\begin{aligned} s &amp;= \sigma^2 = \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\&amp;=\frac{1}{N}\sum_{i=1}^N \left(x_i - \frac{1}{N} \sum_{i=1}^N (x_i) \right)^2\&amp;=\frac{1}{N}\sum_{i=1}^N \left[x_i^2 - 2 x_i \frac{1}{N} \sum_{i=1}^N (x_i) + \left(\frac{1}{N} \sum_{i=1}^N (x_i) \right)^2 \right]\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i \sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i \sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2\end{aligned}$$</p>
+<p>与之前一样，基于log似然函数，我们用极大似然估计计算两个估计量。首先我们先计算<span
+class="math inline">\(\hat\mu\)</span>的极大似然估计量：</p>
+<p><span class="math display">\[\begin{aligned}&amp;\frac{\partial
+\log(P(\vec{x}; s, \mu))}{\partial \mu} = 0\\&amp;\Leftrightarrow
+\frac{\partial}{\partial \mu} \log \left( \frac{1}{(2 \pi
+s)^{\frac{N}{2}}} e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) =
+0\\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \log \left(
+\frac{1}{(2 \pi)^{\frac{N}{2}}} \right) + \frac{\partial}{\partial \mu}
+\log \left(e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) =
+0\\&amp;\Leftrightarrow \frac{\partial}{\partial \mu}
+\left(-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2 \right) =
+0\\&amp;\Leftrightarrow -\frac{1}{2s}\frac{\partial}{\partial \mu}
+\left(\sum_{i=1}^N(x_i - \mu)^2 \right) = 0\\&amp;\Leftrightarrow
+-\frac{1}{2s} \left(\sum_{i=1}^N -2(x_i - \mu) \right) =
+0\\&amp;\Leftrightarrow \frac{1}{s} \left(\sum_{i=1}^N (x_i - \mu)
+\right) = 0 \\&amp;\Leftrightarrow \frac{N}{s} \left( \frac{1}{N}
+\sum_{i=1}^N (x_i) - \mu \right) = 0 \end{aligned}\]</span></p>
+<p>显然，如果<span
+class="math inline">\(N&gt;0\)</span>，那么上面的等式只有一种解：</p>
+<p><span
+class="math display">\[\mu=\frac{1}{N}\sum_{i=1}^{N}x_i.\tag{11}\]</span></p>
+<p>注意到，实际的这是计算一个分布均值的著名公式。虽然我们知道这个公式，但我们现在证明了极大似然估计量估计了一个正态分布未知均值的真实值。现在我们先假定我们之前公式(10)计算的方差<span
+class="math inline">\(\hat
+s\)</span>的估计量仍然是MVU方差估计量。但下一节我们会证明这个估计量已经是有偏的了。</p>
+<h4 id="表现评价-1">表现评价</h4>
+<p>我们需要通过检查估计量<span
+class="math inline">\(\mu\)</span>对真实<span class="math inline">\(\hat
+\mu\)</span>的估计是否无偏来确定公式(7)的条件能否成立：</p>
+<p><span
+class="math display">\[E[\mu]=E\left[\frac{1}{N}\sum_{i=1}^{N}x_i\right]=\frac{1}{N}\sum_{i=1}^N
+E[x_i]=\frac{1}{N}N E[x_i]=\frac{1}{N} N \hat\mu=\hat\mu.\]</span></p>
+<p>既然<span
+class="math inline">\(E[\mu]=\hat\mu\)</span>，那么也就是说我们对分布均值的估计量是无偏的。因为极大似然估计可以保证在估计是无偏的情况下得到的是最小方差估计量，所以我们就已经是证明了<span
+class="math inline">\(\mu\)</span>是均值的MVU估计量。</p>
+<p>现在我们检查基于经验均值<span
+class="math inline">\(\mu\)</span>，而不是真实均值<span
+class="math inline">\(\hat\mu\)</span>的方差估计量<span
+class="math inline">\(s\)</span>对真实方差<span
+class="math inline">\(\hat
+s\)</span>的估计身上仍然是无偏的。我们只需要把得到的估计量<span
+class="math inline">\(\mu\)</span>带入到之前在公式(10)推导出的公式：</p>
+<p><span class="math display">\[\begin{aligned} s &amp;= \sigma^2 =
+\frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\\&amp;=\frac{1}{N}\sum_{i=1}^N
+\left(x_i - \frac{1}{N} \sum_{i=1}^N (x_i)
+\right)^2\\&amp;=\frac{1}{N}\sum_{i=1}^N \left[x_i^2 - 2 x_i \frac{1}{N}
+\sum_{i=1}^N (x_i) + \left(\frac{1}{N} \sum_{i=1}^N (x_i) \right)^2
+\right]\\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i
+\sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N}
+\right)^2\\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i
+\sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N}
+\right)^2\\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N
+x_i}{N} \right)^2\end{aligned}\]</span></p>
 <p>现在我们需要再次检查公式(7)的条件是否成立，来决定估计量是否无偏：</p>
-<p>$$\begin{aligned} E[s]&amp;= E \left[ \frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N x_i}{N} \right)^2 \right ]\&amp;= \frac{\sum_{i=1}^N E[x_i^2]}{N} - \frac{E[(\sum_{i=1}^N x_i)^2]}{N^2} \end{aligned}$$</p>
-<p>记得我们在之前用过方差一个非常重要的性质，真实方差$\hat s$可以写成$\hat s = E[x_i^2]-E[x_i]^2$，即，$E[x_i^2]=\hat s + E[x_i]^2=\hat s +\mu^2$。利用这个性质我们可以推出：</p>
-<p>$$\begin{aligned} E[s] &amp;= \frac{\sum_{i=1}^N E[x_i^2]}{N} - \frac{E[(\sum_{i=1}^N x_i)^2]}{N^2}\&amp;= s + \mu^2 - \frac{E[(\sum_{i=1}^N x_i)^2]}{N^2}\&amp;= s + \mu^2 - \frac{E[\sum_{i=1}^N x_i^2 + \sum_i^N \sum_{j\neq i}^N x_i x_j]}{N^2}\&amp;= s + \mu^2 - \frac{E[N(s+\mu^2) + \sum_i^N \sum_{j\neq i}^N x_i x_j]}{N^2}\&amp;= s + \mu^2 - \frac{N(s+\mu^2) + \sum_i^N \sum_{j\neq i}^N E[x_i] E[x_j]}{N^2}\&amp;= s + \mu^2 - \frac{N(s+\mu^2) + N(N-1)\mu^2}{N^2}\&amp;= s + \mu^2 - \frac{N(s+\mu^2) + N^2\mu^2 -N\mu^2}{N^2}\&amp;= s + \mu^2 - \frac{s+\mu^2 + N\mu^2 -\mu^2}{N}\&amp;= s + \mu^2 - \frac{s}{N} - \frac{\mu^2}{N} - \mu^2 + \frac{\mu^2}{N}\&amp;= s - \frac{s}{N}\&amp;= s \left( 1 - \frac{1}{N} \right)\&amp;= s \left(\frac{N-1}{N} \right) \end{aligned}$$</p>
-<p>显然$E[s]\neq\hat s$，上面公式可知分布的方差估计量不再是无偏的了。事实上，平均来看，这个估计量低估了真实方差，比例为$\frac{N-1}{N}$。当样本的数量趋于无穷时($N\rightarrow\infty$)，这个偏差趋近于0。但是对于小的样本集，这个偏差就意义了，需要被消除。</p>
-<h4 id="修正偏差"><a href="#修正偏差" class="headerlink" title="修正偏差"></a>修正偏差</h4><p>因为偏差不过是一个因子，我们只需通过对公式(10)的估计量乘以偏差的倒数。这样我们就可以定义一个如下的无偏的估计量$s\prime$：</p>
-<p>$$\begin{aligned} s\prime &amp;= \left ( \frac{N-1}{N} \right )^{-1} s\s\prime &amp;= \left ( \frac{N-1}{N} \right )^{-1} \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\s\prime &amp;=\left ( \frac{N}{N-1} \right ) \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\s\prime &amp;= \frac{1}{N-1}\sum_{i=1}^N(x_i - \mu)^2\end{aligned}$$</p>
-<p>  这个估计量现在就是无偏的了，事实上，这个公式与传统计算方差的公式非常像，不同的是除的是$N-1$而不是$N$。然而，你可能注意到这个估计量不再是最小方差估计量，但是这个估计量是所有无偏估计量中最小方差的一个。如果我们除以$N$，那么估计量就是有偏的了，如果我们除以$N-1$，估计量就不是最小方差估计量。但大体来说，一个有偏的估计量要比一个稍高一点方差的估计量要糟糕的多。因此，如果当总体的均值是未知的情况下，方差除的是$N-1$，而不是$N$。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文，我们推导了如果从分布数据中计算常见的方差和均值公式。此外，我们还证明了在方差估计中，标准化因子在总体均值已知时是$\frac{1}{N}$，在均值也需要估计时是$\frac{1}{N-1}$。</p>
-<p><a href="http://cmb.oss-cn-qingdao.aliyuncs.com/%E6%A0%B7%E6%9C%AC%E6%96%B9%E5%B7%AE%E4%B8%BA%E4%BB%80%E4%B9%88%E9%99%A4%E4%BB%A5N-1%3F%EF%BC%88%E7%BF%BB%E8%AF%91%EF%BC%89.pdf" target="_blank" rel="noopener">本文PDF</a></p>
+<p><span class="math display">\[\begin{aligned} E[s]&amp;= E \left[
+\frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N x_i}{N}
+\right)^2 \right ]\\&amp;= \frac{\sum_{i=1}^N E[x_i^2]}{N} -
+\frac{E[(\sum_{i=1}^N x_i)^2]}{N^2} \end{aligned}\]</span></p>
+<p>记得我们在之前用过方差一个非常重要的性质，真实方差<span
+class="math inline">\(\hat s\)</span>可以写成<span
+class="math inline">\(\hat s = E[x_i^2]-E[x_i]^2\)</span>，即，<span
+class="math inline">\(E[x_i^2]=\hat s + E[x_i]^2=\hat s
++\mu^2\)</span>。利用这个性质我们可以推出：</p>
+<p><span class="math display">\[\begin{aligned} E[s] &amp;=
+\frac{\sum_{i=1}^N E[x_i^2]}{N} - \frac{E[(\sum_{i=1}^N
+x_i)^2]}{N^2}\\&amp;= s + \mu^2 - \frac{E[(\sum_{i=1}^N
+x_i)^2]}{N^2}\\&amp;= s + \mu^2 - \frac{E[\sum_{i=1}^N x_i^2 + \sum_i^N
+\sum_{j\neq i}^N x_i x_j]}{N^2}\\&amp;= s + \mu^2 - \frac{E[N(s+\mu^2) +
+\sum_i^N \sum_{j\neq i}^N x_i x_j]}{N^2}\\&amp;= s + \mu^2 -
+\frac{N(s+\mu^2) + \sum_i^N \sum_{j\neq i}^N E[x_i] E[x_j]}{N^2}\\&amp;=
+s + \mu^2 - \frac{N(s+\mu^2) + N(N-1)\mu^2}{N^2}\\&amp;= s + \mu^2 -
+\frac{N(s+\mu^2) + N^2\mu^2 -N\mu^2}{N^2}\\&amp;= s + \mu^2 -
+\frac{s+\mu^2 + N\mu^2 -\mu^2}{N}\\&amp;= s + \mu^2 - \frac{s}{N} -
+\frac{\mu^2}{N} - \mu^2 + \frac{\mu^2}{N}\\&amp;= s -
+\frac{s}{N}\\&amp;= s \left( 1 - \frac{1}{N} \right)\\&amp;= s
+\left(\frac{N-1}{N} \right) \end{aligned}\]</span></p>
+<p>显然<span class="math inline">\(E[s]\neq\hat
+s\)</span>，上面公式可知分布的方差估计量不再是无偏的了。事实上，平均来看，这个估计量低估了真实方差，比例为<span
+class="math inline">\(\frac{N-1}{N}\)</span>。当样本的数量趋于无穷时(<span
+class="math inline">\(N\rightarrow\infty\)</span>)，这个偏差趋近于0。但是对于小的样本集，这个偏差就意义了，需要被消除。</p>
+<h4 id="修正偏差">修正偏差</h4>
+<p>因为偏差不过是一个因子，我们只需通过对公式(10)的估计量乘以偏差的倒数。这样我们就可以定义一个如下的无偏的估计量<span
+class="math inline">\(s\prime\)</span>：</p>
+<p><span class="math display">\[\begin{aligned} s\prime &amp;= \left (
+\frac{N-1}{N} \right )^{-1} s\\s\prime &amp;= \left ( \frac{N-1}{N}
+\right )^{-1} \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\\s\prime &amp;=\left
+( \frac{N}{N-1} \right ) \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\\s\prime
+&amp;= \frac{1}{N-1}\sum_{i=1}^N(x_i - \mu)^2\end{aligned}\]</span></p>
+<p>这个估计量现在就是无偏的了，事实上，这个公式与传统计算方差的公式非常像，不同的是除的是<span
+class="math inline">\(N-1\)</span>而不是<span
+class="math inline">\(N\)</span>。然而，你可能注意到这个估计量不再是最小方差估计量，但是这个估计量是所有无偏估计量中最小方差的一个。如果我们除以<span
+class="math inline">\(N\)</span>，那么估计量就是有偏的了，如果我们除以<span
+class="math inline">\(N-1\)</span>，估计量就不是最小方差估计量。但大体来说，一个有偏的估计量要比一个稍高一点方差的估计量要糟糕的多。因此，如果当总体的均值是未知的情况下，方差除的是<span
+class="math inline">\(N-1\)</span>，而不是<span
+class="math inline">\(N\)</span>。</p>
+<h3 id="总结">总结</h3>
+<p>本文，我们推导了如果从分布数据中计算常见的方差和均值公式。此外，我们还证明了在方差估计中，标准化因子在总体均值已知时是<span
+class="math inline">\(\frac{1}{N}\)</span>，在均值也需要估计时是<span
+class="math inline">\(\frac{1}{N-1}\)</span>。</p>
+<p><a
+target="_blank" rel="noopener" href="http://cmb.oss-cn-qingdao.aliyuncs.com/%E6%A0%B7%E6%9C%AC%E6%96%B9%E5%B7%AE%E4%B8%BA%E4%BB%80%E4%B9%88%E9%99%A4%E4%BB%A5N-1%3F%EF%BC%88%E7%BF%BB%E8%AF%91%EF%BC%89.pdf">本文PDF</a></p>
 
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/中文/" rel="tag"># 中文</a>
-          
-            <a href="/tags/翻译/" rel="tag"># 翻译</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/05/21/decision-tree/" rel="next" title="Decision Tree (ID3)">
-                <i class="fa fa-chevron-left"></i> Decision Tree (ID3)
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/%E4%B8%AD%E6%96%87/" rel="tag"># 中文</a>
+              <a href="/tags/%E7%BF%BB%E8%AF%91/" rel="tag"># 翻译</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/07/Expectation-and-variance-of-poisson-distribution/" rel="prev" title="Expectation and Variance of Poisson Distribution">
-                Expectation and Variance of Poisson Distribution <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
         
-  <script src="https://utteranc.es/client.js" repo="chengmingbo/gitment-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
-  </script>
 
-
-    </div> 
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
-              <p class="site-description motion-element" itemprop="description">Mingbo</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">18</span>
-                  <span class="site-state-item-name">posts</span>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/05/21/decision-tree/" rel="prev" title="Decision Tree (ID3)">
+                  <i class="fa fa-angle-left"></i> Decision Tree (ID3)
                 </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">categories</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
             </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/chengmingbo" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
+            <div class="post-nav-item">
+                <a href="/2017/08/07/Expectation-and-variance-of-poisson-distribution/" rel="next" title="Expectation and Variance of Poisson Distribution">
+                  Expectation and Variance of Poisson Distribution <i class="fa fa-angle-right"></i>
+                </a>
             </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.flickering.cn/" title="flickering" target="_blank">flickering</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.zybuluo.com/codeep/note/163962" title="mathjax grammar" target="_blank">mathjax grammar</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vividfree.github.io/" title="vividfree" target="_blank">vividfree</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://colah.github.io/" title="colah" target="_blank">colah</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.autonlab.org/tutorials" title="Andrew Moore" target="_blank">Andrew Moore</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://plot.ly/matlab/plot/" title="matlabplot" target="_blank">matlabplot</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ryanzhang.info/blog/" title="Ryan’s Cabinet" target="_blank">Ryan’s Cabinet</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="JerryLead" target="_blank">JerryLead</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://yxzf.github.io/" title="YXZF'S BLOG" target="_blank">YXZF'S BLOG</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vonng.com" title="VONNG" target="_blank">VONNG</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小方差，无偏估计量"><span class="nav-number">2.</span> <span class="nav-text">最小方差，无偏估计量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数偏差"><span class="nav-number">2.1.</span> <span class="nav-text">参数偏差</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数方差"><span class="nav-number">2.2.</span> <span class="nav-text">参数方差</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最大似然估计"><span class="nav-number">3.</span> <span class="nav-text">最大似然估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#均值已知的方差估计"><span class="nav-number">4.</span> <span class="nav-text">均值已知的方差估计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数估计"><span class="nav-number">4.1.</span> <span class="nav-text">参数估计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表现评价"><span class="nav-number">4.2.</span> <span class="nav-text">表现评价</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#均值未知的方差估计"><span class="nav-number">5.</span> <span class="nav-text">均值未知的方差估计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数估计-1"><span class="nav-number">5.1.</span> <span class="nav-text">参数估计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表现评价-1"><span class="nav-number">5.2.</span> <span class="nav-text">表现评价</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修正偏差"><span class="nav-number">5.3.</span> <span class="nav-text">修正偏差</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-
           </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
-
-  
+    </footer>
+  </article>
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
 
-        
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-
-    
-
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class=""></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
 
-
-	
-
-
+  <script src="/js/third-party/fancybox.js"></script>
 
 
 
@@ -887,62 +699,14 @@
 
 
 
-
   
 
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"chengmingbo/gitment-comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
 
 </body>
 </html>

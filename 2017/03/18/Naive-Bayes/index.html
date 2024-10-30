@@ -1,140 +1,47 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chengmingbo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-
-  
-  
-  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="ML,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Mingbo" type="application/atom+xml">
-
-
-
-
-
-
-<meta name="description" content="IntroductionYou are sitting in front your sceen, annoyed by a bunch of spam mails. You wonder if there are any appoaches to get rid of so much many offended emails. Last time you doped out a extremely">
-<meta name="keywords" content="ML">
+    <meta name="description" content="Introduction You are sitting in front your sceen, annoyed by a bunch of spam mails. You wonder if there are any appoaches to get rid of so much many offended emails. Last time you doped out a extremel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Naive Bayes">
-<meta property="og:url" content="http://commanber.com/2017/03/18/Naive-Bayes/index.html">
+<meta property="og:url" content="http://chengmingbo.github.io/2017/03/18/Naive-Bayes/index.html">
 <meta property="og:site_name" content="Mingbo">
-<meta property="og:description" content="IntroductionYou are sitting in front your sceen, annoyed by a bunch of spam mails. You wonder if there are any appoaches to get rid of so much many offended emails. Last time you doped out a extremely">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-18-110227.jpg">
-<meta property="og:updated_time" content="2019-03-17T16:28:23.607Z">
+<meta property="og:description" content="Introduction You are sitting in front your sceen, annoyed by a bunch of spam mails. You wonder if there are any appoaches to get rid of so much many offended emails. Last time you doped out a extremel">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-18T20:06:08.000Z">
+<meta property="article:modified_time" content="2017-12-04T04:04:18.000Z">
+<meta property="article:author" content="Mingbo Cheng">
+<meta property="article:tag" content="ML">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Naive Bayes">
-<meta name="twitter:description" content="IntroductionYou are sitting in front your sceen, annoyed by a bunch of spam mails. You wonder if there are any appoaches to get rid of so much many offended emails. Last time you doped out a extremely">
-<meta name="twitter:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-18-110227.jpg">
+
+
+<link rel="canonical" href="http://chengmingbo.github.io/2017/03/18/Naive-Bayes/">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://chengmingbo.github.io/2017/03/18/Naive-Bayes/","path":"2017/03/18/Naive-Bayes/","title":"Naive Bayes"}</script>
 
-
-
-  <link rel="canonical" href="http://commanber.com/2017/03/18/Naive-Bayes/">
-
-
-
-
-
-  <title>Naive Bayes | Mingbo</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Naive Bayes | Mingbo</title>
   
 
 
@@ -144,625 +51,434 @@
 
 
 
-</head>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
-  
-  
-    
-  
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Mingbo</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mingbo</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="Mingbo">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-slides">
-          <a href="/slides/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-area-chart"></i> <br>
-            
-            slides
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            About
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-slides"><a href="/slides/" rel="section"><i class="area-chart fa-fw"></i>slides</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/03/18/Naive-Bayes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-    </span>
-
-    
-      <header class="post-header">
-
+</header>
         
-        
-          <h1 class="post-title" itemprop="name headline">Naive Bayes</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-18T21:06:08+01:00">
-                2017-03-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>You are sitting in front your sceen, annoyed by a bunch of spam mails. You wonder if there are any appoaches to get rid of so much many offended emails. Last time you doped out a extremely good idea. You set a series of words to identify those emails: every mail invovled by words “coupon” was trown to trash. However, on one hand, there were only about 10% spam including “coupon”, one the other hand, you had trashed two significant emails, due to which, you lost two business valued about two million dollars. The thing was that, your inbox seems being overrun by those spams. Who can rescue you from endless deleting spams everyday?</p>
-<h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h3><p>Actually, you were close to the answer when you were putting all emails to trash which included the word “coupon”. Today, we learn about an efficient method to solve the problem systematically.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-18-110227.jpg" alt><br>Maybe we can search through internet, find all words which are about advertisment in email. You can restrict that if and only if those which includes more than 4 word in the list of spam words can be put into trash can. Maybe finally you can design a rule system to recoginize those spams without miss important ones. But it seems so boring a job to do this, moreover, it may be not personalized. If some those who are working for saling discount stuffs, he/she may find it doesn’t work through applying your effective rules. How about thinking of probablity of those words emerge in all your inbox. Some words such as “coupon” may contribute more but not entirety, simultaneously, affordable may contribute less but not none. Notice that profit emerge in spam emails and normal emails both sometimes.<br>We let $y=0$ denote an normal email while $y=1$ the opposite. And if a word such as “coupon” emerges in a mail, we set $coupon=1$, otherwise $coupon=0$. Suppose you have an email, we define the probability to :<br>\begin{align}<br>&amp;p1=p(y=0|free=1, discount=1, affordable=1, customer=0, KPI=0, budget=0,…,bias=0)=?\<br>&amp;p2=p(y=1|free=1, discount=1, affordable=1, customer=0, KPI=0, budget=0,…,bias=0)=?<br>\end{align}<br>Our aim is to decide which is bigger $p1$ or $p2$. Let’s describe the problem as followed:</p>
-<blockquote>
-<p>We want to decide the probality of a mail spam or normal when word “free” is in the mail, “discount” is in the mail, “affordable” is in the mail, customer is not in the mail, …, “bias” is not.</p>
-</blockquote>
-<p>The description above is only about one email. For some other emails, maybe “free” and “discount” both did not emerge at all. </p>
-<h3 id="Definitioin"><a href="#Definitioin" class="headerlink" title="Definitioin"></a>Definitioin</h3><p>To generalize the problem, we let $x_i$ denote a word in emails. Suppose we now know all words in your inbox, say 10 thousand words. Then we have $x_1$ denote if “free” is in a mail, $x_1=0$ denotes negative while $x_1=1$ denotes positive. So we have $x_1,x_2,x_3,…,x_{10000}$, which denotes the status of each word in a mail. Then the problem is transferred as followed:<br>\begin{align}<br>&amp;p1=p(y=0|x_1=1, x_2=1, x_3=1, x_4=0, x_5=0, x_6=0,…,x_{10000}=0)=?\<br>&amp;p2=p(y=1|x_1=1, x_2=1, x_3=1, x_4=0, x_5=0, x_6=0,…,x_{10000}=0)=?<br>\end{align}<br>Suppose we have N words in your inbox, then we want to decide:<br>\begin{align}<br>&amp;p1=p(y=0|x_1, x_2,…,x_{N})=?\<br>&amp;p2=p(y=1|x_1, x_2,…,x_{N})=?<br>\end{align}<br>So how to sovle the probability problem?</p>
-<h3 id="Naive-Bayes"><a href="#Naive-Bayes" class="headerlink" title="Naive Bayes"></a>Naive Bayes</h3><p>Recall Bayes rules:<br>\begin{equation}<br>p(y|x)=\frac{p(x,y)}{p(x)}=\frac{p(x|y)p(y)}{p(x)}<br>\end{equation}<br>we apply the equation to our problem, then we have:<br>\begin{align}<br>&amp;p(y=1|x_1,x_2,…,x_N)\<br>&amp; =\frac{p(x_1,x_2,…,x_N,y=1)}{p(x_1,x_2,…,x_N)}\<br>&amp; =\frac{p(x_1,x_2,…,x_N|y)p(y=1)}{p(x_1,x_2,…,x_N)}\<br> \<br>&amp;p(y=0|x_1,x_2,…,x_N)\<br>&amp; =\frac{p(x_1,x_2,…,x_N,y=0)}{p(x_1,x_2,…,x_N)}\<br>&amp; =\frac{p(x_1,x_2,…,x_N|y)p(y=0)}{p(x_1,x_2,…,x_N)}<br>\end{align}<br>Notice that {p(x_1,x_2,…,x_N) is positive, and a constant as well. so our aim is transferred to:<br>\begin{align}<br>&amp;Max(p(y=1|x_1,x_2,…,x_N), p(y=0|x_1,x_2,…,x_N)\<br>&amp;=Max(p(x_1,x_2,…,x_N|y=1)p(y=1),p(x_1,x_2,…,x_N|y=0)p(y=0)<br>\end{align}</p>
-<p>First of all, we talk about how to get $p(y=0)$ and $p(y=1)$. We have $N=10000$, suppose there are $900$ spams and $91000$ normal emails, then:<br>\begin{align}<br>&amp;p(y=0)=\frac{count(spam\ email)}{count(all\ emails)}=\frac{900}{10000}=0.09\<br>&amp;p(y=1)=\frac{count(normal\ email)}{count(all\ emails)}=\frac{9100}{10000}=0.91<br>\end{align}<br>And right now our task left is to compute $p(x_1,x_2,…,x_N|y=0)$ and $p(x_1,x_2,…,x_N|y=1)$, that means we want to know if a mail is a normal one or not, what is the probability of the combination of these $N=10000$ words. In other word, $x_1=0\ or\ 1$,$x_2=0\ or\ 1$ and so on. So we have to compute $2<em>2^{10000}=2</em>1.995*10^{3010}$ probabilities under our circumstance. It seems the scale is so large that we can not handle it. So we have an extremely adventurous assumption:</p>
-<blockquote>
-<p>Each x in an email only can be decided by y.</p>
-</blockquote>
-<p>Then we have:<br>\begin{align}<br>p(x_1,x_2,…,x_N|y=0)=p(x_1|y=0)\cdot p(x_2|y=0)\cdots p(x_N|y=0)\<br>p(x_1,x_2,…,x_N|y=1)=p(x_1|y=1)\cdot p(x_2|y=1)\cdots p(x_N|y=1)<br>\end{align}<br>Now, we just need compute 2*10000 probabilities, it is surely a mission possible now. So how to compute $p(x_i=0\ or\ 1|y=0\ or\ 1)$? Take word “free” for example, we want to compute:<br>\begin{align}<br>&amp;p(free=0|y=0)\<br>&amp;=\frac{p(free=0, y=0)}{p(y=0)}\<br>&amp;=\frac{count\ of\ emails\ have\ no\ word\ “free”\ in\ normal\ emails}{count\ of\ normal\ emails}\<br>&amp;p(free=0|y=1)\<br>&amp;=\frac{p(free=0, y=1)}{p(y=1)}\<br>&amp;=\frac{count\ of\ emails\ have\ no\ word\ “free”\ in\ spams}{count\ of\ spam\ emails}<br>\end{align}<br>As long as we have computed all of these values, we can use the equation to decide which email should be trashed. Suppose we have computed the probabilites of $p1$ and $p2$:<br>\begin{align}<br>&amp;p1\triangleq p(x_1,x_2,…,x_N|y=1)p(y=1)\triangleq p(y=0)\cdot \Pi_{i=1}^N p(x_i|y=0)=0.00091\<br>&amp;p2\triangleq p(x_1,x_2,…,x_N|y=0)p(y=0)\triangleq p(y=1)\cdot \Pi_{i=1}^N p(x_i|y=1)=0.00000032<br>\end{align}<br>Then we consider that the email is more of a spam mail.</p>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Today we have talked about how to run a Naive Bayes algorithm to decide if an email is a spam. We suppose each word in a mail is no of business of the other, which is a simple assumption named <strong>conditional independence assumption</strong>  but not the reality(e.g. “coupon” maybe emerges with “save” and “money” due to their inner association). However, the algorthm is very effective. </p>
-<h3 id="Future-Thinking"><a href="#Future-Thinking" class="headerlink" title="Future Thinking"></a>Future Thinking</h3><p>Suppose if a word “wooooo” haven’t emerged in inbox, then the probability will reach $p1=p2=0$, how to solve it?<br>Suppose you have a task to differiate oranges from apples and pears using color and shape, how to design the algorithm?<br>suppose x is continuous rather than discrete, Naive Bayes still works or not?</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ML/" rel="tag"># ML</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/11/neural-network-ABC/" rel="next" title="Neural Network ABC">
-                <i class="fa fa-chevron-left"></i> Neural Network ABC
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/05/pca-translation/" rel="prev" title="主成分分析（PCA）简明教程（翻译）">
-                主成分分析（PCA）简明教程（翻译） <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
   
-  
-  
-  </article>
+  <aside class="sidebar">
 
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intuition"><span class="nav-number">2.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#definitioin"><span class="nav-number">3.</span> <span class="nav-text">Definitioin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#naive-bayes"><span class="nav-number">4.</span> <span class="nav-text">Naive Bayes</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-    <div class="post-spread">
-      
-    </div>
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
+  <div class="site-description" itemprop="description">Mingbo</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chengmingbo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chengmingbo" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
   </div>
 
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-        
-  <script src="https://utteranc.es/client.js" repo="chengmingbo/gitment-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
-  </script>
-
-
-    </div> 
-  
-
-
-
         </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </div>
     </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
     
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vividfree.github.io/" title="http:&#x2F;&#x2F;vividfree.github.io&#x2F;" rel="noopener" target="_blank">vividfree</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://colah.github.io/" title="http:&#x2F;&#x2F;colah.github.io&#x2F;" rel="noopener" target="_blank">colah</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.autonlab.org/tutorials" title="https:&#x2F;&#x2F;www.autonlab.org&#x2F;tutorials" rel="noopener" target="_blank">Andrew Moore</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://plot.ly/matlab/plot/" title="https:&#x2F;&#x2F;plot.ly&#x2F;matlab&#x2F;plot&#x2F;" rel="noopener" target="_blank">matlabplot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ryanzhang.info/blog/" title="http:&#x2F;&#x2F;www.ryanzhang.info&#x2F;blog&#x2F;" rel="noopener" target="_blank">Ryan’s Cabinet</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="http:&#x2F;&#x2F;www.cnblogs.com&#x2F;jerrylead&#x2F;tag&#x2F;Machine%20Learning&#x2F;" rel="noopener" target="_blank">JerryLead</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://yxzf.github.io/" title="https:&#x2F;&#x2F;yxzf.github.io&#x2F;" rel="noopener" target="_blank">YXZF'S BLOG</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vonng.com/" title="http:&#x2F;&#x2F;vonng.com" rel="noopener" target="_blank">VONNG</a>
+            </li>
         </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
-              <p class="site-description motion-element" itemprop="description">Mingbo</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">18</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">categories</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/chengmingbo" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.flickering.cn/" title="flickering" target="_blank">flickering</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.zybuluo.com/codeep/note/163962" title="mathjax grammar" target="_blank">mathjax grammar</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vividfree.github.io/" title="vividfree" target="_blank">vividfree</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://colah.github.io/" title="colah" target="_blank">colah</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.autonlab.org/tutorials" title="Andrew Moore" target="_blank">Andrew Moore</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://plot.ly/matlab/plot/" title="matlabplot" target="_blank">matlabplot</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ryanzhang.info/blog/" title="Ryan’s Cabinet" target="_blank">Ryan’s Cabinet</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="JerryLead" target="_blank">JerryLead</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://yxzf.github.io/" title="YXZF'S BLOG" target="_blank">YXZF'S BLOG</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vonng.com" title="VONNG" target="_blank">VONNG</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intuition"><span class="nav-number">2.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Definitioin"><span class="nav-number">3.</span> <span class="nav-text">Definitioin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Naive-Bayes"><span class="nav-number">4.</span> <span class="nav-text">Naive Bayes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summary"><span class="nav-number">5.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Future-Thinking"><span class="nav-number">6.</span> <span class="nav-text">Future Thinking</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
-
+      </div>
     </div>
   </aside>
 
 
-        
-      </div>
-    </main>
+    </div>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/03/18/Naive-Bayes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Naive Bayes | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Naive Bayes
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-03-18 21:06:08" itemprop="dateCreated datePublished" datetime="2017-03-18T21:06:08+01:00">2017-03-18</time>
+    </span>
 
   
 </div>
 
+        </div>
+      </header>
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="introduction">Introduction</h3>
+<p>You are sitting in front your sceen, annoyed by a bunch of spam
+mails. You wonder if there are any appoaches to get rid of so much many
+offended emails. Last time you doped out a extremely good idea. You set
+a series of words to identify those emails: every mail invovled by words
+"coupon" was trown to trash. However, on one hand, there were only about
+10% spam including "coupon", one the other hand, you had trashed two
+significant emails, due to which, you lost two business valued about two
+million dollars. The thing was that, your inbox seems being overrun by
+those spams. Who can rescue you from endless deleting spams
+everyday?</p>
+<h3 id="intuition">Intuition</h3>
+<p>Actually, you were close to the answer when you were putting all
+emails to trash which included the word "coupon". Today, we learn about
+an efficient method to solve the problem systematically. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-18-110227.jpg" />
+Maybe we can search through internet, find all words which are about
+advertisment in email. You can restrict that if and only if those which
+includes more than 4 word in the list of spam words can be put into
+trash can. Maybe finally you can design a rule system to recoginize
+those spams without miss important ones. But it seems so boring a job to
+do this, moreover, it may be not personalized. If some those who are
+working for saling discount stuffs, he/she may find it doesn't work
+through applying your effective rules. How about thinking of probablity
+of those words emerge in all your inbox. Some words such as "coupon" may
+contribute more but not entirety, simultaneously, affordable may
+contribute less but not none. Notice that profit emerge in spam emails
+and normal emails both sometimes. We let <span
+class="math inline">\(y=0\)</span> denote an normal email while <span
+class="math inline">\(y=1\)</span> the opposite. And if a word such as
+"coupon" emerges in a mail, we set <span
+class="math inline">\(coupon=1\)</span>, otherwise <span
+class="math inline">\(coupon=0\)</span>. Suppose you have an email, we
+define the probability to : <span class="math display">\[\begin{align}
+&amp;p1=p(y=0|free=1, discount=1, affordable=1, customer=0, KPI=0,
+budget=0,...,bias=0)=?\\
+&amp;p2=p(y=1|free=1, discount=1, affordable=1, customer=0, KPI=0,
+budget=0,...,bias=0)=?
+\end{align}\]</span> Our aim is to decide which is bigger <span
+class="math inline">\(p1\)</span> or <span
+class="math inline">\(p2\)</span>. Let's describe the problem as
+followed: &gt; We want to decide the probality of a mail spam or normal
+when word "free" is in the mail, "discount" is in the mail, "affordable"
+is in the mail, customer is not in the mail, ..., "bias" is not.</p>
+<p>The description above is only about one email. For some other emails,
+maybe "free" and "discount" both did not emerge at all.</p>
+<h3 id="definitioin">Definitioin</h3>
+<p>To generalize the problem, we let <span
+class="math inline">\(x_i\)</span> denote a word in emails. Suppose we
+now know all words in your inbox, say 10 thousand words. Then we have
+<span class="math inline">\(x_1\)</span> denote if "free" is in a mail,
+<span class="math inline">\(x_1=0\)</span> denotes negative while <span
+class="math inline">\(x_1=1\)</span> denotes positive. So we have <span
+class="math inline">\(x_1,x_2,x_3,...,x_{10000}\)</span>, which denotes
+the status of each word in a mail. Then the problem is transferred as
+followed: <span class="math display">\[\begin{align}
+&amp;p1=p(y=0|x_1=1, x_2=1, x_3=1, x_4=0, x_5=0,
+x_6=0,...,x_{10000}=0)=?\\
+&amp;p2=p(y=1|x_1=1, x_2=1, x_3=1, x_4=0, x_5=0,
+x_6=0,...,x_{10000}=0)=?
+\end{align}\]</span> Suppose we have N words in your inbox, then we want
+to decide: <span class="math display">\[\begin{align}
+&amp;p1=p(y=0|x_1, x_2,...,x_{N})=?\\
+&amp;p2=p(y=1|x_1, x_2,...,x_{N})=?
+\end{align}\]</span> So how to sovle the probability problem?</p>
+<h3 id="naive-bayes">Naive Bayes</h3>
+<p>Recall Bayes rules: <span class="math display">\[\begin{equation}
+p(y|x)=\frac{p(x,y)}{p(x)}=\frac{p(x|y)p(y)}{p(x)}
+\end{equation}\]</span> we apply the equation to our problem, then we
+have: <span class="math display">\[\begin{align}
+&amp;p(y=1|x_1,x_2,...,x_N)\\
+&amp; =\frac{p(x_1,x_2,...,x_N,y=1)}{p(x_1,x_2,...,x_N)}\\
+&amp; =\frac{p(x_1,x_2,...,x_N|y)p(y=1)}{p(x_1,x_2,...,x_N)}\\
+\\
+&amp;p(y=0|x_1,x_2,...,x_N)\\
+&amp; =\frac{p(x_1,x_2,...,x_N,y=0)}{p(x_1,x_2,...,x_N)}\\
+&amp; =\frac{p(x_1,x_2,...,x_N|y)p(y=0)}{p(x_1,x_2,...,x_N)}
+\end{align}\]</span> Notice that {p(x_1,x_2,...,x_N) is positive, and a
+constant as well. so our aim is transferred to: <span
+class="math display">\[\begin{align}
+&amp;Max(p(y=1|x_1,x_2,...,x_N), p(y=0|x_1,x_2,...,x_N)\\
+&amp;=Max(p(x_1,x_2,...,x_N|y=1)p(y=1),p(x_1,x_2,...,x_N|y=0)p(y=0)
+\end{align}\]</span></p>
+<p>First of all, we talk about how to get <span
+class="math inline">\(p(y=0)\)</span> and <span
+class="math inline">\(p(y=1)\)</span>. We have <span
+class="math inline">\(N=10000\)</span>, suppose there are <span
+class="math inline">\(900\)</span> spams and <span
+class="math inline">\(91000\)</span> normal emails, then: <span
+class="math display">\[\begin{align}
+&amp;p(y=0)=\frac{count(spam\ email)}{count(all\
+emails)}=\frac{900}{10000}=0.09\\
+&amp;p(y=1)=\frac{count(normal\ email)}{count(all\
+emails)}=\frac{9100}{10000}=0.91
+\end{align}\]</span> And right now our task left is to compute <span
+class="math inline">\(p(x_1,x_2,...,x_N|y=0)\)</span> and <span
+class="math inline">\(p(x_1,x_2,...,x_N|y=1)\)</span>, that means we
+want to know if a mail is a normal one or not, what is the probability
+of the combination of these <span class="math inline">\(N=10000\)</span>
+words. In other word, <span class="math inline">\(x_1=0\ or\
+1\)</span>,<span class="math inline">\(x_2=0\ or\ 1\)</span> and so on.
+So we have to compute <span
+class="math inline">\(2*2^{10000}=2*1.995*10^{3010}\)</span>
+probabilities under our circumstance. It seems the scale is so large
+that we can not handle it. So we have an extremely adventurous
+assumption: &gt; Each x in an email only can be decided by y.</p>
+<p>Then we have: <span class="math display">\[\begin{align}
+p(x_1,x_2,...,x_N|y=0)=p(x_1|y=0)\cdot p(x_2|y=0)\cdots p(x_N|y=0)\\
+p(x_1,x_2,...,x_N|y=1)=p(x_1|y=1)\cdot p(x_2|y=1)\cdots p(x_N|y=1)
+\end{align}\]</span> Now, we just need compute 2*10000 probabilities, it
+is surely a mission possible now. So how to compute <span
+class="math inline">\(p(x_i=0\ or\ 1|y=0\ or\ 1)\)</span>? Take word
+"free" for example, we want to compute: <span
+class="math display">\[\begin{align}
+&amp;p(free=0|y=0)\\
+&amp;=\frac{p(free=0, y=0)}{p(y=0)}\\
+&amp;=\frac{count\ of\ emails\ have\ no\ word\ &quot;free&quot;\ in\
+normal\ emails}{count\ of\ normal\ emails}\\
+&amp;p(free=0|y=1)\\
+&amp;=\frac{p(free=0, y=1)}{p(y=1)}\\
+&amp;=\frac{count\ of\ emails\ have\ no\ word\ &quot;free&quot;\ in\
+spams}{count\ of\ spam\ emails}
+\end{align}\]</span> As long as we have computed all of these values, we
+can use the equation to decide which email should be trashed. Suppose we
+have computed the probabilites of <span
+class="math inline">\(p1\)</span> and <span
+class="math inline">\(p2\)</span>: <span
+class="math display">\[\begin{align}
+&amp;p1\triangleq p(x_1,x_2,...,x_N|y=1)p(y=1)\triangleq p(y=0)\cdot
+\Pi_{i=1}^N p(x_i|y=0)=0.00091\\
+&amp;p2\triangleq p(x_1,x_2,...,x_N|y=0)p(y=0)\triangleq p(y=1)\cdot
+\Pi_{i=1}^N p(x_i|y=1)=0.00000032
+\end{align}\]</span> Then we consider that the email is more of a spam
+mail. ### Summary Today we have talked about how to run a Naive Bayes
+algorithm to decide if an email is a spam. We suppose each word in a
+mail is no of business of the other, which is a simple assumption named
+<strong>conditional independence assumption</strong> but not the
+reality(e.g. "coupon" maybe emerges with "save" and "money" due to their
+inner association). However, the algorthm is very effective. ### Future
+Thinking Suppose if a word "wooooo" haven't emerged in inbox, then the
+probability will reach <span class="math inline">\(p1=p2=0\)</span>, how
+to solve it? Suppose you have a task to differiate oranges from apples
+and pears using color and shape, how to design the algorithm? suppose x
+is continuous rather than discrete, Naive Bayes still works or not?</p>
 
+    </div>
 
+    
+    
+    
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
-
-
-
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ML/" rel="tag"># ML</a>
+          </div>
 
         
 
-
-
-
-
-
-
-        
-      </div>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/03/11/neural-network-ABC/" rel="prev" title="Neural Network ABC">
+                  <i class="fa fa-angle-left"></i> Neural Network ABC
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/04/05/pca-translation/" rel="next" title="主成分分析（PCA）简明教程（翻译）">
+                  主成分分析（PCA）简明教程（翻译） <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
+  </article>
+</div>
 
-    
 
-    
 
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class=""></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
 
-
-	
-
-
+  <script src="/js/third-party/fancybox.js"></script>
 
 
 
@@ -771,62 +487,14 @@
 
 
 
-
   
 
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"chengmingbo/gitment-comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
 
 </body>
 </html>

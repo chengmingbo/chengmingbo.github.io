@@ -1,138 +1,48 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chengmingbo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-
-  
-  
-  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="中文,ML,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Mingbo" type="application/atom+xml">
-
-
-
-
-
-
-<meta name="description" content="原文地址：stackexchange 原文答案作者主页：Arturo Magidin 版权声明本译文首发于我的个人博客commanber.com, 版权属于原作者。 简短的答案特征向量可以让线性变换的理解变得简单。它们是沿着坐标轴（方向）的线性变换包括简单的伸/缩以及翻转；特征值提供的是这些线性变换影响因子。如果你理解越多沿着坐标轴（方向）的线性变换行为，理解线性变换就变得越简单；所以你要做的是有">
-<meta name="keywords" content="中文,ML">
+    <meta name="description" content="原文地址：stackexchange 原文答案作者主页：Arturo Magidin 版权声明 本译文首发于我的个人博客chengmingbo.github.io, 版权属于原作者。 #### 简短的答案 特征向量可以让线性变换的理解变得简单。它们是沿着坐标轴（方向）的线性变换包括简单的伸&#x2F;缩以及翻转；特征值提供的是这些线性变换影响因子。 如果你理解越多沿着坐标轴（方向）的线性变换行为，理解线性变">
 <meta property="og:type" content="article">
 <meta property="og:title" content="怎样理解特征向量和特征值（翻译）">
-<meta property="og:url" content="http://commanber.com/2017/04/16/eigenvector-and-eigenvalue/index.html">
+<meta property="og:url" content="http://chengmingbo.github.io/2017/04/16/eigenvector-and-eigenvalue/index.html">
 <meta property="og:site_name" content="Mingbo">
-<meta property="og:description" content="原文地址：stackexchange 原文答案作者主页：Arturo Magidin 版权声明本译文首发于我的个人博客commanber.com, 版权属于原作者。 简短的答案特征向量可以让线性变换的理解变得简单。它们是沿着坐标轴（方向）的线性变换包括简单的伸/缩以及翻转；特征值提供的是这些线性变换影响因子。如果你理解越多沿着坐标轴（方向）的线性变换行为，理解线性变换就变得越简单；所以你要做的是有">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-17T16:28:23.553Z">
+<meta property="og:description" content="原文地址：stackexchange 原文答案作者主页：Arturo Magidin 版权声明 本译文首发于我的个人博客chengmingbo.github.io, 版权属于原作者。 #### 简短的答案 特征向量可以让线性变换的理解变得简单。它们是沿着坐标轴（方向）的线性变换包括简单的伸&#x2F;缩以及翻转；特征值提供的是这些线性变换影响因子。 如果你理解越多沿着坐标轴（方向）的线性变换行为，理解线性变">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-04-16T19:03:38.000Z">
+<meta property="article:modified_time" content="2024-10-30T15:41:27.831Z">
+<meta property="article:author" content="Mingbo Cheng">
+<meta property="article:tag" content="中文">
+<meta property="article:tag" content="ML">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="怎样理解特征向量和特征值（翻译）">
-<meta name="twitter:description" content="原文地址：stackexchange 原文答案作者主页：Arturo Magidin 版权声明本译文首发于我的个人博客commanber.com, 版权属于原作者。 简短的答案特征向量可以让线性变换的理解变得简单。它们是沿着坐标轴（方向）的线性变换包括简单的伸/缩以及翻转；特征值提供的是这些线性变换影响因子。如果你理解越多沿着坐标轴（方向）的线性变换行为，理解线性变换就变得越简单；所以你要做的是有">
+
+
+<link rel="canonical" href="http://chengmingbo.github.io/2017/04/16/eigenvector-and-eigenvalue/">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://chengmingbo.github.io/2017/04/16/eigenvector-and-eigenvalue/","path":"2017/04/16/eigenvector-and-eigenvalue/","title":"怎样理解特征向量和特征值（翻译）"}</script>
 
-
-
-  <link rel="canonical" href="http://commanber.com/2017/04/16/eigenvector-and-eigenvalue/">
-
-
-
-
-
-  <title>怎样理解特征向量和特征值（翻译） | Mingbo</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>怎样理解特征向量和特征值（翻译） | Mingbo</title>
   
 
 
@@ -142,623 +52,356 @@
 
 
 
-</head>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
-  
-  
-    
-  
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Mingbo</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mingbo</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="Mingbo">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-slides">
-          <a href="/slides/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-area-chart"></i> <br>
-            
-            slides
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            About
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-slides"><a href="/slides/" rel="section"><i class="area-chart fa-fw"></i>slides</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/04/16/eigenvector-and-eigenvalue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-    </span>
-
-    
-      <header class="post-header">
-
+</header>
         
-        
-          <h1 class="post-title" itemprop="name headline">怎样理解特征向量和特征值（翻译）</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-16T21:03:38+02:00">
-                2017-04-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>原文地址：<a href="http://math.stackexchange.com/a/23325" target="_blank" rel="noopener">stackexchange</a></p>
-<p>原文答案作者主页：<a href="http://math.stackexchange.com/users/742/arturo-magidin" target="_blank" rel="noopener">Arturo Magidin</a></p>
-<h4 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h4><p>本译文首发于我的个人博客commanber.com, 版权属于原作者。</p>
-<h4 id="简短的答案"><a href="#简短的答案" class="headerlink" title="简短的答案"></a>简短的答案</h4><p>特征向量可以让线性变换的理解变得简单。它们是沿着坐标轴（方向）的线性变换包括简单的伸/缩以及翻转；特征值提供的是这些线性变换影响因子。<br>如果你理解越多沿着坐标轴（方向）的线性变换行为，理解线性变换就变得越简单；所以你要做的是有足够多的线性无关的特征向量与单因素线性变换产生联系。</p>
-<h4 id="长一点儿的答案"><a href="#长一点儿的答案" class="headerlink" title="长一点儿的答案"></a>长一点儿的答案</h4><p>这个世界上有非常多的问题可以通过线性变换来建模，而特征向量提供了非常简单的解决方案。例如，考虑线性微分方程:<br>    $$\frac{\mathrm d x}{\mathrm d t} = ax + by$$<br>  $$\frac{\mathrm d y}{\mathrm d t} = cx + dy$$</p>
-<p>可以找到很多描述此微分方程的系统，比如，两个物种数量的增长相互影响。具体来说，可能物种$x$是物种$y$的捕食者；周围越多的物种$x$，意味着越少的物种$y$可以得到繁衍壮大；问题是周围的物种$y$越少，那么对于物种$x$来说食物就会越少，所以物种$x$的繁衍就会越少；但是接下来因为物种$x$对物种$y$的生存压力降低，很快会导致$y$物种数量的增长；但是这就意味这物种$x$的食物变多了，所以物种xx的数量也跟着增长；如此这般，循环往复。特定的物理现象也能形成这样的系统，比如粒子在运动的流体中，粒子的速度矢量取决于其所处的流体中位置。</p>
-<p>直接解决这种系统是非常复杂的。但是，假设如果你可以不用去关注变量$x$和变量$y$而是转而关注$z$和$w$（这里$z$和$w$与$x$和$y$线性相关，也就是说，$z=\alpha x + \beta y$, $\alpha$和$\beta$是常量，同时$w=\gamma x + \delta y$， $\gamma$和$\delta$也是常量）。这样，我们的系统就变换成了如下的形式：<br>$$\frac{\mathrm d z}{\mathrm d t} = \kappa w$$<br>$$\frac{\mathrm d w}{\mathrm d t} = \lambda z$$</p>
-<p>也就是说，你对系统做了<strong>解耦</strong>，这样你就可以单独的处理各个独立函数了。接下来就这个问题就变得非常简单：$z=Ae^{\kappa t}$，以及$w=Be^{\lambda t}$。下一步就是用$z$和$w$的公式，算出$x$和$y$。</p>
-<p>这能做到么？事实上，这等于我们精确的找到了矩阵$\begin{pmatrix}a &amp; b\ c&amp;d\end{pmatrix}$线性独立的两个特征向量！$z$和$w$是其特征向量，而$\kappa$和$\lambda$为相对应的特征值。通过使用一个表达式把$x$和$y$<strong>混合</strong> 起来，然后解耦成两个互相独立的函数，问题现在变得非常简单了。</p>
-<p>这就是我们希望使用特征向量及特征值的本质：通过线性变换把问题<strong>解耦</strong> 成一系列沿着各个隔离<strong>方向</strong>的操作，使得各个方向问题都可独立解决。</p>
-<p>大量的问题归根结底是解决<strong>线性独立操作</strong>，理解这些可以实实在在的帮助你理解矩阵/线性变换到底在做什么。</p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/中文/" rel="tag"># 中文</a>
-          
-            <a href="/tags/ML/" rel="tag"># ML</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/04/05/pca-translation/" rel="next" title="主成分分析（PCA）简明教程（翻译）">
-                <i class="fa fa-chevron-left"></i> 主成分分析（PCA）简明教程（翻译）
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/" rel="prev" title="A Tutorial on Singular Value Decomposition">
-                A Tutorial on Singular Value Decomposition <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
   
-  
-  
-  </article>
+  <aside class="sidebar">
 
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
 
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">版权声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%95%BF%E4%B8%80%E7%82%B9%E5%84%BF%E7%9A%84%E7%AD%94%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">长一点儿的答案</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-    <div class="post-spread">
-      
-    </div>
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
+  <div class="site-description" itemprop="description">Mingbo</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chengmingbo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chengmingbo" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
   </div>
 
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-        
-  <script src="https://utteranc.es/client.js" repo="chengmingbo/gitment-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
-  </script>
-
-
-    </div> 
-  
-
-
-
         </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </div>
     </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
     
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vividfree.github.io/" title="http:&#x2F;&#x2F;vividfree.github.io&#x2F;" rel="noopener" target="_blank">vividfree</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://colah.github.io/" title="http:&#x2F;&#x2F;colah.github.io&#x2F;" rel="noopener" target="_blank">colah</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.autonlab.org/tutorials" title="https:&#x2F;&#x2F;www.autonlab.org&#x2F;tutorials" rel="noopener" target="_blank">Andrew Moore</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://plot.ly/matlab/plot/" title="https:&#x2F;&#x2F;plot.ly&#x2F;matlab&#x2F;plot&#x2F;" rel="noopener" target="_blank">matlabplot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ryanzhang.info/blog/" title="http:&#x2F;&#x2F;www.ryanzhang.info&#x2F;blog&#x2F;" rel="noopener" target="_blank">Ryan’s Cabinet</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="http:&#x2F;&#x2F;www.cnblogs.com&#x2F;jerrylead&#x2F;tag&#x2F;Machine%20Learning&#x2F;" rel="noopener" target="_blank">JerryLead</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://yxzf.github.io/" title="https:&#x2F;&#x2F;yxzf.github.io&#x2F;" rel="noopener" target="_blank">YXZF'S BLOG</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vonng.com/" title="http:&#x2F;&#x2F;vonng.com" rel="noopener" target="_blank">VONNG</a>
+            </li>
         </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
-              <p class="site-description motion-element" itemprop="description">Mingbo</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">18</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">categories</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/chengmingbo" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-            </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.flickering.cn/" title="flickering" target="_blank">flickering</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.zybuluo.com/codeep/note/163962" title="mathjax grammar" target="_blank">mathjax grammar</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vividfree.github.io/" title="vividfree" target="_blank">vividfree</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://colah.github.io/" title="colah" target="_blank">colah</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.autonlab.org/tutorials" title="Andrew Moore" target="_blank">Andrew Moore</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://plot.ly/matlab/plot/" title="matlabplot" target="_blank">matlabplot</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ryanzhang.info/blog/" title="Ryan’s Cabinet" target="_blank">Ryan’s Cabinet</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="JerryLead" target="_blank">JerryLead</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://yxzf.github.io/" title="YXZF'S BLOG" target="_blank">YXZF'S BLOG</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vonng.com" title="VONNG" target="_blank">VONNG</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#版权声明"><span class="nav-number">1.</span> <span class="nav-text">版权声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简短的答案"><span class="nav-number">2.</span> <span class="nav-text">简短的答案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#长一点儿的答案"><span class="nav-number">3.</span> <span class="nav-text">长一点儿的答案</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
-
+      </div>
     </div>
   </aside>
 
 
-        
-      </div>
-    </main>
+    </div>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/04/16/eigenvector-and-eigenvalue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="怎样理解特征向量和特征值（翻译） | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          怎样理解特征向量和特征值（翻译）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-04-16 21:03:38" itemprop="dateCreated datePublished" datetime="2017-04-16T21:03:38+02:00">2017-04-16</time>
+    </span>
 
   
 </div>
 
+        </div>
+      </header>
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>原文地址：<a
+target="_blank" rel="noopener" href="http://math.stackexchange.com/a/23325">stackexchange</a></p>
+<p>原文答案作者主页：<a
+target="_blank" rel="noopener" href="http://math.stackexchange.com/users/742/arturo-magidin">Arturo
+Magidin</a></p>
+<h4 id="版权声明">版权声明</h4>
+<p>本译文首发于我的个人博客chengmingbo.github.io, 版权属于原作者。 ####
+简短的答案
+特征向量可以让线性变换的理解变得简单。它们是沿着坐标轴（方向）的线性变换包括简单的伸/缩以及翻转；特征值提供的是这些线性变换影响因子。
+如果你理解越多沿着坐标轴（方向）的线性变换行为，理解线性变换就变得越简单；所以你要做的是有足够多的线性无关的特征向量与单因素线性变换产生联系。</p>
+<h4 id="长一点儿的答案">长一点儿的答案</h4>
+<p>这个世界上有非常多的问题可以通过线性变换来建模，而特征向量提供了非常简单的解决方案。例如，考虑线性微分方程:
+<span class="math display">\[\frac{\mathrm d x}{\mathrm d t} = ax +
+by\]</span> <span class="math display">\[\frac{\mathrm d y}{\mathrm d t}
+= cx + dy\]</span></p>
+<p>可以找到很多描述此微分方程的系统，比如，两个物种数量的增长相互影响。具体来说，可能物种<span
+class="math inline">\(x\)</span>是物种<span
+class="math inline">\(y\)</span>的捕食者；周围越多的物种<span
+class="math inline">\(x\)</span>，意味着越少的物种<span
+class="math inline">\(y\)</span>可以得到繁衍壮大；问题是周围的物种<span
+class="math inline">\(y\)</span>越少，那么对于物种<span
+class="math inline">\(x\)</span>来说食物就会越少，所以物种<span
+class="math inline">\(x\)</span>的繁衍就会越少；但是接下来因为物种<span
+class="math inline">\(x\)</span>对物种<span
+class="math inline">\(y\)</span>的生存压力降低，很快会导致<span
+class="math inline">\(y\)</span>物种数量的增长；但是这就意味这物种<span
+class="math inline">\(x\)</span>的食物变多了，所以物种xx的数量也跟着增长；如此这般，循环往复。特定的物理现象也能形成这样的系统，比如粒子在运动的流体中，粒子的速度矢量取决于其所处的流体中位置。</p>
+<p>直接解决这种系统是非常复杂的。但是，假设如果你可以不用去关注变量<span
+class="math inline">\(x\)</span>和变量<span
+class="math inline">\(y\)</span>而是转而关注<span
+class="math inline">\(z\)</span>和<span
+class="math inline">\(w\)</span>（这里<span
+class="math inline">\(z\)</span>和<span
+class="math inline">\(w\)</span>与<span
+class="math inline">\(x\)</span>和<span
+class="math inline">\(y\)</span>线性相关，也就是说，<span
+class="math inline">\(z=\alpha x + \beta y\)</span>, <span
+class="math inline">\(\alpha\)</span>和<span
+class="math inline">\(\beta\)</span>是常量，同时<span
+class="math inline">\(w=\gamma x + \delta y\)</span>， <span
+class="math inline">\(\gamma\)</span>和<span
+class="math inline">\(\delta\)</span>也是常量）。这样，我们的系统就变换成了如下的形式：
+<span class="math display">\[\frac{\mathrm d z}{\mathrm d t} = \kappa
+w\]</span> <span class="math display">\[\frac{\mathrm d w}{\mathrm d t}
+= \lambda z\]</span></p>
+<p>也就是说，你对系统做了<strong>解耦</strong>，这样你就可以单独的处理各个独立函数了。接下来就这个问题就变得非常简单：<span
+class="math inline">\(z=Ae^{\kappa t}\)</span>，以及<span
+class="math inline">\(w=Be^{\lambda t}\)</span>。下一步就是用<span
+class="math inline">\(z\)</span>和<span
+class="math inline">\(w\)</span>的公式，算出<span
+class="math inline">\(x\)</span>和<span
+class="math inline">\(y\)</span>。</p>
+<p>这能做到么？事实上，这等于我们精确的找到了矩阵<span
+class="math inline">\(\begin{pmatrix}a &amp; b\\
+c&amp;d\end{pmatrix}\)</span>线性独立的两个特征向量！<span
+class="math inline">\(z\)</span>和<span
+class="math inline">\(w\)</span>是其特征向量，而<span
+class="math inline">\(\kappa\)</span>和<span
+class="math inline">\(\lambda\)</span>为相对应的特征值。通过使用一个表达式把<span
+class="math inline">\(x\)</span>和<span
+class="math inline">\(y\)</span><strong>混合</strong>
+起来，然后解耦成两个互相独立的函数，问题现在变得非常简单了。</p>
+<p>这就是我们希望使用特征向量及特征值的本质：通过线性变换把问题<strong>解耦</strong>
+成一系列沿着各个隔离<strong>方向</strong>的操作，使得各个方向问题都可独立解决。</p>
+<p>大量的问题归根结底是解决<strong>线性独立操作</strong>，理解这些可以实实在在的帮助你理解矩阵/线性变换到底在做什么。</p>
 
+    </div>
 
+    
+    
+    
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
-
-
-
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%B8%AD%E6%96%87/" rel="tag"># 中文</a>
+              <a href="/tags/ML/" rel="tag"># ML</a>
+          </div>
 
         
 
-
-
-
-
-
-
-        
-      </div>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/04/05/pca-translation/" rel="prev" title="主成分分析（PCA）简明教程（翻译）">
+                  <i class="fa fa-angle-left"></i> 主成分分析（PCA）简明教程（翻译）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/" rel="next" title="A Tutorial on Singular Value Decomposition">
+                  A Tutorial on Singular Value Decomposition <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
+  </article>
+</div>
 
-    
 
-    
 
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class=""></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
 
-
-	
-
-
+  <script src="/js/third-party/fancybox.js"></script>
 
 
 
@@ -767,62 +410,14 @@
 
 
 
-
   
 
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"chengmingbo/gitment-comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
 
 </body>
 </html>

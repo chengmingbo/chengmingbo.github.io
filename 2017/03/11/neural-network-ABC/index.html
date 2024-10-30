@@ -1,145 +1,47 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chengmingbo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-
-  
-  
-  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="ML,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Mingbo" type="application/atom+xml">
-
-
-
-
-
-
-<meta name="description" content="BackgroundDeep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neur">
-<meta name="keywords" content="ML">
+    <meta name="description" content="Background Deep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Neural Network ABC">
-<meta property="og:url" content="http://commanber.com/2017/03/11/neural-network-ABC/index.html">
+<meta property="og:url" content="http://chengmingbo.github.io/2017/03/11/neural-network-ABC/index.html">
 <meta property="og:site_name" content="Mingbo">
-<meta property="og:description" content="BackgroundDeep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neur">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-035015.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-043241.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-122045.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-135243.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-052259.jpg">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-085822.jpg">
-<meta property="og:updated_time" content="2019-03-17T16:28:23.575Z">
+<meta property="og:description" content="Background Deep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neu">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-11T18:46:55.000Z">
+<meta property="article:modified_time" content="2017-12-04T04:04:18.000Z">
+<meta property="article:author" content="Mingbo Cheng">
+<meta property="article:tag" content="ML">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Neural Network ABC">
-<meta name="twitter:description" content="BackgroundDeep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neur">
-<meta name="twitter:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-035015.jpg">
+
+
+<link rel="canonical" href="http://chengmingbo.github.io/2017/03/11/neural-network-ABC/">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://chengmingbo.github.io/2017/03/11/neural-network-ABC/","path":"2017/03/11/neural-network-ABC/","title":"Neural Network ABC"}</script>
 
-
-
-  <link rel="canonical" href="http://commanber.com/2017/03/11/neural-network-ABC/">
-
-
-
-
-
-  <title>Neural Network ABC | Mingbo</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Neural Network ABC | Mingbo</title>
   
 
 
@@ -149,226 +51,349 @@
 
 
 
-</head>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
-  
-  
-    
-  
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Mingbo</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mingbo</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="Mingbo">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-slides">
-          <a href="/slides/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-area-chart"></i> <br>
-            
-            slides
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            About
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-slides"><a href="/slides/" rel="section"><i class="area-chart fa-fw"></i>slides</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
+</header>
+        
+  
+  <aside class="sidebar">
 
-  <div id="posts" class="posts-expand">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intuition"><span class="nav-number">2.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#neural-network"><span class="nav-number">3.</span> <span class="nav-text">Neural Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#more-complicated-network"><span class="nav-number">4.</span> <span class="nav-text">More Complicated Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-applications"><span class="nav-number">5.</span> <span class="nav-text">Simple Applications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
+  <div class="site-description" itemprop="description">Mingbo</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chengmingbo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chengmingbo" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
     
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vividfree.github.io/" title="http:&#x2F;&#x2F;vividfree.github.io&#x2F;" rel="noopener" target="_blank">vividfree</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://colah.github.io/" title="http:&#x2F;&#x2F;colah.github.io&#x2F;" rel="noopener" target="_blank">colah</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.autonlab.org/tutorials" title="https:&#x2F;&#x2F;www.autonlab.org&#x2F;tutorials" rel="noopener" target="_blank">Andrew Moore</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://plot.ly/matlab/plot/" title="https:&#x2F;&#x2F;plot.ly&#x2F;matlab&#x2F;plot&#x2F;" rel="noopener" target="_blank">matlabplot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ryanzhang.info/blog/" title="http:&#x2F;&#x2F;www.ryanzhang.info&#x2F;blog&#x2F;" rel="noopener" target="_blank">Ryan’s Cabinet</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="http:&#x2F;&#x2F;www.cnblogs.com&#x2F;jerrylead&#x2F;tag&#x2F;Machine%20Learning&#x2F;" rel="noopener" target="_blank">JerryLead</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://yxzf.github.io/" title="https:&#x2F;&#x2F;yxzf.github.io&#x2F;" rel="noopener" target="_blank">YXZF'S BLOG</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vonng.com/" title="http:&#x2F;&#x2F;vonng.com" rel="noopener" target="_blank">VONNG</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/03/11/neural-network-ABC/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/03/11/neural-network-ABC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
     </span>
 
-    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Neural Network ABC | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Neural Network ABC
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">Neural Network ABC</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-11T19:46:55+01:00">
-                2017-03-11
-              </time>
-            
+      <time title="创建时间：2017-03-11 19:46:55" itemprop="dateCreated datePublished" datetime="2017-03-11T19:46:55+01:00">2017-03-11</time>
+    </span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>Deep learning is very popular recently, which is based on Neural Network, an old algorithm that had degraded for years but is resurging right now. We talk about some basic concept about Neural network today, hoping supply a intuitive perspective of it.</p>
-<p>Before beginning, I’d like to introduce you an exicting product which help those who are blind see the world. BrianPort, which is invented by Wicab, uses you tougue to see the world. Tongue array contains 400 electrodes and is connected to the glasses. The product transfers from light to electric signal. More than 80% blind persons could pass through the block during the experiments.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-035015.jpg" alt></p>
-<p>In fact, Wicab takes advantage the mechanism of neural network of our brain. There are 86 billion neuron in our brain. We can smell, see, hear the world just because of these neurons. They are connect to each other to help us sense the world. Algorithm Neural Network is a way of mimic the mechanism of our brain. </p>
-<h3 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h3><p>Let’s start from the easiest model, we get $a_1$ in two steps:<br>step1: $z_1=w_1x_1+w_2x_2+w_3x_3$<br>step2: $a_1=\frac{1}{1+e^{(-z)}}$<br>In addition, we add a bias $w_0$ to the calculate. After letting $x_0=1$, then:<br>$$z=w_0x_0+w_1x_1+w_2x_2+w_3x_3$$  We always add a bias at each layer but the last to Neural Network.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-043241.jpg" alt><br>If we contrast this model with logistic regression model, ww find that right now the to model is just the same: input every $x$ represents a feature. In logistic regression, we want to train a model $h_w(x)=\frac{1}{1+e^{-W^Tx}}$. The simpliest Neural Network, the model is a little complex, but if we do not take hidden layer into account, the model is just logistic regression.</p>
-<h3 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h3><p>To approach the authentic Neural Network, we add two more nerons($a_2^{(2)}$ and $a_1^{(3)}$) to logistic regression model. Notice that the model inner green triangle box is just like logistic regression demonstrated above. There are only two layers in Logistic Regression, in contrast, we can add more layers like L2 layer. In Neural Network, we call these layers hidden layers which are neither the input(e.g. layer have $x_1, x_2, x_2$), nor the output $h(x)$. The figure below has only one hidden layer, though we can add many hidden layers to the model.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-122045.jpg" alt><br>Look at the figure above, let’s look at the definition of Neural Network, take $w_{12}^{(1)}$ for example, the subscript $_{12}$ represents the weight from the former layer $2nd$ unit to the current layer $1st$ unit. The superscript $^1$ represents former layer is layer L1. These $w$ are named weights of Neural Network. The sigmoid function $f=\frac{1}{1+e^{-x}}$ is activation function. We can choose other activation function such as symmetrical sigmoid $S(x)=\frac{1-e^{-x}}{1+e^{-x}}$. Now let’s think about how to calculate $h(x)$, for the L2 layer, we have:<br>\begin{align}<br>&amp; z_1^{(2)}=w_{10}^{(1)}x_0 + w_{11}^{(1)}x_1 + w_{12}^{(1)}x_2 +  w_{13}^{(1)}x_3\<br>&amp; z_2^{(2)}=w_{20}^{(1)}x_0 + w_{21}^{(1)}x_1 + w_{22}^{(1)}x_2 +  w_{23}^{(1)}x_3\<br>&amp; a_1^{(2)} = g(w_{10}^{(1)}x_0 + w_{11}^{(1)}x_1 + w_{12}^{(1)}x_2 +  w_{13}^{(1)}x_3)=g(z_1^{2})\<br>&amp; a_2^{(2)} = g(w_{20}^{(1)}x_0 + w_{21}^{(1)}x_1 + w_{22}^{(1)}x_2 +  w_{23}^{(1)}x_3)=g(z_2^{2})<br>\end{align}<br>Here, $g()$ is the activation function. Notice that if we use matrices represent the equation, result will be simpler:<br>$$a^{(2)} = g(z^{(2)}) = g(W^{(1)} a^{(1)})$$<br>Here, we let $a_i^{(1)}=x_i$. We can conclude one more step, for layer k, we have:<br>$$a^{(k)} = g(z^{(k)}) = g(W^{(k-1)} a^{(k-1)})$$<br>Then for the L3 Layer, we have only one neural:<br>\begin{align}<br>h(x) = a_1^{3}=g(w_{10}^{(1)}a_0^{(2)} + w_{11}^{(1)}a_1^{(2)} + w_{12}^{(1)}a_2^{(2)})=g(z_1^{3})<br>\end{align}<br>If we substitute $a_1^{2}$ and $a_2^{2}$ for elme $h(x)$, we have:<br>\begin{align}<br>h(x)=a_1^{3}=g(w_{10}^{(1)}\cdot 1 + w_{11}^{(1)}<br>\cdot g(z_1^{(2)})+ w_{12}^{(1)}\cdot g(z_2^{(2)}))<br>\end{align}<br>The formula show that we use $g()$ function once and once again to nest the input, and compute the output eventaully. It is rather a non-linear classifier than linear classifier such as Linear Regression and Logistic Regression.</p>
-<h3 id="More-Complicated-Network"><a href="#More-Complicated-Network" class="headerlink" title="More Complicated Network"></a>More Complicated Network</h3><p>A Neural Network can be very complex, as long as we add more hidden layer into the network, the figure showed below is a neural network which has 20 layers, which means it has 1 input layer, 1 output layer and 18 hidden layers. From the connected weight we can imagine how much many weight we would calculate if we want to train such a big Neural Network. Notice that we add a bias subscript with zero on each layer except the output layer. And in each layer, we can add different amount of nerons. If we want to recognize numer image in zipcode from 0~9, we can design the Neural Network with 10 outputs in the output layer.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-135243.jpg" alt></p>
-<h3 id="Simple-Applications"><a href="#Simple-Applications" class="headerlink" title="Simple Applications"></a>Simple Applications</h3><p>This section, I’d like to construct a Neural Network to simulate a logic gate. Remember that bias $x_0$ is always $1$. Now let set $w_{10},$$w_{11}$ and $w_{12}$, and find what will h(x) become:<br>$$w_{10}=-30\,,w_{11}=20\,,w_{12}=20\,$$</p>
+    <div class="post-body" itemprop="articleBody"><h3 id="background">Background</h3>
+<p>Deep learning is very popular recently, which is based on Neural
+Network, an old algorithm that had degraded for years but is resurging
+right now. We talk about some basic concept about Neural network today,
+hoping supply a intuitive perspective of it.</p>
+<p>Before beginning, I'd like to introduce you an exicting product which
+help those who are blind see the world. BrianPort, which is invented by
+Wicab, uses you tougue to see the world. Tongue array contains 400
+electrodes and is connected to the glasses. The product transfers from
+light to electric signal. More than 80% blind persons could pass through
+the block during the experiments. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-035015.jpg" /></p>
+<p>In fact, Wicab takes advantage the mechanism of neural network of our
+brain. There are 86 billion neuron in our brain. We can smell, see, hear
+the world just because of these neurons. They are connect to each other
+to help us sense the world. Algorithm Neural Network is a way of mimic
+the mechanism of our brain.</p>
+<h3 id="intuition">Intuition</h3>
+<p>Let's start from the easiest model, we get <span
+class="math inline">\(a_1\)</span> in two steps: step1: <span
+class="math inline">\(z_1=w_1x_1+w_2x_2+w_3x_3\)</span> step2: <span
+class="math inline">\(a_1=\frac{1}{1+e^{(-z)}}\)</span> In addition, we
+add a bias <span class="math inline">\(w_0\)</span> to the calculate.
+After letting <span class="math inline">\(x_0=1\)</span>, then: <span
+class="math display">\[z=w_0x_0+w_1x_1+w_2x_2+w_3x_3\]</span> We always
+add a bias at each layer but the last to Neural Network. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-043241.jpg" /> If
+we contrast this model with logistic regression model, ww find that
+right now the to model is just the same: input every <span
+class="math inline">\(x\)</span> represents a feature. In logistic
+regression, we want to train a model <span
+class="math inline">\(h_w(x)=\frac{1}{1+e^{-W^Tx}}\)</span>. The
+simpliest Neural Network, the model is a little complex, but if we do
+not take hidden layer into account, the model is just logistic
+regression.</p>
+<h3 id="neural-network">Neural Network</h3>
+<p>To approach the authentic Neural Network, we add two more
+nerons(<span class="math inline">\(a_2^{(2)}\)</span> and <span
+class="math inline">\(a_1^{(3)}\)</span>) to logistic regression model.
+Notice that the model inner green triangle box is just like logistic
+regression demonstrated above. There are only two layers in Logistic
+Regression, in contrast, we can add more layers like L2 layer. In Neural
+Network, we call these layers hidden layers which are neither the
+input(e.g. layer have <span class="math inline">\(x_1, x_2,
+x_2\)</span>), nor the output <span class="math inline">\(h(x)\)</span>.
+The figure below has only one hidden layer, though we can add many
+hidden layers to the model. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-122045.jpg" />
+Look at the figure above, let's look at the definition of Neural
+Network, take <span class="math inline">\(w_{12}^{(1)}\)</span> for
+example, the subscript <span class="math inline">\(_{12}\)</span>
+represents the weight from the former layer <span
+class="math inline">\(2nd\)</span> unit to the current layer <span
+class="math inline">\(1st\)</span> unit. The superscript <span
+class="math inline">\(^1\)</span> represents former layer is layer L1.
+These <span class="math inline">\(w\)</span> are named weights of Neural
+Network. The sigmoid function <span
+class="math inline">\(f=\frac{1}{1+e^{-x}}\)</span> is activation
+function. We can choose other activation function such as symmetrical
+sigmoid <span
+class="math inline">\(S(x)=\frac{1-e^{-x}}{1+e^{-x}}\)</span>. Now let's
+think about how to calculate <span class="math inline">\(h(x)\)</span>,
+for the L2 layer, we have: <span class="math display">\[\begin{align}
+&amp; z_1^{(2)}=w_{10}^{(1)}x_0 + w_{11}^{(1)}x_1 + w_{12}^{(1)}x_2
++  w_{13}^{(1)}x_3\\
+&amp; z_2^{(2)}=w_{20}^{(1)}x_0 + w_{21}^{(1)}x_1 + w_{22}^{(1)}x_2
++  w_{23}^{(1)}x_3\\
+&amp; a_1^{(2)} = g(w_{10}^{(1)}x_0 + w_{11}^{(1)}x_1 + w_{12}^{(1)}x_2
++  w_{13}^{(1)}x_3)=g(z_1^{2})\\
+&amp; a_2^{(2)} = g(w_{20}^{(1)}x_0 + w_{21}^{(1)}x_1 + w_{22}^{(1)}x_2
++  w_{23}^{(1)}x_3)=g(z_2^{2})
+\end{align}\]</span> Here, <span class="math inline">\(g()\)</span> is
+the activation function. Notice that if we use matrices represent the
+equation, result will be simpler: <span class="math display">\[a^{(2)} =
+g(z^{(2)}) = g(W^{(1)} a^{(1)})\]</span> Here, we let <span
+class="math inline">\(a_i^{(1)}=x_i\)</span>. We can conclude one more
+step, for layer k, we have: <span class="math display">\[a^{(k)} =
+g(z^{(k)}) = g(W^{(k-1)} a^{(k-1)})\]</span> Then for the L3 Layer, we
+have only one neural: <span class="math display">\[\begin{align}
+h(x) = a_1^{3}=g(w_{10}^{(1)}a_0^{(2)} + w_{11}^{(1)}a_1^{(2)} +
+w_{12}^{(1)}a_2^{(2)})=g(z_1^{3})
+\end{align}\]</span> If we substitute <span
+class="math inline">\(a_1^{2}\)</span> and <span
+class="math inline">\(a_2^{2}\)</span> for elme <span
+class="math inline">\(h(x)\)</span>, we have: <span
+class="math display">\[\begin{align}
+h(x)=a_1^{3}=g(w_{10}^{(1)}\cdot 1 + w_{11}^{(1)}
+\cdot g(z_1^{(2)})+ w_{12}^{(1)}\cdot g(z_2^{(2)}))
+\end{align}\]</span> The formula show that we use <span
+class="math inline">\(g()\)</span> function once and once again to nest
+the input, and compute the output eventaully. It is rather a non-linear
+classifier than linear classifier such as Linear Regression and Logistic
+Regression.</p>
+<h3 id="more-complicated-network">More Complicated Network</h3>
+<p>A Neural Network can be very complex, as long as we add more hidden
+layer into the network, the figure showed below is a neural network
+which has 20 layers, which means it has 1 input layer, 1 output layer
+and 18 hidden layers. From the connected weight we can imagine how much
+many weight we would calculate if we want to train such a big Neural
+Network. Notice that we add a bias subscript with zero on each layer
+except the output layer. And in each layer, we can add different amount
+of nerons. If we want to recognize numer image in zipcode from 0~9, we
+can design the Neural Network with 10 outputs in the output layer. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-08-135243.jpg" /></p>
+<h3 id="simple-applications">Simple Applications</h3>
+<p>This section, I'd like to construct a Neural Network to simulate a
+logic gate. Remember that bias <span class="math inline">\(x_0\)</span>
+is always <span class="math inline">\(1\)</span>. Now let set <span
+class="math inline">\(w_{10},\)</span><span
+class="math inline">\(w_{11}\)</span> and <span
+class="math inline">\(w_{12}\)</span>, and find what will h(x) become:
+<span
+class="math display">\[w_{10}=-30\,,w_{11}=20\,,w_{12}=20\,\]</span></p>
 <table>
 <thead>
-<tr>
-<th>$x_1$</th>
-<th>$x_2$</th>
-<th>$z_1$</th>
-<th>$a_1$</th>
+<tr class="header">
+<th><span class="math inline">\(x_1\)</span></th>
+<th><span class="math inline">\(x_2\)</span></th>
+<th><span class="math inline">\(z_1\)</span></th>
+<th><span class="math inline">\(a_1\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>0</td>
 <td>0</td>
 <td>-30</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="even">
 <td>0</td>
 <td>1</td>
 <td>-10</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>-10</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="even">
 <td>1</td>
 <td>1</td>
 <td>10</td>
@@ -376,40 +401,67 @@
 </tr>
 </tbody>
 </table>
-<p>Here we take advantge the property of sigmoid function, $g(-10)=4.5\times 10^{-5}\approx 0$ and $g(10)=0.99995\approx 1$. From the table we have constructed an $AND$ logic gate. It is easy to construct an $OR$ logic gate. We just set:<br>    $$w_{10}=-30\,,w_{11}=50\,,w_{12}=50\,$$<br>Then we get an $OR$ logic gate. We can construct $NOR$ gate as well, just set:<br>$$w_{10}=10\,,w_{11}=-20\,,w_{12}=-20\,$$<br>Question: can we construct a $XOR$ gate?<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-052259.jpg" alt><br>In fact, we can get a more powerful logic gate through adding more hidden layers. Only 2 layers of Neural Network can not construct a $XOR$ gate but 3 layers can. Neural Network shown below can implement function as $XOR$ logic gate.<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-085822.jpg" alt><br>The weights matrices is as followed, we can testify through table listed.<br>\begin{align}<br>&amp;W^{(1)}=\begin{bmatrix}-30&amp;20&amp;20\<br>10&amp;-20&amp;-20<br>\end{bmatrix}\<br>&amp;W^{(2)}=\begin{bmatrix}10&amp;-20&amp;-20<br>\end{bmatrix}<br>\end{align}</p>
+<p>Here we take advantge the property of sigmoid function, <span
+class="math inline">\(g(-10)=4.5\times 10^{-5}\approx 0\)</span> and
+<span class="math inline">\(g(10)=0.99995\approx 1\)</span>. From the
+table we have constructed an <span class="math inline">\(AND\)</span>
+logic gate. It is easy to construct an <span
+class="math inline">\(OR\)</span> logic gate. We just set: <span
+class="math display">\[w_{10}=-30\,,w_{11}=50\,,w_{12}=50\,\]</span>
+Then we get an <span class="math inline">\(OR\)</span> logic gate. We
+can construct <span class="math inline">\(NOR\)</span> gate as well,
+just set: <span
+class="math display">\[w_{10}=10\,,w_{11}=-20\,,w_{12}=-20\,\]</span>
+Question: can we construct a <span class="math inline">\(XOR\)</span>
+gate? <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-052259.jpg" /> In
+fact, we can get a more powerful logic gate through adding more hidden
+layers. Only 2 layers of Neural Network can not construct a <span
+class="math inline">\(XOR\)</span> gate but 3 layers can. Neural Network
+shown below can implement function as <span
+class="math inline">\(XOR\)</span> logic gate. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-09-085822.jpg" />
+The weights matrices is as followed, we can testify through table
+listed. <span class="math display">\[\begin{align}
+&amp;W^{(1)}=\begin{bmatrix}-30&amp;20&amp;20\\
+10&amp;-20&amp;-20
+\end{bmatrix}\\
+&amp;W^{(2)}=\begin{bmatrix}10&amp;-20&amp;-20
+\end{bmatrix}
+\end{align}\]</span></p>
 <table>
 <thead>
-<tr>
-<th>$x_1$</th>
-<th>$x_2$</th>
-<th>$a_1^{(2)}$</th>
-<th>$a_2^{(2)}$</th>
-<th>$a_1^{(3)}$</th>
+<tr class="header">
+<th><span class="math inline">\(x_1\)</span></th>
+<th><span class="math inline">\(x_2\)</span></th>
+<th><span class="math inline">\(a_1^{(2)}\)</span></th>
+<th><span class="math inline">\(a_2^{(2)}\)</span></th>
+<th><span class="math inline">\(a_1^{(3)}\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>1</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="even">
 <td>0</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>1</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>1</td>
 </tr>
-<tr>
+<tr class="even">
 <td>1</td>
 <td>1</td>
 <td>1</td>
@@ -418,432 +470,101 @@
 </tr>
 </tbody>
 </table>
-<p>From examples we have seen, hope you can gain intuition about Neural Network. We can generate more abstract features through adding hidden layers.</p>
-<h3 id="Summerize"><a href="#Summerize" class="headerlink" title="Summerize"></a>Summerize</h3><p>Today we used Logistic Regression adding hidden layers to generate Neural Network. Then we talked about how to represent a Neural Network. In the end, we found that Neural Network can simulate logic gate. We do not talk about how to train a Neural Network here. Usually we use Backpropagation Algorithm to train a Neural Network. </p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ol>
-<li><a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="noopener">https://www.coursera.org/learn/machine-learning</a></li>
+<p>From examples we have seen, hope you can gain intuition about Neural
+Network. We can generate more abstract features through adding hidden
+layers. ### Summerize Today we used Logistic Regression adding hidden
+layers to generate Neural Network. Then we talked about how to represent
+a Neural Network. In the end, we found that Neural Network can simulate
+logic gate. We do not talk about how to train a Neural Network here.
+Usually we use Backpropagation Algorithm to train a Neural Network.</p>
+<h3 id="reference">Reference</h3>
+<ol type="1">
+<li>https://www.coursera.org/learn/machine-learning</li>
 <li>《Neural Networks》by Raul Rojas</li>
 </ol>
 
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ML/" rel="tag"># ML</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/03/04/linear-regression/" rel="next" title="Linear Regression for Trump">
-                <i class="fa fa-chevron-left"></i> Linear Regression for Trump
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/ML/" rel="tag"># ML</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/18/Naive-Bayes/" rel="prev" title="Naive Bayes">
-                Naive Bayes <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
         
-  <script src="https://utteranc.es/client.js" repo="chengmingbo/gitment-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
-  </script>
 
-
-    </div> 
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
-              <p class="site-description motion-element" itemprop="description">Mingbo</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">18</span>
-                  <span class="site-state-item-name">posts</span>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/03/04/linear-regression/" rel="prev" title="Linear Regression for Trump">
+                  <i class="fa fa-angle-left"></i> Linear Regression for Trump
                 </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">categories</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
             </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/chengmingbo" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
+            <div class="post-nav-item">
+                <a href="/2017/03/18/Naive-Bayes/" rel="next" title="Naive Bayes">
+                  Naive Bayes <i class="fa fa-angle-right"></i>
+                </a>
             </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.flickering.cn/" title="flickering" target="_blank">flickering</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.zybuluo.com/codeep/note/163962" title="mathjax grammar" target="_blank">mathjax grammar</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vividfree.github.io/" title="vividfree" target="_blank">vividfree</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://colah.github.io/" title="colah" target="_blank">colah</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.autonlab.org/tutorials" title="Andrew Moore" target="_blank">Andrew Moore</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://plot.ly/matlab/plot/" title="matlabplot" target="_blank">matlabplot</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ryanzhang.info/blog/" title="Ryan’s Cabinet" target="_blank">Ryan’s Cabinet</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="JerryLead" target="_blank">JerryLead</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://yxzf.github.io/" title="YXZF'S BLOG" target="_blank">YXZF'S BLOG</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vonng.com" title="VONNG" target="_blank">VONNG</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Background"><span class="nav-number">1.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intuition"><span class="nav-number">2.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neural-Network"><span class="nav-number">3.</span> <span class="nav-text">Neural Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#More-Complicated-Network"><span class="nav-number">4.</span> <span class="nav-text">More Complicated Network</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Applications"><span class="nav-number">5.</span> <span class="nav-text">Simple Applications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Summerize"><span class="nav-number">6.</span> <span class="nav-text">Summerize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li></ol></div>
-            
-
           </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
-
-  
+    </footer>
+  </article>
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
 
-        
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-
-    
-
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class=""></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
 
-
-	
-
-
+  <script src="/js/third-party/fancybox.js"></script>
 
 
 
@@ -852,62 +573,14 @@
 
 
 
-
   
 
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"chengmingbo/gitment-comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
 
 </body>
 </html>

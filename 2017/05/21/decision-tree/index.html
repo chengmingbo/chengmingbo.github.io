@@ -1,143 +1,47 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="theme-color" content="#222">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chengmingbo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-
-  
-  
-  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="ML,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Mingbo" type="application/atom+xml">
-
-
-
-
-
-
-<meta name="description" content="PrefaceIn April 9th, 2017, incident occurred in United Airlines where crew of UA beat up a passenger and dragged him out of the plane before which was about to take off attracted attention all around">
-<meta name="keywords" content="ML">
+    <meta name="description" content="Preface In April 9th, 2017, incident occurred in United Airlines where crew of UA beat up a passenger and dragged him out of the plane before which was about to take off attracted attention all around">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Decision Tree (ID3)">
-<meta property="og:url" content="http://commanber.com/2017/05/21/decision-tree/index.html">
+<meta property="og:url" content="http://chengmingbo.github.io/2017/05/21/decision-tree/index.html">
 <meta property="og:site_name" content="Mingbo">
-<meta property="og:description" content="PrefaceIn April 9th, 2017, incident occurred in United Airlines where crew of UA beat up a passenger and dragged him out of the plane before which was about to take off attracted attention all around">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-United%20Airlines.png">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-homework.png">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-17-2.png">
-<meta property="og:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-19-2.png">
-<meta property="og:updated_time" content="2019-03-17T16:28:23.574Z">
+<meta property="og:description" content="Preface In April 9th, 2017, incident occurred in United Airlines where crew of UA beat up a passenger and dragged him out of the plane before which was about to take off attracted attention all around">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-05-21T13:10:50.000Z">
+<meta property="article:modified_time" content="2019-03-17T16:28:23.000Z">
+<meta property="article:author" content="Mingbo Cheng">
+<meta property="article:tag" content="ML">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Decision Tree (ID3)">
-<meta name="twitter:description" content="PrefaceIn April 9th, 2017, incident occurred in United Airlines where crew of UA beat up a passenger and dragged him out of the plane before which was about to take off attracted attention all around">
-<meta name="twitter:image" content="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-United%20Airlines.png">
+
+
+<link rel="canonical" href="http://chengmingbo.github.io/2017/05/21/decision-tree/">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.4',
-    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://chengmingbo.github.io/2017/05/21/decision-tree/","path":"2017/05/21/decision-tree/","title":"Decision Tree (ID3)"}</script>
 
-
-
-  <link rel="canonical" href="http://commanber.com/2017/05/21/decision-tree/">
-
-
-
-
-
-  <title>Decision Tree (ID3) | Mingbo</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Decision Tree (ID3) | Mingbo</title>
   
 
 
@@ -147,820 +51,709 @@
 
 
 
-</head>
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
-  
-  
-    
-  
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  <div class="container sidebar-position-right page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Mingbo</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mingbo</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="Mingbo">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-slides">
-          <a href="/slides/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-area-chart"></i> <br>
-            
-            slides
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            About
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-slides"><a href="/slides/" rel="section"><i class="area-chart fa-fw"></i>slides</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
+</header>
+        
+  
+  <aside class="sidebar">
 
-  <div id="posts" class="posts-expand">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iris-data"><span class="nav-number">3.</span> <span class="nav-text">Iris data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#entropy-and-information-gain"><span class="nav-number">4.</span> <span class="nav-text">Entropy and Information Gain</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#entropy"><span class="nav-number">4.0.1.</span> <span class="nav-text">Entropy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conditional-entropy-and-iris-data"><span class="nav-number">4.0.2.</span> <span class="nav-text">Conditional Entropy and Iris
+Data</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#id3iterative-dichotomiser-3"><span class="nav-number">5.</span> <span class="nav-text">ID3(Iterative Dichotomiser 3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#summary"><span class="nav-number">6.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendix-code"><span class="nav-number">8.</span> <span class="nav-text">Appendix code</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
+  <div class="site-description" itemprop="description">Mingbo</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chengmingbo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chengmingbo" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
     
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vividfree.github.io/" title="http:&#x2F;&#x2F;vividfree.github.io&#x2F;" rel="noopener" target="_blank">vividfree</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://colah.github.io/" title="http:&#x2F;&#x2F;colah.github.io&#x2F;" rel="noopener" target="_blank">colah</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.autonlab.org/tutorials" title="https:&#x2F;&#x2F;www.autonlab.org&#x2F;tutorials" rel="noopener" target="_blank">Andrew Moore</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://plot.ly/matlab/plot/" title="https:&#x2F;&#x2F;plot.ly&#x2F;matlab&#x2F;plot&#x2F;" rel="noopener" target="_blank">matlabplot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ryanzhang.info/blog/" title="http:&#x2F;&#x2F;www.ryanzhang.info&#x2F;blog&#x2F;" rel="noopener" target="_blank">Ryan’s Cabinet</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="http:&#x2F;&#x2F;www.cnblogs.com&#x2F;jerrylead&#x2F;tag&#x2F;Machine%20Learning&#x2F;" rel="noopener" target="_blank">JerryLead</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://yxzf.github.io/" title="https:&#x2F;&#x2F;yxzf.github.io&#x2F;" rel="noopener" target="_blank">YXZF'S BLOG</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vonng.com/" title="http:&#x2F;&#x2F;vonng.com" rel="noopener" target="_blank">VONNG</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://commanber.com/2017/05/21/decision-tree/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/05/21/decision-tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Mingbo Cheng">
-      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
     </span>
 
-    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Decision Tree (ID3) | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Decision Tree (ID3)
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">Decision Tree (ID3)</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-21T15:10:50+02:00">
-                2017-05-21
-              </time>
-            
+      <time title="创建时间：2017-05-21 15:10:50" itemprop="dateCreated datePublished" datetime="2017-05-21T15:10:50+02:00">2017-05-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Alogorithm/" itemprop="url" rel="index"><span itemprop="name">Alogorithm</span></a>
+        </span>
+    </span>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Alogorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Alogorithm</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>In April 9th, 2017, incident occurred in United Airlines where crew of UA beat up a passenger and dragged him out of the plane before which was about to take off attracted attention all around the world. Many would gave out doubt: why a company being so rude to passengers can exist in this world? Actually, UA is going well is just because they have an extremely precise emergency situation procedure which is calculate by compute depending on big-data analysis. Computer can help us make decisions though, it has no emotions, which is effective in most cases, but can not be approved by our human beings. Let’s take a look at how algorithm make a decision:<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-United%20Airlines.png" alt><br>It is a decision tree, which simply represents the procedure of how UA algorithm make the decision. First of all, before taking off, four employees of UA need fly from Chicago to Kentucky. Then the algorithm check if there is any seats left, if so, passengers were safe for the moment. But UA3411 was full, the algorithm began assessing the importance of employees or passengers. Obviously, the algorithm think crew is more important due to business consideration. Then how to choose who should be evicted from the plane. The algorithm was more complicated than the tree I drew, however, Asian or not was one of the criterion. But why? Because Asian are pushovers. The passenger agreed at first, however, when he heard that he had to wait for one day, he realized that he could not treat his patient, then he refused. Then he was beat up and dragged off the plane.</p>
-<p>As you have seen, it is a decision tree, which is similar to human decision-making process. Decision tree is a simple but powerful algorithm in machine learning. In fact, you are often using decision tree theory when making decision, for example<br><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-homework.png" alt></p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Decision tree is a classification and regression algorithm, we build a tree through statistics. Today we only talk about how to classify dataset using Decision Tree. First we will introduce some information theory background knowledge, then we use iris data build a decision tree using IDC3 algorithm.</p>
-<h2 id="Iris-data"><a href="#Iris-data" class="headerlink" title="Iris data"></a>Iris data</h2><p><a href="https://archive.ics.uci.edu/ml/datasets/Iris" target="_blank" rel="noopener">Iris dataset</a> is a very famous dataset deposited on UCI machine learning repository, which described three kinds of iris. there are four columns corresponding for features as followed：</p>
-<ul>
-<li>sepal length in cm</li>
-<li>sepal width in cm</li>
-<li>petal length in cm</li>
-<li>petal width in cm</li>
-</ul>
+    <div class="post-body" itemprop="articleBody"><h2 id="preface">Preface</h2>
+<p>In April 9th, 2017, incident occurred in United Airlines where crew
+of UA beat up a passenger and dragged him out of the plane before which
+was about to take off attracted attention all around the world. Many
+would gave out doubt: why a company being so rude to passengers can
+exist in this world? Actually, UA is going well is just because they
+have an extremely precise emergency situation procedure which is
+calculate by compute depending on big-data analysis. Computer can help
+us make decisions though, it has no emotions, which is effective in most
+cases, but can not be approved by our human beings. Let's take a look at
+how algorithm make a decision: <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-United%20Airlines.png" />
+It is a decision tree, which simply represents the procedure of how UA
+algorithm make the decision. First of all, before taking off, four
+employees of UA need fly from Chicago to Kentucky. Then the algorithm
+check if there is any seats left, if so, passengers were safe for the
+moment. But UA3411 was full, the algorithm began assessing the
+importance of employees or passengers. Obviously, the algorithm think
+crew is more important due to business consideration. Then how to choose
+who should be evicted from the plane. The algorithm was more complicated
+than the tree I drew, however, Asian or not was one of the criterion.
+But why? Because Asian are pushovers. The passenger agreed at first,
+however, when he heard that he had to wait for one day, he realized that
+he could not treat his patient, then he refused. Then he was beat up and
+dragged off the plane.</p>
+<p>As you have seen, it is a decision tree, which is similar to human
+decision-making process. Decision tree is a simple but powerful
+algorithm in machine learning. In fact, you are often using decision
+tree theory when making decision, for example <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-homework.png" /></p>
+<h2 id="introduction">Introduction</h2>
+<p>Decision tree is a classification and regression algorithm, we build
+a tree through statistics. Today we only talk about how to classify
+dataset using Decision Tree. First we will introduce some information
+theory background knowledge, then we use iris data build a decision tree
+using IDC3 algorithm.</p>
+<h2 id="iris-data">Iris data</h2>
+<p><a target="_blank" rel="noopener" href="https://archive.ics.uci.edu/ml/datasets/Iris">Iris
+dataset</a> is a very famous dataset deposited on UCI machine learning
+repository, which described three kinds of iris. there are four columns
+corresponding for features as followed： * sepal length in cm * sepal
+width in cm * petal length in cm * petal width in cm</p>
 <p>The last column represents iris categories:</p>
 <ul>
 <li>Iris-setosa (n=50)</li>
 <li>Iris-versicolor (n=50)</li>
 <li>Iris-virginica (n=50)</li>
 </ul>
-<p>Here, our task is to use the dataset to train a model and generate a decision tree.  During the process we need calculate some statistics values to decide how to generate a better one.</p>
-<p>The dataset is very small so that you can easily download it and take a look.</p>
-<h2 id="Entropy-and-Information-Gain"><a href="#Entropy-and-Information-Gain" class="headerlink" title="Entropy and Information Gain"></a>Entropy and Information Gain</h2><h4 id="Entropy"><a href="#Entropy" class="headerlink" title="Entropy"></a>Entropy</h4><p>Before Decision Tree, I’d like to talk about some concept in Information Theory. Entropy is a concept from thermodynamics at first, C.E.Shannon introduced which into information theory which represent redundancy in 1948. It sounds a very strange concept. In fact, it is very easy to understand. For example, during the knockout stages in world Cup Games, there are 16 teams. Now I let you guess which team will win the champion which assume I know the answer, how many times do you need to get the outcome? First of all, you cut 16 teams to 8-8 parts, you asked me if the team in first 8 teams or the other. I told you that the team was in the other 8 teams. Then you cut the the 8 teams again, you ask me if the team is in the first 4 teams or the other, I told you that the champion would be in the first 4 teams, and so forth and so on. And how many times is the entropy of who wining the champion.</p>
-<p>$$ Entropy(champion) = {\rm log}_2^{16}=4 $$</p>
-<p>That is, we can use 4 bits to represents which team will win the game. Clever you may ask why we divide team to two parts other than three or four parts. That is because we use binary represents the world in computer world. $ 2^4=16 $ means we can use 4 bit represents 16 conditions. We can use entropy represent all information in this world. And if you have known that which team will win the campion, the entropy is 0, because, you do not need any more information to deduce the outcome.</p>
-<p>Entropy represents uncertainty indeed. Ancient China, we have to record history on bamboo    slips, which demanded us decrease words. That means entropy of every single ancient Chinese character is higher than words we are saying today. That is, if we lost just some of these words, we would lose lots of stories. There are many songs starts with:”Yoo, yoo, check now”, which barely offer us information, which means we can drop those words and interpret the these songs precisely as well. The entropy of these sentence is low.</p>
-<p>Assume $X$ is discrete random variable, the distribution is:<br>$$P(X=x_i)=p_i$$<br>then the entropy of X is:<br>$$H(X)=-\sum_{i=1}^{n}p_i {\rm log}_2 p_i$$<br>where if p_0=0, we define 0log0 = 0.</p>
-<p>It seems that the equation has nothing to do with the entropy we have calculated in the champion example. Now let’s calculate the example. First of all $X$ represents the probability of each team which would win the game. we assume all teams were at the same level, so we have<br>$$p(X=x_1)=p(X=x_2)=p(X=x_3)=\cdots = p(X=x_{16})=\frac{1}{16}$$<br>the entropy is<br>$$H(X)=-\sum_{i=1}^{16}\frac{1}{16}{\rm log}_2 \frac{1}{16}=-16\times\frac{1}{16}\times {\rm log}_2 {2^{-4}}=4$$</p>
-<p>Bingo, the the answer is same. In fact, if we know some more information, the entropy is lower than 4. for example, the probability of Germany is higher than some Asian teams.</p>
-<h4 id="Entropy-and-Iris-Data"><a href="#Entropy-and-Iris-Data" class="headerlink" title="Entropy and Iris Data"></a>Entropy and Iris Data</h4><p>Now we calculate entropy of Iris Data which will be used to fit a decision tree in following sections. We concern about the categories(setosa, versicolor and virginica). Remember the equation of how to calculate entropy:<br>$$H(X)=-\sum_{i=1}^{n}p_i {\rm log}_2 p_i$$</p>
-<p>Three kinds of flowers are all 50s, so the probability of each category is the same:<br>$$p_1=p_2=p_3=\frac{50}{50+50+50}=\frac{1}{3}$$<br>Then, the entropy is pretty easy to calculate<br>$$H(X)=-1\times (\frac{1}{3}{\rm log}_2\frac{1}{3}+\frac{1}{3}{\rm log}_2\frac{1}{3}+\frac{1}{3}{\rm log}_2\frac{1}{3})=1.5850$$</p>
-<h4 id="Conditional-Entropy"><a href="#Conditional-Entropy" class="headerlink" title="Conditional Entropy"></a>Conditional Entropy</h4><p>The meaning of Conditional Entropy is as its name.  With respect with random variable$(X, Y)$, the joint distribution is<br>$$P(X=x_i, Y=y_j)=p_{ij}, i=1,2,3\cdots m; j=1,2,3,\cdots n$$<br>Conditional Entropy H(Y|X) represents that given we have known random variable $X$ , the disorder or uncertainty of $Y$.  The definition is as followed:<br>$$H(Y|X)=\sum_{i=1}^m p_i H(Y|X=x_i)$$<br>Here, $p_i=P(X=x_i)$.</p>
-<h4 id="Conditional-Entropy-and-Iris-Data"><a href="#Conditional-Entropy-and-Iris-Data" class="headerlink" title="Conditional Entropy and Iris Data"></a>Conditional Entropy and Iris Data</h4><p>We calculate some Conditional Entropy as examples. First of all, I random choose 15 columns of sepal length with respect to their categories. the result is as followed：</p>
+<p>Here, our task is to use the dataset to train a model and generate a
+decision tree. During the process we need calculate some statistics
+values to decide how to generate a better one.</p>
+<p>The dataset is very small so that you can easily download it and take
+a look.</p>
+<h2 id="entropy-and-information-gain">Entropy and Information Gain</h2>
+<h4 id="entropy">Entropy</h4>
+<p>Before Decision Tree, I'd like to talk about some concept in
+Information Theory. Entropy is a concept from thermodynamics at first,
+C.E.Shannon introduced which into information theory which represent
+redundancy in 1948. It sounds a very strange concept. In fact, it is
+very easy to understand. For example, during the knockout stages in
+world Cup Games, there are 16 teams. Now I let you guess which team will
+win the champion which assume I know the answer, how many times do you
+need to get the outcome? First of all, you cut 16 teams to 8-8 parts,
+you asked me if the team in first 8 teams or the other. I told you that
+the team was in the other 8 teams. Then you cut the the 8 teams again,
+you ask me if the team is in the first 4 teams or the other, I told you
+that the champion would be in the first 4 teams, and so forth and so on.
+And how many times is the entropy of who wining the champion.</p>
+<p><span class="math display">\[ Entropy(champion) = {\rm log}_2^{16}=4
+\]</span></p>
+<p>That is, we can use 4 bits to represents which team will win the
+game. Clever you may ask why we divide team to two parts other than
+three or four parts. That is because we use binary represents the world
+in computer world. $ 2^4=16 $ means we can use 4 bit represents 16
+conditions. We can use entropy represent all information in this world.
+And if you have known that which team will win the campion, the entropy
+is 0, because, you do not need any more information to deduce the
+outcome.</p>
+<p>Entropy represents uncertainty indeed. Ancient China, we have to
+record history on bamboo slips, which demanded us decrease words. That
+means entropy of every single ancient Chinese character is higher than
+words we are saying today. That is, if we lost just some of these words,
+we would lose lots of stories. There are many songs starts with:"Yoo,
+yoo, check now", which barely offer us information, which means we can
+drop those words and interpret the these songs precisely as well. The
+entropy of these sentence is low.</p>
+<p>Assume <span class="math inline">\(X\)</span> is discrete random
+variable, the distribution is: <span
+class="math display">\[P(X=x_i)=p_i\]</span> then the entropy of X is:
+<span class="math display">\[H(X)=-\sum_{i=1}^{n}p_i {\rm log}_2
+p_i\]</span> where if p_0=0, we define 0log0 = 0.</p>
+<p>It seems that the equation has nothing to do with the entropy we have
+calculated in the champion example. Now let's calculate the example.
+First of all <span class="math inline">\(X\)</span> represents the
+probability of each team which would win the game. we assume all teams
+were at the same level, so we have <span
+class="math display">\[p(X=x_1)=p(X=x_2)=p(X=x_3)=\cdots =
+p(X=x_{16})=\frac{1}{16}\]</span> the entropy is <span
+class="math display">\[H(X)=-\sum_{i=1}^{16}\frac{1}{16}{\rm log}_2
+\frac{1}{16}=-16\times\frac{1}{16}\times {\rm log}_2
+{2^{-4}}=4\]</span></p>
+<p>Bingo, the the answer is same. In fact, if we know some more
+information, the entropy is lower than 4. for example, the probability
+of Germany is higher than some Asian teams. #### Entropy and Iris Data
+Now we calculate entropy of Iris Data which will be used to fit a
+decision tree in following sections. We concern about the
+categories(setosa, versicolor and virginica). Remember the equation of
+how to calculate entropy: <span
+class="math display">\[H(X)=-\sum_{i=1}^{n}p_i {\rm log}_2
+p_i\]</span></p>
+<p>Three kinds of flowers are all 50s, so the probability of each
+category is the same: <span
+class="math display">\[p_1=p_2=p_3=\frac{50}{50+50+50}=\frac{1}{3}\]</span>
+Then, the entropy is pretty easy to calculate <span
+class="math display">\[H(X)=-1\times (\frac{1}{3}{\rm
+log}_2\frac{1}{3}+\frac{1}{3}{\rm log}_2\frac{1}{3}+\frac{1}{3}{\rm
+log}_2\frac{1}{3})=1.5850\]</span> #### Conditional Entropy The meaning
+of Conditional Entropy is as its name. With respect with random
+variable<span class="math inline">\((X, Y)\)</span>, the joint
+distribution is <span class="math display">\[P(X=x_i, Y=y_j)=p_{ij},
+i=1,2,3\cdots m; j=1,2,3,\cdots n\]</span> Conditional Entropy H(Y|X)
+represents that given we have known random variable <span
+class="math inline">\(X\)</span> , the disorder or uncertainty of <span
+class="math inline">\(Y\)</span>. The definition is as followed: <span
+class="math display">\[H(Y|X)=\sum_{i=1}^m p_i H(Y|X=x_i)\]</span> Here,
+<span class="math inline">\(p_i=P(X=x_i)\)</span>.</p>
+<h4 id="conditional-entropy-and-iris-data">Conditional Entropy and Iris
+Data</h4>
+<p>We calculate some Conditional Entropy as examples. First of all, I
+random choose 15 columns of sepal length with respect to their
+categories. the result is as followed：</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>No.</th>
 <th>sepal length in cm</th>
 <th>categories</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>5.90</td>
 <td>Iris-versicolor</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>7.20</td>
 <td>Iris-virginica</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>5.00</td>
 <td>Iris-versicolor</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>5.00</td>
 <td>Iris-setosa</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>5.90</td>
 <td>Iris-versicolor</td>
 </tr>
-<tr>
+<tr class="even">
 <td>6</td>
 <td>5.70</td>
 <td>Iris-setosa</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>7</td>
 <td>5.20</td>
 <td>Iris-versicolor</td>
 </tr>
-<tr>
+<tr class="even">
 <td>8</td>
 <td>5.50</td>
 <td>Iris-versicolor</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>9</td>
 <td>4.80</td>
 <td>Iris-setosa</td>
 </tr>
-<tr>
+<tr class="even">
 <td>10</td>
 <td>4.60</td>
 <td>Iris-setosa</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>11</td>
 <td>6.50</td>
 <td>Iris-versicolor</td>
 </tr>
-<tr>
+<tr class="even">
 <td>12</td>
 <td>5.20</td>
 <td>Iris-setosa</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>13</td>
 <td>7.70</td>
 <td>Iris-virginica</td>
 </tr>
-<tr>
+<tr class="even">
 <td>14</td>
 <td>6.40</td>
 <td>Iris-virginica</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>15</td>
 <td>6.00</td>
 <td>Iris-versicolor</td>
 </tr>
 </tbody>
 </table>
-<p>The octave code is<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%% octave</span><br><span class="line">[a,b,c,d, cate] = textread(<span class="string">"iris.data"</span>, <span class="string">"%f%f%f%f%s"</span>,<span class="string">"delimiter"</span>, <span class="string">","</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i=<span class="number">1</span>:<span class="number">15</span></span><br><span class="line">  <span class="keyword">x</span> = floor(<span class="keyword">rand</span>()*<span class="number">150</span>);</span><br><span class="line">  fprintf(<span class="string">'%f %s\n'</span>, a(<span class="keyword">x</span>), cate<span class="string">&#123;x&#125;</span> );</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>We just take this 15 items for examples, I assume that we divide sepal length into two parts: greater than mean and less than mean. The mean is<br>$$mean = (5.90+7.2+\cdots+6.00)/15 = 5.7733$$<br>There are 8 elements less then 5.7733 and 7 bigger ones. That is</p>
+<p>The octave code is <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%% octave</span><br><span class="line">[a,b,c,d, cate] = textread(&quot;iris.data&quot;, &quot;%f%f%f%f%s&quot;,&quot;delimiter&quot;, &quot;,&quot;);</span><br><span class="line"></span><br><span class="line">for i=1:15</span><br><span class="line">  x = floor(rand()*150);</span><br><span class="line">  fprintf(&#x27;%f %s\n&#x27;, a(x), cate&#123;x&#125; );</span><br><span class="line">end</span><br></pre></td></tr></table></figure> We just take this 15 items for
+examples, I assume that we divide sepal length into two parts: greater
+than mean and less than mean. The mean is <span
+class="math display">\[mean = (5.90+7.2+\cdots+6.00)/15 =
+5.7733\]</span> There are 8 elements less then 5.7733 and 7 bigger ones.
+That is</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>mean</th>
 <th>idx of greater than mean</th>
 <th>idx of less than mean</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>5.7733</td>
 <td>1,2,5,11,13,14,15</td>
 <td>3,4,6,7,8,9,10,12</td>
 </tr>
 </tbody>
 </table>
-<p>We let $x_1=greater$(1,2,5,11,13,14,15),  $x_2=less$(3,4,6,7,8,9,10,12) then<br>$$H(Y|X=x_1)=-(p_1 {\rm log}_2 p_1 + p_2 {\rm log}_2 p_2 + p_3 {\rm log}_2 p_3)=\frac{4}{7}{\rm log}_2\frac{4}{7}+\frac{3}{7}{\rm log}_2\frac{3}{7}+0{\rm log}_2 0=0.98523$$<br>$$H(Y|X=x_2)=-(p_1 {\rm log}_2 p_1 + p_2 {\rm log}_2 p_2+p_3 {\rm log}_2 p_3)=\frac{3}{8}{\rm log}_2\frac{3}{8}+0{\rm log}_2 0+\frac{5}{8}{\rm log}_2\frac{5}{8}=0.95443$$</p>
-<p>The Conditional Entropy then is<br>$$H(Y|X)=\sum_{i=1}^{2}p_i H(Y|x_i)=\frac{7}{15}\times 0.98523+\frac{8}{15}\times 0.95443=0.96880$$</p>
-<h4 id="Information-Gain"><a href="#Information-Gain" class="headerlink" title="Information Gain"></a>Information Gain</h4><p>Just as its name implies, Information Gain means the information we have gained after adding some features. That is, we can vanish some uncertainty when we add some information. For example, I want you to guess an NBA player, the uncertainty is very high, however, there are only several persons in the list if I tell you that he is a Chinese. You gained information after knowing the Chinese feature to decrease the uncertainty. The calculation of Information Gain is<br>$$IG(Y, X)= H(Y)-H(Y|X)$$<br>Here, we want to decide $Y$ with feature $X$. It is easy, just Entropy of $Y$ minus Conditional Entropy $Y$ given $X$. The meaning is obvious too: $H(Y)$ represents uncertainty, $H(Y|X)$ represents uncertainty of $Y$ given $X$, the difference is the Information Gain.</p>
-<h4 id="Information-Gain-and-Iris-Data"><a href="#Information-Gain-and-Iris-Data" class="headerlink" title="Information Gain and Iris Data"></a>Information Gain and Iris Data</h4><p>In this section, I will apply Information Gain equations to the whole Iris data. First of all, let $Y$ represent categories of iris, and $X_1,X_2,X_3, X_4$ represent sepal length, sepal width, petal length petal width respectively.</p>
-<p>We have computed that $H(Y)=1.0986$, next, we will calculate 4 Conditional Entropy $H(Y|X_1),H(Y|X_2),H(Y|X_3),H(Y|X_4)$. In light of continuousness of $X$, we divide them by mean of each feature. Then<br>$$\overline{X_1}=5.8433,\,\overline{X_2}=3.0540,\,\overline{X_3}=3.7587,\,\overline{X_4}=1.1987$$</p>
-<p>$$H(Y|X_1)=-\sum_{i=1}^3 p_i H(Y|X_{1i})=-(\frac{70}{150}(\frac{0}{70}{\rm log}_2\frac{0}{70}+\frac{26}{70}{\rm log}_2\frac{26}{70} +\frac{44}{70}{\rm log}_2\frac{44}{70})+\frac{80}{150}(\frac{50}{80}{\rm log}_2\frac{50}{80}+\frac{24}{80}{\rm log}_2\frac{24}{80}+\frac{6}{80}{\rm log}_2\frac{6}{80}))=1.09757$$</p>
-<p>$$H(Y|X_2)=-\sum_{i=1}^3 p_i H(Y|X_{2i})=-(\frac{67}{150}(\frac{42}{67}{\rm log}_2\frac{42}{67}+\frac{8}{67}{\rm log}_2\frac{8}{67}+\frac{17}{67}{\rm log}_2\frac{17}{67}+\frac{83}{150}(\frac{8}{83}{\rm log}_2\frac{8}{83}+\frac{42}{83}{\rm log}_2\frac{42}{83}+\frac{33}{83}{\rm log}_2\frac{33}{83}))=1.32433$$</p>
-<p>$$H(Y|X_3)=-\sum_{i=1}^3 p_i H(Y|X_{3i})=-(\frac{93}{150}(\frac{0}{93}{\rm log}_2\frac{0}{93}+\frac{43}{93}{\rm log}_2\frac{43}{93}+\frac{50}{93}{\rm log}_2\frac{50}{93}+\frac{57}{150}(\frac{50}{57}{\rm log}_2\frac{50}{57}+\frac{7}{57}{\rm log}_2\frac{7}{57}+\frac{0}{57}{\rm log}_2\frac{0}{57}))=0.821667$$</p>
-<p>$$H(Y|X_4)=-\sum_{i=1}^3 p_i H(Y|X_{4i})=-(\frac{90}{150}(\frac{0}{90}{\rm log}_2\frac{0}{90}+\frac{40}{90}{\rm log}_2\frac{40}{90}+\frac{50}{90}{\rm log}_2\frac{50}{90}+\frac{60}{150}(\frac{50}{60}{\rm log}_2\frac{50}{60}+\frac{10}{60}{\rm log}_2\frac{10}{60}+\frac{0}{60}{\rm log}_2\frac{0}{60}))=0.854655<br>$$<br>Information Gains is easy to get<br>$$IG(Y, X_1)=H(Y)-H(Y|X_1)=1.5850-1.09757=0.487427$$</p>
-<p>$$IG(Y, X_2)=H(Y)-H(Y|X_2)=1.5850-1.32433=0.260669$$</p>
-<p>$$IG(Y, X_3)=H(Y)-H(Y|X_3)=1.5850-0.821667=0.763333$$</p>
-<p>$$IG(Y, X_4)=H(Y)-H(Y|X_4)=1.5850-0.854655=0.730345$$<br>By now, we find that $IG(Y, X_3)$ is bigger than others, which means feature $X_3$ supplies more information.</p>
-<h2 id="ID3-Iterative-Dichotomiser-3"><a href="#ID3-Iterative-Dichotomiser-3" class="headerlink" title="ID3(Iterative Dichotomiser 3)"></a>ID3(Iterative Dichotomiser 3)</h2><p>ID3 algorithm was developed by Ross Quinlan in 1986, which is a very classic algorithm as well as C4.5 and CART. We First apply Information Gain of each feature with respect to iris data. Then to choose the maximum to divide data into 2 parts. For each part we apply Information Gain recursively until we put all parents data to one node. Now that we have know Information Gain from the last section, obviously we choose X3 as the feature dividing data into 2 parts in the first place.</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-17-2.png" alt></p>
-<p>Let’s take a look at the first cut using feature $X_3$. We have 150 items at first, after comparing if $X_3&gt;3.7587$, we divide data into two parts, one has 93 items, the other got 57. From the data, we know that there is no setosa in node B, meanwhile, no virginica in node C, which means that this feature is very good for split data due to exclude setosa and virginica.</p>
+<p>We let <span
+class="math inline">\(x_1=greater\)</span>(1,2,5,11,13,14,15), <span
+class="math inline">\(x_2=less\)</span>(3,4,6,7,8,9,10,12) then <span
+class="math display">\[H(Y|X=x_1)=-(p_1 {\rm log}_2 p_1 + p_2 {\rm
+log}_2 p_2 + p_3 {\rm log}_2 p_3)=\frac{4}{7}{\rm
+log}_2\frac{4}{7}+\frac{3}{7}{\rm log}_2\frac{3}{7}+0{\rm log}_2
+0=0.98523\]</span> <span class="math display">\[H(Y|X=x_2)=-(p_1 {\rm
+log}_2 p_1 + p_2 {\rm log}_2 p_2+p_3 {\rm log}_2 p_3)=\frac{3}{8}{\rm
+log}_2\frac{3}{8}+0{\rm log}_2 0+\frac{5}{8}{\rm
+log}_2\frac{5}{8}=0.95443\]</span></p>
+<p>The Conditional Entropy then is <span
+class="math display">\[H(Y|X)=\sum_{i=1}^{2}p_i
+H(Y|x_i)=\frac{7}{15}\times 0.98523+\frac{8}{15}\times
+0.95443=0.96880\]</span> #### Information Gain Just as its name implies,
+Information Gain means the information we have gained after adding some
+features. That is, we can vanish some uncertainty when we add some
+information. For example, I want you to guess an NBA player, the
+uncertainty is very high, however, there are only several persons in the
+list if I tell you that he is a Chinese. You gained information after
+knowing the Chinese feature to decrease the uncertainty. The calculation
+of Information Gain is <span class="math display">\[IG(Y, X)=
+H(Y)-H(Y|X)\]</span> Here, we want to decide <span
+class="math inline">\(Y\)</span> with feature <span
+class="math inline">\(X\)</span>. It is easy, just Entropy of <span
+class="math inline">\(Y\)</span> minus Conditional Entropy <span
+class="math inline">\(Y\)</span> given <span
+class="math inline">\(X\)</span>. The meaning is obvious too: <span
+class="math inline">\(H(Y)\)</span> represents uncertainty, <span
+class="math inline">\(H(Y|X)\)</span> represents uncertainty of <span
+class="math inline">\(Y\)</span> given <span
+class="math inline">\(X\)</span>, the difference is the Information
+Gain. #### Information Gain and Iris Data In this section, I will apply
+Information Gain equations to the whole Iris data. First of all, let
+<span class="math inline">\(Y\)</span> represent categories of iris, and
+<span class="math inline">\(X_1,X_2,X_3, X_4\)</span> represent sepal
+length, sepal width, petal length petal width respectively.</p>
+<p>We have computed that <span
+class="math inline">\(H(Y)=1.0986\)</span>, next, we will calculate 4
+Conditional Entropy <span
+class="math inline">\(H(Y|X_1),H(Y|X_2),H(Y|X_3),H(Y|X_4)\)</span>. In
+light of continuousness of <span class="math inline">\(X\)</span>, we
+divide them by mean of each feature. Then <span
+class="math display">\[\overline{X_1}=5.8433,\,\overline{X_2}=3.0540,\,\overline{X_3}=3.7587,\,\overline{X_4}=1.1987\]</span></p>
+<p><span class="math display">\[H(Y|X_1)=-\sum_{i=1}^3 p_i
+H(Y|X_{1i})=-(\frac{70}{150}(\frac{0}{70}{\rm
+log}_2\frac{0}{70}+\frac{26}{70}{\rm log}_2\frac{26}{70}
++\frac{44}{70}{\rm log}_2\frac{44}{70})+\frac{80}{150}(\frac{50}{80}{\rm
+log}_2\frac{50}{80}+\frac{24}{80}{\rm
+log}_2\frac{24}{80}+\frac{6}{80}{\rm
+log}_2\frac{6}{80}))=1.09757\]</span></p>
+<p><span class="math display">\[H(Y|X_2)=-\sum_{i=1}^3 p_i
+H(Y|X_{2i})=-(\frac{67}{150}(\frac{42}{67}{\rm
+log}_2\frac{42}{67}+\frac{8}{67}{\rm
+log}_2\frac{8}{67}+\frac{17}{67}{\rm
+log}_2\frac{17}{67}+\frac{83}{150}(\frac{8}{83}{\rm
+log}_2\frac{8}{83}+\frac{42}{83}{\rm
+log}_2\frac{42}{83}+\frac{33}{83}{\rm
+log}_2\frac{33}{83}))=1.32433\]</span></p>
+<p><span class="math display">\[H(Y|X_3)=-\sum_{i=1}^3 p_i
+H(Y|X_{3i})=-(\frac{93}{150}(\frac{0}{93}{\rm
+log}_2\frac{0}{93}+\frac{43}{93}{\rm
+log}_2\frac{43}{93}+\frac{50}{93}{\rm
+log}_2\frac{50}{93}+\frac{57}{150}(\frac{50}{57}{\rm
+log}_2\frac{50}{57}+\frac{7}{57}{\rm log}_2\frac{7}{57}+\frac{0}{57}{\rm
+log}_2\frac{0}{57}))=0.821667\]</span></p>
+<p><span class="math display">\[H(Y|X_4)=-\sum_{i=1}^3 p_i
+H(Y|X_{4i})=-(\frac{90}{150}(\frac{0}{90}{\rm
+log}_2\frac{0}{90}+\frac{40}{90}{\rm
+log}_2\frac{40}{90}+\frac{50}{90}{\rm
+log}_2\frac{50}{90}+\frac{60}{150}(\frac{50}{60}{\rm
+log}_2\frac{50}{60}+\frac{10}{60}{\rm
+log}_2\frac{10}{60}+\frac{0}{60}{\rm log}_2\frac{0}{60}))=0.854655
+\]</span> Information Gains is easy to get <span
+class="math display">\[IG(Y,
+X_1)=H(Y)-H(Y|X_1)=1.5850-1.09757=0.487427\]</span></p>
+<p><span class="math display">\[IG(Y,
+X_2)=H(Y)-H(Y|X_2)=1.5850-1.32433=0.260669\]</span></p>
+<p><span class="math display">\[IG(Y,
+X_3)=H(Y)-H(Y|X_3)=1.5850-0.821667=0.763333\]</span></p>
+<p><span class="math display">\[IG(Y,
+X_4)=H(Y)-H(Y|X_4)=1.5850-0.854655=0.730345\]</span> By now, we find
+that <span class="math inline">\(IG(Y, X_3)\)</span> is bigger than
+others, which means feature <span class="math inline">\(X_3\)</span>
+supplies more information.</p>
+<h2 id="id3iterative-dichotomiser-3">ID3(Iterative Dichotomiser 3)</h2>
+<p>ID3 algorithm was developed by Ross Quinlan in 1986, which is a very
+classic algorithm as well as C4.5 and CART. We First apply Information
+Gain of each feature with respect to iris data. Then to choose the
+maximum to divide data into 2 parts. For each part we apply Information
+Gain recursively until we put all parents data to one node. Now that we
+have know Information Gain from the last section, obviously we choose X3
+as the feature dividing data into 2 parts in the first place.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-17-2.png" /></p>
+<p>Let's take a look at the first cut using feature <span
+class="math inline">\(X_3\)</span>. We have 150 items at first, after
+comparing if <span class="math inline">\(X_3&gt;3.7587\)</span>, we
+divide data into two parts, one has 93 items, the other got 57. From the
+data, we know that there is no setosa in node B, meanwhile, no virginica
+in node C, which means that this feature is very good for split data due
+to exclude setosa and virginica.</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th>Node B</th>
 <th>Node C</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>setosa</td>
 <td>0</td>
 <td>50</td>
 </tr>
-<tr>
+<tr class="even">
 <td>versicolor</td>
 <td>43</td>
 <td>7</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>virginica</td>
 <td>50</td>
 <td>0</td>
 </tr>
 </tbody>
 </table>
-<p>The end condition of the algorithm is decided by IG. When IG is less then some threshold or if there is only one category left, we can end the algorithm. If IG less than some value(e.g. 0.01) and more than one category left simultaneously, we have to choose a final category to be the leaf, the rule is to set the category having samples more than the others.</p>
-<p>Take Node H for example, we set IG threshold to 0.01 in the first place. Then we calculate the Information Gain for each feature, the biggest IG from feature 2(sepal width in cm), which is 0.003204 and less than 0.01. So we have to set H as a leaf. There are 0 Iris-setosa, 25 Iris-versicolor and 44  Iris-virginica in the leaf, so we set the bigger one(i.e. Iris-virginica) to the leaf.</p>
-<p><img src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-19-2.png" alt></p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Today we have talked about what is decision tree algorithm. Firstly, I introduce three background concept Entropy, Conditional Entropy and Information Gain. Next we apply ID3 algorithm to Iris data to build a decision.</p>
-<p>One of the most significant advantages of decision tree is that we can explain the result. If the algorithm decided UA should beat the their passengers, they could trace the tree to find the path of reason chain. It is very useful to tell consumers why we recommend them something, under such circumstance, we can use decision tree to train a model.  </p>
-<p>There is a shortcoming that Information Gain tends to use feature with more values. In order to resolve the problem, Ross Quinlan improved the algorithm through Information Gain Rate Rather than IG. <a href="https://en.wikipedia.org/wiki/Leo_Breiman" target="_blank" rel="noopener">Breiman</a> introduced CART algorithm subsequently, which can be applied to classification as well as regression. Recently, Scientists have developed more powerful algorithm such as Random Forest and Gradient Boosting Decision Tree etc.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<p>The end condition of the algorithm is decided by IG. When IG is less
+then some threshold or if there is only one category left, we can end
+the algorithm. If IG less than some value(e.g. 0.01) and more than one
+category left simultaneously, we have to choose a final category to be
+the leaf, the rule is to set the category having samples more than the
+others.</p>
+<p>Take Node H for example, we set IG threshold to 0.01 in the first
+place. Then we calculate the Information Gain for each feature, the
+biggest IG from feature 2(sepal width in cm), which is 0.003204 and less
+than 0.01. So we have to set H as a leaf. There are 0 Iris-setosa, 25
+Iris-versicolor and 44 Iris-virginica in the leaf, so we set the bigger
+one(i.e. Iris-virginica) to the leaf.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-19-2.png" /></p>
+<h2 id="summary">Summary</h2>
+<p>Today we have talked about what is decision tree algorithm. Firstly,
+I introduce three background concept Entropy, Conditional Entropy and
+Information Gain. Next we apply ID3 algorithm to Iris data to build a
+decision.</p>
+<p>One of the most significant advantages of decision tree is that we
+can explain the result. If the algorithm decided UA should beat the
+their passengers, they could trace the tree to find the path of reason
+chain. It is very useful to tell consumers why we recommend them
+something, under such circumstance, we can use decision tree to train a
+model.</p>
+<p>There is a shortcoming that Information Gain tends to use feature
+with more values. In order to resolve the problem, Ross Quinlan improved
+the algorithm through Information Gain Rate Rather than IG. <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Leo_Breiman">Breiman</a> introduced
+CART algorithm subsequently, which can be applied to classification as
+well as regression. Recently, Scientists have developed more powerful
+algorithm such as Random Forest and Gradient Boosting Decision Tree
+etc.</p>
+<h2 id="reference">Reference</h2>
+<ol type="1">
 <li>《统计学习方法》，李航</li>
 <li>《数学之美》，吴军</li>
-<li><a href="http://www.shogun-toolbox.org/static/notebook/current/DecisionTrees.html" target="_blank" rel="noopener">http://www.shogun-toolbox.org/static/notebook/current/DecisionTrees.html</a></li>
-<li><a href="https://en.wikipedia.org/" target="_blank" rel="noopener">https://en.wikipedia.org/</a></li>
+<li>http://www.shogun-toolbox.org/static/notebook/current/DecisionTrees.html</li>
+<li>https://en.wikipedia.org/</li>
 </ol>
-<h2 id="Appendix-code"><a href="#Appendix-code" class="headerlink" title="Appendix code"></a>Appendix code</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% octave main function file</span></span><br><span class="line"><span class="comment">%% iris data dowload link: https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data</span></span><br><span class="line">[a,b,c,d, cate] = textread(<span class="string">"iris.data"</span>, <span class="string">"%f%f%f%f%s"</span>,<span class="string">"delimiter"</span>, <span class="string">","</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%for i=1:15</span></span><br><span class="line"><span class="comment">%	x = floor(rand()*150);</span></span><br><span class="line"><span class="comment">%	fprintf('%f %s\n', a(x), cate&#123;x&#125; );</span></span><br><span class="line"><span class="comment">%end;</span></span><br><span class="line"></span><br><span class="line">features = [a, b, c, d];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(features(<span class="number">1</span>, :))</span><br><span class="line">	col = features(:, <span class="built_in">i</span>);</span><br><span class="line">	me = <span class="built_in">mean</span>(col);</span><br><span class="line">	<span class="built_in">disp</span>(me);</span><br><span class="line">	feat(<span class="built_in">i</span>).greater = <span class="built_in">find</span>(col &gt; me);</span><br><span class="line">	feat(<span class="built_in">i</span>).less = <span class="built_in">find</span>(col &lt;= me);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">total = (<span class="number">1</span>:<span class="number">150</span>)';</span><br><span class="line">decision(feat, <span class="built_in">length</span>(features(<span class="number">1</span>, :)), cate, total);</span><br><span class="line">fprintf(<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% octave: decsion tree file</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">decision</span><span class="params">(feat, feat_size, cate, total)</span></span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">length</span>(total) == <span class="number">0</span></span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	fprintf(<span class="string">'(-%d-)'</span>, <span class="built_in">length</span>(total));</span><br><span class="line">	<span class="comment">%plogp = @(x)[x*log2(x)];</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">e</span> = <span class="title">plogp</span><span class="params">(pi)</span></span></span><br><span class="line">		<span class="keyword">if</span> <span class="built_in">pi</span> == <span class="number">0</span></span><br><span class="line">			e = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			e = <span class="built_in">pi</span>*<span class="built_in">log2</span>(<span class="built_in">pi</span>);</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">d</span> = <span class="title">div</span><span class="params">(a, b)</span></span></span><br><span class="line">		<span class="keyword">if</span> b == <span class="number">0</span></span><br><span class="line">			d = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			d = a/b;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	debug = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">m</span> = <span class="title">maxc</span><span class="params">(cate, cates, total)</span></span></span><br><span class="line">		maxidx = <span class="number">1</span>;</span><br><span class="line">		max_c = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="built_in">length</span>(cates)</span><br><span class="line">			c =<span class="built_in">find</span>(strcmp(cate, cates&#123;<span class="built_in">i</span>&#125;));</span><br><span class="line">			cl = <span class="built_in">length</span>(<span class="built_in">intersect</span>(c, total));</span><br><span class="line">			<span class="keyword">if</span> debug == <span class="number">1</span> fprintf(<span class="string">'\n%d##%d  %s###'</span>,<span class="built_in">i</span>, cl, char(cates&#123;<span class="built_in">i</span>&#125;)) <span class="keyword">end</span></span><br><span class="line">			<span class="comment">%if (debug == 1 &amp;&amp; cl &lt;10 &amp;&amp; cl &gt;0) disp(intersect(c, total)') end</span></span><br><span class="line">			<span class="keyword">if</span> cl &gt; max_c</span><br><span class="line">				max_c = cl;</span><br><span class="line">				maxidx = <span class="built_in">i</span>;</span><br><span class="line">			<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">if</span> debug == <span class="number">1</span> fprintf(<span class="string">'\n****%d    %d******\n'</span>, maxidx, max_c) <span class="keyword">end</span></span><br><span class="line">		<span class="comment">%m = cates(maxidx);</span></span><br><span class="line">		m = maxidx;</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">% compute h(y)</span></span><br><span class="line">	cates = unique(cate);</span><br><span class="line">	hx = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(cates)</span><br><span class="line">		c = <span class="built_in">find</span>(strcmp(cate, cates&#123;<span class="built_in">i</span>&#125;));</span><br><span class="line">		rc = <span class="built_in">intersect</span>(c, total);</span><br><span class="line">		hx -= plogp(<span class="built_in">length</span>(rc)/<span class="built_in">length</span>(total));</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	<span class="comment">%fprintf('hx = %f\n', hx)			</span></span><br><span class="line">	<span class="comment">% compute h(y|x)</span></span><br><span class="line">	max_feature = <span class="number">1</span>;</span><br><span class="line">	max_ig = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	max_left = <span class="built_in">intersect</span>(feat(<span class="number">1</span>).greater, total);</span><br><span class="line">	max_right = <span class="built_in">intersect</span>(feat(<span class="number">1</span>).less, total);</span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:feat_size</span><br><span class="line">		hxh = <span class="number">0</span>;</span><br><span class="line">		hxl = <span class="number">0</span>;</span><br><span class="line">		feat_greater = <span class="built_in">intersect</span>(feat(<span class="built_in">i</span>).greater, total);</span><br><span class="line">		feat_less = <span class="built_in">intersect</span>(feat(<span class="built_in">i</span>).less, total);</span><br><span class="line">		ge = <span class="built_in">length</span>(feat_greater);</span><br><span class="line">		le = <span class="built_in">length</span>(feat_less);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (ge+le) == <span class="number">0</span></span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:<span class="built_in">length</span>(cates);</span><br><span class="line">			c = <span class="built_in">find</span>(strcmp(cate, cates&#123;<span class="built_in">j</span>&#125;));</span><br><span class="line">			xh = <span class="built_in">length</span>(<span class="built_in">intersect</span>(feat_greater, c));</span><br><span class="line">			xl = <span class="built_in">length</span>(<span class="built_in">intersect</span>(feat_less, c));</span><br><span class="line">			hxh -= plogp(div(xh, ge));</span><br><span class="line">			hxl -= plogp(div(xl, le));</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="comment">% compute hx - h(y|x)</span></span><br><span class="line">		hxy = (ge/(ge+le))*hxh + ((le)/(ge+le))*hxl;</span><br><span class="line">		ig = hx - hxy;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> ig &gt; max_ig</span><br><span class="line">			max_ig = ig;</span><br><span class="line">			max_feature = <span class="built_in">i</span>;</span><br><span class="line">			max_left= feat_less;</span><br><span class="line">			max_right = feat_greater;</span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	left = max_left;</span><br><span class="line">	right = max_right;</span><br><span class="line">	<span class="comment">%fprintf('feature:ig  %d %f %d %d ------ \n', max_feature, max_ig, length(left), length(right));</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> debug == <span class="number">1</span> printf(<span class="string">"\033[0;32;1m-ig--%f \033[0m"</span>,  max_ig); <span class="keyword">end</span></span><br><span class="line">	<span class="keyword">if</span>(max_ig &lt; <span class="number">0.01</span>)</span><br><span class="line">		<span class="comment">%fprintf('&lt;%s&gt;', char(maxc(cate, cates, total)))</span></span><br><span class="line">		printf(<span class="string">"\033[0;31;1m&lt;%d&gt;\033[0m"</span>,  maxc(cate, cates, total));</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	fprintf(<span class="string">"\033[0;34;1m#%d \033[0m"</span>,  max_feature);</span><br><span class="line">	fprintf(<span class="string">'&#123;'</span> )</span><br><span class="line">	decision(feat, feat_size, cate, left);</span><br><span class="line">	decision(feat, feat_size, cate, right);</span><br><span class="line">	fprintf(<span class="string">'&#125;'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="appendix-code">Appendix code</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">%% octave main function file</span><br><span class="line">%% iris data dowload link: https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data</span><br><span class="line">[a,b,c,d, cate] = textread(&quot;iris.data&quot;, &quot;%f%f%f%f%s&quot;,&quot;delimiter&quot;, &quot;,&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">%for i=1:15</span><br><span class="line">%	x = floor(rand()*150);</span><br><span class="line">%	fprintf(&#x27;%f %s\n&#x27;, a(x), cate&#123;x&#125; );</span><br><span class="line">%end;</span><br><span class="line"></span><br><span class="line">features = [a, b, c, d];</span><br><span class="line">for i=1:length(features(1, :))</span><br><span class="line">	col = features(:, i);</span><br><span class="line">	me = mean(col);</span><br><span class="line">	disp(me);</span><br><span class="line">	feat(i).greater = find(col &gt; me);</span><br><span class="line">	feat(i).less = find(col &lt;= me);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">total = (1:150)&#x27;;</span><br><span class="line">decision(feat, length(features(1, :)), cate, total);</span><br><span class="line">fprintf(&#x27;\n&#x27;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">%% octave: decsion tree file</span><br><span class="line">function decision(feat, feat_size, cate, total)</span><br><span class="line">	if length(total) == 0</span><br><span class="line">		return</span><br><span class="line">	end</span><br><span class="line">	fprintf(&#x27;(-%d-)&#x27;, length(total));</span><br><span class="line">	%plogp = @(x)[x*log2(x)];</span><br><span class="line">	function e = plogp(pi)</span><br><span class="line">		if pi == 0</span><br><span class="line">			e = 0;</span><br><span class="line">		else</span><br><span class="line">			e = pi*log2(pi);</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	function d = div(a, b)</span><br><span class="line">		if b == 0</span><br><span class="line">			d = 0;</span><br><span class="line">		else</span><br><span class="line">			d = a/b;</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	debug = 0;</span><br><span class="line"></span><br><span class="line">	function m = maxc(cate, cates, total)</span><br><span class="line">		maxidx = 1;</span><br><span class="line">		max_c = 0;</span><br><span class="line">		for i=1:length(cates)</span><br><span class="line">			c =find(strcmp(cate, cates&#123;i&#125;));</span><br><span class="line">			cl = length(intersect(c, total));</span><br><span class="line">			if debug == 1 fprintf(&#x27;\n%d##%d  %s###&#x27;,i, cl, char(cates&#123;i&#125;)) end</span><br><span class="line">			%if (debug == 1 &amp;&amp; cl &lt;10 &amp;&amp; cl &gt;0) disp(intersect(c, total)&#x27;) end</span><br><span class="line">			if cl &gt; max_c</span><br><span class="line">				max_c = cl;</span><br><span class="line">				maxidx = i;</span><br><span class="line">			end</span><br><span class="line">		end</span><br><span class="line">		if debug == 1 fprintf(&#x27;\n****%d    %d******\n&#x27;, maxidx, max_c) end</span><br><span class="line">		%m = cates(maxidx);</span><br><span class="line">		m = maxidx;</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	% compute h(y)</span><br><span class="line">	cates = unique(cate);</span><br><span class="line">	hx = 0;</span><br><span class="line">	for i = 1:length(cates)</span><br><span class="line">		c = find(strcmp(cate, cates&#123;i&#125;));</span><br><span class="line">		rc = intersect(c, total);</span><br><span class="line">		hx -= plogp(length(rc)/length(total));</span><br><span class="line">	end</span><br><span class="line">	%fprintf(&#x27;hx = %f\n&#x27;, hx)			</span><br><span class="line">	% compute h(y|x)</span><br><span class="line">	max_feature = 1;</span><br><span class="line">	max_ig = 0;</span><br><span class="line"></span><br><span class="line">	max_left = intersect(feat(1).greater, total);</span><br><span class="line">	max_right = intersect(feat(1).less, total);</span><br><span class="line">	for i=1:feat_size</span><br><span class="line">		hxh = 0;</span><br><span class="line">		hxl = 0;</span><br><span class="line">		feat_greater = intersect(feat(i).greater, total);</span><br><span class="line">		feat_less = intersect(feat(i).less, total);</span><br><span class="line">		ge = length(feat_greater);</span><br><span class="line">		le = length(feat_less);</span><br><span class="line"></span><br><span class="line">		if (ge+le) == 0</span><br><span class="line">			continue</span><br><span class="line">		end</span><br><span class="line"></span><br><span class="line">		for j = 1:length(cates);</span><br><span class="line">			c = find(strcmp(cate, cates&#123;j&#125;));</span><br><span class="line">			xh = length(intersect(feat_greater, c));</span><br><span class="line">			xl = length(intersect(feat_less, c));</span><br><span class="line">			hxh -= plogp(div(xh, ge));</span><br><span class="line">			hxl -= plogp(div(xl, le));</span><br><span class="line">		end</span><br><span class="line">		% compute hx - h(y|x)</span><br><span class="line">		hxy = (ge/(ge+le))*hxh + ((le)/(ge+le))*hxl;</span><br><span class="line">		ig = hx - hxy;</span><br><span class="line"></span><br><span class="line">		if ig &gt; max_ig</span><br><span class="line">			max_ig = ig;</span><br><span class="line">			max_feature = i;</span><br><span class="line">			max_left= feat_less;</span><br><span class="line">			max_right = feat_greater;</span><br><span class="line">		end</span><br><span class="line"></span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	left = max_left;</span><br><span class="line">	right = max_right;</span><br><span class="line">	%fprintf(&#x27;feature:ig  %d %f %d %d ------ \n&#x27;, max_feature, max_ig, length(left), length(right));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	if debug == 1 printf(&quot;\033[0;32;1m-ig--%f \033[0m&quot;,  max_ig); end</span><br><span class="line">	if(max_ig &lt; 0.01)</span><br><span class="line">		%fprintf(&#x27;&lt;%s&gt;&#x27;, char(maxc(cate, cates, total)))</span><br><span class="line">		printf(&quot;\033[0;31;1m&lt;%d&gt;\033[0m&quot;,  maxc(cate, cates, total));</span><br><span class="line">		return</span><br><span class="line">	end</span><br><span class="line">	fprintf(&quot;\033[0;34;1m#%d \033[0m&quot;,  max_feature);</span><br><span class="line">	fprintf(&#x27;&#123;&#x27; )</span><br><span class="line">	decision(feat, feat_size, cate, left);</span><br><span class="line">	decision(feat, feat_size, cate, right);</span><br><span class="line">	fprintf(&#x27;&#125;&#x27;)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
-      
     </div>
-    
-    
-    
 
     
-
     
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ML/" rel="tag"># ML</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/" rel="next" title="A Tutorial on Singular Value Decomposition">
-                <i class="fa fa-chevron-left"></i> A Tutorial on Singular Value Decomposition
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/ML/" rel="tag"># ML</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/17/sample-variance/" rel="prev" title="样本方差为什么除以N-1?（翻译）">
-                样本方差为什么除以N-1?（翻译） <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
         
-  <script src="https://utteranc.es/client.js" repo="chengmingbo/gitment-comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
-  </script>
 
-
-    </div> 
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
-              <p class="site-description motion-element" itemprop="description">Mingbo</p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">18</span>
-                  <span class="site-state-item-name">posts</span>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/" rel="prev" title="A Tutorial on Singular Value Decomposition">
+                  <i class="fa fa-angle-left"></i> A Tutorial on Singular Value Decomposition
                 </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">categories</span>
-                
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">tags</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
             </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/chengmingbo" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
+            <div class="post-nav-item">
+                <a href="/2017/06/17/sample-variance/" rel="next" title="样本方差为什么除以N-1?（翻译）">
+                  样本方差为什么除以N-1?（翻译） <i class="fa fa-angle-right"></i>
+                </a>
             </div>
-          
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.flickering.cn/" title="flickering" target="_blank">flickering</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.zybuluo.com/codeep/note/163962" title="mathjax grammar" target="_blank">mathjax grammar</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vividfree.github.io/" title="vividfree" target="_blank">vividfree</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://colah.github.io/" title="colah" target="_blank">colah</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.autonlab.org/tutorials" title="Andrew Moore" target="_blank">Andrew Moore</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://plot.ly/matlab/plot/" title="matlabplot" target="_blank">matlabplot</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.ryanzhang.info/blog/" title="Ryan’s Cabinet" target="_blank">Ryan’s Cabinet</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="JerryLead" target="_blank">JerryLead</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://yxzf.github.io/" title="YXZF'S BLOG" target="_blank">YXZF'S BLOG</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://vonng.com" title="VONNG" target="_blank">VONNG</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Iris-data"><span class="nav-number">3.</span> <span class="nav-text">Iris data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entropy-and-Information-Gain"><span class="nav-number">4.</span> <span class="nav-text">Entropy and Information Gain</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Entropy"><span class="nav-number">4.0.1.</span> <span class="nav-text">Entropy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Entropy-and-Iris-Data"><span class="nav-number">4.0.2.</span> <span class="nav-text">Entropy and Iris Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Conditional-Entropy"><span class="nav-number">4.0.3.</span> <span class="nav-text">Conditional Entropy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Conditional-Entropy-and-Iris-Data"><span class="nav-number">4.0.4.</span> <span class="nav-text">Conditional Entropy and Iris Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Information-Gain"><span class="nav-number">4.0.5.</span> <span class="nav-text">Information Gain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Information-Gain-and-Iris-Data"><span class="nav-number">4.0.6.</span> <span class="nav-text">Information Gain and Iris Data</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#ID3-Iterative-Dichotomiser-3"><span class="nav-number">5.</span> <span class="nav-text">ID3(Iterative Dichotomiser 3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Summary"><span class="nav-number">6.</span> <span class="nav-text">Summary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">7.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appendix-code"><span class="nav-number">8.</span> <span class="nav-text">Appendix code</span></a></li></div>
-            
-
           </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
-
-  
+    </footer>
+  </article>
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
 
 
 
 
-        
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
 
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-
-    
-
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class=""></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
 
-
-	
-
-
+  <script src="/js/third-party/fancybox.js"></script>
 
 
 
@@ -969,62 +762,14 @@
 
 
 
-
   
 
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"chengmingbo/gitment-comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
 
 </body>
 </html>

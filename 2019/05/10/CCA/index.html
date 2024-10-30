@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chengmingbo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Introduction Suppose we have two sets of variable corresponding to two aspects such as height and weight, we want to analysis the relationship between this two sets. There are several ways to measure">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A tutorial on Canonical Correlation Analysis(CCA)">
+<meta property="og:url" content="http://chengmingbo.github.io/2019/05/10/CCA/index.html">
+<meta property="og:site_name" content="Mingbo">
+<meta property="og:description" content="Introduction Suppose we have two sets of variable corresponding to two aspects such as height and weight, we want to analysis the relationship between this two sets. There are several ways to measure">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-10T17:54:43.000Z">
+<meta property="article:modified_time" content="2024-10-30T15:20:40.594Z">
+<meta property="article:author" content="Mingbo Cheng">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://chengmingbo.github.io/2019/05/10/CCA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://chengmingbo.github.io/2019/05/10/CCA/","path":"2019/05/10/CCA/","title":"A tutorial on Canonical Correlation Analysis(CCA)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>A tutorial on Canonical Correlation Analysis(CCA) | Mingbo</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mingbo</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="Mingbo">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-slides"><a href="/slides/" rel="section"><i class="area-chart fa-fw"></i>slides</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-of-cca"><span class="nav-number">2.</span> <span class="nav-text">Basic of CCA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resolve-cca"><span class="nav-number">3.</span> <span class="nav-text">Resolve CCA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#resolve-cca-through-standard-eigenvalue-problem."><span class="nav-number">3.0.1.</span> <span class="nav-text">Resolve CCA
+through Standard EigenValue Problem.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resolve-cca-through-svd"><span class="nav-number">3.0.2.</span> <span class="nav-text">Resolve CCA through SVD</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multicca"><span class="nav-number">4.</span> <span class="nav-text">MultiCCA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sparse-cca"><span class="nav-number">5.</span> <span class="nav-text">Sparse CCA</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
+  <div class="site-description" itemprop="description">Mingbo</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chengmingbo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chengmingbo" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vividfree.github.io/" title="http:&#x2F;&#x2F;vividfree.github.io&#x2F;" rel="noopener" target="_blank">vividfree</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://colah.github.io/" title="http:&#x2F;&#x2F;colah.github.io&#x2F;" rel="noopener" target="_blank">colah</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.autonlab.org/tutorials" title="https:&#x2F;&#x2F;www.autonlab.org&#x2F;tutorials" rel="noopener" target="_blank">Andrew Moore</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://plot.ly/matlab/plot/" title="https:&#x2F;&#x2F;plot.ly&#x2F;matlab&#x2F;plot&#x2F;" rel="noopener" target="_blank">matlabplot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ryanzhang.info/blog/" title="http:&#x2F;&#x2F;www.ryanzhang.info&#x2F;blog&#x2F;" rel="noopener" target="_blank">Ryan’s Cabinet</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="http:&#x2F;&#x2F;www.cnblogs.com&#x2F;jerrylead&#x2F;tag&#x2F;Machine%20Learning&#x2F;" rel="noopener" target="_blank">JerryLead</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://yxzf.github.io/" title="https:&#x2F;&#x2F;yxzf.github.io&#x2F;" rel="noopener" target="_blank">YXZF'S BLOG</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vonng.com/" title="http:&#x2F;&#x2F;vonng.com" rel="noopener" target="_blank">VONNG</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2019/05/10/CCA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="A tutorial on Canonical Correlation Analysis(CCA) | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          A tutorial on Canonical Correlation Analysis(CCA)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-10 19:54:43" itemprop="dateCreated datePublished" datetime="2019-05-10T19:54:43+02:00">2019-05-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="introduction">Introduction</h2>
+<p>Suppose we have two sets of variable corresponding to two aspects
+such as height and weight, we want to analysis the relationship between
+this two sets. There are several ways to measure the relationship
+between them. However, sometime the it is hard to handle datasets with
+different dimensions, meaning, if <span class="math inline">\(X\in
+R^m\)</span> and <span class="math inline">\(Y\in R^n\)</span>, how to
+resolve the relationship?</p>
+<h2 id="basic-of-cca">Basic of CCA</h2>
+<p>Assume there are two sets of data <span
+class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span>, the size of <span
+class="math inline">\(X\)</span> is <span class="math inline">\(n \times
+p\)</span>, whereas size of <span class="math inline">\(Y\)</span> is
+<span class="math inline">\(n\times q\)</span>. That is, <span
+class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> share the same row numbers but are
+differnt in columns number. The idea of CCA is simple: find the best
+match of <span class="math inline">\(X w_x\)</span> and <span
+class="math inline">\(Y w_y\)</span>. Let's just set: <span
+class="math display">\[X w_x = z_x\qquad\text{and}\qquad Y w_y =
+z_y\]</span></p>
+<p>Where <span class="math inline">\(X\in \mathbb{R}^{n\times
+p}\)</span>, <span class="math inline">\(w_x \in
+\mathbb{R}^{p}\)</span>, <span class="math inline">\(z_x\in
+\mathbb{R}^n\)</span>, <span class="math inline">\(Y\in
+\mathbb{R}^{n\times q}\)</span>, <span class="math inline">\(w_y \in
+\mathbb{R}^{q}\)</span>, <span class="math inline">\(z_y\in
+\mathbb{R}^n\)</span>. <span class="math inline">\(w_x\)</span> and
+<span class="math inline">\(w_y\)</span> are often refered as canonical
+weight vectors, <span class="math inline">\(z_x\)</span> and <span
+class="math inline">\(z_y\)</span> are named images as well as canonical
+variates or canonical scores. To simplify the problem, we assume <span
+class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> are standardized to zero mean and unit
+variance. Our task is to maximize the angle of <span
+class="math inline">\(z_x\)</span> and <span
+class="math inline">\(z_y\)</span>, meaning:</p>
+<p><span class="math display">\[\max_{z_x, z_y \in \mathbb{R^n}}
+&lt;z_x, z_y&gt;=\max \cos(z_x, z_y)=\max\frac{&lt;z_x,
+z_y&gt;}{\|z_x\|\|z_y\|}\]</span></p>
+<p>with respect to: <span class="math inline">\(\|z_x\|_{2}=1\
+\|z_y\|_{2}=1\)</span>.</p>
+<p>In fact, our task is just project <span
+class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> to a new coordinate system after the
+linear transformation to <span class="math inline">\(X\)</span> and
+<span class="math inline">\(Y\)</span>.</p>
+<h2 id="resolve-cca">Resolve CCA</h2>
+<p>There are many solutions to this problems. Before start, We need make
+some assumptions: 1. the each column vector of <span
+class="math inline">\(X\)</span> is perpendicular to the others. Which
+means <span class="math inline">\(X^T X= I\)</span>. The assumption is
+the same with <span class="math inline">\(Y\)</span> and <span
+class="math inline">\(w_x, w_y\)</span>.</p>
+<h4 id="resolve-cca-through-standard-eigenvalue-problem.">Resolve CCA
+through Standard EigenValue Problem.</h4>
+<h4 id="resolve-cca-through-svd">Resolve CCA through SVD</h4>
+<h2 id="multicca">MultiCCA</h2>
+<h2 id="sparse-cca">Sparse CCA</h2>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/03/10/add-comments/" rel="prev" title="简单增加博客评论">
+                  <i class="fa fa-angle-left"></i> 简单增加博客评论
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class=""></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"chengmingbo/gitment-comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
