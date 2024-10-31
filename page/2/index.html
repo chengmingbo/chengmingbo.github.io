@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -197,6 +197,885 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/04/05/pca-translation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/04/05/pca-translation/" class="post-title-link" itemprop="url">主成分分析（PCA）简明教程（翻译）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-04-05 21:58:33" itemprop="dateCreated datePublished" datetime="2017-04-05T21:58:33+02:00">2017-04-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>作者：Lindsay I Smith</p>
+<p>时间：2002.2.26</p>
+<p>译者：程明波</p>
+<p><a target="_blank" rel="noopener" href="http://facepress.net/pdf/734.pdf">英文文章地址</a></p>
+<p><a
+target="_blank" rel="noopener" href="http://chengmingbo.githu.io/2017/04/05/pca-translation/">译文地址</a></p>
+<h4 id="版权声明">版权声明</h4>
+<p>本译文首发于我的个人博客chengmingbo.github.io, 版权属于原作者。</p>
+<h3 id="第一章">第一章</h3>
+<h4 id="前言">前言</h4>
+<p>这是一篇帮助读者理解主成分分析（PCA）的教程。PCA是一种统计技术，在人脸识别和图像压缩等领域都有应用。同时，PCA也是一种高维数据模式发现的一种常用方法。</p>
+<p>在讲PCA之前，本文先介绍了PCA用到的一些数学概念。其中包括标准差、协方差、特征向量和特征值等。这些背景知识意在帮助我们理解PCA部分，如果你对这些概念已经非常清晰可以跳过此部分。</p>
+<p>示例贯穿于整个教程，以便于通过直观的例子讨论概念。如果你还想了解更多内容，霍华德.安东著有约翰威立国际出版公司出版的数学课本《Elementary
+Linear Algebra 5e》提供了非常好的这方面数学背景知识。</p>
+<h3 id="第二章">第二章</h3>
+<h4 id="数学背景知识">数学背景知识</h4>
+<p>本章试图介绍便于理解主成分分析计算过程所需的基本数学知识。各个主题互相独立，同时各主题会举例说明。理解为什么使用这些技术以及一些关于数据计算结果所告诉我们的比记住枯燥的数学原理更重要。尽管不是所有这些知识都应用于PCA，一些看起来不是直接相关知识是这些最重要技术的基石。</p>
+<p>我安排其中的一节介绍统计学知识，主要着眼于分布的度量，或者说数据是怎样离散的，其他的部分主要讲矩阵代数的一些知识，包括特征值、特征向量以及一些PCA所需的重要矩阵性质。
+#### 2.1 统计知识
+整个统计学都基于你有一个很大数据集的前提，以及你想分析关于数据集中各个数据点的关系。我会介绍一些量度这些数据的一些方法，帮助你理解这些数据本身。</p>
+<h5 id="标准差">2.1.1 标准差</h5>
+<p>要了解标准差，我们需要一个数据集。统计学经常会使用总体中的一些采样。以选举为例，总体就是一个国家的所有人，因此一个采样就是统计学家用来度量的总体的一个子集。统计学伟大之处是我们只需度量（例如电话调查等）总体中的采样，你就可以计算出最接近所有整体的度量。</p>
+<p>本节我假设我们的数据集是某个很大总体的采样。本节后面会提供总体以及采样的更多信息。这是一个示例数据集：
+<span class="math display">\[X=[1\, 2\,4\, 6\, 12\, 15\, 25\, 45\, 68\,
+67\, 65\, 98]\]</span> 我们简单地假设字符<span
+class="math inline">\(X\)</span>表示包含这些所有数字的集合。如果我想表示这个集合中某个单独的数字，我会用<span
+class="math inline">\(X\)</span>加上下标表示某个具体的数。例：<span
+class="math inline">\(X_3\)</span>表示<span
+class="math inline">\(X\)</span>集合中的第三个数，也就是数字<span
+class="math inline">\(4\)</span>。注意，有些书用<span
+class="math inline">\(X_0\)</span>表示第一个数字，我们这里用<span
+class="math inline">\(X_1\)</span>。另外，我们用字符<span
+class="math inline">\(n\)</span>表示集合中元素的数量。</p>
+<p>我们可以计算一个集合的很多维度，比如，我们可以计算样本的均值。这里我假设读者明白什么是一个样本的均值。这里仅给出公式：
+<span class="math display">\[\overline{X} =\frac{\sum_{i=1}^n
+X_i}{n}\]</span> 注意，我们用字符<span
+class="math inline">\(\overline{X}\)</span>标识集合的均值。这个公式表示：把所有的数字加起来再除以他们的数量。</p>
+<p>很不幸，均值除了告诉我们某种中心以外，并没有告诉关于数据的更多信息。比如以下两个数据集合的均值(10)完全一样，但是显然它们区别很大。
+<span class="math display">\[[0\, 8\, 12\, 20]\quad 和 \quad[8\, 9\,
+11\, 12]\]</span></p>
+<p>那么，这两个集合有何不同呢？这两个集合的离散程度是不同的。一个数据集的标准差（Standard
+Deviation,
+缩写SD）是衡量这个集合数据离散程度的一个指标。怎么计算呢？SD的定义是这样的：每个数据点到这份数据均值点的平均距离。计算每一个数据点到均值点的距离平方，然后相加，再除以<span
+class="math inline">\(n-1\)</span>，再开方，公式如下： <span
+class="math display">\[s=\sqrt{\frac{\sum_{i=1}^n
+(X-\overline{X})^2}{(n-1)}}\]</span> 这里<span
+class="math inline">\(s\)</span>常用来标识样本方差。可能有人会问：“为啥分母除以<span
+class="math inline">\(n-1\)</span>而不是<span
+class="math inline">\(n\)</span>呢？”
+答案有点儿复杂，大体来说，如果你的数据集合是一个采样，比如，你取样于真实世界（比如调查500人的选举情况）得到一个子集，那么你就必须用<span
+class="math inline">\(n-1\)</span>，因为这个结果比你用<span
+class="math inline">\(n\)</span>更接近于你用全部的整体算出的标准差。但是，如果你不是计算一个样本的而是整体的标准差，这种情况下，你就应该除以<span
+class="math inline">\(n\)</span>而不是<span
+class="math inline">\(n-1\)</span>。如果想了解更多的关于标准差的内容，可以访问<a
+target="_blank" rel="noopener" href="http://mathcentral.uregina.ca/RR/database/RR.09.95/weston2.html">这里</a>,链接文章用类似的方法讲了标准差，提供了不同分母计算的区别实验，同时还探讨了采样和总体的异同。</p>
+<p>数据集1 <span class="math display">\[\begin{array}{lrr}
+X &amp; (X-\overline{X}) &amp; (X-\overline{X})^2 \\
+\hline
+0 &amp; -10 &amp; 100\\
+8 &amp; -2 &amp; 4\\
+12 &amp; 2 &amp; 4\\
+20 &amp; 10 &amp; 100\\
+\hline
+\bf{总计} &amp; &amp; 208\\
+\hline
+\bf{除以(n-1)} &amp; &amp; 69.333\\
+\hline
+\bf{平方根} &amp; &amp; 8.3266\\
+\hline
+\end{array}\]</span></p>
+<p>数据集2 <span class="math display">\[\begin{array}{lrr}
+X &amp; (X-\overline{X}) &amp; (X-\overline{X})^2 \\
+\hline
+8 &amp; -2 &amp; 4\\
+9 &amp; -1 &amp; 1\\
+11 &amp; 1 &amp; 1\\
+12 &amp; 2 &amp; 4\\
+\hline
+\bf{总计} &amp; &amp; 10\\
+\hline
+\bf{除以(n-1)} &amp; &amp; 3.333\\
+\hline
+\bf{平方根} &amp; &amp; 1.8.257\\
+\hline
+\end{array}\]</span></p>
+<p><span class="math display">\[\bf{表2.1 标准差计算}\]</span></p>
+<p>从上表2.1，我们可以看到标准差的计算过程。</p>
+<p>因此，和我们预想的一样，第一个数据的的标准差要比第二个大得多。原因是数据离散于均值点的程度更高。再举一个例子，数据集:
+<span class="math display">\[[10\, 10\, 10\, 10]\]</span>
+的均值也是10，但是它的标准差是0，
+因为所有的数字是相同的。没有任何数据点偏离均值。</p>
+<h5 id="方差">2.1.2 方差</h5>
+<p>方差是数据离散程度的另一个度量。实际上，它和标准差几乎相同，公式如下：
+<span class="math display">\[s^2=\frac{\sum_{i=1}^n
+(X-\overline{X})^2}{(n-1)}\]</span>
+你会注意到方差就是标准差的平方，标识上也有<span
+class="math inline">\(s\)</span>(<span
+class="math inline">\(s^2\)</span>)。<span
+class="math inline">\(s^2\)</span>经常用来标识一个数据集的方差。方差和标准差都是用来衡量数据的离散程度。标准差使用的更普遍，方差也常使用。之所以介绍方差是因为下一节我们介绍的协方差是基于方差的。</p>
+<h5 id="练习">练习</h5>
+<p>计算下列数据集的均值、标准差和方差。</p>
+<p>[12 23 34 44 59 70 98]</p>
+<p>[12 15 25 27 32 88 99]</p>
+<p>[15 35 78 82 90 95 97]</p>
+<h5 id="协方差">2.1.3 协方差</h5>
+<p>我们之前介绍的前两种度量方式只针对纯1维情况。1维数据集合可能是这种形式：屋里所有人的身高，或者上学期计算机科目101的成绩等等。但许多数据集是大于1维的情况，
+对于这种数据集，统计分析的目标经常是分析不同的维度之间的关系。例如，我们可能有个数据集同时包含了课堂上学生的身高，以及他们论文的分数。接着我们就可以利用统计分析工具来观察学生的身高对他们的成绩是否有影响。</p>
+<p>标准差和方差只是对单一维度的计算，因此，你只能对数据的每一个维度单独计算标准差。然而，如果有一种类似的度量能找到各维度相互在偏离均值的变化关系会非常有用。</p>
+<p>协方差就是这样一种度量。协方差总是用来度量两个维度，如果你计算一个维度和他自己维度的协方差，这时协方差就退化为这一个维度的方差。因此，如果你有一个3维数据集<span
+class="math inline">\((x,y,z)\)</span>,协方差的计算公式与方差非常相似。方差的计算公式也可以这样表示：
+<span
+class="math display">\[var(X)=\frac{\sum_{i=1}^n(X_i-\overline{X_i})(X_i-\overline{X_i})}{(n-1)}\]</span>
+这里我简单的对平方项进行了展开。有了以上知识，我们现在可以写出协方差的公式了：
+<span
+class="math display">\[cov(X,Y)=\frac{\sum_{i=1}^n(X_i-\overline{X_i})(Y_i-\overline{Y_i})}{(n-1)}\]</span></p>
+<p>除了第二个括号中的<span
+class="math inline">\(X\)</span>全部被替换成了<span
+class="math inline">\(Y\)</span>以外，协方差和方差的公式完全一样。我们可以这么表述：“对于每个数据项，把每个<span
+class="math inline">\(x\)</span>和<span
+class="math inline">\(x\)</span>均值的差与每个<span
+class="math inline">\(y\)</span>和<span
+class="math inline">\(y\)</span>均值的差相乘，再加和除以<span
+class="math inline">\((n-1)\)</span>”。协方差是怎样的一种工作机理呢？我们这里用一些数据来举例。想象你通过调查得到一个2维数据。假设我们问了一堆学生他们花在科目COSC241的总小时数，以及他们的学期末成绩。现在我们有了两个维度，第一个维度是<span
+class="math inline">\(H\)</span>，标识学习的小时数，第二个维度是M，标识学生的成绩。<strong>图2.2</strong>展示了我们假设的数据以及两个维度学习小时数和成绩之间的协方差<span
+class="math inline">\(cov(H,M)\)</span>。</p>
+<p>这张图告诉我们什么呢？协方差的值没有它的符号重要（正或负）。如果值是正的，比如我们这里，那么意味着两个维度一起增减。即，一般来说，如果学习的小时数增加，那么这个学生最后取得的成绩就会高。</p>
+<p>但是如果协方差的值是负的，那么如果其中一个维度增加，另一个维度就会减少。如果我们刚刚计算的协方差的结果是负值。那我们的说法就变成了随着学习小时数的增加，期末成绩会降低。</p>
+<p>最后一种情况，如果协方差是<span
+class="math inline">\(0\)</span>，那么说明两个维度是相互独立的。</p>
+<p>我们很容易画一张图如图2.1.3，得出结论：学习成绩随着学习的小时数增加而增加。但是，只有两维或三维这种低维的奢侈情况，我们才能通过可视化观察趋势。由于在一个数据集中可以计算任意两个维度的协方差，这种技术经常是高维数据可视化非常困难的情况下寻找维度之间关系的一种方法。</p>
+<p>你可能会问，<span class="math inline">\(cov(X, Y)\)</span>与<span
+class="math inline">\(cov(Y,X)\)</span>是否相等？简单一看我们就会发现，它们是完全相等的，因为两个式子计算的唯一不同是在<span
+class="math inline">\(cov(Y,X)\)</span>中<span
+class="math inline">\((X_i-\overline{X_i})(Y_i-\overline{Y_i})\)</span>被替换成了<span
+class="math inline">\((Y_i-\overline{Y_i})(X_i-\overline{X_i})\)</span>。我们知道乘法满足交换率，也就是说，无论乘数和被乘数的位置怎么变化，结果都是一样，也就是说这两个协方差结果是相同的。</p>
+<h5 id="section">2.1.4</h5>
+<p>我们知道，协方差总是用来计算两个维度之间的关系。如果我们有一个超过2维的数据集合，那么我们要计算的协方差的值的数量就不止一个了。比如，一个三维的数据集（<span
+class="math inline">\(x,y,z三个维度\)</span>)。你可以计算的协方差就有<span
+class="math inline">\(cov(x,y)\)</span>、<span
+class="math inline">\(cov(x,z)\)</span> 和 <span
+class="math inline">\(cov(x,z)\)</span>。事实上，对于一个<span
+class="math inline">\(n\)</span>维的数据集，你可以计算<span
+class="math inline">\(\frac{n!}{(n-2)! * 2}\)</span>不同的值。</p>
+<p>数据： <span class="math display">\[\begin{array}{lrr}
+&amp;小时数(H)&amp;成绩(M)\\
+\hline
+数据 &amp; 9 &amp; 39\\
+&amp; 15 &amp;56 \\
+&amp; 25 &amp;93 \\
+&amp; 14 &amp;61 \\
+&amp; 10 &amp;50 \\
+&amp; 18 &amp;75 \\
+&amp; 0 &amp;32 \\
+&amp; 16 &amp;85 \\
+&amp; 5 &amp;42 \\
+&amp; 19 &amp;70 \\
+&amp; 16 &amp;66 \\
+&amp; 20 &amp;80 \\
+\hline
+总数&amp;167&amp;749\\
+\hline
+平均 &amp; 13.92&amp; 62.42\\
+\hline
+\end{array}\]</span></p>
+<p>协方差： <span class="math display">\[\begin{array}{cc|c|c|c}
+H &amp; M &amp; (H_i - \overline{H}) &amp; (M_i-\overline{M}) &amp;
+(H_i-\overline{H})(M_i-\overline{M})\\
+\hline
+9 &amp; 39 &amp; -4.92&amp; -23.42 &amp;115.23\\
+15 &amp; 56 &amp; 1.08&amp; -6.42 &amp;-6.93\\
+25 &amp; 93 &amp; 11.08&amp; -30.58 &amp;338.83\\
+14 &amp; 61 &amp; 0.08&amp; -1.42 &amp;-0.11\\
+10 &amp; 50 &amp; -3.92&amp; -12.42 &amp;48.69\\
+18 &amp; 75 &amp; 4.08&amp; 12.58 &amp;51.33\\
+0 &amp; 32 &amp; -13.92&amp; -30.42 &amp;423.45\\
+16 &amp; 85 &amp; 2.08&amp; -22.58 &amp;46.97\\
+5 &amp; 42 &amp; -8.92&amp; -20.42 &amp;182.15\\
+19 &amp; 70 &amp; 5.08&amp; -7.58 &amp;38.51\\
+16 &amp; 66 &amp; 2.08&amp; -3.58 &amp;7.45\\
+20 &amp; 80 &amp; 6.08&amp; 17.58 &amp;106.89\\
+\hline
+总数 &amp; &amp; &amp; &amp; 1149.89\\
+\hline
+平均 &amp; &amp; &amp; &amp; 104.54\\
+\end{array}\]</span></p>
+<p>想求出所有不同维度的协方差，非常有用的方法是把他们全计算出来然后放入矩阵。我假设你对矩阵比较熟悉，以及矩阵怎样定义。因此，对于一个<span
+class="math inline">\(n\)</span>维的数据集的协方差矩阵： <span
+class="math display">\[C^{n\times n}=(c_{i,j}, c_{i,j}=cov(Dim_i,
+Dim_j))\]</span>, 这里<span class="math inline">\(C^{n\times
+n}\)</span>是一个<span class="math inline">\(n\)</span>行<span
+class="math inline">\(n\)</span>列的矩阵，<span
+class="math inline">\(Dim_x\)</span> 是第<span
+class="math inline">\(x\)</span>维。上面非常不美观的公式说的是，如果你有一个<span
+class="math inline">\(n\)</span>维数据集，那么协方差矩阵就是一个<span
+class="math inline">\(n\)</span>行<span
+class="math inline">\(n\)</span>列的矩阵，矩阵的每一个元素是两个维度之间的协方差计算结果。例如，矩阵的第2行第三列就是维度2和维度3之间的协方差计算结果。</p>
+<p>一个例子。我们假设有一个3维的数据集，分别使用<span
+class="math inline">\(x\)</span>,<span
+class="math inline">\(y\)</span>,<span
+class="math inline">\(z\)</span>表示3个维度。那么协方差矩阵是一个3行3列的矩阵，矩阵中的元素就是：
+<span class="math display">\[\begin{pmatrix}
+cov(x,x) &amp; cov(x,y) &amp; cov(x,z) \\
+cov(y,x) &amp; cov(y,y) &amp; cov(y,z) \\
+cov(z,x) &amp; cov(z,y) &amp; cov(z,z) \\
+\end{pmatrix}\]</span></p>
+<p>几个需要注意：主对角线计算的某一维和它自己的协方差，也就是这些维度的方差。剩下的元素，因为<span
+class="math inline">\(cov(a,b)=cov(b,a)\)</span>，所以矩阵关于主对角线对称。</p>
+<h5 id="练习-1">练习</h5>
+<ol type="1">
+<li>计算以下关于<span class="math inline">\(x\)</span>和<span
+class="math inline">\(y\)</span>的2维数据集的协方差，然后描述一下协方差结果可能推导出数据什么方面的结论。
+<span class="math display">\[\begin{array}{c|c|c|c|c|c}
+项目id &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5\\
+\hline
+x &amp; 10 &amp; 39 &amp; 19 &amp; 23 &amp; 28\\
+y &amp; 43 &amp; 13 &amp; 32 &amp; 21 &amp; 20\\
+\hline
+\end{array}\]</span></li>
+<li>计算下列3维数据的协方差矩阵： <span
+class="math display">\[\begin{array}{c|c|c|c}
+项目id &amp; 1 &amp; 2 &amp; 3 \\
+\hline
+x &amp; 1 &amp; -1 &amp; 4\\
+y &amp; 2 &amp; 1 &amp; 3\\
+z &amp; 1 &amp; 3 &amp; -1\\
+\hline
+\end{array}\]</span></li>
+</ol>
+<h4 id="矩阵代数">2.2 矩阵代数</h4>
+<p>本节会介绍PCA所用到的一些矩阵代数的背景知识，我将重点介绍对给定矩阵计算特征向量和特征值的相关知识。这里我假设你了解矩阵的基本知识。
+<span class="math display">\[\begin{align}\begin{pmatrix}
+2 &amp; 3\\
+2 &amp; 1\\
+\end{pmatrix}\times
+\begin{pmatrix}
+1\\\\
+3
+\end{pmatrix}=
+\begin{pmatrix}
+11\\\\
+5
+\end{pmatrix}
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{align}\begin{pmatrix}
+2 &amp; 3\\
+2 &amp; 1\\
+\end{pmatrix}\times
+\begin{pmatrix}
+3\\\\
+2
+\end{pmatrix}=
+\begin{pmatrix}
+12\\\\
+8
+\end{pmatrix}=4\times
+\begin{pmatrix}
+3\\\\
+2
+\end{pmatrix}
+\end{align}\]</span> <span
+class="math display">\[\bf{图2.2：非特征向量和1个特征向量}\]</span>
+<span class="math display">\[\begin{align}
+2\times
+\begin{pmatrix}
+3\\\\
+2
+\end{pmatrix}=
+\begin{pmatrix}
+6\\\\
+4
+\end{pmatrix}
+\end{align}\]</span></p>
+<p><span class="math display">\[\begin{align}\begin{pmatrix}
+2 &amp; 3\\
+2 &amp; 1\\
+\end{pmatrix}\times
+\begin{pmatrix}
+6\\\\
+4
+\end{pmatrix}=
+\begin{pmatrix}
+24\\\\
+16
+\end{pmatrix}=4\times
+\begin{pmatrix}
+6\\\\
+4
+\end{pmatrix}
+\end{align}\]</span></p>
+<p><span class="math display">\[\bf{图2.3:
+缩放特征向量后仍为特征向量}\]</span></p>
+<h5 id="特征向量">2.2.1 特征向量</h5>
+<p>如你所知，只要两个矩阵的大小相容，你就可以将两个矩阵相乘。特征向量是矩阵相乘的的特殊形式。我们现在考虑如图2.2所示的矩阵和向量相乘的情况。</p>
+<p>第一个例子中，计算结果不是整数与原始矩阵相乘的形式，但到了第二的例子，计算结果的就是一个整数乘以与左边完全相同的一个向量。为何能产生这样的结果呢？实际上，向量就是2维空间的一个矢量。向量<span
+class="math inline">\(\begin{pmatrix}3\\2\end{pmatrix}\)</span>(第二个相乘的例子)代表从原点<span
+class="math inline">\((0,0)\)</span>一个指向<span
+class="math inline">\((3,2)\)</span>的一个箭头，另一个矩阵可以被认为是变换矩阵。如果你在向量的左边乘以一个矩阵，结果就是把这个向量从其原始位置进行了变换。</p>
+<p>上面说得就是变换就是特这向量的本质。想象一个变换矩阵，以及一个在直线<span
+class="math inline">\(y=x\)</span>上的向量，矩阵左乘这个向量。如果你发现结果仍然位于<span
+class="math inline">\(y=x\)</span>这条直线上，那么这就向是量的自反射。这个向量（所有的乘子，因为我们不关心向量的大小）就是这个变换矩阵的一个特征向量。</p>
+<p>这些特征向量有什么性质呢？第一你要知道的就是只有方矩阵才有特征向量。其次是不是所有的方矩阵都有特征向量。最后，如果一个<span
+class="math inline">\(n\times n\)</span>矩阵只要有，那么就一定有<span
+class="math inline">\(n\)</span>个特征向量。如果一个<span
+class="math inline">\(3\times
+3\)</span>的矩阵有特征向量，那就有3个。</p>
+<p>特征向量的另一个性质是：如果我在相乘之前对其缩放一定量，那么我可以仍然得到相同的乘积形式（如图2.3）。这是因为如果你缩放一个的向量，你做的仅仅是把这个向量变长，而没有改变其方向。最后，一个矩阵的所有的特征向量都是<em>垂直</em>的。也就是说，无论你有多少维的向量，他们都是互相形成直角。另一个更数学化的说法叫<em>正交</em>。这么描述非常重要，原因是我们可以更方便表述这些垂直的正交向量，而不用在<span
+class="math inline">\(x\)</span>轴和<span
+class="math inline">\(y\)</span>轴的坐标系中描述。在PCA介绍部分我们会用到这些。</p>
+<p>另一点重要的是，数学家们在寻找特征向量时，他们总喜欢找长度为1的特征向量。原因我们已经知道，向量的长度并不是影响因素，方向才是。所以为了使特征向量有标准形式，我们的一般做法是将其缩放成长度为1的向量。这样，所有的特征向量就都有相同的长度了。下面我们把例子中的向量标准化。
+<span class="math display">\[\begin{pmatrix}
+3\\
+2
+\end{pmatrix}
+\]</span> 是一个特征向量，这个向量的长度为： <span
+class="math display">\[\sqrt{(3^2+2^2)}=\sqrt{13}\]</span>
+所以我们把原始的向量除以这个长度，就得到了长度唯一的特征向量。 <span
+class="math display">\[\begin{pmatrix}
+3\\
+2
+\end{pmatrix}\div\sqrt{13}=
+\begin{pmatrix}
+{3}/{\sqrt{13}}\\
+{2}/{\sqrt{13}}
+\end{pmatrix}
+\]</span></p>
+<p>怎么找到这些神秘的特征向量呢？很不幸，只有当矩阵足够小时，特征向量才好找，比如不超过<span
+class="math inline">\(3\times
+3\)</span>的矩阵。如果矩阵大小再变大，通常的做法是用复杂的迭代方式求解，这些方法此教程不会讲解。如果你想在程序中使用计算特征向量的方法，很多数学库都有实现，<a
+target="_blank" rel="noopener" href="http://webnz.com/robert/">一个有用的数学库包</a>。</p>
+<p>如果想进一步了解特征向量和特征值以及正交等内容，请参考霍华德.安东著有约翰威立国际出版公司出版的数学课本《Elementary
+Linear Algebra 5e》，ISBN 0-471-85223-6。</p>
+<h5 id="特征值">2.2.2 特征值</h5>
+<p>特征值和特征向量高度相关，其实我们已经在图2.2看到过特征值。还记得被矩阵缩放以后的特征向量有相同的大小么？在那个例子中，这个值是4。这里4就是特征向量相关的特征值。无论我们对特征向量怎么缩放，我们始终得到的特征值都一直是一样的，如图2.3的例子特征值一直是4。</p>
+<p>现在我们发现特征向量和特征值总是成对出现。如果你现在需要某个编程库计算特征向量，通常特征值也被同时计算出来了。</p>
+<h4 id="练习-2">练习</h4>
+<p>对于下面的矩阵 <span class="math display">\[\begin{pmatrix}
+3&amp;0&amp;-1\\
+-4&amp;1&amp;2\\
+-6&amp;0&amp;-2
+\end{pmatrix}
+\]</span> 判断下面是否有此矩阵的特征向量，如果有，请求出对应的特征值。
+<span class="math display">\[
+\begin{pmatrix}
+2\\
+2\\
+-1
+\end{pmatrix}\
+\begin{pmatrix}
+-1\\
+0\\
+2
+\end{pmatrix}\
+\begin{pmatrix}
+-1\\
+1\\
+3
+\end{pmatrix}\
+\begin{pmatrix}
+0\\
+1\\
+0
+\end{pmatrix}\
+\begin{pmatrix}
+3\\
+2\\
+1
+\end{pmatrix}
+\]</span></p>
+<h3 id="第三章-主成分分析principal-components-analysis">第三章
+主成分分析（Principal Components Analysis）</h3>
+<p>终于到了主成分分析（PCA）部分了，PCA可以在数据中识别模式，并通过此种方式突出数据中相似和不同的部分。由于很难用图像表示高维数据，也就意味着在高维数据中寻找模式变得非常困难，这时，PCA就成了极为强大的数据分析工具。</p>
+<p>另一个PCA的优点是，如果你通过其找到了数据中的模式，你还可以用来压缩数据，即，在不损失太多信息的前提下降低数据的维度。这个技术被用于图像压缩，我们在稍后的章节中会有涉及。</p>
+<p>本章我们将针对一个数据集，一步一步实现PCA计算。这里我不准备描述<em>为什么</em>
+PCA表现出色。我做的是为你提供每一步都发生了什么，这样，将来如果你想使用此技术时，就会有足够多的知识帮助你做决策。</p>
+<h4 id="方法">3.1 方法</h4>
+<h5 id="第一步数据集">第一步：数据集</h5>
+<p>在我们这个简单的例子中，我会使用我编造的一个数据集。这个数据集只有两维，之所以选择这份数据是因为我可以通过画出图形来分析PCA的每一步都发生了什么。
+##### 第二步：减掉均值
+如果想实现PCA，我们首先要把每一维的数据减掉均值。就是说要对每一维求平均值，接着把每一维的每个数据都减掉均值。我们这里所有的<span
+class="math inline">\(x\)</span>值都要减掉<span
+class="math inline">\(\overline{x}\)</span>(<span
+class="math inline">\(x\)</span>维度所有数据的均值)，所有的<span
+class="math inline">\(y\)</span>值都减掉<span
+class="math inline">\(\overline{y}\)</span>。这样我们就构造了一个均值为0的数据集。
+<span class="math display">\[\begin{align}
+\bf{数据}=
+\begin{array}{c|c}
+x&amp; y\\
+\hline
+2.5 &amp; 2.4\\
+0.5 &amp; 0.7\\
+2.2 &amp; 2.9\\
+1.9 &amp; 2.2\\
+3.1 &amp; 3.0\\
+2.3 &amp; 2.7\\
+2 &amp; 1.6\\
+1 &amp; 1.1\\
+1.5 &amp; 1.6\\
+1.1 &amp; 0.9\\
+\end{array}\bf{调整后的数据=}
+\begin{array}{c|c}
+x&amp; y\\
+\hline
+0.69 &amp; 0.49\\
+-1.31 &amp; -1.21\\
+0.39 &amp; 0.99\\
+0.09 &amp; 0.29\\
+1.29 &amp; 1.09\\
+0.49 &amp; 0.79\\
+0.19 &amp; -0.31\\
+-0.81 &amp; -0.81\\
+-0.31 &amp; -0.31\\
+-0.71 &amp; -1.01\\
+\end{array}
+\end{align}\]</span> <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-29-062821.jpg" />
+<span
+class="math display">\[图3.1：PCA示例数据，左边为原始数据，右边为减掉均值的数据\]</span></p>
+<h5 id="第三步计算协方差矩阵">第三步：计算协方差矩阵</h5>
+<p>协方差矩阵我们在2.1.4小节已经讨论过。由于我们的数据是2维的，所有协方差矩阵就是<span
+class="math inline">\(2\times
+2\)</span>。协方差矩阵计算没特别说明的，我直接给出结果： <span
+class="math display">\[cov=\begin{pmatrix}
+0.616555556&amp;0.615444444\\
+0.615444444&amp;0.716555556
+\end{pmatrix}\]</span>
+由于协方差矩阵非对角线元素都是正值，所以我们可以预期<span
+class="math inline">\(x\)</span>和<span
+class="math inline">\(y\)</span>一起增减。 #####
+第四步：计算协方差矩阵的特征向量和特征值
+协方差矩阵是方阵，所以我们可以计算其特征向量和特征值。这极为重要，因为他们可以告诉我们关于数据的有用信息。我一会儿会说明原因，现在我们来看一下特征值和特征向量：
+<span class="math display">\[\begin{align}
+\bf{特征值}=\begin{pmatrix}
+0.0490833989\\
+1.28402771
+\end{pmatrix}\bf{\bf    特征向量}=\begin{pmatrix}
+-0.7351178656 &amp; -0.6778873399\\
+0.677873399 &amp; -0.735178656
+\end{pmatrix}
+\end{align}\]</span>
+一定要注意到两个特征向量都是单位向量。也就是说他们的长度都是1。这个结果对PCA非常重要，幸运的是，大部分数学工具包计算特征向量提供的都是单位向量。</p>
+<p>那么，这些计算结果都是什么意思呢？如果你观察图3.2的数据点，你会发现这些数据有非常强的模式。和我们用协方差预期的一致，这些数据确实一起增减。我利用数据同时也画了两个特征向量，这两个特征向量看起来像图3.2的对角线。我们在特征向量小节介绍过，两个特征向量是相互垂直的。但是，更重要的是特征向量为我们提供了数据中的模式信息。可以看出，其中一条线（译者注：大概45度倾角的这条线）看起来像画了拟合这些数据点的一条线。这个特征向量告诉我们两个数据维度沿着线的相关性（译者注：原文是两个数据集，我认为是两个数据维度）。第2个特征向量（译者注：大概135度倾角的这条线）给我们提供了另外一些重要性稍低的数据中的模式，数据点分布在线的两边。</p>
+<p>因此，通过从特征矩阵中取出特征向量进行分析，我们已经提取出了刻画数据特点的线。接下来的步骤会包括数据变换以便于用我们这些线来表达数据。
+##### 第五步：选择成分及构建特征的向量
+现在我们来讨论数据压缩和降维的概念。如果你学习了前面小节的特征向量和特征值的相关信息，你会注意到特征向量是之间有很大不同。事实上，具有更大特征值对应的特征向量是数据集的主成分(Principal
+Component)。在我们这个例子中，对应更大特征值特的特征向量是基本拟合数据点的这条线。这维特征向量描述了数据维度之间最重要的关系。
+<img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-29-081716.jpg" />
+<span
+class="math display">\[图3.2:\bf{标准化（减掉均值）后的数据图以及协方差矩阵中特征向量图}\]</span></p>
+<p>一般来说，一旦从协方差矩阵中找出特征向量，下一步我们要做的就是把他们对应的特征值从高到低排列。排序表明了成分（component）的重要性高低。现在，如果你如果愿意，可以忽略那些重要性没那么高的成分，你就会丢失一些信息，但是如果特征值非常小，你丢失的信息并不会太多。如果你扔掉一些成分，最终的数据集的维度会低于原始数据的维度。具体来说，如果你的原始数据有<span
+class="math inline">\(n\)</span>维，因此你可以计算出<span
+class="math inline">\(n\)</span>个特征向量和<span
+class="math inline">\(n\)</span>个特征值，接下来如果你只选取前<span
+class="math inline">\(p\)</span>维特征向量，那么最终的数据就变成了<span
+class="math inline">\(p\)</span>维的数据集。</p>
+<p>现在你需要做的是构造一个特征(feature)的向量，其实就是一个向量的矩阵。矩阵是通过挑选你希望留下的特征向量，组成一个每列1个特征向量的矩阵(译者注：最后一维我认为是第p维更好，可以与上面一段对应)。
+<span
+class="math display">\[\bf{特征的向量}=(eig_1,eig_2,eig_3,...,eig_p)\]</span></p>
+<p>来看我们的例子，现在我们有2个特征向量，我们现在有两个选择，第一选择是两个特征向量都被用于构造特征的向量：
+<span class="math display">\[cov=\begin{pmatrix}
+-0.77873399&amp;-0.735178656\\
+-0.735178656&amp;0.677873399
+\end{pmatrix}\]</span>
+或者，我们可以扔掉不重要的成分，那么特征的向量只有1列： <span
+class="math display">\[cov=\begin{pmatrix}
+-0.677873399\\
+-0.735178656
+\end{pmatrix}\]</span> 下一节我们将针对上面两种新的数据集进行讨论。
+##### 第六步：生成新数据集
+这是PCA的最后同时是最简单的一步。一旦我们选择了我们希望保留到成分（特征向量集），我们只需把特征的矩阵转置，左乘调整后的数据（原始数据减掉均值），然后再转置。
+<span class="math display">\[\bf{最终数据=行特征的向量} \times
+\bf{行调整后的数据}\]</span></p>
+<p>这里<span
+class="math inline">\(\bf{行特征的向量}\)</span>是特征的向量组成的矩阵进行转置，也就是说现在特征向量现在是以行的形式排列，最重要的特征向量在第一行。<span
+class="math inline">\(\bf{行调整后的数据}\)</span>是经过均值调整后的数据，也进行了转置，也就是说数据项在每一列，而每行是一个独立的维度。抱歉数据转置可能来得有点儿突然，但是如果我们现在对特征向量的矩阵和数据进行转置，后面的公式就会简单很多，而不是一直带着个转置的上标符号<span
+class="math inline">\(T\)</span>。<span
+class="math inline">\(\bf{最终数据}\)</span>是最终的数据集合，其中每一列是一个数据项，每一行是一个维度。</p>
+<p>做完这些我们可以得到什么呢？我们可以得到和我们选择向量完全相关的原始数据。我们的原始数据有<span
+class="math inline">\(x\)</span>轴和<span
+class="math inline">\(y\)</span>轴两个坐标的坐标系，所以我们的数据与这两个坐标的坐标系相关。其实你可以用任何你喜欢的两个坐标轴的坐标系来表示你的数据。如果坐标轴互相垂直，这种表示方法是最高效的，这就是为何特征向量间互相垂直这么重要。现在我们已经把我们的数据从跟<span
+class="math inline">\(x\)</span>轴和<span
+class="math inline">\(y\)</span>轴相关改为2个特征向量组成的坐标系相关。如果说我们已经通过降维构造了新的数据集，也就是说我们扔掉了一些特征向量，那么新数据只跟我们留下的特征向量相关。</p>
+<p>为了展示我们的数据，我已经把两种可能的特征的向量都对数据做了变换。我已经对每种情况的结果进行的了转置，这样我就把数据恢复成表结构的组织形式。同时，我也把最终的数据点画了出来，这样我们就可以观察这些数据点与这些成分之间的关系。</p>
+<p>两个特征向量都保留的情况转换后的结果见图3.3。这个图其实就是原始数据旋转后，这样特征向量就成了坐标轴。这种情况很好理解，因为我们在分解的过程中并没有丢失任何信息。</p>
+<p>另外一种变换，我们只保留有最大特征值的特征向量，我们可以从图3.4中看的数据的结果。和预期的一样，这个数据只有一维。如果你用这份数据与两维特征向量都用变换后的数据对比，你会注意到，这个数据就是另一份数据的第一列。所以，如果你画出这个数据的图，这份数据只有一维，那么结果其实就是图3.3数据点<span
+class="math inline">\(x\)</span>的坐标点。我们其实就是高效的抛弃了其他的坐标轴，也就是其他的特征向量。</p>
+<p>那么我究竟做了什么呢?
+本质上我们把数据进行了变换，使之可以用相关的模式进行表示，这些模式就是一些最适合描述这些数据之间关系的线。这么做非常有用，因为我们现在已经把数据点对每条线的贡献进行分类，然后进行组合。首先，我们仅仅有<span
+class="math inline">\(x\)</span>轴和<span
+class="math inline">\(y\)</span>轴，这还不错，但是每个<span
+class="math inline">\(x\)</span>和<span
+class="math inline">\(y\)</span>的数据点其实并无法告诉我们，每个数据点和其他数据点之间的关系。现在数据点的值可以精确告诉我们数据点处于趋势线的位置（上面或者下面）。如果是两个特征向量都用的情况，我们仅仅是把数据转换以便于我们使这些数据与特征向量相关，而不是<span
+class="math inline">\(x\)</span>轴和<span
+class="math inline">\(y\)</span>轴。但是只留一维特征向量的分解移除了较小特征向量的贡献，是我们的数据只与保留的一维数据相关。
+##### 3.1.1 把旧数据找回来
+显然，如果你用PCA对数据进行压缩，你一定想把原始数据恢复回来。（下一章我们看到例子）这些内容来自于<a
+target="_blank" rel="noopener" href="http://www.vision.auc.dk/sig/Teaching/Flerdim/Current/hotelling/hotelling.html">这里</a>。
+<span class="math display">\[\begin{align}
+\bf{转换后的数据}=\begin{array}{c|c}
+x&amp;y\\
+\hline
+-0.827970186 &amp; -0.175115307\\
+1.77758033 &amp; 0.142857227\\
+-0.992197494 &amp; 0.384374989\\
+-0.274210416 &amp; 0.1304117207\\
+-1.67580142 &amp; -0.209498461\\
+-0.912949103 &amp; 0.17528282444\\
+0.0991094375 &amp; -0.349824698\\
+1.14457216 &amp; 0.0464172582\\
+0.438046137 &amp; 0.0177646297\\
+1.22382056 &amp; -0.162675287\\
+\end{array}
+\end{align}\]</span> <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-29-134547.jpg" />
+<span
+class="math display">\[图3.3：应用了PCA分析后并使用了两个特征向量的数据表以及绘制的新数据点\]</span></p>
+转换后的数据(单一特征向量)
+<span class="math display">\[\begin{array}{c}
+x\\
+\hline
+-0.827970186\\
+1.77758033\\
+-0.992197494\\
+-0.274210416\\
+-1.67580142\\
+-0.912949103\\
+1.14457216\\
+0.438046137\\
+1.22382056
+\end{array}\]</span>
+<p><span
+class="math display">\[图3.4：只用最重要的特征向量数据转换的数据\]</span></p>
+<p>所以，我们怎么把原来数据恢复回来？在我们进行恢复原始数据之前，回忆只有我们将所有特征向量进行转换才能精确的把数据恢复回来。如果我们在最后转换时减少特征向量，那么恢复的数据已经失去很多信息。
+回想一下，最后的变换是： <span
+class="math display">\[\bf{最终数据=行特征的向量} \times
+\bf{行调整后的数据}\]</span> 我们可以把公式反转过来，进而得到原始数据，
+<span
+class="math display">\[\bf{行调整后的数据}=\bf{行特征的向量}^{-1}\times\bf{最终数据}\]</span>
+这里，<span
+class="math inline">\(\bf{行特征的向量}^{-1}\)</span>是的<span
+class="math inline">\(\bf{行特征的向量}\)</span>的逆。由于我们讨论的是特征向量，组成的特征的向量，所以，<span
+class="math inline">\(\bf{行特征的向量}^{-1}\)</span>其实就是<span
+class="math inline">\(\bf{行特征的向量}\)</span>的转置。当然，只有在矩阵中的所有元素是由单位特征向量组成是才成立。这样，恢复原始数据又变得容易了很多，现在公式变成了：
+<span
+class="math display">\[\bf{行调整后的数据}=\bf{行特征的向量}^{T}\times\bf{最终数据}\]</span>
+这个公式在我们只保留部分特征向量的情况下仍然成立。也就是说，就算你扔掉了一下特征向量，上面的公式仍然成立。</p>
+<p>我不会演示用所有特征向量恢复原始数据，因为这样计算的结果和开始的数据一模一样。但是，我们一起来看一下只保留了一维特征向量的情况下，是怎样损失信息的。图3.5展示了丢失信息的情况。我们把图中的数据点与图3.1对比一下就会发现，沿着主特征向量的变化被保留下来了（见图3.2特征向量及数据）沿着其他成分（另一个特征向量被扔掉了）的变化丢失了。</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-30-003805.jpg" />
+<span class="math display">\[图3.5
+从单独一维特征向量重新构造的数据\]</span></p>
+<h4 id="练习-3">练习</h4>
+<ol type="1">
+<li>协方差矩阵的特征向量为我们提供了什么呢？</li>
+<li>我们在PCA计算的过程中，哪一步可以决定压缩数据，压缩可以起到什么效果呢？</li>
+<li>举例说明PCA在图像处理怎样用主成分表示，同时调研一下人脸识别中“特征脸”(Eigenfaces)主题。</li>
+</ol>
+<h3 id="第四章-计算机视觉应用">第四章 计算机视觉应用</h3>
+<p>本章我们将简单的PCA在计算机视觉领域的应用，首先我们看一下图像是怎么表示的，然后我们我们看看能怎样用PCA处理这些图像。本章关于人脸识别的的信息主要来自于1997年IEEE
+9月Vol 85, No. 9《Face Recognition: Eigenface, Elastic Matching, and
+Neural Nets》。图像表示来自于爱迪生-韦斯利出版社1987年出版的由Rafael C.
+Gonzalez 和Paul Wintz合著的《Digital Image
+Processing》想了解更多信息，KL变换相关知识也是非常好的参考。图像压缩相关知识来自于<a
+target="_blank" rel="noopener" href="http://www.vision.auc.dk/sig/Teaching/Flerdim/Current/hotelling/hotelling.html">这里</a>，此网站还提供了大量用不同数量特征向量重新构造图像的方法。</p>
+<h4 id="表示">4.1 表示</h4>
+<p>在我们把一系列矩阵技术应用于计算机视觉上时，我们必须考虑图像的表示方法。一个正方形，<span
+class="math inline">\(N\times N\)</span>的图像可以被表示成<span
+class="math inline">\(N^2\)</span>维的向量。 <span
+class="math display">\[X=(x_1,x_2,x_3,...,x_{N^2})\]</span>
+这里，第一行前<span class="math inline">\(N\)</span>个<span
+class="math inline">\((x_1--x_n)\)</span>一个挨着一个的像素点组成了1维的图像，下<span
+class="math inline">\(N\)</span>个元素是下一行，以此类推。每个像素点的值代表图像三原色的亮度，也可能是只是灰度图像，那么只需要1个单独的值即可表示。
+#### 4.2 PCA寻找模式
+假设我们有20个图像。每个图像的像素非常高。对每个图像，我们都建立一个图像向量表示相应图像。接着我们就可以把所有的图像放到一个像这样的大矩阵中：
+<span class="math display">\[图像矩阵=
+\begin{pmatrix}
+ImageVec_1\\
+ImageVec_2\\
+\vdots\\
+ImageVec_{20}\\
+\end{pmatrix}\]</span>
+我们现在就可以开始以这条图像矩阵为基始，应用PCA，先构造协方差矩阵，然后得到原始数据相关的特征向量。为什么用PCA分析有用呢？假设我们要做人脸识别，那我们的原始数据就是很多人脸。接下来的问题是，给一张我新的图片，那么这是原始人脸数据中谁的人脸呢（注意，这新的图片不是我们开始给的20个人脸图片）？计算机视觉的处理方法是衡量新的图片和原始图片的差别，但并不是在原始坐标系进行对比，而是在PCA分析的生成的坐标系下衡量。</p>
+<p>在实际应用中，PCA生成的坐标系下识别人脸会好非常多，因为PCA分析已经提供了原始图片中不同和相似等相关性。主成分分析已经识别出了数据中的统计学模式。</p>
+<p>因为所有的向量都是<span
+class="math inline">\(N^2\)</span>维的，我们最后会得到<span
+class="math inline">\(N^2\)</span>个特征向量，在实践中，我们可以扔掉其中不重要的一些特征向量，识别效果仍然非常好。
+#### 4.3 PCA图像压缩
+使用PCA做图像压缩常常也被称作霍特林变换或者是KL变换（Karhunen-Leove
+transform）. 如果我们有20个图像，每个图像有<span
+class="math inline">\(N^2\)</span>个像素，所以我们就可以构造<span
+class="math inline">\(N^2\)</span>个向量，每个向量20维。每个向量由每个图片的相同像素点的图片亮度值组成。这与我们之前的例子不同，因为之前我们是有一个图像的向量，向量里的每项都是不同的像素。然而我们现在是有一个每个像素的向量，向量里的每项是都是来自于不同的图片。</p>
+<p>如果现在我们在一个数据集上应用PCA，那么，我们将会得到20个特征向量，因为，每个向量都是20维的。如果想要压缩数据，我们可以选择只用其中一部分特征向量变换，假设是15个特征向量。这样我得到的最终数据只有15维，达到了节省空间的目的。但是，当要恢复原始数据是，图像已经丢了一些信息。这种压缩技术叫做有损压缩，因为解压后的图片已经不是和原始图片完全一样的图片了，一般来说会变差。</p>
+<h3 id="附录-a">附录 A</h3>
+<h4 id="实现代码">实现代码</h4>
+<p>这份代码用于可替换Matlab的自由软件Scilab。我用这份代码生成了文章的所有例子。除了第一个宏，剩下的都是我(原文作者)写的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line">// This macro taken from</span><br><span class="line">// http://www.cs.montana.edu/ ̃harkin/courses/cs530/scilab/macros/cov.sci // No alterations made</span><br><span class="line">// Return the covariance matrix of the data in x, where each column of x</span><br><span class="line">// is one dimension of an n-dimensional data set.  That is, x has x columns</span><br><span class="line">// and m rows, and each row is one sample.</span><br><span class="line">//</span><br><span class="line">// For example, if x is three dimensional and there are 4 samples.</span><br><span class="line">// x=[123;456;789;101112]</span><br><span class="line">// c=cov(x)</span><br><span class="line">function [c]=cov (x)</span><br><span class="line">// Get the size of the array</span><br><span class="line">sizex=size(x);</span><br><span class="line">// Get the mean of each column</span><br><span class="line">meanx = mean (x, &quot;r&quot;);</span><br><span class="line">// For each pair of variables, x1, x2, calculate</span><br><span class="line">// sum ((x1 - meanx1)(x2-meanx2))/(m-1)</span><br><span class="line">for var = 1:sizex(2),</span><br><span class="line">        x1 = x(:,var);</span><br><span class="line">        mx1 = meanx (var);</span><br><span class="line">        for ct = var:sizex (2),</span><br><span class="line">                x2 = x(:,ct);</span><br><span class="line">                mx2 = meanx (ct);</span><br><span class="line">                v = ((x1 - mx1)’ * (x2 - mx2))/(sizex(1) - 1);</span><br><span class="line">end, c=cv;</span><br><span class="line">end,</span><br><span class="line">cv(var,ct) = v;</span><br><span class="line">cv(ct,var) = v;</span><br><span class="line">// do the lower part of c also.</span><br><span class="line">// This a simple wrapper function to get just the eigenvectors</span><br><span class="line">// since the system call returns 3 matrices</span><br><span class="line">function [x]=justeigs (x)</span><br><span class="line">// This just returns the eigenvectors of the matrix</span><br><span class="line">[a, eig, b] = bdiag(x);</span><br><span class="line">x= eig;</span><br><span class="line">// this function makes the transformation to the eigenspace for PCA</span><br><span class="line">// parameters:</span><br><span class="line">// adjusteddata = mean-adjusted data set</span><br><span class="line">// eigenvectors = SORTED eigenvectors (by eigenvalue)</span><br><span class="line">// dimensions  = how many eigenvectors you wish to keep</span><br><span class="line">//</span><br><span class="line">// The first two parameters can come from the result of calling</span><br><span class="line">// PCAprepare on your data.</span><br><span class="line">// The last is up to you.</span><br><span class="line">function [finaldata] = PCAtransform(adjusteddata,eigenvectors,dimensions) finaleigs = eigenvectors(:,1:dimensions);</span><br><span class="line">prefinaldata = finaleigs’*adjusteddata’;</span><br><span class="line">finaldata = prefinaldata’;</span><br><span class="line">// This function does the preparation for PCA analysis</span><br><span class="line">// It adjusts the data to subtract the mean, finds the covariance matrix,</span><br><span class="line">// and finds normal eigenvectors of that covariance matrix.</span><br><span class="line">// It returns 4 matrices</span><br><span class="line">// meanadjust = the mean-adjust data set</span><br><span class="line">// covmat = the covariance matrix of the data</span><br><span class="line">// eigvalues = the eigenvalues of the covariance matrix, IN SORTED ORDER</span><br><span class="line">// normaleigs = the normalised eigenvectors of the covariance matrix,</span><br><span class="line">// IN SORTED ORDER WITH RESPECT TO</span><br><span class="line">// THEIR EIGENVALUES, for selection for the feature vector.</span><br><span class="line">//</span><br><span class="line">// NOTE: This function cannot handle data sets that have any eigenvalues</span><br><span class="line">// equal to zero. It’s got something to do with the way that scilab treats</span><br><span class="line">// the empty matrix and zeros.</span><br><span class="line">//</span><br><span class="line">function [meanadjusted,covmat,sorteigvalues,sortnormaleigs] = PCAprepare (data) // Calculates the mean adjusted matrix, only for 2 dimensional data</span><br><span class="line">means = mean(data,&quot;r&quot;);</span><br><span class="line">meanadjusted = meanadjust(data);</span><br><span class="line">covmat = cov(meanadjusted);</span><br><span class="line">eigvalues = spec(covmat);</span><br><span class="line">normaleigs = justeigs(covmat);</span><br><span class="line">sorteigvalues = sorteigvectors(eigvalues’,eigvalues’);</span><br><span class="line">sortnormaleigs = sorteigvectors(eigvalues’,normaleigs);</span><br><span class="line">// This removes a specified column from a matrix</span><br><span class="line">// A = the matrix</span><br><span class="line">// n = the column number you wish to remove</span><br><span class="line">function [columnremoved] = removecolumn(A,n)</span><br><span class="line">inputsize = size(A);</span><br><span class="line">numcols = inputsize(2);</span><br><span class="line">temp = A(:,1:(n-1));</span><br><span class="line">for var = 1:(numcols - n)</span><br><span class="line">        temp(:,(n+var)-1) = A(:,(n+var));</span><br><span class="line">columnremoved = temp;</span><br><span class="line">// This finds the column number that has the</span><br><span class="line">// highest value in it’s first row.</span><br><span class="line">function [column] = highestvalcolumn(A)</span><br><span class="line">inputsize = size(A);</span><br><span class="line">numcols = inputsize(2);</span><br><span class="line">maxval = A(1,1);</span><br><span class="line">maxcol = 1;</span><br><span class="line">for var = 2:numcols</span><br><span class="line">        if A(1,var) &gt; maxval</span><br><span class="line">                maxval = A(1,var);</span><br><span class="line">end,</span><br><span class="line">        end,</span><br><span class="line">column = maxcol</span><br><span class="line">maxcol = var;</span><br><span class="line">25</span><br><span class="line">end,</span><br><span class="line">// This sorts a matrix of vectors, based on the values of</span><br><span class="line">// another matrix</span><br><span class="line">//</span><br><span class="line">// values = the list of eigenvalues (1 per column)</span><br><span class="line">// vectors = The list of eigenvectors (1 per column)</span><br><span class="line">//</span><br><span class="line">// NOTE:  The values should correspond to the vectors</span><br><span class="line">// so that the value in column x corresponds to the vector</span><br><span class="line">// in column x.</span><br><span class="line">function [sortedvecs] = sorteigvectors(values,vectors)</span><br><span class="line">inputsize = size(values);</span><br><span class="line">numcols  = inputsize(2);</span><br><span class="line">highcol = highestvalcolumn(values);</span><br><span class="line">sorted = vectors(:,highcol);</span><br><span class="line">remainvec = removecolumn(vectors,highcol);</span><br><span class="line">remainval = removecolumn(values,highcol);</span><br><span class="line">for var = 2:numcols</span><br><span class="line">        highcol = highestvalcolumn(remainval);</span><br><span class="line">        sorted(:,var) = remainvec(:,highcol);</span><br><span class="line">        remainvec = removecolumn(remainvec,highcol);</span><br><span class="line">        remainval = removecolumn(remainval,highcol);</span><br><span class="line">end,</span><br><span class="line">sortedvecs = sorted;</span><br><span class="line">// This takes a set of data, and subtracts</span><br><span class="line">// the column mean from each column.</span><br><span class="line">function [meanadjusted] = meanadjust(Data)</span><br><span class="line">inputsize = size(Data);</span><br><span class="line">numcols = inputsize(2);</span><br><span class="line">means = mean(Data,&quot;r&quot;);</span><br><span class="line">tmpmeanadjusted = Data(:,1) - means(:,1);</span><br><span class="line">for var = 2:numcols</span><br><span class="line">        tmpmeanadjusted(:,var) = Data(:,var) - means(:,var);</span><br><span class="line">meanadjusted = tmpmeanadjusted</span><br><span class="line">end,</span><br></pre></td></tr></table></figure>
+<p><a
+target="_blank" rel="noopener" href="http://cmb.oss-cn-qingdao.aliyuncs.com/%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90%EF%BC%88PCA%EF%BC%89%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B%EF%BC%88%E7%BF%BB%E8%AF%91%EF%BC%89.pdf">本文PDF</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/03/18/Naive-Bayes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/03/18/Naive-Bayes/" class="post-title-link" itemprop="url">Naive Bayes</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-03-18 21:06:08" itemprop="dateCreated datePublished" datetime="2017-03-18T21:06:08+01:00">2017-03-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="introduction">Introduction</h3>
+<p>You are sitting in front your sceen, annoyed by a bunch of spam
+mails. You wonder if there are any appoaches to get rid of so much many
+offended emails. Last time you doped out a extremely good idea. You set
+a series of words to identify those emails: every mail invovled by words
+"coupon" was trown to trash. However, on one hand, there were only about
+10% spam including "coupon", one the other hand, you had trashed two
+significant emails, due to which, you lost two business valued about two
+million dollars. The thing was that, your inbox seems being overrun by
+those spams. Who can rescue you from endless deleting spams
+everyday?</p>
+<h3 id="intuition">Intuition</h3>
+<p>Actually, you were close to the answer when you were putting all
+emails to trash which included the word "coupon". Today, we learn about
+an efficient method to solve the problem systematically. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-03-18-110227.jpg" />
+Maybe we can search through internet, find all words which are about
+advertisment in email. You can restrict that if and only if those which
+includes more than 4 word in the list of spam words can be put into
+trash can. Maybe finally you can design a rule system to recoginize
+those spams without miss important ones. But it seems so boring a job to
+do this, moreover, it may be not personalized. If some those who are
+working for saling discount stuffs, he/she may find it doesn't work
+through applying your effective rules. How about thinking of probablity
+of those words emerge in all your inbox. Some words such as "coupon" may
+contribute more but not entirety, simultaneously, affordable may
+contribute less but not none. Notice that profit emerge in spam emails
+and normal emails both sometimes. We let <span
+class="math inline">\(y=0\)</span> denote an normal email while <span
+class="math inline">\(y=1\)</span> the opposite. And if a word such as
+"coupon" emerges in a mail, we set <span
+class="math inline">\(coupon=1\)</span>, otherwise <span
+class="math inline">\(coupon=0\)</span>. Suppose you have an email, we
+define the probability to : <span class="math display">\[\begin{align}
+&amp;p1=p(y=0|free=1, discount=1, affordable=1, customer=0, KPI=0,
+budget=0,...,bias=0)=?\\
+&amp;p2=p(y=1|free=1, discount=1, affordable=1, customer=0, KPI=0,
+budget=0,...,bias=0)=?
+\end{align}\]</span> Our aim is to decide which is bigger <span
+class="math inline">\(p1\)</span> or <span
+class="math inline">\(p2\)</span>. Let's describe the problem as
+followed: &gt; We want to decide the probality of a mail spam or normal
+when word "free" is in the mail, "discount" is in the mail, "affordable"
+is in the mail, customer is not in the mail, ..., "bias" is not.</p>
+<p>The description above is only about one email. For some other emails,
+maybe "free" and "discount" both did not emerge at all.</p>
+<h3 id="definitioin">Definitioin</h3>
+<p>To generalize the problem, we let <span
+class="math inline">\(x_i\)</span> denote a word in emails. Suppose we
+now know all words in your inbox, say 10 thousand words. Then we have
+<span class="math inline">\(x_1\)</span> denote if "free" is in a mail,
+<span class="math inline">\(x_1=0\)</span> denotes negative while <span
+class="math inline">\(x_1=1\)</span> denotes positive. So we have <span
+class="math inline">\(x_1,x_2,x_3,...,x_{10000}\)</span>, which denotes
+the status of each word in a mail. Then the problem is transferred as
+followed: <span class="math display">\[\begin{align}
+&amp;p1=p(y=0|x_1=1, x_2=1, x_3=1, x_4=0, x_5=0,
+x_6=0,...,x_{10000}=0)=?\\
+&amp;p2=p(y=1|x_1=1, x_2=1, x_3=1, x_4=0, x_5=0,
+x_6=0,...,x_{10000}=0)=?
+\end{align}\]</span> Suppose we have N words in your inbox, then we want
+to decide: <span class="math display">\[\begin{align}
+&amp;p1=p(y=0|x_1, x_2,...,x_{N})=?\\
+&amp;p2=p(y=1|x_1, x_2,...,x_{N})=?
+\end{align}\]</span> So how to sovle the probability problem?</p>
+<h3 id="naive-bayes">Naive Bayes</h3>
+<p>Recall Bayes rules: <span class="math display">\[\begin{equation}
+p(y|x)=\frac{p(x,y)}{p(x)}=\frac{p(x|y)p(y)}{p(x)}
+\end{equation}\]</span> we apply the equation to our problem, then we
+have: <span class="math display">\[\begin{align}
+&amp;p(y=1|x_1,x_2,...,x_N)\\
+&amp; =\frac{p(x_1,x_2,...,x_N,y=1)}{p(x_1,x_2,...,x_N)}\\
+&amp; =\frac{p(x_1,x_2,...,x_N|y)p(y=1)}{p(x_1,x_2,...,x_N)}\\
+\\
+&amp;p(y=0|x_1,x_2,...,x_N)\\
+&amp; =\frac{p(x_1,x_2,...,x_N,y=0)}{p(x_1,x_2,...,x_N)}\\
+&amp; =\frac{p(x_1,x_2,...,x_N|y)p(y=0)}{p(x_1,x_2,...,x_N)}
+\end{align}\]</span> Notice that {p(x_1,x_2,...,x_N) is positive, and a
+constant as well. so our aim is transferred to: <span
+class="math display">\[\begin{align}
+&amp;Max(p(y=1|x_1,x_2,...,x_N), p(y=0|x_1,x_2,...,x_N)\\
+&amp;=Max(p(x_1,x_2,...,x_N|y=1)p(y=1),p(x_1,x_2,...,x_N|y=0)p(y=0)
+\end{align}\]</span></p>
+<p>First of all, we talk about how to get <span
+class="math inline">\(p(y=0)\)</span> and <span
+class="math inline">\(p(y=1)\)</span>. We have <span
+class="math inline">\(N=10000\)</span>, suppose there are <span
+class="math inline">\(900\)</span> spams and <span
+class="math inline">\(91000\)</span> normal emails, then: <span
+class="math display">\[\begin{align}
+&amp;p(y=0)=\frac{count(spam\ email)}{count(all\
+emails)}=\frac{900}{10000}=0.09\\
+&amp;p(y=1)=\frac{count(normal\ email)}{count(all\
+emails)}=\frac{9100}{10000}=0.91
+\end{align}\]</span> And right now our task left is to compute <span
+class="math inline">\(p(x_1,x_2,...,x_N|y=0)\)</span> and <span
+class="math inline">\(p(x_1,x_2,...,x_N|y=1)\)</span>, that means we
+want to know if a mail is a normal one or not, what is the probability
+of the combination of these <span class="math inline">\(N=10000\)</span>
+words. In other word, <span class="math inline">\(x_1=0\ or\
+1\)</span>,<span class="math inline">\(x_2=0\ or\ 1\)</span> and so on.
+So we have to compute <span
+class="math inline">\(2*2^{10000}=2*1.995*10^{3010}\)</span>
+probabilities under our circumstance. It seems the scale is so large
+that we can not handle it. So we have an extremely adventurous
+assumption: &gt; Each x in an email only can be decided by y.</p>
+<p>Then we have: <span class="math display">\[\begin{align}
+p(x_1,x_2,...,x_N|y=0)=p(x_1|y=0)\cdot p(x_2|y=0)\cdots p(x_N|y=0)\\
+p(x_1,x_2,...,x_N|y=1)=p(x_1|y=1)\cdot p(x_2|y=1)\cdots p(x_N|y=1)
+\end{align}\]</span> Now, we just need compute 2*10000 probabilities, it
+is surely a mission possible now. So how to compute <span
+class="math inline">\(p(x_i=0\ or\ 1|y=0\ or\ 1)\)</span>? Take word
+"free" for example, we want to compute: <span
+class="math display">\[\begin{align}
+&amp;p(free=0|y=0)\\
+&amp;=\frac{p(free=0, y=0)}{p(y=0)}\\
+&amp;=\frac{count\ of\ emails\ have\ no\ word\ &quot;free&quot;\ in\
+normal\ emails}{count\ of\ normal\ emails}\\
+&amp;p(free=0|y=1)\\
+&amp;=\frac{p(free=0, y=1)}{p(y=1)}\\
+&amp;=\frac{count\ of\ emails\ have\ no\ word\ &quot;free&quot;\ in\
+spams}{count\ of\ spam\ emails}
+\end{align}\]</span> As long as we have computed all of these values, we
+can use the equation to decide which email should be trashed. Suppose we
+have computed the probabilites of <span
+class="math inline">\(p1\)</span> and <span
+class="math inline">\(p2\)</span>: <span
+class="math display">\[\begin{align}
+&amp;p1\triangleq p(x_1,x_2,...,x_N|y=1)p(y=1)\triangleq p(y=0)\cdot
+\Pi_{i=1}^N p(x_i|y=0)=0.00091\\
+&amp;p2\triangleq p(x_1,x_2,...,x_N|y=0)p(y=0)\triangleq p(y=1)\cdot
+\Pi_{i=1}^N p(x_i|y=1)=0.00000032
+\end{align}\]</span> Then we consider that the email is more of a spam
+mail. ### Summary Today we have talked about how to run a Naive Bayes
+algorithm to decide if an email is a spam. We suppose each word in a
+mail is no of business of the other, which is a simple assumption named
+<strong>conditional independence assumption</strong> but not the
+reality(e.g. "coupon" maybe emerges with "save" and "money" due to their
+inner association). However, the algorthm is very effective. ### Future
+Thinking Suppose if a word "wooooo" haven't emerged in inbox, then the
+probability will reach <span class="math inline">\(p1=p2=0\)</span>, how
+to solve it? Suppose you have a task to differiate oranges from apples
+and pears using color and shape, how to design the algorithm? suppose x
+is continuous rather than discrete, Naive Bayes still works or not?</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

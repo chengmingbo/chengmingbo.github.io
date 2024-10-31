@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"chengmingbo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Preface There are many classification algorithm such as Logistic Regression, SVM and Decision Tree etc. Today we&#39;ll talk about Gaussian Discriminant Analysis(GDA) Algorithm, which is not so popular. A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gaussian Discriminant Analysis">
+<meta property="og:url" content="http://chengmingbo.github.io/2017/07/09/Gaussian-Disriminant-Analysis/index.html">
+<meta property="og:site_name" content="Mingbo">
+<meta property="og:description" content="Preface There are many classification algorithm such as Logistic Regression, SVM and Decision Tree etc. Today we&#39;ll talk about Gaussian Discriminant Analysis(GDA) Algorithm, which is not so popular. A">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-07-09T16:54:33.000Z">
+<meta property="article:modified_time" content="2017-12-04T04:04:18.000Z">
+<meta property="article:author" content="Mingbo Cheng">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://chengmingbo.github.io/2017/07/09/Gaussian-Disriminant-Analysis/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://chengmingbo.github.io/2017/07/09/Gaussian-Disriminant-Analysis/","path":"2017/07/09/Gaussian-Disriminant-Analysis/","title":"Gaussian Discriminant Analysis"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Gaussian Discriminant Analysis | Mingbo</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mingbo</p>
+      <i class="logo-line"></i>
+    </a>
+      <img class="custom-logo-image" src="/%5Bobject%20Object%5D" alt="Mingbo">
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>首页</a></li><li class="menu-item menu-item-slides"><a href="/slides/" rel="section"><i class="area-chart fa-fw"></i>slides</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#preface"><span class="nav-number">1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multivariate-gaussian-distribution"><span class="nav-number">2.</span> <span class="nav-text">Multivariate Gaussian
+Distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gaussian-distribution"><span class="nav-number">2.1.</span> <span class="nav-text">Gaussian Distribution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multivariate-gaussian"><span class="nav-number">2.2.</span> <span class="nav-text">Multivariate Gaussian</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#change-mu"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. change \(\mu\)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#change-diagonal-entries-of-sigma"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. change diagonal entries of
+\(\Sigma\)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#change-secondary-diagonal-entries-of-sigma"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. change secondary
+diagonal entries of \(\Sigma\)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gaussian-discriminant-analysis"><span class="nav-number">3.</span> <span class="nav-text">Gaussian Discriminant
+Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#intuition"><span class="nav-number">3.1.</span> <span class="nav-text">Intuition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#definition"><span class="nav-number">3.2.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#solution"><span class="nav-number">3.3.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-gda"><span class="nav-number">4.</span> <span class="nav-text">Apply GDA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-number">5.</span> <span class="nav-text">Conclusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingbo Cheng</p>
+  <div class="site-description" itemprop="description">Mingbo</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chengmingbo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chengmingbo" rel="noopener me" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vividfree.github.io/" title="http:&#x2F;&#x2F;vividfree.github.io&#x2F;" rel="noopener" target="_blank">vividfree</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://colah.github.io/" title="http:&#x2F;&#x2F;colah.github.io&#x2F;" rel="noopener" target="_blank">colah</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://www.autonlab.org/tutorials" title="https:&#x2F;&#x2F;www.autonlab.org&#x2F;tutorials" rel="noopener" target="_blank">Andrew Moore</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://plot.ly/matlab/plot/" title="https:&#x2F;&#x2F;plot.ly&#x2F;matlab&#x2F;plot&#x2F;" rel="noopener" target="_blank">matlabplot</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.ryanzhang.info/blog/" title="http:&#x2F;&#x2F;www.ryanzhang.info&#x2F;blog&#x2F;" rel="noopener" target="_blank">Ryan’s Cabinet</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://www.cnblogs.com/jerrylead/tag/Machine%20Learning/" title="http:&#x2F;&#x2F;www.cnblogs.com&#x2F;jerrylead&#x2F;tag&#x2F;Machine%20Learning&#x2F;" rel="noopener" target="_blank">JerryLead</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="https://yxzf.github.io/" title="https:&#x2F;&#x2F;yxzf.github.io&#x2F;" rel="noopener" target="_blank">YXZF'S BLOG</a>
+            </li>
+            <li class="links-of-blogroll-item">
+              <a href="http://vonng.com/" title="http:&#x2F;&#x2F;vonng.com" rel="noopener" target="_blank">VONNG</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/07/09/Gaussian-Disriminant-Analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Gaussian Discriminant Analysis | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Gaussian Discriminant Analysis
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-07-09 18:54:33" itemprop="dateCreated datePublished" datetime="2017-07-09T18:54:33+02:00">2017-07-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="preface">Preface</h3>
+<p>There are many classification algorithm such as Logistic Regression,
+SVM and Decision Tree etc. Today we'll talk about Gaussian Discriminant
+Analysis(GDA) Algorithm, which is not so popular. Actually, Logistic
+Regression performance better than GDA because it can fit any
+distributions from exponential family. However, we can learn more
+knowledge about gaussian distribution from the algorithm which is the
+most import distribution in statistics. Furthermore, if you want to
+understand Gaussian Mixture Model or Factor Analysis, GDA is a good
+start.</p>
+<p>We, firstly, talk about Gaussian Distribution and Multivariate
+Gaussian Distribution, in which section, you'll see plots about Gaussian
+distributions with different parameters. Then we will learn GDA
+classification algorithm. We'll apply GDA to a dataset and see the
+consequnce of it.</p>
+<h3 id="multivariate-gaussian-distribution">Multivariate Gaussian
+Distribution</h3>
+<h4 id="gaussian-distribution">Gaussian Distribution</h4>
+<p>As we known that the pdf(Probability Distribution Function) of
+gaussian distribution is a bell-curve, which is decided by two
+parameters <span class="math inline">\(\mu\)</span> and <span
+class="math inline">\(\sigma^2\)</span>. The figure below shows us a
+gaussian distribution with <span class="math inline">\(\mu=0\)</span>
+and <span class="math inline">\(\sigma^2=1\)</span>, which is often
+referred to <span class="math inline">\(\mathcal{N}(\mu,
+\sigma^2)\)</span>. Thus, Figure1 is distributed normally with <span
+class="math inline">\(\mathcal{N}(0,1)\)</span>. <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-normal_1.jpg" />
+Figure 1. Gaussian Distribution with <span
+class="math inline">\(\mu=0\)</span> and <span
+class="math inline">\(\sigma^2=1\)</span>.</p>
+<p>Actually, parameter <span class="math inline">\(\mu\)</span> and
+<span class="math inline">\(\sigma^2\)</span> are exactly the mean and
+the variance of the distribution. Therefore, <span
+class="math inline">\(\sigma\)</span> is the stand deviation of normal
+distribution. Let's take a look at area between red lines and magenta
+lines, which are respectively range from <span
+class="math inline">\(\mu\pm\sigma\)</span> and from <span
+class="math inline">\(\mu\pm2\sigma\)</span>. The area between redlines
+accounts for 68.3% of the total area under the curve. That is, there are
+68.3% samples are between <span
+class="math inline">\(\mu-\sigma\)</span> and <span
+class="math inline">\(\mu+\sigma\)</span> . Likely, there are 95.4%
+samples are between <span class="math inline">\(\mu-2\sigma\)</span> and
+<span class="math inline">\(\mu+2\sigma\)</span>.</p>
+<p>You must want to know how these two parameter influence the shape of
+PDF of gaussian distribution. First of all, when we change <span
+class="math inline">\(\mu\)</span> with fixed <span
+class="math inline">\(\sigma^2\)</span>, the curve is the same as before
+but move along the random variable axis.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-normal_2.jpg" /></p>
+<p>Figure 2. Probability Density Function curver with <span
+class="math inline">\(\mu=\pm2\)</span> and <span
+class="math inline">\(\sigma=1\)</span>.</p>
+<p>So, what if when we change <span
+class="math inline">\(\sigma\)</span> then? Figure3. illustrates that
+smaller <span class="math inline">\(\sigma\)</span> lead to sharper
+shape of pdf. Conversely, larger <span
+class="math inline">\(\sigma\)</span> brings us broader curves.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-normal_3.jpg" /></p>
+<p>Figure 3. Probability Density Function curver with <span
+class="math inline">\(\mu=0\)</span> and change <span
+class="math inline">\(\sigma\)</span>.</p>
+<p>Some may wonder what is the form of <span
+class="math inline">\(p(x)\)</span> of a gaussian distribution, I just
+demonstrate here, you can compare Normal distribution with Multivariate
+Gaussian.</p>
+<p><span class="math display">\[\mathcal{N(x|\mu,
+\sigma^2)}=\frac{1}{\sqrt{2\pi}\sigma}
+e^{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2 } } \]</span></p>
+<h4 id="multivariate-gaussian">Multivariate Gaussian</h4>
+<p>For convenience, we first see what is form of Multivariate Guassian
+Distribution:</p>
+<p><span class="math display">\[\mathcal{N(x|\mu, \Sigma)}=\frac{1}{ {
+(2\pi)}^{\frac{d}{2 } } |\Sigma|^{\frac{1}{2 } } }
+e^{-\frac{1}{2}(x-\mu)^T \Sigma^{-1}(x-\mu)}\]</span></p>
+<p>where <span class="math inline">\(\mu\)</span> is the mean, <span
+class="math inline">\(\Sigma\)</span> is the covariance matrices, <span
+class="math inline">\(d\)</span> is the dimension of random variable
+<span class="math inline">\(x\)</span>, specfically, 2-dimensional
+gaussian distribution, we have:</p>
+<p><span class="math display">\[\mathcal{N(x|\mu,
+\Sigma)}=\frac{1}{\sqrt{2\pi}|\Sigma|^{\frac{1}{2 } } }
+e^{-\frac{1}{2}(x-\mu)^T \Sigma^{-1}(x-\mu)}\]</span></p>
+<p>In order to get an intuition of Multivariate Guassian Distribution,
+We first take a look at a distribution with <span
+class="math inline">\(\mu=\begin{pmatrix}0\\0\end{pmatrix}\)</span> and
+<span
+class="math inline">\(\Sigma=\begin{pmatrix}1&amp;0\\0&amp;1\end{pmatrix}\)</span>.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-mvn_1.jpg" /></p>
+<p>Figure 4. 2-dimensional gaussian distribution with <span
+class="math inline">\(\mu=\begin{pmatrix}0\\0\end{pmatrix}\)</span> and
+<span
+class="math inline">\(\Sigma=\begin{pmatrix}1&amp;0\\0&amp;1\end{pmatrix}\)</span>.</p>
+<p>Notice that the the figure is rather than a curve but a 3-dimensional
+diagram. Just like normal distribution pdf, <span
+class="math inline">\(\sigma\)</span> determines the shape of the
+figure. However, there are 4 entries of <span
+class="math inline">\(\Sigma\)</span> can be changed in this example.
+Given that we need compute <span class="math inline">\(|\Sigma|\)</span>
+as denominator and <span class="math inline">\(\Sigma^{-1}\)</span>
+which demands non-zero determinant of <span
+class="math inline">\(\Sigma\)</span>, we must keep in mind that <span
+class="math inline">\(|\Sigma|\)</span> is positive.</p>
+<h5 id="change-mu">1. change <span
+class="math inline">\(\mu\)</span></h5>
+<p>Rather than change <span class="math inline">\(\Sigma\)</span>, we
+firstly take a look at how the contour looks like when changing <span
+class="math inline">\(\mu\)</span>. Figure 5. illustrates the contour
+variation when changing <span class="math inline">\(\mu\)</span>. As we
+can see, we only move the center of the contour during the variation of
+<span class="math inline">\(\mu\)</span>. i.e. <span
+class="math inline">\(\mu\)</span> detemines the position of pdf rather
+than the shape. Next, we will see how entries in <span
+class="math inline">\(\Sigma\)</span> influence the shape of pdf.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-contour.jpg" /></p>
+<p>Figure 5. Contours when change <span
+class="math inline">\(\mu\)</span> with <span
+class="math inline">\(\Sigma=\begin{pmatrix}1&amp;0\\0&amp;1\end{pmatrix}\)</span>.</p>
+<h5 id="change-diagonal-entries-of-sigma">2. change diagonal entries of
+<span class="math inline">\(\Sigma\)</span></h5>
+<p>If scaling diagonal entries, we can see from figure 6. samples are
+concentrated to a smaller range when change <span
+class="math inline">\(\Sigma\)</span> from <span
+class="math inline">\(\begin{pmatrix}1&amp;0\\0&amp;1\end{pmatrix}\)</span>
+to <span
+class="math inline">\(\begin{pmatrix}0.3&amp;0\\0&amp;0.3\end{pmatrix}\)</span>.
+Similarly, if we alter <span class="math inline">\(\Sigma\)</span> to
+<span
+class="math inline">\(\begin{pmatrix}3&amp;0\\0&amp;3\end{pmatrix}\)</span>,
+then figure will spread out.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-0.3000.3.jpg" /></p>
+<p>Figure 6. Density when scaling diagonal entries to 0.3.</p>
+<p>What if we change only one entry of the diagonal? Figure 7. shows the
+variation of the density when change <span
+class="math inline">\(\Sigma\)</span> to <span
+class="math inline">\(\begin{pmatrix}1&amp;0\\0&amp;5\end{pmatrix}\)</span>.
+Notice the parameter spuashes and stretches the figure along coordinate
+axis.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-1005.jpg" /></p>
+<p>Figure 7. Density when scaling one of the diagonal entries.</p>
+<h5 id="change-secondary-diagonal-entries-of-sigma">3. change secondary
+diagonal entries of <span class="math inline">\(\Sigma\)</span></h5>
+<p>We now try to change entries along secondary diagonal. Figure 8.
+demonstrates that the variation of density is no longer parallel to
+<span class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> axis, where <span
+class="math inline">\(\Sigma=\begin{pmatrix}1
+&amp;0.5\\0.5&amp;1\end{pmatrix}\)</span>.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-10.50.51.jpg" /></p>
+<p>Figure 8. Density when scaling secondary diagonal entries to 0.5</p>
+<p>When we alter secondary entries to negative 0.5, the direction of
+contour presents a mirror to contour when positive.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-1-0.5-0.51.jpg" /></p>
+<p>Figure 9. Density when scaling secondary diagonal entries to -0.5</p>
+<p>In light of the importance of determinant of <span
+class="math inline">\(\Sigma\)</span>, what will happen if the
+determinant is close to zero. Actually, we can, informally, take
+determinant of a matrice as the volume of which. Similarly, when
+determinant is smaller, the volume under density curve become smaller.
+Figure 10. illustrates the circumstance we talked above where <span
+class="math inline">\(\Sigma=\begin{pmatrix}1&amp;0.99\\0.99&amp;1\end{pmatrix}\)</span>.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-01-10.990.991.jpg" /></p>
+<p>Figure 10. Density when determinant is close to zero.</p>
+<h3 id="gaussian-discriminant-analysis">Gaussian Discriminant
+Analysis</h3>
+<h4 id="intuition">Intuition</h4>
+<p>When input features <span class="math inline">\(x\)</span> are
+continuous variables, we can use GDA classify data. Firstly, let's take
+a look at how GDA to do the job. Figure 11. show us two gaussian
+distributions, they share the same covariance <span
+class="math inline">\(\Sigma=\begin{pmatrix}1&amp;0\\0&amp;1\end{pmatrix}\)</span>
+, and repectively with parameter <span
+class="math inline">\(\mu_0=\begin{pmatrix}1\\1\end{pmatrix}\)</span>
+and <span
+class="math inline">\(\mu_1=\begin{pmatrix}-1\\-1\end{pmatrix}\)</span>.
+Imagine you have some data which fall into the cover of the first and
+second Gaussian Distribution. If we can find such distributions to fit
+the data, then we'll have the capcity to decide which is new data coming
+from, the first or the second one.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-08-gda1.jpg" /></p>
+<p>Figure 11. Two gaussian distributions with respect to <span
+class="math inline">\(\mu_0=\begin{pmatrix}1\\1\end{pmatrix}\)</span>
+and <span
+class="math inline">\(\mu_1=\begin{pmatrix}-1\\-1\end{pmatrix}\)</span>
+, and <span
+class="math inline">\(\Sigma=\begin{pmatrix}1&amp;0\\0&amp;1\end{pmatrix}\)</span></p>
+<p>Specifically, let's look at a concrete example, Figure 12 are samples
+drawn from two Gaussian distribution. There are 100 blue '+'s and 100
+red 'o's. Assume that we have such data to be classified. We can apply
+GDA to solve the problem.</p>
+<p>CODE:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">%% octave</span><br><span class="line">pkg load statistics</span><br><span class="line"></span><br><span class="line">m=200;</span><br><span class="line">n=2;</span><br><span class="line">rp=mvnrnd([1 1],[1 0;0 1],m/2);%生成正样本1</span><br><span class="line">rn=mvnrnd([4 4],[1 0;0 1],m/2);%生成负样本0</span><br><span class="line">y=[ones(m/2,1);zeros(m/2,1)];</span><br><span class="line"></span><br><span class="line">figure;hold on;</span><br><span class="line"></span><br><span class="line">plot3(rp(:,1),rp(:,2),y(1:m/2,1),&#x27;b+&#x27;);</span><br><span class="line">plot3(rn(:,1),rn(:,2),y(m/2+1:m,1),&#x27;ro&#x27;);</span><br><span class="line">axis([-3 8 -3 8]);</span><br></pre></td></tr></table></figure>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-08-samples.jpg" /></p>
+<p>Figure 12. 200 samples drawn from two Gaussian Distribution with
+parameters <span
+class="math inline">\(\mu_0=\begin{bmatrix}1\\1\end{bmatrix},\mu_1=\begin{bmatrix}4\\4\end{bmatrix},\Sigma=\begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix}\)</span>.</p>
+<h4 id="definition">Definition</h4>
+<p>Now, let's define the algorithm. Firstly we assume discrete random
+variable classes <span class="math inline">\(y\)</span> are distributed
+Bernoulli and parameterized by <span
+class="math inline">\(\phi\)</span>, then we have:</p>
+<p><span class="math display">\[y\sim {\rm Bernoulli}(\phi)\]</span></p>
+<p>Concretely, the probablity of <span
+class="math inline">\(y=1\)</span> is <span
+class="math inline">\(\phi\)</span>, and <span
+class="math inline">\(1-\phi\)</span> when <span
+class="math inline">\(y=0\)</span>. We can simplify two equations to
+one:</p>
+<p><span
+class="math inline">\(p(y|\phi)=\phi^y(1-\phi)^{1-y}\)</span></p>
+<p>Apparently, <span class="math inline">\(p(y=1|\phi)=\phi\)</span> and
+<span class="math inline">\(p(y=0|\phi)=1-\phi\)</span> given that y can
+only be <span class="math inline">\(0\)</span> or <span
+class="math inline">\(1\)</span>.</p>
+<p>Another assumption is that we consider <span
+class="math inline">\(x\)</span> are subject to different Gaussian
+Distributions given different <span class="math inline">\(y\)</span>. We
+assume the two Gaussian distributions share the same covariance and
+different <span class="math inline">\(\mu\)</span>. Based on above all,
+then</p>
+<p><span class="math display">\[p(x|y=0)=\frac{1}{(2\pi)^{\frac{d}{2 } }
+|\Sigma|^{\frac{1}{2 } }
+}e^{-\frac{1}{2}(x-\mu_0)^{T}\Sigma^{-1}(x-\mu_0)}\]</span></p>
+<p><span class="math display">\[p(x|y=1)=\frac{1}{(2\pi)^{\frac{d}{2 } }
+|\Sigma|^{\frac{1}{2 } }
+}e^{-\frac{1}{2}(x-\mu_1)^{T}\Sigma^{-1}(x-\mu_1)}\]</span></p>
+<p>i.e. <span class="math inline">\(x|y=0 \sim
+\mathcal{N}(\mu_0,\Sigma)\)</span> and <span class="math inline">\(x|y=1
+\sim \mathcal{N}(\mu_1,\Sigma)\)</span>. suppose we have <span
+class="math inline">\(m\)</span> samples, it is hard to compute <span
+class="math inline">\(p(x^{(1)}, x^{(2)},
+x^{(3)},\cdots,x^{(m)}|y=0)\)</span> or <span
+class="math inline">\(p(x^{(1)}, x^{(2)},
+x^{(3)},\cdots,x^{(m)}|y=1)\)</span> . In general, we assume the
+probabilty of <span class="math inline">\(x^{(i)}\)</span> <span
+class="math inline">\(p(x^{(i)}|y=0)\)</span> is independent to any
+<span class="math inline">\(p(x^{(j)}|y=0)\)</span>, then we have:</p>
+<p><span
+class="math display">\[p(X|y=0)=\prod_{i=1\,y^{(i)}\neq1}^{m}\frac{1}{(2\pi)^{\frac{d}{2
+} } |\Sigma|^{\frac{1}{2 } }
+}e^{-\frac{1}{2}(x^{(i)}-\mu_0)^{T}\Sigma^{-1}(x^{(i)}-\mu_0)}\]</span></p>
+<p>Vice versa,</p>
+<p><span class="math display">\[p(X|y=1)=\prod_{i=1\,y^{(i)}\neq
+0}^{m}\frac{1}{(2\pi)^{\frac{d}{2 } } |\Sigma|^{\frac{1}{2 } }
+}e^{-\frac{1}{2}(x^{(i)}-\mu_1)^{T}\Sigma^{-1}(x^{(i)}-\mu_1)}\]</span></p>
+<p>Here <span class="math inline">\(X=(x^{(1)}, x^{(2)},
+x^{(3)},\cdots,x^{(m)})\)</span>. Now, we want to maximize <span
+class="math inline">\(p(X|y=0)\)</span> and <span
+class="math inline">\(p(X|y=1)\)</span>. Why is that, because we hope
+find parameters that let <span
+class="math inline">\(p(X|y=0)p(X|y=1)\)</span> largest, based on that
+the samples are from the two Gaussian Distributions. These samples we
+have are more likely emerging. Thus, our task is to maximize <span
+class="math inline">\(p(X|y=0)p(X|y=1)\)</span> , we let</p>
+<p><span
+class="math display">\[\mathcal{L}(\phi,\mu_0,\mu_1,\Sigma)=\arg\max
+p(X|y=0)p(X|y=1)=\arg\max\prod_{i=1}^{m}p(x^{(i)},
+y^{(i)};\phi,\mu_0,\mu_1,\Sigma)\]</span></p>
+<p>It's tough for us to maximize <span
+class="math inline">\(\mathcal{L}(\phi,\mu_0,\mu_1,\Sigma)\)</span>.
+Notice function <span class="math inline">\(\log\)</span> is monotonic
+increasing. Thus, we can maximize <span
+class="math inline">\(\log\mathcal{L}(\phi,\mu_0,\mu_1,\Sigma)\)</span>
+instead of <span
+class="math inline">\(\mathcal{L}(\phi,\mu_0,\mu_1,\phi)\)</span>,
+then:</p>
+<p><span
+class="math display">\[\begin{aligned}\ell(\phi,\mu_0,\mu_1,\Sigma)&amp;=\log\mathcal{L}(\phi,\mu_0,\mu_1,\Sigma)\\&amp;=\arg\max\log\prod_{i=1}^{m}p(x^{(i)},y^{(i)};\phi,\mu_0,\mu_1,\Sigma)\\&amp;=\arg\max\log\prod_{i=1}^{m}p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)p(y^{(i)};\phi)\\&amp;=\arg\max\sum_{i=1}^{m}p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)+p(y^{(i)};\phi)\\&amp;=\arg\max\sum_{i=1}^{m}p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)+\sum_{i=1}^{m}p(y^{(i)};\phi)\end{aligned}\]</span></p>
+<p>By now, we have found a convex function with respect parameters <span
+class="math inline">\(\mu_0, mu_1,\Sigma\)</span> and <span
+class="math inline">\(\phi\)</span>. Next section, we'll obtain these
+parameter through partial derivative.</p>
+<h4 id="solution">Solution</h4>
+<p>To estimate these four parameters, we just apply partial derivative
+to <span class="math inline">\(\ell\)</span>. Now we estimate <span
+class="math inline">\(\phi\)</span> in the first place. We let <span
+class="math inline">\(\frac{\partial \ell}{\partial \phi}=0\)</span>,
+then</p>
+<p><span class="math display">\[\begin{aligned}\frac{\partial
+\ell(\phi,\mu_0,\mu_1,\Sigma)}{\partial
+\phi}=0&amp;\Rightarrow\frac{\partial
+\arg\max\sum_{i=1}^{m}p(x_i|y;\mu_0,\mu_1,\Sigma)+\sum_{i=1}^{m}p(y_i;\phi)}{\partial
+\phi}=0\\&amp;\Rightarrow\frac{\partial\sum_{i=1}^{m}\log
+p(y^{(i)};\phi)}{\partial
+\phi}=0\\&amp;\Rightarrow\frac{\partial\sum_{i=1}^{m}\log \phi^{y^{(i) }
+} (1-\phi)^{(1-y^{(i)}) } } {\partial
+\phi}=0\\&amp;\Rightarrow\frac{\partial\sum_{i=1}^{m}{y^{(i) } } \log
+\phi+{(1-y^{(i)})}\log(1-\phi)}{\partial
+\phi}=0\\&amp;\Rightarrow\frac{\partial\sum_{i=1}^{m}{ {
+1}{\{y^{(i)}=1\} } }\log \phi+{1}{\{y^{(i)}=0\} } \log(1-\phi)}{\partial
+\phi}=0\\&amp;\Rightarrow\phi=\frac{1}{m}\sum_{i=1}^{m}1\{y^{(i)}=1\}\end{aligned}\]</span></p>
+<p>Note that <span class="math inline">\(\mu_0\)</span> and <span
+class="math inline">\(\mu_1\)</span> is symmetry in the equation, thus,
+we need only obtain one of them. Here we take the derivative to <span
+class="math inline">\(\mu_0\)</span></p>
+<p><span class="math display">\[\begin{aligned}\frac{\partial
+\ell(\phi,\mu_0,\mu_1,\Sigma)}{\partial
+\mu_0}=0&amp;\Rightarrow\frac{\partial
+\arg\max\sum_{i=1}^{m}p(x_i|y;\mu_0,\mu_1,\Sigma)+\sum_{i=1}^{m}p(y_i;\phi)}{\partial
+\mu_0}=0\\&amp;\Rightarrow\frac{\partial\sum_{i=1}^{m} \log
+p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)}{\partial
+\mu_0}=0\\&amp;\Rightarrow\frac{\partial
+\sum_{i=1}^{m}\log\frac{1}{(2\pi)^{\frac{d}{2 } } |\Sigma|^{\frac{1}{2 }
+} }e^{-\frac{1}{2}(x^{(i)}-\mu_0)^T\Sigma^{-1}(x^{(i)}-\mu_0) } }
+{\partial \mu_0}=0\\&amp;\Rightarrow0+\frac{\partial
+\sum_{i=1}^{m}{-\frac{1}{2}(x^{(i)}-\mu_0)^T\Sigma^{-1}(x^{(i)}-\mu_0) }
+} {\partial \mu_0}=0\end{aligned}\]</span></p>
+<p>We have <span class="math inline">\(\frac{\partial X^TAX}{\partial
+X}=(A+A^T)X\)</span>，let <span
+class="math inline">\((x^{(i)}-\mu_0)=X\)</span>, then,</p>
+<p><span class="math display">\[\begin{aligned}\frac{\partial
+\ell(\phi,\mu_0,\mu_1,\Sigma)}{\partial \mu_0}=0&amp;\Rightarrow
+0+\frac{\partial
+\sum_{i=1}^{m}{-\frac{1}{2}(x^{(i)}-\mu_0)^T\Sigma^{-1}(x^{(i)}-\mu_0) }
+} {\partial
+\mu_0}=0\\&amp;\Rightarrow{\sum_{i=1}^{m}-\frac{1}{2}((\Sigma^{-1})^T+\Sigma^{-1})(x^{(i)}-\mu_0)\cdot(-1)}=0\\&amp;\Rightarrow
+\sum_{i=1}^{m}1\{y^{(i)}=0\}x^{(i)}=\sum_{i=1}^{m}1\{y^{(i)}=0\}\mu_0\\&amp;\Rightarrow\mu_0=\frac{\sum_{i=1}^{m}1\{y^{(i)}=0\}x^{(i)
+} } {\sum_{i=1}^{m}1\{y^{(i)}=0\} } \end{aligned}\]</span></p>
+<p>Simlarly,</p>
+<p><span
+class="math display">\[\mu_1=\frac{\sum_{i=1}^{m}1\{y^{(i)}=1\}x^{(i) }
+} {\sum_{i=1}^{m}1\{y^{(i)}=1\} } \]</span></p>
+<p>Before calculate <span class="math inline">\(\Sigma\)</span>, I first
+illustrate the truth that <span
+class="math inline">\(\frac{\partial|\Sigma|}{\partial\Sigma}=|\Sigma|\Sigma^{-1},\quad
+\frac{\partial\Sigma^{-1 } } {\partial\Sigma}=-\Sigma^{-2}\)</span>,
+then</p>
+<p><span class="math display">\[\begin{aligned}\frac{\partial
+\ell(\phi,\mu_0,\mu_1,\Sigma)}{\partial
+\Sigma}=0&amp;\Rightarrow\frac{\partial\sum_{i=1}^{m} \log
+p(x^{(i)}|y^{(i)};\mu_0,\mu_1,\Sigma)+\sum_{i=1}^{m} \log
+p(y^{(i)};\phi)}{\partial \Sigma}=0\\&amp;\Rightarrow\frac{\partial
+\sum_{i=1}^{m}\log\frac{1}{(2\pi)^{\frac{d}{2 } } |\Sigma|^{\frac{1}{2 }
+} }e^{-\frac{1}{2}(x^{(i)}-\mu_{y^{(i) } }
+)^T\Sigma^{-1}(x^{(i)}-\mu_{y^{(i) } } ) } } {\partial
+\Sigma}=0\\&amp;\Rightarrow\frac{\partial
+\sum_{i=1}^{m}-\frac{d}{2}\log2\pi}{\partial \Sigma}+\frac{\partial
+\sum_{i=1}^{m}-\frac{1}{2}\log|\Sigma|}{\partial \Sigma}+\frac{\partial
+\sum_{i=1}^{m}{-\frac{1}{2}(x^{(i)}-\mu_{y^{(i) } }
+)^T\Sigma^{-1}(x^{(i)}-\mu_{y^{(i) } } ) } } {\partial
+\Sigma}=0\\&amp;\Rightarrow\frac{\partial
+\sum_{i=1}^{m}-\frac{1}{2}\log|\Sigma|}{\partial \Sigma}+\frac{\partial
+\sum_{i=1}^{m}{-\frac{1}{2}(x^{(i)}-\mu_{y^{(i) } }
+)^T\Sigma^{-1}(x^{(i)}-\mu_{y^{(i) } } ) } } {\partial
+\Sigma}=0\\&amp;\Rightarrow
+m\frac{1}{|\Sigma|}|\Sigma|\Sigma^{-1}+\sum_{i=1}^m(x^{(i)}-\mu_{y^{(i)
+} } )^T(x^{(i)}-\mu_{y^{(i) } }
+)(-\Sigma^{-2}))=0\\&amp;\Rightarrow\Sigma=\frac{1}{m}\sum_{i=1}^{m}(x^{(i)}-\mu_{y^{(i)
+} } )(x^{(i)}-\mu_{y^{(i) } } )^T\end{aligned}\]</span></p>
+<p>In spite of the harshness of the deducing, the outcome are pretty
+beautiful. Next, we will apply these parameters and see how the
+estimation performance.</p>
+<h3 id="apply-gda">Apply GDA</h3>
+<p>Notice the data drawn from two Gaussian Distribution is random, thus,
+if you run the code, the outcome may be different. However, in most
+cases, distributions drawn by estimated parameters are roughly the same
+as the original distributions.</p>
+<p><span
+class="math display">\[\begin{aligned}&amp;\phi=0.5\\&amp;\mu_0=\begin{bmatrix}4.0551\\4.1008\end{bmatrix}\\&amp;\mu_1=\begin{bmatrix}0.85439\\1.03622\end{bmatrix}\\&amp;\Sigma=\begin{bmatrix}1.118822&amp;-0.058976\\-0.058976&amp;1.023049\end{bmatrix}\end{aligned}\]</span></p>
+<p>From Figure 13, We can see contours of two Gaussian distribution, and
+most of samples are correctly classified.</p>
+<p>CODE:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">%% octave </span><br><span class="line">phi=length(find(y==1))/m;</span><br><span class="line">mu_0 = sum(rn)/length(find(y==0))</span><br><span class="line">mu_1 = sum(rp)/length(find(y==1))</span><br><span class="line">X = [rp;rn];</span><br><span class="line">X_mu1 = X(find(y==1),:)-mu_1;</span><br><span class="line">X_mu0 = X(find(y==0),:)-mu_0;</span><br><span class="line">X_mu = [X_mu1; X_mu1];</span><br><span class="line">sigma = (X_mu&#x27;*X_mu)/m</span><br><span class="line"></span><br><span class="line">[x1 y1]=meshgrid(linspace(-3,8,100)&#x27;,linspace(-3,8,100)&#x27;);</span><br><span class="line">X1=[x1(:) y1(:)];</span><br><span class="line">z1=mvnpdf(X1,mu_1,sigma);</span><br><span class="line">contour(x1,y1,reshape(z1,100,100),8);</span><br><span class="line">hold on;</span><br><span class="line">z2=mvnpdf(X1,mu_0,sigma);</span><br><span class="line">contour(x1,y1,reshape(z2,100,100),8);</span><br></pre></td></tr></table></figure>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-08-samples_fit.jpg" /></p>
+<p>Figure 13. Contours drawn from parameters estimated.</p>
+<p>In fact, we can compute the probability of each data point to predict
+which distribution it is more likely belongs, for example, if we want to
+predict <span
+class="math inline">\(x=\begin{pmatrix}0.88007\\3.9501\end{pmatrix}\)</span>
+is more of the left distribution or the right, we apply <span
+class="math inline">\(x\)</span> to these two distribution:</p>
+<p><span
+class="math display">\[\begin{aligned}p\left(x=\begin{bmatrix}0.88\\3.95\end{bmatrix}\Bigg|y=0\right)=&amp;\frac{1}{2\pi|\Sigma|^{\frac{1}{2
+} }
+}e^{-\frac{1}{2}{\begin{bmatrix}x_1-\mu_1\\x_2-\mu_2\end{bmatrix}^T\Sigma^{-1}\begin{bmatrix}x_1-\mu_1\\x_2-\mu_2\end{bmatrix}
+} }\\=&amp;\frac{1}{ {
+2\pi}\left|\begin{matrix}1.1188&amp;-0.059\\-0.059&amp;1.023\end{matrix}\right|^{\frac{1}{2
+} }
+}e^{-\frac{1}{2}{\begin{bmatrix}-3.175\\-0.151\end{bmatrix}^T\begin{bmatrix}0.896&amp;-0.052\\-0.0520&amp;0.98\end{bmatrix}\begin{bmatrix}-3.175\\-0.151\end{bmatrix}
+} }\\=&amp;\frac{1}{2\pi\sqrt{(1.141) } } e^{-\frac{1}{2}\times
+9.11}=0.149\times 0.01=0.0015\end{aligned}\]</span></p>
+<p>and</p>
+<p><span
+class="math display">\[\begin{aligned}p\left(x=\begin{bmatrix}0.88\\3.95\end{bmatrix}\Bigg|
+y=1\right)&amp;\frac{1}{2\pi|\Sigma|^{\frac{1}{2 } }
+}e^{-\frac{1}{2}{\begin{bmatrix}x_1-\mu_1\\x_2-\mu_2\end{bmatrix}^T\Sigma^{-1}\begin{bmatrix}x_1-\mu_1\\x_2-\mu_2\end{bmatrix}
+} }\\=&amp;\frac{1}{ {
+2\pi}\left|\begin{matrix}1.1188&amp;-0.059\\-0.059&amp;1.023\end{matrix}\right|^{\frac{1}{2
+} }
+}e^{-\frac{1}{2}{\begin{bmatrix}0.03\\2.91\end{bmatrix}^T\begin{bmatrix}0.896&amp;-0.052\\-0.0520&amp;0.98\end{bmatrix}\begin{bmatrix}0.03\\2.91\end{bmatrix}
+} }\\=&amp;\frac{1}{2\pi\sqrt{(1.141) } } e^{-\frac{1}{2}\times
+8.336}=0.149\times 0.015=0.0022\end{aligned}\]</span></p>
+<p>In light of the equivalency of <span
+class="math inline">\(p(y=1)\)</span> and <span
+class="math inline">\(p(y=0)\)</span> (both are <span
+class="math inline">\(0.5\)</span>), we just compare<span
+class="math inline">\(p\left(x=\begin{bmatrix}0.88\\3.95\end{bmatrix}\Bigg|
+y=1\right)\)</span> to <span
+class="math inline">\(p\left(x=\begin{bmatrix}0.88\\3.95\end{bmatrix}\Bigg|
+y=0\right)\)</span>. Apparently, this data point is predicted from the
+left distribution, which is a wrong assertion. Actually, in this
+example, we have only this data pointed classified incorrectly.</p>
+<p>You may wonder why there is a blue line. It turns out that all the
+data point below the blue line will be considered as blue class.
+Otherwise, data points above the line is classified as the red class.
+How it work?</p>
+<p>The blue line is decision boundary, if we know the expression of this
+line, the decision will be made easier. In fact GDA is a linear
+classifier, we will prove it later. Still, we see the data point above,
+if we just divide one probability to another, we just need find if the
+ratio larger or less than 1. For our example, the ratio is roughly 0.68,
+so the data point is classified to be the blue class.</p>
+<p><span
+class="math display">\[\frac{p\left(x=\begin{bmatrix}0.88\\3.95\end{bmatrix}\Bigg|
+y=0\right)p(y=0)}{p\left(x=\begin{bmatrix}0.88\\3.95\end{bmatrix}\Bigg|y=1\right)p(y=1)}=\frac{0.0015}{0.0022}=0.68182&lt;1\]</span></p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-07-08-decison_boundry.jpg" /></p>
+<p>Figure 14. Decision Boundary</p>
+<p>If we can obtain the expression of the ratio, that should be good. So
+given a new <span class="math inline">\(x\)</span>, we predict problem
+is tranformed as followed:</p>
+<p><span class="math display">\[x\in \text{red
+class}\propto\mathcal{R}=\frac{p(x|y=1)p(y=1)}{p(x|y=0)p(y=0)} &gt;
+1\]</span></p>
+<p>which is equal to</p>
+<p><span
+class="math display">\[\mathcal{R}=\log\frac{p(x|y=1)p(y=1)}{p(x|y=0)p(y=0)}
+=\log\frac{\phi}{1-\phi}+\log\frac{\mathcal{N}(x;\mu_1,\Sigma)}{\mathcal{N}(x;\mu_0,\Sigma)}&gt;
+0\]</span></p>
+<p>Then,</p>
+<p><span
+class="math display">\[\begin{aligned}\mathcal{R}&amp;=\log\frac{\frac{1}{(2\pi)^{\frac{d}{2
+} } |\Sigma|^{\frac{1}{2 } }
+}\exp(-\frac{1}{2}(x-\mu_1)^T\Sigma^{-1}(x-\mu_1))}{\frac{1}{(2\pi)^{\frac{d}{2
+} } |\Sigma|^{\frac{1}{2 } }
+}\exp(-\frac{1}{2}(x-\mu_0)^T\Sigma^{-1}(x-\mu_0))}+\log\frac{\phi}{1-\phi}\\&amp;=-\frac{1}{2}(x-\mu_1)^T\Sigma^{-1}(x-\mu_1))+\frac{1}{2}(x-\mu_0)^T\Sigma^{-1}(x-\mu_0))+\log\frac{\phi}{1-\phi}\\&amp;=-\frac{1}{2}x^T\Sigma^{-1}x+\mu_1^T\Sigma^{-1}x-\frac{1}{2}\mu_1^T\Sigma^{-1}\mu_1+-\frac{1}{2}x^T\Sigma^{-1}x-\mu_0^T\Sigma^{-1}x+\frac{1}{2}\mu_0^T\Sigma^{-1}\mu_0+\log\frac{\phi}{1-\phi}\\&amp;=(\mu_0-\mu_1)^T\Sigma^{-1}x-\frac{1}{2}\mu_1^T\Sigma^{-1}\mu_1+\frac{1}{2}\mu_0^T\Sigma^{-1}\mu_0+\log\frac{\phi}{1-\phi}\end{aligned}\]</span></p>
+<p>Here, <span
+class="math inline">\(\mu_1^T\Sigma^{-1}x=x^T\Sigma^{-1}\mu_1\)</span>
+because it is a real number. For a real number <span
+class="math inline">\(a=a^T\)</span>, moreover, <span
+class="math inline">\(\Sigma^{-1}\)</span> is symmetric, so <span
+class="math inline">\(\Sigma^{-T}=\Sigma^{-1}\)</span>. Let's set <span
+class="math inline">\(w^T=(\mu_1-\mu_0)^T\Sigma^{-1}\)</span> and <span
+class="math inline">\(w_0=-\frac{1}{2}\mu_1^T\Sigma^{-1}\mu_1+\frac{1}{2}\mu_0^T\Sigma^{-1}\mu_0+\log\frac{\phi}{1-\phi}\)</span>,
+then we have:</p>
+<p><span
+class="math display">\[\mathcal{R}=\log\frac{p(x|y=1)p(y=1)}{p(x|y=0)p(y=0)}
+=w^Tx+w_0\]</span></p>
+<p>If you plug parameters in the formula, you will find:</p>
+<p><span
+class="math inline">\(\mathcal{R}=-3.0279x_1-3.1701x_2+15.575=0\)</span></p>
+<p>It is the decision boundary(Figure 14.). Since you have got the
+decision boundary formula, it is convenient to use the decision boundary
+function predict if a data point <span class="math inline">\(x\)</span>
+belongs to the blue or red class. If <span
+class="math inline">\(\mathcal{R}&gt;0\)</span>, <span
+class="math inline">\(x\in \text{red class}\)</span>, otherwise, <span
+class="math inline">\(x\in \text{blue class}\)</span>.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Today, we have talked about Guassian Distribution and its
+Multivariate form. Then, we assume two groups of data drawn from
+Gaussian Distributions. We apply Gaussian Discriminant Analysis to the
+data. There are 200 data point, only one is misclassified. In fact we
+can deduce GDA to Logistic regression Algorithm(LR). But LR can not
+deduce GDA, i.e. LR is a better classifier, especially when we do not
+know the distribution of the data. However, if you have known that data
+is drawn from Gaussian Distribution, GDA is the better choice.</p>
+<h3 id="reference">Reference</h3>
+<ol type="1">
+<li>Andrew Ng http://cs229.stanford.edu/notes/cs229-notes2.pdf</li>
+<li>https://en.wikipedia.org/wiki/Normal_distribution</li>
+<li>https://en.wikipedia.org/wiki/Multivariate_normal_distribution</li>
+<li>http://www.cnblogs.com/emituofo/archive/2011/12/02/2272584.html</li>
+<li>http://m.blog.csdn.net/article/details?id=52190572</li>
+<li>张贤达《矩阵分析与应用》:156-158</li>
+<li>http://www.tk4479.net/hujingshuang/article/details/46357543</li>
+<li>http://www.chinacloud.cn/show.aspx?id=24927&amp;cid=22</li>
+<li>http://www.cnblogs.com/jcchen1987/p/4424436.html</li>
+<li>http://www.xlgps.com/article/139591.html</li>
+<li>http://www.matlabsky.com/thread-10308-1-1.html</li>
+<li>http://classes.engr.oregonstate.edu/eecs/fall2015/cs534/notes/GaussianDiscriminantAnalysis.pdf</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ML/" rel="tag"># ML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/06/17/sample-variance/" rel="prev" title="样本方差为什么除以N-1?（翻译）">
+                  <i class="fa fa-angle-left"></i> 样本方差为什么除以N-1?（翻译）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/08/07/Expectation-and-variance-of-poisson-distribution/" rel="next" title="Expectation and Variance of Poisson Distribution">
+                  Expectation and Variance of Poisson Distribution <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class=""></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingbo Cheng</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"chengmingbo/gitment-comments","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
