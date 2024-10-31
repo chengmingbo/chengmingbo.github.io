@@ -28,7 +28,7 @@
 <meta property="og:description" content="Introduction Suppose we have two sets of variable corresponding to two aspects such as height and weight, we want to analysis the relationship between this two sets. There are several ways to measure">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-10T17:54:43.000Z">
-<meta property="article:modified_time" content="2024-10-30T15:20:40.594Z">
+<meta property="article:modified_time" content="2024-10-31T12:54:47.007Z">
 <meta property="article:author" content="Mingbo Cheng">
 <meta name="twitter:card" content="summary">
 
@@ -117,8 +117,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#basic-of-cca"><span class="nav-number">2.</span> <span class="nav-text">Basic of CCA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resolve-cca"><span class="nav-number">3.</span> <span class="nav-text">Resolve CCA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#resolve-cca-through-standard-eigenvalue-problem."><span class="nav-number">3.0.1.</span> <span class="nav-text">Resolve CCA
-through Standard EigenValue Problem.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resolve-cca-through-svd"><span class="nav-number">3.0.2.</span> <span class="nav-text">Resolve CCA through SVD</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multicca"><span class="nav-number">4.</span> <span class="nav-text">MultiCCA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sparse-cca"><span class="nav-number">5.</span> <span class="nav-text">Sparse CCA</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yxsic-of-cca"><span class="nav-number">2.</span> <span class="nav-text">yxsic of CCA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#resolve-cca"><span class="nav-number">3.</span> <span class="nav-text">Resolve CCA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#resolve-cca-through-svd"><span class="nav-number">3.0.1.</span> <span class="nav-text">Resolve CCA through SVD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#resolve-cca-through-standard-eigenvalue-problem"><span class="nav-number">3.0.2.</span> <span class="nav-text">Resolve CCA
+through Standard EigenValue Problem</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -258,9 +258,9 @@ such as height and weight, we want to analysis the relationship between
 this two sets. There are several ways to measure the relationship
 between them. However, sometime the it is hard to handle datasets with
 different dimensions, meaning, if <span class="math inline">\(X\in
-R^m\)</span> and <span class="math inline">\(Y\in R^n\)</span>, how to
-resolve the relationship?</p>
-<h2 id="basic-of-cca">Basic of CCA</h2>
+\mathbb{R}^m\)</span> and <span class="math inline">\(Y\in
+\mathbb{R}^n\)</span>, how to resolve the relationship?</p>
+<h2 id="yxsic-of-cca">yxsic of CCA</h2>
 <p>Assume there are two sets of data <span
 class="math inline">\(X\)</span> and <span
 class="math inline">\(Y\)</span>, the size of <span
@@ -290,10 +290,10 @@ class="math inline">\(Y\)</span> are standardized to zero mean and unit
 variance. Our task is to maximize the angle of <span
 class="math inline">\(z_x\)</span> and <span
 class="math inline">\(z_y\)</span>, meaning:</p>
-<p><span class="math display">\[\max_{z_x, z_y \in \mathbb{R^n}}
+<p><span class="math display">\[\max_{z_x, z_y \in \mathbf{R^n}}
 &lt;z_x, z_y&gt;=\max \cos(z_x, z_y)=\max\frac{&lt;z_x,
 z_y&gt;}{\|z_x\|\|z_y\|}\]</span></p>
-<p>with respect to: <span class="math inline">\(\|z_x\|_{2}=1\
+<p>with respect to: <span class="math inline">\(\|z_x\|_{2}=1\quad
 \|z_y\|_{2}=1\)</span>.</p>
 <p>In fact, our task is just project <span
 class="math inline">\(X\)</span> and <span
@@ -306,12 +306,173 @@ some assumptions: 1. the each column vector of <span
 class="math inline">\(X\)</span> is perpendicular to the others. Which
 means <span class="math inline">\(X^T X= I\)</span>. The assumption is
 the same with <span class="math inline">\(Y\)</span> and <span
-class="math inline">\(w_x, w_y\)</span>.</p>
-<h4 id="resolve-cca-through-standard-eigenvalue-problem.">Resolve CCA
-through Standard EigenValue Problem.</h4>
+class="math inline">\(w_x, w_y\)</span>. We can find <span
+class="math inline">\(\min(p,q)\)</span> canonical components, and the
+<span class="math inline">\(r\)</span>th component is orthogonal to all
+the <span class="math inline">\(r-1\)</span> components.</p>
 <h4 id="resolve-cca-through-svd">Resolve CCA through SVD</h4>
-<h2 id="multicca">MultiCCA</h2>
-<h2 id="sparse-cca">Sparse CCA</h2>
+<p>To solve the CCA problem using SVD, we first introduce the joint
+covariance matrix <span class="math inline">\(C\)</span> such such that:
+<span class="math display">\[\begin{equation}
+    C = \begin{pmatrix}
+        C_{xx} &amp; C_{xy}\\
+        C_{yx} &amp; C_{yy}\\
+    \end{pmatrix}
+\end{equation}\]</span> Where <span
+class="math inline">\(C_{xx}=\frac{1}{n-1}X^\top X\)</span> and <span
+class="math inline">\(C_{yy}=\frac{1}{n-1}Y^\top Y\)</span> are the
+empirical variance matrices between <span
+class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> respectively. The <span
+class="math inline">\(C_{xy}=\frac{1}{n-1} X^\top Y\)</span> is the
+covariance matrix between <span class="math inline">\(X\)</span> and
+<span class="math inline">\(Y\)</span>.</p>
+<p>We next can reform CCA problem with two linear transformations <span
+class="math inline">\(w_x\)</span> and <span
+class="math inline">\(w_y\)</span> such that:</p>
+<p><span class="math display">\[\begin{equation}
+w_x^\top C_{xx} w_x = I_p, \quad w_y^\top C_{yy} w_y = I_q, \quad
+w_x^\top C_{xy} w_y = D
+\end{equation}\]</span> Where I_p and I_q are th p-dimensional and
+q-dimensional identity meatrics respectively. The diagonal matrix <span
+class="math inline">\(D = \text{diag}(\gamma_i)\)</span> so that:</p>
+<p><span class="math display">\[\begin{equation}
+    \begin{pmatrix}
+        {w}_x^\top &amp; { 0}\\
+        { 0} &amp;  {w}_y^\top
+        \end{pmatrix}
+        \begin{pmatrix}
+        C_{xx} &amp; C_{xy}\\
+        C_{yx} &amp; C_{yy}
+        \end{pmatrix}
+        \begin{pmatrix}
+         {w}_x &amp; { 0}\\
+        { 0} &amp;  {w}_y
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        I_p &amp; D\\
+        D^\top &amp; I_q
+    \end{pmatrix},
+\end{equation}\]</span></p>
+<p>The canoical variable: <span class="math display">\[\begin{equation}
+Z_x = Xw_x, \quad Z_y = Y w_y
+\end{equation}\]</span> The diagonal elements <span
+class="math inline">\(\gamma_i\)</span> of D denote the canonical
+correlations. Thus we find the linear compounds <span
+class="math inline">\({Z}_x\)</span> and <span
+class="math inline">\({Z}_y\)</span> to maximize the cross-correlations.
+Since both <span class="math inline">\(C_{xx}\)</span> and <span
+class="math inline">\(C_{yy}\)</span> are symmetric positive definite,
+we can perform Cholesky Decomposition on them to get: <span
+class="math display">\[\begin{equation}
+    C_{xx} = C_{xx}^{\top/2} C_{xx}^{1/2}, \quad C_{yy} =
+C_{yy}^{\top/2} C_{yy}^{1/2}
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(C_{xx}^{\top/2}\)</span> is the
+transpose of <span class="math inline">\(C_{xx}^{1/2}\)</span>. Applying
+the inverses of the square root factors symmetrically on the joint
+covariance matrix <span class="math inline">\(C\)</span>, the matrix is
+transformed into: <span class="math display">\[\begin{equation}
+\begin{pmatrix}
+    C_{xx}^{-\top/2} &amp; {\mathbf 0}\\
+    {\mathbf 0} &amp; C_{yy}^{-\top/2}
+    \end{pmatrix}
+    \begin{pmatrix}
+    C_{xx} &amp; C_{ab}\\
+    C_{yx} &amp; C_{yy}
+    \end{pmatrix}
+    \begin{pmatrix}
+    C_{xx}^{-1/2} &amp; {\mathbf 0}\\
+    {\mathbf 0} &amp; C_{yy}^{-1/2}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    I_p &amp; C_{xx}^{-1/2}C_{ab}C_{yy}^{-1/2}\\
+    C_{yy}^{-1/2}C_{yx}C_{xx}^{-1/2} &amp; I_q
+\end{pmatrix}.
+\end{equation}\]</span></p>
+<p>The canonical correlation problem is reduced to that of finding an
+SVD of a triple product: <span class="math display">\[\begin{equation}
+    U^{\top} (C_{xx}^{-1/2}C_{ab}C_{yy}^{-1/2}) V = D.
+\end{equation}\]</span> The matrix <span
+class="math inline">\(C\)</span> is thus reduced to the joint covariance
+matrix by applying a two-sided Jacobi method such that: <span
+class="math display">\[\begin{equation}
+    \begin{pmatrix}
+        U^\top &amp; {\mathbf 0}\\
+        {\mathbf 0} &amp; V^\top
+    \end{pmatrix}
+    \begin{pmatrix}
+        I_p &amp; C_{xx}^{-1/2}C_{ab}C_{yy}^{-1/2}\\
+        C_{yy}^{-1/2}C_{_y}C_{xx}^{-1/2} &amp; I_q
+    \end{pmatrix}
+    \begin{pmatrix}
+        U &amp; {\mathbf 0}\\
+        {\mathbf 0} &amp; V
+    \end{pmatrix} =
+    \begin{pmatrix}
+    I_p &amp; D\\
+    D^\top &amp; I_q
+    \end{pmatrix}
+\end{equation}\]</span></p>
+<p>with the desired transformation <span
+class="math inline">\({w}_x\)</span> and <span
+class="math inline">\({w}_y\)</span>: <span
+class="math display">\[\begin{equation}
+    {w}_x = C_{xx}^{-1/2} U, \quad {w}_y = C_{yy}^{-1/2}V
+\end{equation}\]</span> where the singular values <span
+class="math inline">\(\gamma_i\)</span> are in descending order such
+that: <span class="math display">\[\begin{equation}
+    \gamma_1 \geq \gamma_2 \geq \cdots \geq 0.
+\end{equation}\]</span></p>
+<h4 id="resolve-cca-through-standard-eigenvalue-problem">Resolve CCA
+through Standard EigenValue Problem</h4>
+<p>The Problem can be reformed to solve the problem: <span
+class="math display">\[\begin{equation}
+\underset{w_x \in \mathbb{R}^p, w_y\in \mathbb{R}^q}{\arg \max} w_x^\top
+C_{xy} w_y
+\end{equation}\]</span> With respect to <span
+class="math inline">\(\|\|w_x^\top C_{xx} w_x\|\|_2 = \sqrt{w_x^\top
+C_{xx} w_x}=1\)</span> and <span class="math inline">\(\|\|w_y^\top
+C_{yy} w_y\|\|_2 = \sqrt{w_y^\top C_{yy} w_y}=1\)</span>. The problem
+can apparently sovled by Lagrange multiplier technique. Let construct
+the Lagrange multiplier <span class="math inline">\(L\)</span> such
+that: <span class="math display">\[\begin{equation}
+    L = w_x^\top C_{xy} w_y - \frac{\rho_1}{2} w_x^\top C_{xx} w_x -
+\frac{\rho_2}{2} w_y^\top C_{yy} w_y
+    \end{equation}\]</span></p>
+<p>The differentiation of L to <span class="math inline">\(w_x\)</span>
+and <span class="math inline">\(w_y\)</span> is: <span
+class="math display">\[\begin{equation}
+\begin{aligned}
+\frac{\partial L}{\partial w_x} = C_{xy} w_y - \rho_1 C_{xx}w_x =
+\mathbf{0}\\
+\frac{\partial L}{\partial w_y} = C_{yx} w_x - \rho_2 C_{yy}w_y =
+\mathbf{0}
+\end{aligned}
+\end{equation}\]</span></p>
+<p>By left multipling <span class="math inline">\(w_x\)</span> and <span
+class="math inline">\(w_y\)</span> the above equation, we have:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{aligned}
+w_x^\top C_xy w_y -\rho_1 w_x^\top C_xx w_x = \mathbf{0}\\
+w_y^\top C_yx w_x -\rho_2 w_y^\top C_yy w_y = \mathbf{0}
+\end{aligned}
+\end{equation}\]</span> Since w_x^C_xx w_x = 1 and w_y^C_yy w_y = 1, we
+can obtain that <span class="math inline">\(\rho_1 = \rho_2 =
+\rho\)</span>. By substituting <span class="math inline">\(\rho\)</span>
+to the formula. We can get: <span
+class="math display">\[\begin{equation}
+w_x = \frac{C_{xx}^{-1}C_{xy}w_y}{rho}
+\end{equation}\]</span> Evantually we have the equation: <span
+class="math display">\[\begin{equation}
+C_{yx} C_{xx}^{-1} C_{xy} w_y = \rho^2 C_yy w_y
+\end{equation}\]</span> Obviously, this is the form of eigenvalue
+decompostion problem where all eigen values are greater or equal to
+zero. By solving the eigenvalue decomposition we can find <span
+class="math inline">\(w_x\)</span> and <span
+class="math inline">\(w_y\)</span>.</p>
 
     </div>
 
