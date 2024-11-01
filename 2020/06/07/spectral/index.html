@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cmb.oss-cn-qingdao.aliyuncs.com/a_graph.png">
 <meta property="article:published_time" content="2020-06-07T16:30:22.000Z">
-<meta property="article:modified_time" content="2024-10-31T16:03:27.542Z">
+<meta property="article:modified_time" content="2024-11-01T11:59:46.613Z">
 <meta property="article:author" content="Mingbo Cheng">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cmb.oss-cn-qingdao.aliyuncs.com/a_graph.png">
@@ -262,16 +262,16 @@ universe. The spectrum analysis is also a field in mathmatjics. In the
 graph thoery field, Laplacian matrix is used to represented a graph. We
 can obtian features from the undirected graph below (<a
 target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Laplacian_matrix">wikipedia</a>).
-<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/a_graph.png"
-alt="30%s" /> For example, we can check the degree of each vertex, which
-forms our Degree matrix <span class="math inline">\(D\)</span> such
-that: <span class="math display">\[\begin{equation}
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/a_graph.png" height="300px"></p>
+<p>For example, we can check the degree of each vertex, which forms our
+Degree matrix <span class="math inline">\(D\)</span> such that: <span
+class="math display">\[\begin{equation}
 D = \begin{pmatrix}
-  2 &amp; 0 &amp;  0 &amp;  0 &amp; 0 &amp; 0\\\\
-  0 &amp;  3 &amp; 0 &amp;  0 &amp; 0 &amp; 0\\\\
-   0 &amp; 0 &amp;  2 &amp; 0 &amp;  0 &amp; 0\\\\
-   0 &amp;  0 &amp; 0 &amp;  3 &amp; 0 &amp;0\\\\
-  0 &amp; 0 &amp;  0 &amp; 0 &amp;  3 &amp; 0\\\\
+  2 &amp; 0 &amp;  0 &amp;  0 &amp; 0 &amp; 0\\
+  0 &amp;  3 &amp; 0 &amp;  0 &amp; 0 &amp; 0\\
+   0 &amp; 0 &amp;  2 &amp; 0 &amp;  0 &amp; 0\\
+   0 &amp;  0 &amp; 0 &amp;  3 &amp; 0 &amp;0\\
+  0 &amp; 0 &amp;  0 &amp; 0 &amp;  3 &amp; 0\\
    0 &amp;  0 &amp;  0 &amp; 0 &amp;  0 &amp; 1
 \end{pmatrix}
 \end{equation}\]</span></p>
@@ -279,11 +279,11 @@ D = \begin{pmatrix}
 Adjacency matrix:</p>
 <p><span class="math display">\[\begin{equation}
 A = \begin{pmatrix}
-  0 &amp; 1 &amp;  0 &amp;  0 &amp; 1 &amp; 0\\\\
-  1 &amp;  0 &amp; 1 &amp;  0 &amp; 1 &amp; 0\\\\
-   0 &amp; 1 &amp;  0 &amp; 1 &amp;  0 &amp; 0\\\\
-   0 &amp;  0 &amp; 1 &amp;  0 &amp; 1 &amp;1\\\\
-  1 &amp; 1 &amp;  0 &amp; 1 &amp;  0 &amp; 0\\\\
+  0 &amp; 1 &amp;  0 &amp;  0 &amp; 1 &amp; 0\\
+  1 &amp;  0 &amp; 1 &amp;  0 &amp; 1 &amp; 0\\
+   0 &amp; 1 &amp;  0 &amp; 1 &amp;  0 &amp; 0\\
+   0 &amp;  0 &amp; 1 &amp;  0 &amp; 1 &amp;1\\
+  1 &amp; 1 &amp;  0 &amp; 1 &amp;  0 &amp; 0\\
    0 &amp;  0 &amp;  0 &amp; 1 &amp;  0 &amp; 0
 \end{pmatrix}
 \end{equation}\]</span></p>
@@ -292,11 +292,11 @@ A = \begin{pmatrix}
 all useful information from a graph which is: <span
 class="math display">\[\begin{equation}
 L=D-A =\begin{pmatrix}
-  2 &amp; -1 &amp;  0 &amp;  0 &amp; -1 &amp; 0\\\\
-  -1 &amp;  3 &amp; -1 &amp;  0 &amp; -1 &amp; 0\\\\
-   0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 &amp; 0\\\\
-   0 &amp;  0 &amp; -1 &amp;  3 &amp; -1 &amp; -1\\\\
-  -1 &amp; -1 &amp;  0 &amp; -1 &amp;  3 &amp; 0\\\\
+  2 &amp; -1 &amp;  0 &amp;  0 &amp; -1 &amp; 0\\
+  -1 &amp;  3 &amp; -1 &amp;  0 &amp; -1 &amp; 0\\
+   0 &amp; -1 &amp;  2 &amp; -1 &amp;  0 &amp; 0\\
+   0 &amp;  0 &amp; -1 &amp;  3 &amp; -1 &amp; -1\\
+  -1 &amp; -1 &amp;  0 &amp; -1 &amp;  3 &amp; 0\\
    0 &amp;  0 &amp;  0 &amp; -1 &amp;  0 &amp; 1
 \end{pmatrix}
 \end{equation}\]</span></p>
@@ -308,11 +308,11 @@ class="math inline">\(D^{-1}\)</span> which will give rise to all <span
 class="math inline">\(1\)</span>s of the diagnal entries of the matrix,
 namely: <span class="math display">\[\begin{equation}
 \text{norm}({L}) = D^{-1}L = \begin{pmatrix}1 &amp; -0.50 &amp;  0
-&amp;  0 &amp; -0.50 &amp; 0\\\\
-  -0.33 &amp;  1 &amp; -0.33 &amp;  0 &amp; -0.33 &amp; 0\\\\
-   0 &amp; -0.50 &amp;  1 &amp; -0.50 &amp;  0 &amp; 0\\\\
-   0 &amp;  0 &amp; -0.33 &amp;  1 &amp; -0.33 &amp;-0.33\\\\
-  -0.33 &amp; -0.33 &amp;  0 &amp; -0.33 &amp;  1 &amp; 0\\\\
+&amp;  0 &amp; -0.50 &amp; 0\\
+  -0.33 &amp;  1 &amp; -0.33 &amp;  0 &amp; -0.33 &amp; 0\\
+   0 &amp; -0.50 &amp;  1 &amp; -0.50 &amp;  0 &amp; 0\\
+   0 &amp;  0 &amp; -0.33 &amp;  1 &amp; -0.33 &amp;-0.33\\
+  -0.33 &amp; -0.33 &amp;  0 &amp; -0.33 &amp;  1 &amp; 0\\
    0 &amp;  0 &amp;  0 &amp; -1 &amp;  0 &amp; 1
 \end{pmatrix}
 \end{equation}\]</span> This matrix is called transition matrix.
@@ -327,8 +327,8 @@ distances between vertices such that: <img
 src="https://cmb.oss-cn-qingdao.aliyuncs.com/a_graph_weighted.png"
 alt="weighted graph" /></p>
 <p><span class="math display">\[\begin{equation}
-w_{ij} =\exp (-r_{ij}^2/\sigma) = \exp \big(\frac{-\|\|x_i -
-x_j\|\|^2}{\sigma_i\sigma_j}\big)
+w_{ij} =\exp (-r_{ij}^2/\sigma) = \exp \big(\frac{-\|x_i -
+x_j\|^2}{\sigma_i\sigma_j}\big)
 \end{equation}\]</span> where <span
 class="math inline">\(r_{ij}\)</span> is the euclidean distance between
 vetex <span class="math inline">\(i\)</span> and <span
@@ -337,12 +337,11 @@ class="math inline">\(sigma\)</span> controls the bandwidth. We call the
 matrix <span class="math inline">\(W=(w_{ij})\)</span> gaussian affinity
 matrix such that: <span class="math display">\[\begin{equation}
 \begin{pmatrix}
-0 &amp; w_{12} &amp; w_{13} &amp; w_{14} &amp; w_{15}&amp; w_{16}\\\\
-w_{21} &amp; 0 &amp; w_{23} &amp; w_{24} &amp; w_{25}&amp; w_{26}\\\\
-w_{31} &amp; w_{32} &amp; 0 &amp; w_{34} &amp; w_{35}&amp; w_{36}\\\\
-w_{41} &amp; w_{42} &amp; w_{43} &amp; w_{44} &amp; w_{45}&amp;
-w_{46}\\\\
-w_{51} &amp; w_{52} &amp; w_{53} &amp; w_{54} &amp; 0&amp; w_{56}\\\\
+0 &amp; w_{12} &amp; w_{13} &amp; w_{14} &amp; w_{15}&amp; w_{16}\\
+w_{21} &amp; 0 &amp; w_{23} &amp; w_{24} &amp; w_{25}&amp; w_{26}\\
+w_{31} &amp; w_{32} &amp; 0 &amp; w_{34} &amp; w_{35}&amp; w_{36}\\
+w_{41} &amp; w_{42} &amp; w_{43} &amp; w_{44} &amp; w_{45}&amp; w_{46}\\
+w_{51} &amp; w_{52} &amp; w_{53} &amp; w_{54} &amp; 0&amp; w_{56}\\
 w_{61} &amp; w_{62} &amp; w_{63} &amp; w_{64} &amp; w_{65}&amp; 0
 \end{pmatrix}
 \end{equation}\]</span> The guassian kernel would enlarge the distance
@@ -388,9 +387,9 @@ the right and left eigenvector of <span class="math inline">\(P\)</span>
 such that: <span class="math display">\[\begin{equation}
 \psi = D^{-1/2}
 \phi = S^{\top}D^{1/2}
-\end{equation}\]</span> In fact, <span
-class="math inline">\(psi\)</span> stores the spectral of the graph
-which also call diffusion map dimensions. s</p>
+\end{equation}\]</span> In fact, columns of <span
+class="math inline">\(\psi\)</span> stores the spectral of the graph
+which also call diffusion map dimensions.</p>
 
     </div>
 
