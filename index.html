@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -197,6 +197,183 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2020/12/07/spectral_2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/07/spectral_2/" class="post-title-link" itemprop="url">Spectral analysis (2)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-07 21:10:01" itemprop="dateCreated datePublished" datetime="2020-12-07T21:10:01+01:00">2020-12-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="diffussion-map">Diffussion map</h2>
+<p>Eigenvalue decomposition of weighted graph laplacian is used to
+obtain diffusion map. The asymmetric matrix or transition matrix <span
+class="math inline">\(P=D^{-1}W\)</span>. The decomposition is: <span
+class="math display">\[\begin{equation}
+P = D^{-1/2}S\Lambda S^\top D^{1/2}
+\end{equation}\]</span> In fact, the random walk on the graph would give
+rise to the transition graph such that: <span
+class="math display">\[\begin{equation}
+p^{t+1}= p^t D^{-1}W = p^t P
+\end{equation}\]</span> where <span class="math inline">\(p\)</span> is
+a initial state of the graph (vertices weight). That is, after a certain
+step of random walk on the graph, we would reach a steady state when any
+more random walk would not change the weight. Let <span
+class="math inline">\(Q=D^{-1/2}S\)</span>, then <span
+class="math inline">\(Q^{-1}=S^{\top} D^{1/2}\)</span>, we can derive
+<span class="math inline">\(P = Q\Lambda Q^{-1}\)</span>. The random
+walk above mentioned can then be represent: <span
+class="math display">\[\begin{equation}
+\begin{aligned}
+P^t &amp;= Q\Lambda Q^{-1}Q\Lambda Q^{-1}\cdots Q\Lambda Q^{-1}
+    &amp;= Q\Lambda^t Q
+\end{aligned}
+\end{equation}\]</span> Since <span
+class="math inline">\(\Lambda\)</span> is diagnoal, the random walk on a
+graph can be easily cacluted by using the eigenvalue decomposition
+outcome. The column of <span class="math inline">\(Q\)</span> is the
+diffusion map dimensions.</p>
+<h2 id="diffusion-map-example">Diffusion map example</h2>
+<p>To understand diffusion map, we here introduce an example data and
+run diffusion map on it. The data is a single cell fibroblasts to neuron
+data with 392 cells. We first download the data from NCBI and loaded the
+data to memory:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">url <span class="operator">=</span> <span class="string">&#x27;https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE67310&amp;format=file&amp;file=GSE67310%5FiN%5Fdata%5Flog2FPKM%5Fannotated.txt.gz&#x27;</span></span><br><span class="line">r <span class="operator">=</span> requests.get<span class="punctuation">(</span>url<span class="punctuation">,</span> allow_redirects<span class="operator">=</span>True<span class="punctuation">)</span></span><br><span class="line">open<span class="punctuation">(</span><span class="string">&#x27;GSE67310.txt.gz&#x27;</span><span class="punctuation">,</span> <span class="string">&#x27;wb&#x27;</span><span class="punctuation">)</span>.write<span class="punctuation">(</span>r.content<span class="punctuation">)</span></span><br><span class="line">data <span class="operator">=</span> pd.read_csv<span class="punctuation">(</span><span class="string">&#x27;GSE67310.txt.gz&#x27;</span><span class="punctuation">,</span> sep<span class="operator">=</span><span class="string">&#x27;\t&#x27;</span><span class="punctuation">,</span> index_col<span class="operator">=</span><span class="number">0</span><span class="punctuation">)</span></span><br><span class="line">data <span class="operator">=</span> data.loc<span class="punctuation">[</span>data<span class="punctuation">[</span><span class="string">&#x27;assignment&#x27;</span><span class="punctuation">]</span> <span class="operator">!=</span><span class="string">&#x27;Fibroblast&#x27;</span><span class="punctuation">]</span></span><br><span class="line">group <span class="operator">=</span> data<span class="punctuation">[</span><span class="string">&#x27;assignment&#x27;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+<p>From the code as we can see that, we extract the cell types from the
+data and stores it into the variable <code>group</code>. The rest part
+of the data is the normalized gene expression count matrix.</p>
+<p>To do the pre-processing, we first get the log-normalized count
+matrix <span class="math inline">\(X\)</span> and revert it to the
+counts and apply log geomatric scaling to the count matrix as the
+pre-processing then store it to matrix <span
+class="math inline">\(Y\)</span>. <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X <span class="operator">=</span> np.array<span class="punctuation">(</span>data.iloc<span class="punctuation">[</span><span class="operator">:</span><span class="punctuation">,</span> <span class="number">5</span><span class="operator">:</span><span class="punctuation">]</span><span class="punctuation">)</span>.T</span><br><span class="line">X <span class="operator">=</span> np.power<span class="punctuation">(</span><span class="number">2</span><span class="punctuation">,</span> X<span class="punctuation">[</span>np.apply_along_axis<span class="punctuation">(</span>np.var<span class="punctuation">,</span> <span class="number">1</span><span class="punctuation">,</span> X<span class="punctuation">)</span><span class="operator">&gt;</span><span class="number">0</span><span class="punctuation">,</span> <span class="operator">:</span><span class="punctuation">]</span><span class="punctuation">)</span> <span class="operator">-</span> <span class="number">1</span></span><br><span class="line">Y <span class="operator">=</span> np.log<span class="punctuation">(</span>gscale<span class="punctuation">(</span>X<span class="operator">+</span><span class="number">0.5</span><span class="punctuation">)</span><span class="punctuation">)</span>.T</span><br></pre></td></tr></table></figure> The geomatric scaling
+implementation is: <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def gscale<span class="punctuation">(</span>X<span class="operator">:</span>np.ndarray<span class="punctuation">)</span> <span class="operator">-&gt;</span> np.ndarray<span class="operator">:</span></span><br><span class="line">    assert<span class="punctuation">(</span>X.all<span class="punctuation">(</span><span class="punctuation">)</span><span class="operator">&gt;=</span><span class="number">0</span><span class="punctuation">)</span></span><br><span class="line">    div_ <span class="operator">=</span> np.divide<span class="punctuation">(</span>X.T<span class="punctuation">,</span> np.apply_along_axis<span class="punctuation">(</span>lambda x<span class="operator">:</span>np.exp<span class="punctuation">(</span>np.mean<span class="punctuation">(</span>np.log<span class="punctuation">(</span>x<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    X<span class="punctuation">)</span><span class="punctuation">)</span>.T</span><br><span class="line">    scale_ <span class="operator">=</span> np.apply_along_axis<span class="punctuation">(</span>np.median<span class="punctuation">,</span><span class="number">0</span><span class="punctuation">,</span> div_<span class="punctuation">)</span></span><br><span class="line">    sc <span class="operator">=</span> StandardScaler<span class="punctuation">(</span>with_mean<span class="operator">=</span>False<span class="punctuation">)</span></span><br><span class="line">    sc.fit<span class="punctuation">(</span>X<span class="punctuation">)</span></span><br><span class="line">    sc.scale_ <span class="operator">=</span> scale_</span><br><span class="line">    <span class="built_in">return</span> sc.transform<span class="punctuation">(</span>X<span class="punctuation">)</span></span><br></pre></td></tr></table></figure> After the pre-processing, we we next
+run PCA to perform dimensionality reduction and use which to calculate
+euclidean distances between cells, and then run diffusion map.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pc <span class="operator">=</span> run_pca<span class="punctuation">(</span>Y<span class="punctuation">,</span> <span class="number">100</span><span class="punctuation">)</span></span><br><span class="line">R <span class="operator">=</span> distance_matrix<span class="punctuation">(</span>pc<span class="punctuation">,</span> pc<span class="punctuation">)</span></span><br><span class="line">d <span class="operator">=</span> diffusionMaps<span class="punctuation">(</span>R<span class="punctuation">,</span><span class="number">7</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>We first take a look at the PCA figure which shows the first 2 PCs of
+the dataset. PCA is a linear methods which cannot reflect cell fate
+differentation process. <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/fib2neuron_pca.png" />
+Since the diffusion map applied the Gaussian kernal during the distances
+calculation, it usually a better way to capture the cell differentation
+events. Here we show diffusion dimension 1,2 and 1,3. It's clear that
+1,2 captures the cell differentation from fibroblasts to neuron, and 1,3
+captures the differentiation from firoblasts to myocytes. <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/fib2neuron_diffusions.png" /></p>
+<p>We can change the bandwidth from 7 to 100, which use the 100th
+neareast neighbor as bandwidth instead of 7th. The following shows the
+diffusion map that bandwidth=100. <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/fib2neuron_bandwidth100.png" /></p>
+<h2 id="pseudo-time-by-random-walk">pseudo time by random walk</h2>
+<p>The eigenvalue decomposition of graph laplacian can also be used to
+infer the pseudo time simulating the pseudo time of cell differentation
+events. We here set top <span class="math inline">\(m\)</span> cells
+<span class="math inline">\(1/m\)</span> of the progenitor cells (MEF)
+and set other cell 0 as the initial state. Next, we perform random walk
+to get new pesudotime <span class="math inline">\(u\)</span> such that:
+<span class="math display">\[\begin{equation}
+u = [\frac{1}{m}, \frac{1}{m}, \cdots, 0, \cdots 0](D^{-1}W)^t
+\end{equation}\]</span> By testing different number of random walk steps
+we can check the new pseudo time <span class="math inline">\(u\)</span>.
+Here we show time step equals to 1, 10, 100 and 200. From the figure we
+can notice that after certain step, the pseudo time will not change
+anymore. That means the random walk reaches the steady state. <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/fib2neuron_pseudotime.png" /></p>
+<p>To test when can we reach the steady state, I use the graph we
+mentioned in my last post <a
+href="https://chengmingbo.github.io/2020/06/07/spectral/">Spectral
+analysis (1)</a>:
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/a_graph.png" height="250px"></p>
+<p>Here we random generate two initial states (<span
+class="math inline">\(v_1\)</span>, <span
+class="math inline">\(v_2\)</span>) to do the random walk such that:
+<span class="math display">\[\begin{equation}
+\begin{aligned}
+v_1 &amp;= [0.15,0.41,0.54,0.9,0.62,0.93,0.1,0.46,0.01,0.88]\\
+v_2 &amp;= [0.89,0.93,0.07,0.41,0.52,0.88,0.43,0.09,0.1,0.2]
+\end{aligned}
+\end{equation}\]</span></p>
+<p>From the the figure below we can see that <span
+class="math inline">\(v_1\)</span> reaches the steady state in 10 steps
+whereas <span class="math inline">\(v_2\)</span> reaches steady state in
+20 steps. In total, all these two initial state will reach the steady
+state that would not change any longer. <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/fib2neuron_steady.png" /></p>
+<h2 id="spectral-clustering">spectral clustering</h2>
+<p>The eigenvectors of graph Laplacian can also be used to do the
+clustering. From the figure we can find clear cut using the 1st, 2nd and
+the 3rd diffusion dimensions. In practice, we can use kmeans, DBSCAN,
+leiden, louvain algorithm to perform clustering using the diffusion
+dimensions. <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/fib2neuron_clustering.png" /></p>
+<h2 id="appendix">Appendix</h2>
+<h5 id="pca-function">PCA function</h5>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def run_pca<span class="punctuation">(</span>mtx<span class="punctuation">,</span> n_components<span class="operator">=</span><span class="number">2</span><span class="punctuation">,</span> random_state<span class="operator">=</span><span class="number">2022</span><span class="punctuation">)</span><span class="operator">:</span></span><br><span class="line">    dm <span class="operator">=</span> None</span><br><span class="line">        <span class="keyword">if</span> scipy.sparse.issparse<span class="punctuation">(</span>mtx<span class="punctuation">)</span><span class="operator">:</span></span><br><span class="line">        clf <span class="operator">=</span> TruncatedSVD<span class="punctuation">(</span>n_components<span class="punctuation">,</span> random_state<span class="operator">=</span>random_state<span class="punctuation">)</span></span><br><span class="line">        dm <span class="operator">=</span> clf.fit_transform<span class="punctuation">(</span>mtx<span class="punctuation">)</span></span><br><span class="line">    <span class="keyword">else</span><span class="operator">:</span></span><br><span class="line">        pca <span class="operator">=</span> PCA<span class="punctuation">(</span>n_components<span class="operator">=</span>n_components<span class="punctuation">,</span> random_state<span class="operator">=</span>random_state<span class="punctuation">)</span></span><br><span class="line">        dm <span class="operator">=</span> pca.fit_transform<span class="punctuation">(</span>mtx<span class="punctuation">)</span></span><br><span class="line">        <span class="built_in">return</span> dm</span><br></pre></td></tr></table></figure>
+<h5 id="affinity-matrix-function">Affinity matrix function</h5>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">def affinity<span class="punctuation">(</span>R<span class="punctuation">,</span> k<span class="operator">=</span><span class="number">7</span><span class="punctuation">,</span> sigma<span class="operator">=</span>None<span class="punctuation">,</span> <span class="built_in">log</span><span class="operator">=</span>False<span class="punctuation">)</span><span class="operator">:</span></span><br><span class="line">    <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">    Gaussian affinity matrix constructor</span></span><br><span class="line"><span class="string">    W = exp(-r_&#123;ij&#125;^2/sigma)</span></span><br><span class="line"><span class="string">    &quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">    def top_k<span class="punctuation">(</span>lst<span class="punctuation">,</span> k<span class="operator">=</span><span class="number">1</span><span class="punctuation">)</span><span class="operator">:</span></span><br><span class="line">        assert<span class="punctuation">(</span>len<span class="punctuation">(</span>lst<span class="punctuation">)</span> <span class="operator">&gt;</span>k<span class="punctuation">)</span></span><br><span class="line">        <span class="built_in">return</span> np.partition<span class="punctuation">(</span>lst<span class="punctuation">,</span> k<span class="punctuation">)</span><span class="punctuation">[</span>k<span class="punctuation">]</span></span><br><span class="line"></span><br><span class="line">    R <span class="operator">=</span> np.array<span class="punctuation">(</span>R<span class="punctuation">)</span></span><br><span class="line">    <span class="keyword">if</span> not sigma<span class="operator">:</span></span><br><span class="line">        s <span class="operator">=</span> <span class="punctuation">[</span>top_k<span class="punctuation">(</span>R<span class="punctuation">[</span><span class="operator">:</span><span class="punctuation">,</span> i<span class="punctuation">]</span><span class="punctuation">,</span> k<span class="operator">=</span>k<span class="punctuation">)</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span><span class="punctuation">(</span>R.shape<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span><span class="punctuation">)</span><span class="punctuation">]</span></span><br><span class="line">        S <span class="operator">=</span> np.sqrt<span class="punctuation">(</span>np.outer<span class="punctuation">(</span>s<span class="punctuation">,</span> s<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">    <span class="keyword">else</span><span class="operator">:</span></span><br><span class="line">        S <span class="operator">=</span> sigma</span><br><span class="line">        logW <span class="operator">=</span> <span class="operator">-</span>np.power<span class="punctuation">(</span>np.divide<span class="punctuation">(</span>R<span class="punctuation">,</span> S<span class="punctuation">)</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">)</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">log</span><span class="operator">:</span></span><br><span class="line">        <span class="built_in">return</span> logW</span><br><span class="line">    <span class="built_in">return</span> np.exp<span class="punctuation">(</span>logW<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<h5 id="diffusion-map-function">Diffusion map function</h5>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">def diffusionMaps<span class="punctuation">(</span>R<span class="punctuation">,</span>k<span class="operator">=</span><span class="number">7</span><span class="punctuation">,</span>sigma<span class="operator">=</span>None<span class="punctuation">)</span><span class="operator">:</span></span><br><span class="line">    <span class="string">&quot;&quot;</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">    Diffusion map(Coifman, 2005)</span></span><br><span class="line"><span class="string">    https://en.wikipedia.org/wiki/Diffusion_map</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    dic:</span></span><br><span class="line"><span class="string">        psi: right eigvector of P = D^&#123;-1/2&#125; * evec</span></span><br><span class="line"><span class="string">        phi: left eigvector of P = D^&#123;1/2&#125; * evec</span></span><br><span class="line"><span class="string">        eig: eigenvalues</span></span><br><span class="line"><span class="string">    &quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">    k<span class="operator">=</span>k<span class="operator">-</span><span class="number">1</span> <span class="comment">## k is R version minus 1 for the index</span></span><br><span class="line">    logW <span class="operator">=</span> affinity<span class="punctuation">(</span>R<span class="punctuation">,</span>k<span class="punctuation">,</span>sigma<span class="punctuation">,</span><span class="built_in">log</span><span class="operator">=</span>True<span class="punctuation">)</span></span><br><span class="line">    rs <span class="operator">=</span> np.exp<span class="punctuation">(</span><span class="punctuation">[</span>logsumexp<span class="punctuation">(</span>logW<span class="punctuation">[</span>i<span class="punctuation">,</span><span class="operator">:</span><span class="punctuation">]</span><span class="punctuation">)</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span><span class="punctuation">(</span>logW.shape<span class="punctuation">[</span><span class="number">0</span><span class="punctuation">]</span><span class="punctuation">)</span><span class="punctuation">]</span><span class="punctuation">)</span> <span class="comment">## dii=\sum_j</span></span><br><span class="line">    w_<span class="punctuation">&#123;</span>i<span class="punctuation">,</span>j<span class="punctuation">&#125;</span></span><br><span class="line">    D <span class="operator">=</span> np.diag<span class="punctuation">(</span>np.sqrt<span class="punctuation">(</span>rs<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">    <span class="comment">## D^&#123;1/2&#125;</span></span><br><span class="line">    Dinv <span class="operator">=</span> np.diag<span class="punctuation">(</span><span class="number">1</span><span class="operator">/</span>np.sqrt<span class="punctuation">(</span>rs<span class="punctuation">)</span><span class="punctuation">)</span> <span class="comment">##D^&#123;-1/2&#125;</span></span><br><span class="line">    Ms <span class="operator">=</span> Dinv <span class="operator">@</span> np.exp<span class="punctuation">(</span>logW<span class="punctuation">)</span> <span class="operator">@</span> Dinv <span class="comment">## D^&#123;-1/2&#125; W D^&#123;-1/2&#125;</span></span><br><span class="line">    e <span class="operator">=</span> np.linalg.eigh<span class="punctuation">(</span>Ms<span class="punctuation">)</span> <span class="comment">## eigen decomposition of P&#x27;</span></span><br><span class="line">    evalue<span class="operator">=</span> e<span class="punctuation">[</span><span class="number">0</span><span class="punctuation">]</span><span class="punctuation">[</span><span class="operator">::</span><span class="operator">-</span><span class="number">1</span><span class="punctuation">]</span></span><br><span class="line">    evec <span class="operator">=</span> np.flip<span class="punctuation">(</span>e<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span><span class="punctuation">,</span> axis<span class="operator">=</span><span class="number">1</span><span class="punctuation">)</span></span><br><span class="line">    s <span class="operator">=</span> np.sum<span class="punctuation">(</span>np.sqrt<span class="punctuation">(</span>rs<span class="punctuation">)</span> <span class="operator">*</span> evec<span class="punctuation">[</span><span class="operator">:</span><span class="punctuation">,</span><span class="number">0</span><span class="punctuation">]</span><span class="punctuation">)</span> <span class="comment"># scaling</span></span><br><span class="line">    <span class="comment"># Phi is orthonormal under the weighted inner product</span></span><br><span class="line">    <span class="comment">#0:Psi, 1:Phi, 2:eig</span></span><br><span class="line">    dic <span class="operator">=</span> <span class="punctuation">&#123;</span><span class="string">&#x27;psi&#x27;</span><span class="operator">:</span>s <span class="operator">*</span> Dinv<span class="operator">@</span>evec<span class="punctuation">,</span> <span class="string">&#x27;phi&#x27;</span><span class="operator">:</span> <span class="punctuation">(</span><span class="number">1</span><span class="operator">/</span>s<span class="punctuation">)</span><span class="operator">*</span>D<span class="operator">@</span>evec<span class="punctuation">,</span> <span class="string">&quot;eig&quot;</span><span class="operator">:</span> evalue<span class="punctuation">&#125;</span></span><br><span class="line">    <span class="built_in">return</span> dic</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2912,139 +3089,6 @@ our photos.</p>
 <li>http://www.ams.org/samplings/feature-column/fcarc-svd</li>
 <li>https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html</li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/04/16/eigenvector-and-eigenvalue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Mingbo Cheng">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-      <meta itemprop="description" content="Mingbo">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mingbo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/04/16/eigenvector-and-eigenvalue/" class="post-title-link" itemprop="url">怎样理解特征向量和特征值（翻译）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-04-16 21:03:38" itemprop="dateCreated datePublished" datetime="2017-04-16T21:03:38+02:00">2017-04-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>原文地址：<a
-target="_blank" rel="noopener" href="http://math.stackexchange.com/a/23325">stackexchange</a></p>
-<p>原文答案作者主页：<a
-target="_blank" rel="noopener" href="http://math.stackexchange.com/users/742/arturo-magidin">Arturo
-Magidin</a></p>
-<h4 id="版权声明">版权声明</h4>
-<p>本译文首发于我的个人博客chengmingbo.github.io, 版权属于原作者。 ####
-简短的答案
-特征向量可以让线性变换的理解变得简单。它们是沿着坐标轴（方向）的线性变换包括简单的伸/缩以及翻转；特征值提供的是这些线性变换影响因子。
-如果你理解越多沿着坐标轴（方向）的线性变换行为，理解线性变换就变得越简单；所以你要做的是有足够多的线性无关的特征向量与单因素线性变换产生联系。</p>
-<h4 id="长一点儿的答案">长一点儿的答案</h4>
-<p>这个世界上有非常多的问题可以通过线性变换来建模，而特征向量提供了非常简单的解决方案。例如，考虑线性微分方程:
-<span class="math display">\[\frac{\mathrm d x}{\mathrm d t} = ax +
-by\]</span> <span class="math display">\[\frac{\mathrm d y}{\mathrm d t}
-= cx + dy\]</span></p>
-<p>可以找到很多描述此微分方程的系统，比如，两个物种数量的增长相互影响。具体来说，可能物种<span
-class="math inline">\(x\)</span>是物种<span
-class="math inline">\(y\)</span>的捕食者；周围越多的物种<span
-class="math inline">\(x\)</span>，意味着越少的物种<span
-class="math inline">\(y\)</span>可以得到繁衍壮大；问题是周围的物种<span
-class="math inline">\(y\)</span>越少，那么对于物种<span
-class="math inline">\(x\)</span>来说食物就会越少，所以物种<span
-class="math inline">\(x\)</span>的繁衍就会越少；但是接下来因为物种<span
-class="math inline">\(x\)</span>对物种<span
-class="math inline">\(y\)</span>的生存压力降低，很快会导致<span
-class="math inline">\(y\)</span>物种数量的增长；但是这就意味这物种<span
-class="math inline">\(x\)</span>的食物变多了，所以物种xx的数量也跟着增长；如此这般，循环往复。特定的物理现象也能形成这样的系统，比如粒子在运动的流体中，粒子的速度矢量取决于其所处的流体中位置。</p>
-<p>直接解决这种系统是非常复杂的。但是，假设如果你可以不用去关注变量<span
-class="math inline">\(x\)</span>和变量<span
-class="math inline">\(y\)</span>而是转而关注<span
-class="math inline">\(z\)</span>和<span
-class="math inline">\(w\)</span>（这里<span
-class="math inline">\(z\)</span>和<span
-class="math inline">\(w\)</span>与<span
-class="math inline">\(x\)</span>和<span
-class="math inline">\(y\)</span>线性相关，也就是说，<span
-class="math inline">\(z=\alpha x + \beta y\)</span>, <span
-class="math inline">\(\alpha\)</span>和<span
-class="math inline">\(\beta\)</span>是常量，同时<span
-class="math inline">\(w=\gamma x + \delta y\)</span>， <span
-class="math inline">\(\gamma\)</span>和<span
-class="math inline">\(\delta\)</span>也是常量）。这样，我们的系统就变换成了如下的形式：
-<span class="math display">\[\frac{\mathrm d z}{\mathrm d t} = \kappa
-w\]</span> <span class="math display">\[\frac{\mathrm d w}{\mathrm d t}
-= \lambda z\]</span></p>
-<p>也就是说，你对系统做了<strong>解耦</strong>，这样你就可以单独的处理各个独立函数了。接下来就这个问题就变得非常简单：<span
-class="math inline">\(z=Ae^{\kappa t}\)</span>，以及<span
-class="math inline">\(w=Be^{\lambda t}\)</span>。下一步就是用<span
-class="math inline">\(z\)</span>和<span
-class="math inline">\(w\)</span>的公式，算出<span
-class="math inline">\(x\)</span>和<span
-class="math inline">\(y\)</span>。</p>
-<p>这能做到么？事实上，这等于我们精确的找到了矩阵<span
-class="math inline">\(\begin{pmatrix}a &amp; b\\
-c&amp;d\end{pmatrix}\)</span>线性独立的两个特征向量！<span
-class="math inline">\(z\)</span>和<span
-class="math inline">\(w\)</span>是其特征向量，而<span
-class="math inline">\(\kappa\)</span>和<span
-class="math inline">\(\lambda\)</span>为相对应的特征值。通过使用一个表达式把<span
-class="math inline">\(x\)</span>和<span
-class="math inline">\(y\)</span><strong>混合</strong>
-起来，然后解耦成两个互相独立的函数，问题现在变得非常简单了。</p>
-<p>这就是我们希望使用特征向量及特征值的本质：通过线性变换把问题<strong>解耦</strong>
-成一系列沿着各个隔离<strong>方向</strong>的操作，使得各个方向问题都可独立解决。</p>
-<p>大量的问题归根结底是解决<strong>线性独立操作</strong>，理解这些可以实实在在的帮助你理解矩阵/线性变换到底在做什么。</p>
 
       
     </div>
