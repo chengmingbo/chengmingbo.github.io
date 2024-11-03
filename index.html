@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -136,7 +136,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -197,6 +197,362 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2023/05/10/from_laplacian_to_hodge_laplacian/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/05/10/from_laplacian_to_hodge_laplacian/" class="post-title-link" itemprop="url">From graph laplacian to hodge laplacian</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-10 21:17:56" itemprop="dateCreated datePublished" datetime="2023-05-10T21:17:56+02:00">2023-05-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="preface">Preface</h2>
+<p>Graph laplacian is familiar to computation science researcher, with
+which we can perform spectral analysis such as diffusion map, eigenmap
+or spectral clustering. Here, we discuss how to generalize the graph
+laplacian to it's high-order form, i.e., Hodge laplacian.</p>
+<h2 id="graph-laplacian">Graph laplacian</h2>
+<p>In the previous post we know that the graph laplacian can be obtianed
+by degree matrix <span class="math inline">\(D\)</span> and adjacency
+matrix <span class="math inline">\(A\)</span> such that: <span
+class="math display">\[\begin{equation}
+L_0 = D - A
+\end{equation}\]</span></p>
+<p>We can find the adjacency matrix and degree matrix of the graph blow
+with nine vertices: <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/hodge_graph_9_nodes.svg" /></p>
+<p>such that:</p>
+<p><span class="math display">\[\begin{equation}
+A = \begin{array}[r]{c |c c c c c c c c c }
+           &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp;
+8 &amp; 9\\
+            \hline
+             1&amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             2&amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             3&amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             4&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0
+&amp; 0 &amp; 0\\
+             5&amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0
+&amp; 0 &amp; 0\\
+             6&amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1
+&amp; 0 &amp; 0\\
+             7&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0
+&amp; 0 &amp; 0\\
+             8&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 1\\
+             9&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 1 &amp; 0\\
+    \end{array}
+\end{equation}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\begin{equation}
+D = \begin{array}[r]{c |c c c c c c c c c }
+           &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp;
+8 &amp; 9\\
+            \hline
+             1&amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             2&amp; 0 &amp; 2 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             3&amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             4&amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             5&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             6&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 3 &amp; 0
+&amp; 0 &amp; 0\\
+             7&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+&amp; 0 &amp; 0\\
+             8&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 1 &amp; 0\\
+             9&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 1\\
+    \end{array}
+\end{equation}\]</span></p>
+<p>And the graph laplacian thus can be calculated as:</p>
+<p><span class="math display">\[\begin{equation}
+L_0 = D - A =  \begin{array}[r]{c |c c c c c c c c c }
+           &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp;
+8 &amp; 9\\
+            \hline
+             1&amp; 1 &amp; -1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             2&amp; -1 &amp; 2 &amp; -1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             3&amp; 0 &amp; -1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             4&amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; -1 &amp; -1 &amp; 0
+&amp; 0 &amp; 0\\
+             5&amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 2 &amp; -1 &amp; 0
+&amp; 0 &amp; 0\\
+             6&amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; -1 &amp; 3 &amp; -1
+&amp; 0 &amp; 0\\
+             7&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 1
+&amp; 0 &amp; 0\\
+             8&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 1 &amp; -1\\
+             9&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; -1 &amp; 1\\
+    \end{array}
+\end{equation}\]</span></p>
+<p>However, there's anoth way to represent the graph laplacian. Before
+that, we first introduce the incidence matrix of a graph. First, we can
+convert an undirected graph to be directed just assign the direction of
+edges by book keeping order. Next, let's construct the incidence matrix,
+each row represent a vertex, and each colum is an edge. We set the entry
+to be 1 if the the edge enter the vertex -1 when leave the vertex. Set 0
+if there's no connection between a vertex and an edge. Thus the
+incidence matrix of a graph <span class="math inline">\(G\)</span> is
+<span class="math inline">\(B\)</span> such that: <span
+class="math display">\[\begin{equation}
+B_1 =
+    \begin{array}[r]{c | c c c c c c c}
+              &amp; \cdots &amp; [4,5] &amp; [4,6]&amp; [5,6]&amp;
+[6,7]&amp; \cdots\\
+            \hline
+            \vdots &amp; \cdots &amp; &amp; \cdots &amp;  &amp;
+\cdots  &amp;  \\
+            4 &amp; \cdots &amp; -1 &amp; -1 &amp; 0 &amp; 0
+&amp;  \cdots\\
+            5 &amp; \cdots &amp; 1 &amp; 0 &amp; -1 &amp; 0 &amp;
+\cdots\\
+            6 &amp; \cdots &amp; 0 &amp; 1 &amp; 1 &amp; -1 &amp;
+\cdots\\
+            7 &amp; \cdots &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp;
+\cdots\\
+             \vdots &amp; \cdots &amp; &amp; \cdots &amp;  &amp;
+\cdots  &amp;  \\
+    \end{array}
+\end{equation}\]</span> Next, let construct graph laplacian matrix using
+<span class="math inline">\(B_1\)</span>. Actually, the graph laplacian
+is： <span class="math display">\[\begin{equation}
+L_0=B_1 B_1^\top =  \begin{array}[r]{c |c c c c c c c c c }
+           &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp;
+8 &amp; 9\\
+            \hline
+             1&amp; 1 &amp; -1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             2&amp; -1 &amp; 2 &amp; -1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             3&amp; 0 &amp; -1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 0 &amp; 0\\
+             4&amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; -1 &amp; -1 &amp; 0
+&amp; 0 &amp; 0\\
+             5&amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 2 &amp; -1 &amp; 0
+&amp; 0 &amp; 0\\
+             6&amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; -1 &amp; 3 &amp; -1
+&amp; 0 &amp; 0\\
+             7&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 1
+&amp; 0 &amp; 0\\
+             8&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; 1 &amp; -1\\
+             9&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+&amp; -1 &amp; 1\\
+\end{array}
+\end{equation}\]</span> As we can see that, <span
+class="math inline">\(L_0\)</span> is the same as the that obtained from
+degree matrix and adjacency matrix.</p>
+<h2 id="zero-eigenvaules-of-graph-laplacian">Zero eigenvaules of graph
+laplacian</h2>
+<p>We know that for the application of diffusion map or spectral
+analysis, we have to drop the first eigenvector due to its same values
+and the eigenvaule is 0. The second eigenvector is also called fidler
+vector. However, these applications usually created a connected graph.
+Since the graph we show here is an unconnected graph. We can stop here
+to take a guess: Is the zero eigenvaule still there, or if so, how many
+zero eigenvaules?</p>
+<p>Now, let's perform the eigenvaule decomposition that: <span
+class="math display">\[\begin{equation}
+L = Q\Lambda Q^\top
+\end{equation}\]</span></p>
+<p>Interestingly, the top 3 eigenvalues are all zero and we also have 3
+connected components in the graph. Is this a coincidence or a property
+of graph laplacian decomposition? <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/hodge_graph_9_nodes_eigenvalues.svg" /></p>
+<p>Furthermore, the top 3 eigenvectors corresponding to the zero
+eigenvaules are also interesting. Notice that the first eigenvector can
+differentiate the components <span
+class="math inline">\(\{4,5,6,7\}\)</span> from the rest vectices.
+Likewise, the second eigenvector select the connected component <span
+class="math inline">\(\{8,9\}\)</span> and the third choose the
+component <span class="math inline">\(\{1,2,3\}\)</span>. <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/hodge_graph_9_nodes_eigenvectors.svg" /></p>
+<p>In fact, in the field of Topological Data Analysis (TDA), the <span
+class="math inline">\(L_0\)</span> is the special case of hodge
+laplacian (<span class="math inline">\(L_k\)</span>). The number of
+connected components is call 0-dimensional cycles. And the graph
+laplaican can capture these cycles. The 1-dimensional cycles are
+correspond to holes, we will go into detail in the next section.</p>
+<h2 id="hodge-laplacian">Hodge laplacian</h2>
+<p>We can see the graph laplacian zero-order of hodge laplacian, and the
+formalu can be represented as: <span
+class="math display">\[\begin{equation}
+L_0 = \mathbf{0}^\top \mathbf{0} + B_1 B_1^\top
+\end{equation}\]</span></p>
+<p>Similarly, we can obtian <span
+class="math inline">\(L_1\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+L_1 = B_1^\top B_1 + B_2 B_2^\top
+\end{equation}\]</span></p>
+<p>You must ask where is <span class="math inline">\(B_2\)</span> coming
+from? We know that <span class="math inline">\(B_1\)</span> captures the
+relationship between vertices and edges. Thus, <span
+class="math inline">\(B_2\)</span> captures the relationship between
+edges and triangles. We can also define <span
+class="math inline">\(B_3\)</span> to capture relationship between
+triangles and tetrahedron and so on and so forth. So what is a triangle
+or a tetrahedron in a graph? We would not go into the detail of the
+thory of Simplex and Simplicial complex. Here we just need to know that
+three connected vertices forms a triangle. Similarly, four connected
+vertices forms a tetrahedron which is a high-order of triangles. To
+define <span class="math inline">\(B_2\)</span>, of a graph <span
+class="math inline">\(G\)</span>, we would check the direction of an
+edge <span class="math inline">\(e_j\)</span> to the triangle <span
+class="math inline">\(\bigtriangleup_q\)</span> it beblongs, if it has
+the same direction as the triangle, the entry would be <span
+class="math inline">\(1\)</span>, if the direction is opposite, the
+entry would be -1, otherwise the entry would be zero. Specifically:</p>
+<p><span class="math display">\[\begin{equation}
+    {B}_2[j, q] =
+       \begin{cases}
+            1 &amp; \text{if } e_j \in \bigtriangleup_q \text{ with same
+direction}     \\
+            -1  &amp; \text{if } e_j \in \bigtriangleup_q \text{ with
+opposite direction} \\
+            0  &amp; \text{otherwise}
+       \end{cases}
+\end{equation}\]</span></p>
+<p>With the definition, we can obtian <span
+class="math inline">\(B_2\)</span> of the graph aforementioned: <span
+class="math display">\[\begin{equation}
+B_2 =
+    \begin{array}[r]{c | c }
+            &amp; [4,5,6]\\
+            \hline
+             \vdots &amp; \cdots \\
+              [4,5] &amp; 1\\
+              [4,6] &amp; -1\\
+              [5,6]&amp; 1\\
+              [6,7] &amp; 0\\
+              \vdots &amp; \cdots \\
+    \end{array}
+\end{equation}\]</span></p>
+<p>We next introduce the normalized form and the decomposition of hodge
+1-laplacian. The normalized form of hodge 1-laplacian is given:</p>
+<p><span class="math display">\[\begin{equation}
+        \mathcal{L}_1 = {D}_2 {B}_1^\top {D}_1^{-1} {B}_1 + {B}_2 {D}_3
+{B}_2^\top {D}_2^{-1}
+\end{equation}\]</span> where <span
+class="math inline">\(\mathbf{D}_1\)</span> is the vertices degree
+matrix, <span class="math inline">\({D}_2\)</span> is <span
+class="math inline">\(\max{(\text{diag}(|{B}_2| \mathbf{1}),
+\mathbf{I})}\)</span> and <span class="math inline">\({D}_3\)</span> is
+<span class="math inline">\(\frac{1}{3}\mathbf{I}\)</span>. Since the
+normalized <span class="math inline">\(L_1\)</span> is not neccessarily
+symmetric, we next need to define the symmetric normalized Hodge
+1-Laplacian such that: <span class="math display">\[\begin{equation}
+    \begin{aligned}
+        \mathcal{L}_1^s
+        &amp; = {D}_2^{-1/2} \mathcal{L}_1 {D}_2^{1/2}\\
+        &amp; = {D}_2^{1/2} {B}_1^\top {D}_1^{-1} {B}_1 {D}_2^{1/2} +
+{D}^{-1/2} {B}_2 {D}_3 {B}_2^\top {D}_2^{-1/2}
+    \end{aligned}
+\end{equation}\]</span></p>
+<p>We use the graph with three holes to present hodge 1-laplacian: <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/hodge_graph_3holes.svg" /></p>
+<p>We next can perform eigenvalues decomposition on <span
+class="math inline">\(\mathcal{L}_1\)</span>: <span
+class="math display">\[\begin{equation}
+        \begin{aligned}
+            \mathcal{L}_1
+             &amp; = \mathbf{D}_2^{1/2} \mathcal{L}_1^s
+\mathbf{D}_2^{-1/2}   \\
+             &amp; =  \mathbf{D}_2^{1/2} Q \Lambda Q^\top
+\mathbf{D}_2^{-1/2} \\
+             &amp; = \mathbf{U} \Lambda \mathbf{U}^{-1}
+        \end{aligned}
+\end{equation}\]</span> Interestingly, the top 3 eigenvector also all
+zero which corresponding to the 3 holes, namely, the three 1-dimensional
+cycles. <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/hodge_graph_3holes_eigenvalues.svg" /></p>
+<p>When it comes to the eigenvectors, we can also notice that the top
+three eigenvectors are around the three holes. <img
+src="https://cmb.oss-cn-qingdao.aliyuncs.com/hodge_graph_3holes_eigenvectors.svg" /></p>
+<p>In algebraic geometry, these the eigenvectors with zero eigenvaules
+are called harmonic function or harmonic. These harmonic function around
+holes is useful for some analysis like clustering to find the
+1-dimensional cycles etc.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Today, we review the graph laplacian, and we can find the zeor
+eigenvalues and theirs corresponding eigenvectors can be used to find
+connected components. The high order graph laplacian hodge laplacian
+have the similar properties, we presented the hodge 1-laplaican and its
+eigenvalues decomposition. We can find that the zero eigenvalues
+indicates the number of holes of a graph. Furthermore, the corresponding
+eigenvectors with zero eigenvalues are around holes.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -338,9 +694,9 @@ v_2 &amp;= [0.89,0.93,0.07,0.41,0.52,0.88,0.43,0.09,0.1,0.2]
 \end{aligned}
 \end{equation}\]</span></p>
 <p>From the the figure below we can see that <span
-class="math inline">\(v_1\)</span> reaches the steady state in 10 steps
+class="math inline">\(v_1\)</span> reaches the steady state in 30 steps
 whereas <span class="math inline">\(v_2\)</span> reaches steady state in
-20 steps. In total, all these two initial state will reach the steady
+100 steps. In total, all these two initial state will reach the steady
 state that would not change any longer. <img
 src="https://cmb.oss-cn-qingdao.aliyuncs.com/fib2neuron_steady.png" /></p>
 <h2 id="spectral-clustering">spectral clustering</h2>
@@ -2603,492 +2959,6 @@ etc.</p>
 <h2 id="appendix-code">Appendix code</h2>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">%% octave main function file</span><br><span class="line">%% iris data dowload link: https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data</span><br><span class="line">[a,b,c,d, cate] = textread(&quot;iris.data&quot;, &quot;%f%f%f%f%s&quot;,&quot;delimiter&quot;, &quot;,&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">%for i=1:15</span><br><span class="line">%	x = floor(rand()*150);</span><br><span class="line">%	fprintf(&#x27;%f %s\n&#x27;, a(x), cate&#123;x&#125; );</span><br><span class="line">%end;</span><br><span class="line"></span><br><span class="line">features = [a, b, c, d];</span><br><span class="line">for i=1:length(features(1, :))</span><br><span class="line">	col = features(:, i);</span><br><span class="line">	me = mean(col);</span><br><span class="line">	disp(me);</span><br><span class="line">	feat(i).greater = find(col &gt; me);</span><br><span class="line">	feat(i).less = find(col &lt;= me);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">total = (1:150)&#x27;;</span><br><span class="line">decision(feat, length(features(1, :)), cate, total);</span><br><span class="line">fprintf(&#x27;\n&#x27;)</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">%% octave: decsion tree file</span><br><span class="line">function decision(feat, feat_size, cate, total)</span><br><span class="line">	if length(total) == 0</span><br><span class="line">		return</span><br><span class="line">	end</span><br><span class="line">	fprintf(&#x27;(-%d-)&#x27;, length(total));</span><br><span class="line">	%plogp = @(x)[x*log2(x)];</span><br><span class="line">	function e = plogp(pi)</span><br><span class="line">		if pi == 0</span><br><span class="line">			e = 0;</span><br><span class="line">		else</span><br><span class="line">			e = pi*log2(pi);</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	function d = div(a, b)</span><br><span class="line">		if b == 0</span><br><span class="line">			d = 0;</span><br><span class="line">		else</span><br><span class="line">			d = a/b;</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	debug = 0;</span><br><span class="line"></span><br><span class="line">	function m = maxc(cate, cates, total)</span><br><span class="line">		maxidx = 1;</span><br><span class="line">		max_c = 0;</span><br><span class="line">		for i=1:length(cates)</span><br><span class="line">			c =find(strcmp(cate, cates&#123;i&#125;));</span><br><span class="line">			cl = length(intersect(c, total));</span><br><span class="line">			if debug == 1 fprintf(&#x27;\n%d##%d  %s###&#x27;,i, cl, char(cates&#123;i&#125;)) end</span><br><span class="line">			%if (debug == 1 &amp;&amp; cl &lt;10 &amp;&amp; cl &gt;0) disp(intersect(c, total)&#x27;) end</span><br><span class="line">			if cl &gt; max_c</span><br><span class="line">				max_c = cl;</span><br><span class="line">				maxidx = i;</span><br><span class="line">			end</span><br><span class="line">		end</span><br><span class="line">		if debug == 1 fprintf(&#x27;\n****%d    %d******\n&#x27;, maxidx, max_c) end</span><br><span class="line">		%m = cates(maxidx);</span><br><span class="line">		m = maxidx;</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	% compute h(y)</span><br><span class="line">	cates = unique(cate);</span><br><span class="line">	hx = 0;</span><br><span class="line">	for i = 1:length(cates)</span><br><span class="line">		c = find(strcmp(cate, cates&#123;i&#125;));</span><br><span class="line">		rc = intersect(c, total);</span><br><span class="line">		hx -= plogp(length(rc)/length(total));</span><br><span class="line">	end</span><br><span class="line">	%fprintf(&#x27;hx = %f\n&#x27;, hx)			</span><br><span class="line">	% compute h(y|x)</span><br><span class="line">	max_feature = 1;</span><br><span class="line">	max_ig = 0;</span><br><span class="line"></span><br><span class="line">	max_left = intersect(feat(1).greater, total);</span><br><span class="line">	max_right = intersect(feat(1).less, total);</span><br><span class="line">	for i=1:feat_size</span><br><span class="line">		hxh = 0;</span><br><span class="line">		hxl = 0;</span><br><span class="line">		feat_greater = intersect(feat(i).greater, total);</span><br><span class="line">		feat_less = intersect(feat(i).less, total);</span><br><span class="line">		ge = length(feat_greater);</span><br><span class="line">		le = length(feat_less);</span><br><span class="line"></span><br><span class="line">		if (ge+le) == 0</span><br><span class="line">			continue</span><br><span class="line">		end</span><br><span class="line"></span><br><span class="line">		for j = 1:length(cates);</span><br><span class="line">			c = find(strcmp(cate, cates&#123;j&#125;));</span><br><span class="line">			xh = length(intersect(feat_greater, c));</span><br><span class="line">			xl = length(intersect(feat_less, c));</span><br><span class="line">			hxh -= plogp(div(xh, ge));</span><br><span class="line">			hxl -= plogp(div(xl, le));</span><br><span class="line">		end</span><br><span class="line">		% compute hx - h(y|x)</span><br><span class="line">		hxy = (ge/(ge+le))*hxh + ((le)/(ge+le))*hxl;</span><br><span class="line">		ig = hx - hxy;</span><br><span class="line"></span><br><span class="line">		if ig &gt; max_ig</span><br><span class="line">			max_ig = ig;</span><br><span class="line">			max_feature = i;</span><br><span class="line">			max_left= feat_less;</span><br><span class="line">			max_right = feat_greater;</span><br><span class="line">		end</span><br><span class="line"></span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	left = max_left;</span><br><span class="line">	right = max_right;</span><br><span class="line">	%fprintf(&#x27;feature:ig  %d %f %d %d ------ \n&#x27;, max_feature, max_ig, length(left), length(right));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	if debug == 1 printf(&quot;\033[0;32;1m-ig--%f \033[0m&quot;,  max_ig); end</span><br><span class="line">	if(max_ig &lt; 0.01)</span><br><span class="line">		%fprintf(&#x27;&lt;%s&gt;&#x27;, char(maxc(cate, cates, total)))</span><br><span class="line">		printf(&quot;\033[0;31;1m&lt;%d&gt;\033[0m&quot;,  maxc(cate, cates, total));</span><br><span class="line">		return</span><br><span class="line">	end</span><br><span class="line">	fprintf(&quot;\033[0;34;1m#%d \033[0m&quot;,  max_feature);</span><br><span class="line">	fprintf(&#x27;&#123;&#x27; )</span><br><span class="line">	decision(feat, feat_size, cate, left);</span><br><span class="line">	decision(feat, feat_size, cate, right);</span><br><span class="line">	fprintf(&#x27;&#125;&#x27;)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Mingbo Cheng">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-      <meta itemprop="description" content="Mingbo">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mingbo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/05/01/A-Tutorial-To-Singular-Value-Decomposition/" class="post-title-link" itemprop="url">A Tutorial on Singular Value Decomposition</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-05-01 21:49:00" itemprop="dateCreated datePublished" datetime="2017-05-01T21:49:00+02:00">2017-05-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Alogorithm/" itemprop="url" rel="index"><span itemprop="name">Alogorithm</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="preface">Preface</h3>
-<p>Under some circumstance, we want to compress data to save storage
-space. For example, when iPhone7 was released, many were trapped in a
-dilemma: Should I buy a 32G iPhone without enough free space or that of
-128G with a lot of storage being wasted? I had been trapped in such
-dilemma indeed. I still remember that I only had 8G storage totally when
-I was using my first Android phone. What annoyed me most was my
-thousands of photos. Well, I confess that I was being always a mad
-picture taker. I knew that there were some technique which could
-compress a picture through reducing pixel. However, it is not enough,
-because, as you know, in some arbitrary position in a picture, we can
-tell that the picture share the same color. An extreme Example: if we
-have a pure color picture, what we just need know is the RGB value and
-the size, then reproducing the picture is done without extra effort.
-What I was dreaming is done perfectly by Singular Value
-Decomposition(SVD).</p>
-<h3 id="introduction">Introduction</h3>
-<p>Before SVD, in this article, I will introduce some mathmatical
-concepts in the first place which cover Linear transformation and
-EigenVector&amp;EigenValue. This Background knowledge is meant to make
-SVD straightforward. You can skip if you are familar with this
-knowledge.</p>
-<h3 id="linear-transformation">Linear transformation</h3>
-<p>Given a matrice <span class="math inline">\(A\)</span> and vector
-<span class="math inline">\(\vec{x}\)</span>, we want to compute the
-mulplication of <span class="math inline">\(A\)</span> and <span
-class="math inline">\(\vec{x}\)</span></p>
-<p><span
-class="math display">\[\vec{x}=\begin{pmatrix}1\\3\end{pmatrix}\qquad
-A=\begin{pmatrix}2 &amp; 1 \\\\ -1 &amp; 1
-\end{pmatrix}\qquad\vec{y}=A\vec{x}\]</span></p>
-<p>But when we do this multiplication, what happens? Acutually, when we
-multiply <span class="math inline">\(A\)</span> and <span
-class="math inline">\(\vec{x}\)</span>, we are changing the coordinate
-axes of the vector <span class="math inline">\(x\)</span> to another new
-axes. Begin with a simpler example, we let</p>
-<p><span class="math display">\[A=\begin{pmatrix}1 &amp; 0\\\\ 0
-&amp;1\end{pmatrix}\]</span></p>
-<p>then we have <span class="math display">\[A\vec{x}=\begin{pmatrix}1
-&amp; 0\\\\ 0
-&amp;1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=\begin{pmatrix}1\\3\end{pmatrix}\]</span></p>
-<p>You may have noticed that we can always get the same <span
-class="math inline">\(\vec{x}\)</span> after left multiply by A. In this
-case, we use coordinate axes <span
-class="math inline">\(i=\begin{pmatrix}1 \\\\ 0\end{pmatrix}\)</span>
-and <span class="math inline">\(j=\begin{pmatrix}0 \\\\
-1\end{pmatrix}\)</span> as the figure below demonstrated. That is, if we
-want to represent <span
-class="math inline">\(\begin{pmatrix}1\\3\end{pmatrix}\)</span> under
-the coordination, we can calculate the transformation as followed:</p>
-<p><span class="math display">\[\begin{align} A\vec{x}=1\cdot i + 3\cdot
-j = 1\cdot \begin{pmatrix}1 \\\\ 0\end{pmatrix} + 3\cdot
-\begin{pmatrix}0 \\\\
-1\end{pmatrix}=\begin{pmatrix}1\\3\end{pmatrix}\end{align}\]</span></p>
-<p><img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-073041.jpg" /></p>
-<p>As we know, we can put a vector to anywhere in space, and if we want
-to calculate sum of two vectors, the simplest way is to connect the to
-vector from one's head to the other's tail. Our example, we compute
-<span class="math inline">\(A\vec{x}\)</span> means add two vector(green
-imaginary lines) up. And the answer is still <span
-class="math inline">\(\begin{pmatrix}1\\3\end{pmatrix}\)</span>.</p>
-<p>Now we change <span class="math inline">\(i=\begin{pmatrix}2\\\\
--1\end{pmatrix}\)</span> and <span
-class="math inline">\(j=\begin{pmatrix}1\\1\end{pmatrix}\)</span> as the
-coordinate axes(the red vectors), which means <span
-class="math inline">\(A=\begin{pmatrix}2 &amp; 1 \\\\ -1 &amp;
-1\end{pmatrix}\)</span>. I put vectors(black ones) to this figure as
-well. We can see what happens when we change a new coordinate axes.</p>
-<p>First of all, we multiply <span class="math inline">\(j\)</span> by
-<span class="math inline">\(3\)</span> and <span
-class="math inline">\(i\)</span> by 1. Then we move vector j and let the
-head of <span class="math inline">\(i\)</span> connect the tail of <span
-class="math inline">\(3\cdot j\)</span>. We can now find what is the
-coordination of <span class="math inline">\(1\cdot i+3\cdot
-j\)</span>(the blue one). We now verify the result using mutiplication
-of <span class="math inline">\(A\)</span> and <span
-class="math inline">\(\vec{x}\)</span>:</p>
-<p><span class="math display">\[A\vec{x}=\begin{pmatrix}2 &amp; 1 \\\\
--1 &amp; 1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=1\cdot
-\begin{pmatrix}2 \\\\ -1\end{pmatrix} + 3\cdot  \begin{pmatrix}1 \\\\
-1\end{pmatrix}=\begin{pmatrix}5\\2\end{pmatrix}\]</span></p>
-<p><img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-013710.jpg" />
-Here, you can imagine that matrice <span
-class="math inline">\(A\)</span> is just like a function <span
-class="math inline">\(f(x)\rightarrow y\)</span>, when you subsitute
-<span class="math inline">\(x\)</span>, we get the exact <span
-class="math inline">\(y\)</span> using the principle <span
-class="math inline">\(f(x)\rightarrow y\)</span>. In fact, the
-multiplication is tranform the vector from one coordination to
-another.</p>
-<h4 id="exercise">Exercise</h4>
-<ol type="1">
-<li><span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\\\ 3 &amp;
-4\end{pmatrix}\)</span>, draw the picture to stretch and rotate <span
-class="math inline">\(x=\begin{pmatrix}1\\3\end{pmatrix}\)</span>.</li>
-<li>Find a <span class="math inline">\(A\)</span> matrix to rotate <span
-class="math inline">\(\vec{x}=\begin{pmatrix}1\\3\end{pmatrix}\)</span>
-to <span class="math inline">\(90^{\circ}\)</span> and <span
-class="math inline">\(180^{\circ}\)</span>.</li>
-<li>what if <span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\\\
-2 &amp; 4\end{pmatrix}\)</span>.</li>
-</ol>
-<h3 id="eigenvector-and-eigenvalue">EigenVector and EigenValue</h3>
-<p>EigenVector and EigenValue is an extremely important concept in
-linear algebra, and is commonly used everywhere including SVD we are
-talking today. However, many do not know how to interpret it. In fact,
-EigenVector and EigenValue is very easy as long as we know about what is
-linear transformation.</p>
-<h4 id="a-problem">A Problem</h4>
-<p>Before start, let's take a look at a question: if we want to multiply
-matrices for 1000 times, how to calculate effectively? <span
-class="math display">\[AAA\cdots A= \begin{pmatrix}3&amp; 1 \\0 &amp;
-2\end{pmatrix}\begin{pmatrix}3&amp; 1 \\0 &amp;
-2\end{pmatrix}\begin{pmatrix}3&amp; 1 \\0 &amp; 2\end{pmatrix}\cdots
-\begin{pmatrix}3&amp; 1 \\0 &amp;
-2\end{pmatrix}=\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \\0 &amp;
-2\end{pmatrix}\]</span></p>
-<h4 id="intuition">Intuition</h4>
-<p>Last section, we have talked that if we multiply a vector by a matrix
-<span class="math inline">\(A\)</span>, means that we use <span
-class="math inline">\(A\)</span> to stretch and rotate the vector in
-order to represent the vector in a new coordinate axes. However, there
-are some vectors for <span class="math inline">\(A\)</span>, they can
-only be stretched but can not be rotated. Assume <span
-class="math inline">\(A=\begin{pmatrix}3 &amp; 1 \\\\ 0 &amp;
-2\end{pmatrix}\)</span>, let <span
-class="math inline">\(\vec{x}=\begin{pmatrix}1 \\\\
--1\end{pmatrix}\)</span>. When we multiply <span
-class="math inline">\(A\)</span> and <span
-class="math inline">\(\vec{x}\)</span></p>
-<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\\\ 0
-&amp; 2\end{pmatrix}\begin{pmatrix}1 \\\\
--1\end{pmatrix}=\begin{pmatrix}2 \\\\ -2\end{pmatrix}=2\cdot
-\begin{pmatrix}1 \\\\ -1\end{pmatrix}\]</span></p>
-<p>It turns out we can choose any vector along <span
-class="math inline">\(\vec{x}\)</span>, the outcome is the same, for
-example:</p>
-<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\\\ 0
-&amp; 2\end{pmatrix}\begin{pmatrix}-3 \\\\
-3\end{pmatrix}=\begin{pmatrix}-6 \\\\ -6\end{pmatrix}=2\cdot
-\begin{pmatrix}-3 \\\\ 3\end{pmatrix}\]</span></p>
-<p><img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-052135.jpg" /></p>
-<p>We name vectors like <span class="math inline">\(\begin{pmatrix}-3
-\\\\ 3\end{pmatrix}\)</span> and <span
-class="math inline">\(\begin{pmatrix}1 \\\\ -1\end{pmatrix}\)</span>
-<strong>EigenVectors</strong> and 2 the conresponse
-<strong>EigenValues</strong>. In practice, we usually choose unit
-eigenvectors(length equals to 1) given that there are innumerable
-EigenVectors along the line.</p>
-<p>I won't cover how to compute these vectors and vaules and just list
-the answer as followed</p>
-<p><span class="math display">\[\begin{align}&amp;\begin{pmatrix}3 &amp;
-1 \\0&amp; 2\end{pmatrix}
-\begin{pmatrix}{-1}/{\sqrt(2)} \\\\ {1}/{\sqrt(2)}\end{pmatrix}=
-2\begin{pmatrix}{-1}/{\sqrt(2)} \\\\ {1}/{\sqrt(2)}\end{pmatrix}
-\qquad\qquad\vec{x_1}=\begin{pmatrix}{-1}/{\sqrt(2)} \\\\
-{1}/{\sqrt(2)}\end{pmatrix} &amp;\lambda_1=2\\
-&amp;\begin{pmatrix}3 &amp; 1 \\0&amp; 2\end{pmatrix}
-\begin{pmatrix}1 \\\\ 0\end{pmatrix}\qquad=\qquad
-3\begin{pmatrix}1 \\\\
-0\end{pmatrix}\qquad\qquad\quad\,\,\,\vec{x_2}=\begin{pmatrix}1 \\\\
-0\end{pmatrix}
-&amp;\lambda_2=3
-\end{align}\]</span> Notice that <span
-class="math inline">\(|\vec{x_1}|=1\)</span> and <span
-class="math inline">\(|\vec{x_2}|=1\)</span> #### EigenValue
-Decomposition If we put two EigenVectors and corresponding EigenValues
-together, we can get the following equation: <span
-class="math display">\[AQ=\begin{pmatrix}3 &amp; 1 \\0&amp;
-2\end{pmatrix}
-\begin{pmatrix}
-{-1}/{\sqrt(2)}&amp;1\\
-{1}/{\sqrt(2)}&amp;0
-\end{pmatrix}=
-\begin{pmatrix}
-{-1}/{\sqrt(2)}&amp;1 \\\\ {1}/{\sqrt(2)}&amp;0
-\end{pmatrix}
-\begin{pmatrix}
-2 &amp; 0\\
-0 &amp; 3
-\end{pmatrix}=Q\Lambda
-\]</span> Then we have <span class="math inline">\(AQ=Q\Lambda\)</span>,
-the conclusion is still right if we introduce more dimensions, that is
-<span class="math display">\[\begin{align}
-A\vec{x_1}=\lambda\vec{x_1}\\
-A\vec{x_2}=\lambda\vec{x_2}\\
-\vdots\qquad\\
-A\vec{x_k}=\lambda\vec{x_k}
-\end{align}\]</span></p>
-<p><span class="math display">\[Q=
-\begin{pmatrix}
-    x_{11}&amp; x_{21} &amp;\cdots x_{k1}&amp;\\
-    x_{12}&amp; x_{22} &amp;\cdots x_{k2}&amp;\\
-    &amp;\vdots&amp;&amp;\\
-    x_{1m}&amp; x_{22} &amp;\cdots x_{km}&amp;
-\end{pmatrix}
-\qquad\Lambda=
-\begin{pmatrix}
-\lambda_1 &amp; 0 &amp; \cdots&amp;0\\
-0 &amp;\lambda_2&amp;\cdots&amp;0\\
-\vdots&amp;\vdots&amp;\ddots\\
-0&amp;\cdots&amp;\cdots&amp;\lambda_k
-\end{pmatrix}\]</span></p>
-<p>If we do something on the equation <span
-class="math inline">\(AQ=Q\Lambda\)</span>, then we have: <span
-class="math display">\[AQQ^{-1}=A=Q\Lambda Q^{-1}\]</span> It is
-EigenVaule Decomposition. #### Resolution Now, Let's look at the
-question in the beginning of this section <span
-class="math display">\[\begin{align}
-AAA\cdots A&amp;= \begin{pmatrix}3&amp; 1 \\0 &amp;
-2\end{pmatrix}\begin{pmatrix}3&amp; 1 \\0 &amp;
-2\end{pmatrix}\begin{pmatrix}3&amp; 1 \\0 &amp; 2\end{pmatrix}\cdots
-\begin{pmatrix}3&amp; 1 \\0 &amp;
-2\end{pmatrix}=\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \\0 &amp;
-2\end{pmatrix}\\
-AAA\cdots A &amp;= Q\Lambda Q^{-1}Q\Lambda Q^{-1}Q\Lambda Q^{-1}\cdots
-Q\Lambda Q^{-1}=Q\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \\0 &amp;
-2\end{pmatrix}Q^{-1}\\
-AAA\cdots A &amp;=Q\Lambda\Lambda\cdots \Lambda Q^{-1}=
-Q\begin{pmatrix}2^{1000} &amp; 0 \\\\0 &amp; 3^{1000}\end{pmatrix}Q^{-1}
-\end{align}\]</span> The calculation is extremely simple using EVD.</p>
-<h4 id="exercise-1">Exercise</h4>
-<ol type="1">
-<li>Research how to compute EigenVectors and EigenValues, then
-compute<span class="math inline">\(\begin{pmatrix}1 &amp; 2 &amp; 3\\4
-&amp; 5 &amp;6\\7 &amp; 8 &amp; 9\end{pmatrix}\)</span>.</li>
-<li>Think about the decisive factor affects how many EigenValues we can
-get.</li>
-</ol>
-<h3 id="singular-value-decompositon">Singular Value Decompositon</h3>
-<p>Notice that EigenVector Decomposition is applied to decompose square
-matrices. Is there any approach to decompose non-square matrices? The
-answer is a YES, and the name is Singular Value Decompositon.</p>
-<h4 id="intuition-1">Intuition</h4>
-<p>First of all, let's take a look at what SVD looks like <img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-rectangle1.png" />
-From the picture, we can find that matrice <span
-class="math inline">\(A\)</span> is decomposed to 3 components: <span
-class="math inline">\(U\)</span>, <span
-class="math inline">\(\Sigma\)</span> and <span
-class="math inline">\(V^{T}\)</span>. <span
-class="math inline">\(U\)</span> and<span
-class="math inline">\(V^T\)</span> are both sqaure matrices and <span
-class="math inline">\(\Sigma\)</span> has the same size as <span
-class="math inline">\(A\)</span>. Still, I want to emphasize that <span
-class="math inline">\(U\)</span> and<span
-class="math inline">\(V^T\)</span> are both unitary matrix, which means
-the Determinant of <span class="math inline">\(U\)</span> and <span
-class="math inline">\(V^T\)</span> is 1 and <span
-class="math inline">\(U^T=U^{-1}\quad V^T=V^{-1}\)</span>.</p>
-<h4 id="deduction">Deduction</h4>
-<p>In the Linear Transformation section, we can transform a vector to
-another coordinate axes. Assume you have a non-square matrice, and you
-want to transform A from vectors <span
-class="math inline">\(V=(\vec{v_1},
-\vec{v_2},\cdots,\vec{v_n})^T\)</span> to antoher coordinate axes which
-is <span class="math inline">\(U=(\vec{u_1},
-\vec{u_2},\cdots,\vec{u_n})^T\)</span>, the thing is, <span
-class="math inline">\(\vec{v_i}\)</span> and <span
-class="math inline">\(\vec{u_i}\)</span> have unit length, and all
-directions are perpendicular, that is, each of <span
-class="math inline">\(\vec{v_i}\)</span> are at right angles to other
-<span class="math inline">\(\vec{v_j}\)</span>, we name such matrices as
-orthogonal matrices. In addition, I need add a factor <span
-class="math inline">\(\Sigma=(\sigma_1,\sigma_2,
-\sigma_3,\cdots,\sigma_n)\)</span> which represent the times of each
-direction of <span class="math inline">\(\vec{u_i}\)</span>, i.e., We
-need transform A from <span class="math inline">\(V=(\vec{v_1},
-\vec{v_2},\cdots,\vec{v_n})^T\)</span> to <span
-class="math inline">\((\sigma_1 \vec{u_1},\sigma_2 \vec{u_2}, \sigma_3
-\vec{u_3},...\sigma_n \vec{u_n})^T\)</span>. From the picture below we
-can find that we want to transform from the circle coordinate axes to
-the ellipse axes. <img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-26-circle.png" />
-<span class="math display">\[\begin{align}
-\vec{v_1} \vec{v_2} \vec{v_3},...\vec{v_n} \qquad\rightarrow \qquad
-&amp;\vec{u_1},\vec{u_2},\vec{u_3},...\vec{u_n}\\
-&amp;\sigma_1,\sigma_2, \sigma_3,...\sigma_n
-\end{align}\]</span></p>
-<p>Recall that we can transform <span class="math inline">\(A\)</span>
-at every direction, then generate another direction as new coordinate
-direction. So we have <span class="math display">\[ A \vec{v_1}=\sigma_1
-\vec{u_1}\\
-A \vec{v_2}=\sigma_2 \vec{u_2}\\
-\vdots\\
-A \vec{v_j}=\sigma_j \vec{u_j}\]</span></p>
-<p><span class="math display">\[\begin{align}
-&amp;\begin{pmatrix}\\\\A\\\\\end{pmatrix}\begin{pmatrix}\\\\
-\vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\\\end{pmatrix}=\begin{pmatrix}\\\\
-\vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\\\ \end{pmatrix}\begin{pmatrix}
-\sigma_1 &amp; 0 &amp; \cdots &amp; 0 \\
-0 &amp; \sigma_2 &amp; \cdots &amp; 0 \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-0 &amp; 0 &amp; \cdots &amp; \sigma_n
-\end{pmatrix}\\
-&amp;C^{m\times n}\qquad\quad C^{n\times n}\qquad\qquad\qquad C^{m\times
-n}\qquad \qquad \qquad C^{n\times n}
-\end{align}\]</span> Which is <span class="math display">\[A_{m\times
-n}V_{n\times n} = \hat{U}_{m\times n}\hat{\Sigma}_{n\times
-n}\]</span></p>
-<p><span class="math display">\[\begin{align}
-A_{m\times n}V_{n\times n} &amp;= \hat{U}_{m\times
-n}\hat{\Sigma}_{n\times n}\\
-(A_{m\times n}V_{n\times n}V_{n\times n}^{-1} &amp;= \hat{U}_{m\times
-n}\hat{\Sigma}_{n\times n}V_{n\times n}^{-1}\\
-A_{m\times n}&amp;=\hat{U}_{m\times n}\hat{\Sigma}_{n\times n}V_{n\times
-n}^{-1}\\&amp;=\hat{U}_{m\times n}\hat{\Sigma}_{n\times n}V_{n\times
-n}^{T}
-\end{align}\]</span></p>
-<p>We need do something to the equation in order to continue the
-deduction. First we stretch matrice <span
-class="math inline">\(\hat{\Sigma}\)</span> vertically to <span
-class="math inline">\(m \times n\)</span> size. Then stretch <span
-class="math inline">\(\hat{U}\)</span> horizonly to <span
-class="math inline">\(m\times m\)</span>, we can set any value to the
-right entries. <img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-27-RSVD.png" /></p>
-<p>Due to the fact we need calculate <span
-class="math inline">\(U^{-1}\)</span> and <span
-class="math inline">\(V^{-1}\)</span>, the equation is adjusted to <span
-class="math display">\[A_{m\times n} = U_{m\times m}\Sigma_{m\times
-n}V^T_{n\times n}\]</span> For furture convenience, we need sort all
-<span class="math inline">\(\sigma s\)</span>, which means: <span
-class="math display">\[\sigma_1\geq\sigma_2\geq\sigma_3 \geq\cdots\geq
-\sigma_m\]</span>. #### How to calculate <span
-class="math inline">\(U\)</span>, <span
-class="math inline">\(V^T\)</span> and <span
-class="math inline">\(\Sigma\)</span> To Decompose matrice <span
-class="math inline">\(A\)</span>, we need calculate <span
-class="math inline">\(U\)</span>, <span
-class="math inline">\(V^T\)</span> and <span
-class="math inline">\(\Sigma\)</span>. Remember that <span
-class="math inline">\(U^T = U^{-1}\)</span> and <span
-class="math inline">\(V^T = V^{-1}\)</span>, we will use the property
-next.</p>
-<p><span class="math display">\[\begin{align}
-A &amp;= U\Sigma V^T\\
-\end{align}\]</span></p>
-<p><span class="math display">\[\begin{align}
-AA^T&amp;=U\Sigma V^T(U\Sigma V^T)^T\\
-&amp;=U\Sigma V^TV\Sigma^T U^T\\
-&amp;=U\Sigma V^{-1}V\Sigma^T U^T\\
-&amp;=U\Sigma I\Sigma^T U^T\\
-&amp;=U\Sigma^2 U^T
-\end{align}\]</span></p>
-<p><span class="math display">\[\begin{align}
-(AA^T)U&amp;=(U\Sigma^2 U^T)U\\
-&amp;=(U\Sigma^2 )U^{-1}U\\
-&amp;=U\Sigma^2
-\end{align}\]</span></p>
-<hr />
-<p><span class="math display">\[\begin{align}
-A^TA
-&amp;=(U\Sigma V^T)^TU\Sigma V^T\\
-&amp;=V\Sigma^T U^TU\Sigma V^T\\
-&amp;=V\Sigma^T U^TU\Sigma V^T\\
-&amp;=V\Sigma^T U^{-1}U\Sigma V^T\\
-&amp;=V\Sigma^T I\Sigma V^T\\
-&amp;=V\Sigma^2 V^T\\
-\end{align}\]</span></p>
-<p><span class="math display">\[\begin{align}(A^TA)V&amp;=(V\Sigma^2
-V^T)V\\
-&amp;=(V\Sigma^2)V^{-1}V\\
-&amp;=V\Sigma^2
-\end{align}\]</span></p>
-<h3 id="image-compression">Image Compression</h3>
-<p>Firstly, let's look at the process of compressing a picture, the left
-picture is original grayscale image. On the right, under different
-compress rate, we can see pictures after reproducing. Before compress,
-the size of the picture is 1775K byte. Then the picture is almost the
-same, when we compress which into 100K byte size, which means we can
-save 90% storage space <img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-29-image.gif" /></p>
-<p>To compress a piture, you just decompose the matrice through SVD,
-then instead of using the original <span
-class="math inline">\(U_{m\times m}\)</span>, <span
-class="math inline">\(\Sigma_{m\times n}\)</span> and <span
-class="math inline">\(U_{n\times n}\)</span>, we shrink every matrice to
-new size <span class="math inline">\(U_{m\times r}\)</span>, <span
-class="math inline">\(\Sigma_{r\times r}\)</span> and <span
-class="math inline">\(U_{r\times n}\)</span>. The final <span
-class="math inline">\(size(R)\)</span> is still <span
-class="math inline">\(m\times n\)</span>, but we abandon some entries
-since these entries are not so important than these we have reserved.
-<img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-30-rect.png" /></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%% octave: core code of svd compressions</span><br><span class="line">X = imread(filename);  </span><br><span class="line">[U S V] = svd(double(X));</span><br><span class="line">R = U(:,1:r)*S(1:r,1:r)*V(:,1:r)&#x27;;    </span><br></pre></td></tr></table></figure>
-<h3 id="summary">Summary</h3>
-<p>Today we have learned mathmatics backgroud on SVD, including linear
-transformation and EigenVector&amp;EigenVaule. Before SVD, we first
-talked about EigenValue Decomposition. Finally, Singular Vaule
-Decomposition is very easy to be deduced. In the last section, we took
-an example see how SVD be applied to image compression field.</p>
-<p>Now, it comes to the topic how to save our storage of a 32G iPhone7,
-the coclusion is obvious: using SVD compress image to shrink the size of
-our photos.</p>
-<h3 id="reference">Reference</h3>
-<ol type="1">
-<li>https://www.youtube.com/watch?v=EokL7E6o1AE</li>
-<li>https://www.youtube.com/watch?v=cOUTpqlX-Xs</li>
-<li>https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw</li>
-<li>https://yhatt.github.io/marp/</li>
-<li>https://itunes.apple.com/cn/itunes-u/linear-algebra/id354869137</li>
-<li>http://www.ams.org/samplings/feature-column/fcarc-svd</li>
-<li>https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html</li>
-</ol>
 
       
     </div>
