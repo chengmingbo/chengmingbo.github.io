@@ -458,11 +458,11 @@ entry would be -1, otherwise the entry would be zero. Specifically:</p>
 <p><span class="math display">\[\begin{equation}
     {B}_2[j, q] =
        \begin{cases}
-            1 &amp; \text{if } e_j \in \bigtriangleup_q \text{\quad
-with\quad same\quad direction}     \\
-            -1  &amp; \text{if } e_j \in \bigtriangleup_q \text{\quad
-with\quad opposite\quad direction} \\
-            0  &amp; \text{otherwise}
+1 &amp; \text{if } e_j \in \bigtriangleup_q \quad \text{with}\quad
+\text{same}\quad \text{direction}    \\
+-1  &amp; \text{if } e_j \in \bigtriangleup_q \quad \text{with}\quad
+\text{opposite}\quad \text{direction} \\
+        0  &amp; \text{otherwise}
        \end{cases}
 \end{equation}\]</span></p>
 <p>With the definition, we can obtian <span
@@ -910,7 +910,7 @@ class="math inline">\(Q=D^{-1/2}\)</span>, then <span
 class="math inline">\(Q^{-1}=S^{\top}D^{1/2}\)</span>. We therefore find
 the right and left eigenvector of <span class="math inline">\(P\)</span>
 such that: <span class="math display">\[\begin{equation}
-\psi = D^{-1/2}
+\psi = D^{-1/2} S \qquad
 \phi = S^{\top}D^{1/2}
 \end{equation}\]</span> In fact, columns of <span
 class="math inline">\(\psi\)</span> stores the spectral of the graph
