@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,9 +158,6 @@
           链接
         </div>
         <ul class="links-of-blogroll-list">
-            <li class="links-of-blogroll-item">
-              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
-            </li>
             <li class="links-of-blogroll-item">
               <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
             </li>
@@ -197,6 +194,492 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/05/21/decision-tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/05/21/decision-tree/" class="post-title-link" itemprop="url">Decision Tree (ID3)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-05-21 15:10:50" itemprop="dateCreated datePublished" datetime="2017-05-21T15:10:50+02:00">2017-05-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Alogorithm/" itemprop="url" rel="index"><span itemprop="name">Alogorithm</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="preface">Preface</h2>
+<p>In April 9th, 2017, incident occurred in United Airlines where crew
+of UA beat up a passenger and dragged him out of the plane before which
+was about to take off attracted attention all around the world. Many
+would gave out doubt: why a company being so rude to passengers can
+exist in this world? Actually, UA is going well is just because they
+have an extremely precise emergency situation procedure which is
+calculate by compute depending on big-data analysis. Computer can help
+us make decisions though, it has no emotions, which is effective in most
+cases, but can not be approved by our human beings. Let's take a look at
+how algorithm make a decision: <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-United%20Airlines.png" />
+It is a decision tree, which simply represents the procedure of how UA
+algorithm make the decision. First of all, before taking off, four
+employees of UA need fly from Chicago to Kentucky. Then the algorithm
+check if there is any seats left, if so, passengers were safe for the
+moment. But UA3411 was full, the algorithm began assessing the
+importance of employees or passengers. Obviously, the algorithm think
+crew is more important due to business consideration. Then how to choose
+who should be evicted from the plane. The algorithm was more complicated
+than the tree I drew, however, Asian or not was one of the criterion.
+But why? Because Asian are pushovers. The passenger agreed at first,
+however, when he heard that he had to wait for one day, he realized that
+he could not treat his patient, then he refused. Then he was beat up and
+dragged off the plane.</p>
+<p>As you have seen, it is a decision tree, which is similar to human
+decision-making process. Decision tree is a simple but powerful
+algorithm in machine learning. In fact, you are often using decision
+tree theory when making decision, for example <img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-07-homework.png" /></p>
+<h2 id="introduction">Introduction</h2>
+<p>Decision tree is a classification and regression algorithm, we build
+a tree through statistics. Today we only talk about how to classify
+dataset using Decision Tree. First we will introduce some information
+theory background knowledge, then we use iris data build a decision tree
+using IDC3 algorithm.</p>
+<h2 id="iris-data">Iris data</h2>
+<p><a target="_blank" rel="noopener" href="https://archive.ics.uci.edu/ml/datasets/Iris">Iris
+dataset</a> is a very famous dataset deposited on UCI machine learning
+repository, which described three kinds of iris. there are four columns
+corresponding for features as followed： * sepal length in cm * sepal
+width in cm * petal length in cm * petal width in cm</p>
+<p>The last column represents iris categories:</p>
+<ul>
+<li>Iris-setosa (n=50)</li>
+<li>Iris-versicolor (n=50)</li>
+<li>Iris-virginica (n=50)</li>
+</ul>
+<p>Here, our task is to use the dataset to train a model and generate a
+decision tree. During the process we need calculate some statistics
+values to decide how to generate a better one.</p>
+<p>The dataset is very small so that you can easily download it and take
+a look.</p>
+<h2 id="entropy-and-information-gain">Entropy and Information Gain</h2>
+<h4 id="entropy">Entropy</h4>
+<p>Before Decision Tree, I'd like to talk about some concept in
+Information Theory. Entropy is a concept from thermodynamics at first,
+C.E.Shannon introduced which into information theory which represent
+redundancy in 1948. It sounds a very strange concept. In fact, it is
+very easy to understand. For example, during the knockout stages in
+world Cup Games, there are 16 teams. Now I let you guess which team will
+win the champion which assume I know the answer, how many times do you
+need to get the outcome? First of all, you cut 16 teams to 8-8 parts,
+you asked me if the team in first 8 teams or the other. I told you that
+the team was in the other 8 teams. Then you cut the the 8 teams again,
+you ask me if the team is in the first 4 teams or the other, I told you
+that the champion would be in the first 4 teams, and so forth and so on.
+And how many times is the entropy of who wining the champion.</p>
+<p><span class="math display">\[ Entropy(champion) = {\rm log}_2^{16}=4
+\]</span></p>
+<p>That is, we can use 4 bits to represents which team will win the
+game. Clever you may ask why we divide team to two parts other than
+three or four parts. That is because we use binary represents the world
+in computer world. $ 2^4=16 $ means we can use 4 bit represents 16
+conditions. We can use entropy represent all information in this world.
+And if you have known that which team will win the campion, the entropy
+is 0, because, you do not need any more information to deduce the
+outcome.</p>
+<p>Entropy represents uncertainty indeed. Ancient China, we have to
+record history on bamboo slips, which demanded us decrease words. That
+means entropy of every single ancient Chinese character is higher than
+words we are saying today. That is, if we lost just some of these words,
+we would lose lots of stories. There are many songs starts with:"Yoo,
+yoo, check now", which barely offer us information, which means we can
+drop those words and interpret the these songs precisely as well. The
+entropy of these sentence is low.</p>
+<p>Assume <span class="math inline">\(X\)</span> is discrete random
+variable, the distribution is: <span
+class="math display">\[P(X=x_i)=p_i\]</span> then the entropy of X is:
+<span class="math display">\[H(X)=-\sum_{i=1}^{n}p_i {\rm log}_2
+p_i\]</span> where if p_0=0, we define 0log0 = 0.</p>
+<p>It seems that the equation has nothing to do with the entropy we have
+calculated in the champion example. Now let's calculate the example.
+First of all <span class="math inline">\(X\)</span> represents the
+probability of each team which would win the game. we assume all teams
+were at the same level, so we have <span
+class="math display">\[p(X=x_1)=p(X=x_2)=p(X=x_3)=\cdots =
+p(X=x_{16})=\frac{1}{16}\]</span> the entropy is <span
+class="math display">\[H(X)=-\sum_{i=1}^{16}\frac{1}{16}{\rm log}_2
+\frac{1}{16}=-16\times\frac{1}{16}\times {\rm log}_2
+{2^{-4}}=4\]</span></p>
+<p>Bingo, the the answer is same. In fact, if we know some more
+information, the entropy is lower than 4. for example, the probability
+of Germany is higher than some Asian teams. #### Entropy and Iris Data
+Now we calculate entropy of Iris Data which will be used to fit a
+decision tree in following sections. We concern about the
+categories(setosa, versicolor and virginica). Remember the equation of
+how to calculate entropy: <span
+class="math display">\[H(X)=-\sum_{i=1}^{n}p_i {\rm log}_2
+p_i\]</span></p>
+<p>Three kinds of flowers are all 50s, so the probability of each
+category is the same: <span
+class="math display">\[p_1=p_2=p_3=\frac{50}{50+50+50}=\frac{1}{3}\]</span>
+Then, the entropy is pretty easy to calculate <span
+class="math display">\[H(X)=-1\times (\frac{1}{3}{\rm
+log}_2\frac{1}{3}+\frac{1}{3}{\rm log}_2\frac{1}{3}+\frac{1}{3}{\rm
+log}_2\frac{1}{3})=1.5850\]</span> #### Conditional Entropy The meaning
+of Conditional Entropy is as its name. With respect with random
+variable<span class="math inline">\((X, Y)\)</span>, the joint
+distribution is <span class="math display">\[P(X=x_i, Y=y_j)=p_{ij},
+i=1,2,3\cdots m; j=1,2,3,\cdots n\]</span> Conditional Entropy H(Y|X)
+represents that given we have known random variable <span
+class="math inline">\(X\)</span> , the disorder or uncertainty of <span
+class="math inline">\(Y\)</span>. The definition is as followed: <span
+class="math display">\[H(Y|X)=\sum_{i=1}^m p_i H(Y|X=x_i)\]</span> Here,
+<span class="math inline">\(p_i=P(X=x_i)\)</span>.</p>
+<h4 id="conditional-entropy-and-iris-data">Conditional Entropy and Iris
+Data</h4>
+<p>We calculate some Conditional Entropy as examples. First of all, I
+random choose 15 columns of sepal length with respect to their
+categories. the result is as followed：</p>
+<table>
+<thead>
+<tr class="header">
+<th>No.</th>
+<th>sepal length in cm</th>
+<th>categories</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>5.90</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>7.20</td>
+<td>Iris-virginica</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>5.00</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>5.00</td>
+<td>Iris-setosa</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>5.90</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>5.70</td>
+<td>Iris-setosa</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>5.20</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>5.50</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>4.80</td>
+<td>Iris-setosa</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>4.60</td>
+<td>Iris-setosa</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>6.50</td>
+<td>Iris-versicolor</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>5.20</td>
+<td>Iris-setosa</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>7.70</td>
+<td>Iris-virginica</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>6.40</td>
+<td>Iris-virginica</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>6.00</td>
+<td>Iris-versicolor</td>
+</tr>
+</tbody>
+</table>
+<p>The octave code is <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%% octave</span><br><span class="line">[a,b,c,d, cate] = textread(&quot;iris.data&quot;, &quot;%f%f%f%f%s&quot;,&quot;delimiter&quot;, &quot;,&quot;);</span><br><span class="line"></span><br><span class="line">for i=1:15</span><br><span class="line">  x = floor(rand()*150);</span><br><span class="line">  fprintf(&#x27;%f %s\n&#x27;, a(x), cate&#123;x&#125; );</span><br><span class="line">end</span><br></pre></td></tr></table></figure> We just take this 15 items for
+examples, I assume that we divide sepal length into two parts: greater
+than mean and less than mean. The mean is <span
+class="math display">\[mean = (5.90+7.2+\cdots+6.00)/15 =
+5.7733\]</span> There are 8 elements less then 5.7733 and 7 bigger ones.
+That is</p>
+<table>
+<thead>
+<tr class="header">
+<th>mean</th>
+<th>idx of greater than mean</th>
+<th>idx of less than mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5.7733</td>
+<td>1,2,5,11,13,14,15</td>
+<td>3,4,6,7,8,9,10,12</td>
+</tr>
+</tbody>
+</table>
+<p>We let <span
+class="math inline">\(x_1=greater\)</span>(1,2,5,11,13,14,15), <span
+class="math inline">\(x_2=less\)</span>(3,4,6,7,8,9,10,12) then <span
+class="math display">\[H(Y|X=x_1)=-(p_1 {\rm log}_2 p_1 + p_2 {\rm
+log}_2 p_2 + p_3 {\rm log}_2 p_3)=\frac{4}{7}{\rm
+log}_2\frac{4}{7}+\frac{3}{7}{\rm log}_2\frac{3}{7}+0{\rm log}_2
+0=0.98523\]</span> <span class="math display">\[H(Y|X=x_2)=-(p_1 {\rm
+log}_2 p_1 + p_2 {\rm log}_2 p_2+p_3 {\rm log}_2 p_3)=\frac{3}{8}{\rm
+log}_2\frac{3}{8}+0{\rm log}_2 0+\frac{5}{8}{\rm
+log}_2\frac{5}{8}=0.95443\]</span></p>
+<p>The Conditional Entropy then is <span
+class="math display">\[H(Y|X)=\sum_{i=1}^{2}p_i
+H(Y|x_i)=\frac{7}{15}\times 0.98523+\frac{8}{15}\times
+0.95443=0.96880\]</span> #### Information Gain Just as its name implies,
+Information Gain means the information we have gained after adding some
+features. That is, we can vanish some uncertainty when we add some
+information. For example, I want you to guess an NBA player, the
+uncertainty is very high, however, there are only several persons in the
+list if I tell you that he is a Chinese. You gained information after
+knowing the Chinese feature to decrease the uncertainty. The calculation
+of Information Gain is <span class="math display">\[IG(Y, X)=
+H(Y)-H(Y|X)\]</span> Here, we want to decide <span
+class="math inline">\(Y\)</span> with feature <span
+class="math inline">\(X\)</span>. It is easy, just Entropy of <span
+class="math inline">\(Y\)</span> minus Conditional Entropy <span
+class="math inline">\(Y\)</span> given <span
+class="math inline">\(X\)</span>. The meaning is obvious too: <span
+class="math inline">\(H(Y)\)</span> represents uncertainty, <span
+class="math inline">\(H(Y|X)\)</span> represents uncertainty of <span
+class="math inline">\(Y\)</span> given <span
+class="math inline">\(X\)</span>, the difference is the Information
+Gain. #### Information Gain and Iris Data In this section, I will apply
+Information Gain equations to the whole Iris data. First of all, let
+<span class="math inline">\(Y\)</span> represent categories of iris, and
+<span class="math inline">\(X_1,X_2,X_3, X_4\)</span> represent sepal
+length, sepal width, petal length petal width respectively.</p>
+<p>We have computed that <span
+class="math inline">\(H(Y)=1.0986\)</span>, next, we will calculate 4
+Conditional Entropy <span
+class="math inline">\(H(Y|X_1),H(Y|X_2),H(Y|X_3),H(Y|X_4)\)</span>. In
+light of continuousness of <span class="math inline">\(X\)</span>, we
+divide them by mean of each feature. Then <span
+class="math display">\[\overline{X_1}=5.8433,\,\overline{X_2}=3.0540,\,\overline{X_3}=3.7587,\,\overline{X_4}=1.1987\]</span></p>
+<p><span class="math display">\[H(Y|X_1)=-\sum_{i=1}^3 p_i
+H(Y|X_{1i})=-(\frac{70}{150}(\frac{0}{70}{\rm
+log}_2\frac{0}{70}+\frac{26}{70}{\rm log}_2\frac{26}{70}
++\frac{44}{70}{\rm log}_2\frac{44}{70})+\frac{80}{150}(\frac{50}{80}{\rm
+log}_2\frac{50}{80}+\frac{24}{80}{\rm
+log}_2\frac{24}{80}+\frac{6}{80}{\rm
+log}_2\frac{6}{80}))=1.09757\]</span></p>
+<p><span class="math display">\[H(Y|X_2)=-\sum_{i=1}^3 p_i
+H(Y|X_{2i})=-(\frac{67}{150}(\frac{42}{67}{\rm
+log}_2\frac{42}{67}+\frac{8}{67}{\rm
+log}_2\frac{8}{67}+\frac{17}{67}{\rm
+log}_2\frac{17}{67}+\frac{83}{150}(\frac{8}{83}{\rm
+log}_2\frac{8}{83}+\frac{42}{83}{\rm
+log}_2\frac{42}{83}+\frac{33}{83}{\rm
+log}_2\frac{33}{83}))=1.32433\]</span></p>
+<p><span class="math display">\[H(Y|X_3)=-\sum_{i=1}^3 p_i
+H(Y|X_{3i})=-(\frac{93}{150}(\frac{0}{93}{\rm
+log}_2\frac{0}{93}+\frac{43}{93}{\rm
+log}_2\frac{43}{93}+\frac{50}{93}{\rm
+log}_2\frac{50}{93}+\frac{57}{150}(\frac{50}{57}{\rm
+log}_2\frac{50}{57}+\frac{7}{57}{\rm log}_2\frac{7}{57}+\frac{0}{57}{\rm
+log}_2\frac{0}{57}))=0.821667\]</span></p>
+<p><span class="math display">\[H(Y|X_4)=-\sum_{i=1}^3 p_i
+H(Y|X_{4i})=-(\frac{90}{150}(\frac{0}{90}{\rm
+log}_2\frac{0}{90}+\frac{40}{90}{\rm
+log}_2\frac{40}{90}+\frac{50}{90}{\rm
+log}_2\frac{50}{90}+\frac{60}{150}(\frac{50}{60}{\rm
+log}_2\frac{50}{60}+\frac{10}{60}{\rm
+log}_2\frac{10}{60}+\frac{0}{60}{\rm log}_2\frac{0}{60}))=0.854655
+\]</span> Information Gains is easy to get <span
+class="math display">\[IG(Y,
+X_1)=H(Y)-H(Y|X_1)=1.5850-1.09757=0.487427\]</span></p>
+<p><span class="math display">\[IG(Y,
+X_2)=H(Y)-H(Y|X_2)=1.5850-1.32433=0.260669\]</span></p>
+<p><span class="math display">\[IG(Y,
+X_3)=H(Y)-H(Y|X_3)=1.5850-0.821667=0.763333\]</span></p>
+<p><span class="math display">\[IG(Y,
+X_4)=H(Y)-H(Y|X_4)=1.5850-0.854655=0.730345\]</span> By now, we find
+that <span class="math inline">\(IG(Y, X_3)\)</span> is bigger than
+others, which means feature <span class="math inline">\(X_3\)</span>
+supplies more information.</p>
+<h2 id="id3iterative-dichotomiser-3">ID3(Iterative Dichotomiser 3)</h2>
+<p>ID3 algorithm was developed by Ross Quinlan in 1986, which is a very
+classic algorithm as well as C4.5 and CART. We First apply Information
+Gain of each feature with respect to iris data. Then to choose the
+maximum to divide data into 2 parts. For each part we apply Information
+Gain recursively until we put all parents data to one node. Now that we
+have know Information Gain from the last section, obviously we choose X3
+as the feature dividing data into 2 parts in the first place.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-17-2.png" /></p>
+<p>Let's take a look at the first cut using feature <span
+class="math inline">\(X_3\)</span>. We have 150 items at first, after
+comparing if <span class="math inline">\(X_3&gt;3.7587\)</span>, we
+divide data into two parts, one has 93 items, the other got 57. From the
+data, we know that there is no setosa in node B, meanwhile, no virginica
+in node C, which means that this feature is very good for split data due
+to exclude setosa and virginica.</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Node B</th>
+<th>Node C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>setosa</td>
+<td>0</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td>versicolor</td>
+<td>43</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>virginica</td>
+<td>50</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>The end condition of the algorithm is decided by IG. When IG is less
+then some threshold or if there is only one category left, we can end
+the algorithm. If IG less than some value(e.g. 0.01) and more than one
+category left simultaneously, we have to choose a final category to be
+the leaf, the rule is to set the category having samples more than the
+others.</p>
+<p>Take Node H for example, we set IG threshold to 0.01 in the first
+place. Then we calculate the Information Gain for each feature, the
+biggest IG from feature 2(sepal width in cm), which is 0.003204 and less
+than 0.01. So we have to set H as a leaf. There are 0 Iris-setosa, 25
+Iris-versicolor and 44 Iris-virginica in the leaf, so we set the bigger
+one(i.e. Iris-virginica) to the leaf.</p>
+<p><img
+src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-05-19-2.png" /></p>
+<h2 id="summary">Summary</h2>
+<p>Today we have talked about what is decision tree algorithm. Firstly,
+I introduce three background concept Entropy, Conditional Entropy and
+Information Gain. Next we apply ID3 algorithm to Iris data to build a
+decision.</p>
+<p>One of the most significant advantages of decision tree is that we
+can explain the result. If the algorithm decided UA should beat the
+their passengers, they could trace the tree to find the path of reason
+chain. It is very useful to tell consumers why we recommend them
+something, under such circumstance, we can use decision tree to train a
+model.</p>
+<p>There is a shortcoming that Information Gain tends to use feature
+with more values. In order to resolve the problem, Ross Quinlan improved
+the algorithm through Information Gain Rate Rather than IG. <a
+target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Leo_Breiman">Breiman</a> introduced
+CART algorithm subsequently, which can be applied to classification as
+well as regression. Recently, Scientists have developed more powerful
+algorithm such as Random Forest and Gradient Boosting Decision Tree
+etc.</p>
+<h2 id="reference">Reference</h2>
+<ol type="1">
+<li>《统计学习方法》，李航</li>
+<li>《数学之美》，吴军</li>
+<li>http://www.shogun-toolbox.org/static/notebook/current/DecisionTrees.html</li>
+<li>https://en.wikipedia.org/</li>
+</ol>
+<h2 id="appendix-code">Appendix code</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">%% octave main function file</span><br><span class="line">%% iris data dowload link: https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data</span><br><span class="line">[a,b,c,d, cate] = textread(&quot;iris.data&quot;, &quot;%f%f%f%f%s&quot;,&quot;delimiter&quot;, &quot;,&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">%for i=1:15</span><br><span class="line">%	x = floor(rand()*150);</span><br><span class="line">%	fprintf(&#x27;%f %s\n&#x27;, a(x), cate&#123;x&#125; );</span><br><span class="line">%end;</span><br><span class="line"></span><br><span class="line">features = [a, b, c, d];</span><br><span class="line">for i=1:length(features(1, :))</span><br><span class="line">	col = features(:, i);</span><br><span class="line">	me = mean(col);</span><br><span class="line">	disp(me);</span><br><span class="line">	feat(i).greater = find(col &gt; me);</span><br><span class="line">	feat(i).less = find(col &lt;= me);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">total = (1:150)&#x27;;</span><br><span class="line">decision(feat, length(features(1, :)), cate, total);</span><br><span class="line">fprintf(&#x27;\n&#x27;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">%% octave: decsion tree file</span><br><span class="line">function decision(feat, feat_size, cate, total)</span><br><span class="line">	if length(total) == 0</span><br><span class="line">		return</span><br><span class="line">	end</span><br><span class="line">	fprintf(&#x27;(-%d-)&#x27;, length(total));</span><br><span class="line">	%plogp = @(x)[x*log2(x)];</span><br><span class="line">	function e = plogp(pi)</span><br><span class="line">		if pi == 0</span><br><span class="line">			e = 0;</span><br><span class="line">		else</span><br><span class="line">			e = pi*log2(pi);</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	function d = div(a, b)</span><br><span class="line">		if b == 0</span><br><span class="line">			d = 0;</span><br><span class="line">		else</span><br><span class="line">			d = a/b;</span><br><span class="line">		end</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	debug = 0;</span><br><span class="line"></span><br><span class="line">	function m = maxc(cate, cates, total)</span><br><span class="line">		maxidx = 1;</span><br><span class="line">		max_c = 0;</span><br><span class="line">		for i=1:length(cates)</span><br><span class="line">			c =find(strcmp(cate, cates&#123;i&#125;));</span><br><span class="line">			cl = length(intersect(c, total));</span><br><span class="line">			if debug == 1 fprintf(&#x27;\n%d##%d  %s###&#x27;,i, cl, char(cates&#123;i&#125;)) end</span><br><span class="line">			%if (debug == 1 &amp;&amp; cl &lt;10 &amp;&amp; cl &gt;0) disp(intersect(c, total)&#x27;) end</span><br><span class="line">			if cl &gt; max_c</span><br><span class="line">				max_c = cl;</span><br><span class="line">				maxidx = i;</span><br><span class="line">			end</span><br><span class="line">		end</span><br><span class="line">		if debug == 1 fprintf(&#x27;\n****%d    %d******\n&#x27;, maxidx, max_c) end</span><br><span class="line">		%m = cates(maxidx);</span><br><span class="line">		m = maxidx;</span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	% compute h(y)</span><br><span class="line">	cates = unique(cate);</span><br><span class="line">	hx = 0;</span><br><span class="line">	for i = 1:length(cates)</span><br><span class="line">		c = find(strcmp(cate, cates&#123;i&#125;));</span><br><span class="line">		rc = intersect(c, total);</span><br><span class="line">		hx -= plogp(length(rc)/length(total));</span><br><span class="line">	end</span><br><span class="line">	%fprintf(&#x27;hx = %f\n&#x27;, hx)			</span><br><span class="line">	% compute h(y|x)</span><br><span class="line">	max_feature = 1;</span><br><span class="line">	max_ig = 0;</span><br><span class="line"></span><br><span class="line">	max_left = intersect(feat(1).greater, total);</span><br><span class="line">	max_right = intersect(feat(1).less, total);</span><br><span class="line">	for i=1:feat_size</span><br><span class="line">		hxh = 0;</span><br><span class="line">		hxl = 0;</span><br><span class="line">		feat_greater = intersect(feat(i).greater, total);</span><br><span class="line">		feat_less = intersect(feat(i).less, total);</span><br><span class="line">		ge = length(feat_greater);</span><br><span class="line">		le = length(feat_less);</span><br><span class="line"></span><br><span class="line">		if (ge+le) == 0</span><br><span class="line">			continue</span><br><span class="line">		end</span><br><span class="line"></span><br><span class="line">		for j = 1:length(cates);</span><br><span class="line">			c = find(strcmp(cate, cates&#123;j&#125;));</span><br><span class="line">			xh = length(intersect(feat_greater, c));</span><br><span class="line">			xl = length(intersect(feat_less, c));</span><br><span class="line">			hxh -= plogp(div(xh, ge));</span><br><span class="line">			hxl -= plogp(div(xl, le));</span><br><span class="line">		end</span><br><span class="line">		% compute hx - h(y|x)</span><br><span class="line">		hxy = (ge/(ge+le))*hxh + ((le)/(ge+le))*hxl;</span><br><span class="line">		ig = hx - hxy;</span><br><span class="line"></span><br><span class="line">		if ig &gt; max_ig</span><br><span class="line">			max_ig = ig;</span><br><span class="line">			max_feature = i;</span><br><span class="line">			max_left= feat_less;</span><br><span class="line">			max_right = feat_greater;</span><br><span class="line">		end</span><br><span class="line"></span><br><span class="line">	end</span><br><span class="line"></span><br><span class="line">	left = max_left;</span><br><span class="line">	right = max_right;</span><br><span class="line">	%fprintf(&#x27;feature:ig  %d %f %d %d ------ \n&#x27;, max_feature, max_ig, length(left), length(right));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	if debug == 1 printf(&quot;\033[0;32;1m-ig--%f \033[0m&quot;,  max_ig); end</span><br><span class="line">	if(max_ig &lt; 0.01)</span><br><span class="line">		%fprintf(&#x27;&lt;%s&gt;&#x27;, char(maxc(cate, cates, total)))</span><br><span class="line">		printf(&quot;\033[0;31;1m&lt;%d&gt;\033[0m&quot;,  maxc(cate, cates, total));</span><br><span class="line">		return</span><br><span class="line">	end</span><br><span class="line">	fprintf(&quot;\033[0;34;1m#%d \033[0m&quot;,  max_feature);</span><br><span class="line">	fprintf(&#x27;&#123;&#x27; )</span><br><span class="line">	decision(feat, feat_size, cate, left);</span><br><span class="line">	decision(feat, feat_size, cate, right);</span><br><span class="line">	fprintf(&#x27;&#125;&#x27;)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -286,30 +769,30 @@ mulplication of <span class="math inline">\(A\)</span> and <span
 class="math inline">\(\vec{x}\)</span></p>
 <p><span
 class="math display">\[\vec{x}=\begin{pmatrix}1\\3\end{pmatrix}\qquad
-A=\begin{pmatrix}2 &amp; 1 \\\\ -1 &amp; 1
+A=\begin{pmatrix}2 &amp; 1 \\ -1 &amp; 1
 \end{pmatrix}\qquad\vec{y}=A\vec{x}\]</span></p>
 <p>But when we do this multiplication, what happens? Acutually, when we
 multiply <span class="math inline">\(A\)</span> and <span
 class="math inline">\(\vec{x}\)</span>, we are changing the coordinate
 axes of the vector <span class="math inline">\(x\)</span> to another new
 axes. Begin with a simpler example, we let</p>
-<p><span class="math display">\[A=\begin{pmatrix}1 &amp; 0\\\\ 0
+<p><span class="math display">\[A=\begin{pmatrix}1 &amp; 0\\ 0
 &amp;1\end{pmatrix}\]</span></p>
 <p>then we have <span class="math display">\[A\vec{x}=\begin{pmatrix}1
-&amp; 0\\\\ 0
+&amp; 0\\ 0
 &amp;1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=\begin{pmatrix}1\\3\end{pmatrix}\]</span></p>
 <p>You may have noticed that we can always get the same <span
 class="math inline">\(\vec{x}\)</span> after left multiply by A. In this
 case, we use coordinate axes <span
-class="math inline">\(i=\begin{pmatrix}1 \\\\ 0\end{pmatrix}\)</span>
-and <span class="math inline">\(j=\begin{pmatrix}0 \\\\
+class="math inline">\(i=\begin{pmatrix}1 \\ 0\end{pmatrix}\)</span> and
+<span class="math inline">\(j=\begin{pmatrix}0 \\
 1\end{pmatrix}\)</span> as the figure below demonstrated. That is, if we
 want to represent <span
 class="math inline">\(\begin{pmatrix}1\\3\end{pmatrix}\)</span> under
 the coordination, we can calculate the transformation as followed:</p>
 <p><span class="math display">\[\begin{align} A\vec{x}=1\cdot i + 3\cdot
-j = 1\cdot \begin{pmatrix}1 \\\\ 0\end{pmatrix} + 3\cdot
-\begin{pmatrix}0 \\\\
+j = 1\cdot \begin{pmatrix}1 \\ 0\end{pmatrix} + 3\cdot \begin{pmatrix}0
+\\
 1\end{pmatrix}=\begin{pmatrix}1\\3\end{pmatrix}\end{align}\]</span></p>
 <p><img
 src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-073041.jpg" /></p>
@@ -319,11 +802,11 @@ vector from one's head to the other's tail. Our example, we compute
 <span class="math inline">\(A\vec{x}\)</span> means add two vector(green
 imaginary lines) up. And the answer is still <span
 class="math inline">\(\begin{pmatrix}1\\3\end{pmatrix}\)</span>.</p>
-<p>Now we change <span class="math inline">\(i=\begin{pmatrix}2\\\\
+<p>Now we change <span class="math inline">\(i=\begin{pmatrix}2\\
 -1\end{pmatrix}\)</span> and <span
 class="math inline">\(j=\begin{pmatrix}1\\1\end{pmatrix}\)</span> as the
 coordinate axes(the red vectors), which means <span
-class="math inline">\(A=\begin{pmatrix}2 &amp; 1 \\\\ -1 &amp;
+class="math inline">\(A=\begin{pmatrix}2 &amp; 1 \\ -1 &amp;
 1\end{pmatrix}\)</span>. I put vectors(black ones) to this figure as
 well. We can see what happens when we change a new coordinate axes.</p>
 <p>First of all, we multiply <span class="math inline">\(j\)</span> by
@@ -335,9 +818,9 @@ coordination of <span class="math inline">\(1\cdot i+3\cdot
 j\)</span>(the blue one). We now verify the result using mutiplication
 of <span class="math inline">\(A\)</span> and <span
 class="math inline">\(\vec{x}\)</span>:</p>
-<p><span class="math display">\[A\vec{x}=\begin{pmatrix}2 &amp; 1 \\\\
--1 &amp; 1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=1\cdot
-\begin{pmatrix}2 \\\\ -1\end{pmatrix} + 3\cdot  \begin{pmatrix}1 \\\\
+<p><span class="math display">\[A\vec{x}=\begin{pmatrix}2 &amp; 1 \\ -1
+&amp; 1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=1\cdot
+\begin{pmatrix}2 \\ -1\end{pmatrix} + 3\cdot  \begin{pmatrix}1 \\
 1\end{pmatrix}=\begin{pmatrix}5\\2\end{pmatrix}\]</span></p>
 <p><img
 src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-013710.jpg" />
@@ -351,15 +834,15 @@ multiplication is tranform the vector from one coordination to
 another.</p>
 <h4 id="exercise">Exercise</h4>
 <ol type="1">
-<li><span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\\\ 3 &amp;
+<li><span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\ 3 &amp;
 4\end{pmatrix}\)</span>, draw the picture to stretch and rotate <span
 class="math inline">\(x=\begin{pmatrix}1\\3\end{pmatrix}\)</span>.</li>
 <li>Find a <span class="math inline">\(A\)</span> matrix to rotate <span
 class="math inline">\(\vec{x}=\begin{pmatrix}1\\3\end{pmatrix}\)</span>
 to <span class="math inline">\(90^{\circ}\)</span> and <span
 class="math inline">\(180^{\circ}\)</span>.</li>
-<li>what if <span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\\\
-2 &amp; 4\end{pmatrix}\)</span>.</li>
+<li>what if <span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\ 2
+&amp; 4\end{pmatrix}\)</span>.</li>
 </ol>
 <h3 id="eigenvector-and-eigenvalue">EigenVector and EigenValue</h3>
 <p>EigenVector and EigenValue is an extremely important concept in
@@ -383,44 +866,43 @@ class="math inline">\(A\)</span> to stretch and rotate the vector in
 order to represent the vector in a new coordinate axes. However, there
 are some vectors for <span class="math inline">\(A\)</span>, they can
 only be stretched but can not be rotated. Assume <span
-class="math inline">\(A=\begin{pmatrix}3 &amp; 1 \\\\ 0 &amp;
+class="math inline">\(A=\begin{pmatrix}3 &amp; 1 \\ 0 &amp;
 2\end{pmatrix}\)</span>, let <span
-class="math inline">\(\vec{x}=\begin{pmatrix}1 \\\\
+class="math inline">\(\vec{x}=\begin{pmatrix}1 \\
 -1\end{pmatrix}\)</span>. When we multiply <span
 class="math inline">\(A\)</span> and <span
 class="math inline">\(\vec{x}\)</span></p>
-<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\\\ 0
-&amp; 2\end{pmatrix}\begin{pmatrix}1 \\\\
--1\end{pmatrix}=\begin{pmatrix}2 \\\\ -2\end{pmatrix}=2\cdot
-\begin{pmatrix}1 \\\\ -1\end{pmatrix}\]</span></p>
+<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\ 0
+&amp; 2\end{pmatrix}\begin{pmatrix}1 \\ -1\end{pmatrix}=\begin{pmatrix}2
+\\ -2\end{pmatrix}=2\cdot \begin{pmatrix}1 \\
+-1\end{pmatrix}\]</span></p>
 <p>It turns out we can choose any vector along <span
 class="math inline">\(\vec{x}\)</span>, the outcome is the same, for
 example:</p>
-<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\\\ 0
-&amp; 2\end{pmatrix}\begin{pmatrix}-3 \\\\
-3\end{pmatrix}=\begin{pmatrix}-6 \\\\ -6\end{pmatrix}=2\cdot
-\begin{pmatrix}-3 \\\\ 3\end{pmatrix}\]</span></p>
+<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\ 0
+&amp; 2\end{pmatrix}\begin{pmatrix}-3 \\
+3\end{pmatrix}=\begin{pmatrix}-6 \\ -6\end{pmatrix}=2\cdot
+\begin{pmatrix}-3 \\ 3\end{pmatrix}\]</span></p>
 <p><img
 src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-052135.jpg" /></p>
-<p>We name vectors like <span class="math inline">\(\begin{pmatrix}-3
-\\\\ 3\end{pmatrix}\)</span> and <span
-class="math inline">\(\begin{pmatrix}1 \\\\ -1\end{pmatrix}\)</span>
-<strong>EigenVectors</strong> and 2 the conresponse
-<strong>EigenValues</strong>. In practice, we usually choose unit
-eigenvectors(length equals to 1) given that there are innumerable
+<p>We name vectors like <span class="math inline">\(\begin{pmatrix}-3 \\
+3\end{pmatrix}\)</span> and <span class="math inline">\(\begin{pmatrix}1
+\\ -1\end{pmatrix}\)</span> <strong>EigenVectors</strong> and 2 the
+conresponse <strong>EigenValues</strong>. In practice, we usually choose
+unit eigenvectors(length equals to 1) given that there are innumerable
 EigenVectors along the line.</p>
 <p>I won't cover how to compute these vectors and vaules and just list
 the answer as followed</p>
 <p><span class="math display">\[\begin{align}&amp;\begin{pmatrix}3 &amp;
 1 \\0&amp; 2\end{pmatrix}
-\begin{pmatrix}{-1}/{\sqrt(2)} \\\\ {1}/{\sqrt(2)}\end{pmatrix}=
-2\begin{pmatrix}{-1}/{\sqrt(2)} \\\\ {1}/{\sqrt(2)}\end{pmatrix}
-\qquad\qquad\vec{x_1}=\begin{pmatrix}{-1}/{\sqrt(2)} \\\\
+\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix}=
+2\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix}
+\qquad\qquad\vec{x_1}=\begin{pmatrix}{-1}/{\sqrt(2)} \\
 {1}/{\sqrt(2)}\end{pmatrix} &amp;\lambda_1=2\\
 &amp;\begin{pmatrix}3 &amp; 1 \\0&amp; 2\end{pmatrix}
-\begin{pmatrix}1 \\\\ 0\end{pmatrix}\qquad=\qquad
-3\begin{pmatrix}1 \\\\
-0\end{pmatrix}\qquad\qquad\quad\,\,\,\vec{x_2}=\begin{pmatrix}1 \\\\
+\begin{pmatrix}1 \\ 0\end{pmatrix}\qquad=\qquad
+3\begin{pmatrix}1 \\
+0\end{pmatrix}\qquad\qquad\quad\,\,\,\vec{x_2}=\begin{pmatrix}1 \\
 0\end{pmatrix}
 &amp;\lambda_2=3
 \end{align}\]</span> Notice that <span
@@ -435,7 +917,7 @@ class="math display">\[AQ=\begin{pmatrix}3 &amp; 1 \\0&amp;
 {1}/{\sqrt(2)}&amp;0
 \end{pmatrix}=
 \begin{pmatrix}
-{-1}/{\sqrt(2)}&amp;1 \\\\ {1}/{\sqrt(2)}&amp;0
+{-1}/{\sqrt(2)}&amp;1 \\ {1}/{\sqrt(2)}&amp;0
 \end{pmatrix}
 \begin{pmatrix}
 2 &amp; 0\\
@@ -479,7 +961,7 @@ AAA\cdots A &amp;= Q\Lambda Q^{-1}Q\Lambda Q^{-1}Q\Lambda Q^{-1}\cdots
 Q\Lambda Q^{-1}=Q\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \\0 &amp;
 2\end{pmatrix}Q^{-1}\\
 AAA\cdots A &amp;=Q\Lambda\Lambda\cdots \Lambda Q^{-1}=
-Q\begin{pmatrix}2^{1000} &amp; 0 \\\\0 &amp; 3^{1000}\end{pmatrix}Q^{-1}
+Q\begin{pmatrix}2^{1000} &amp; 0 \\0 &amp; 3^{1000}\end{pmatrix}Q^{-1}
 \end{align}\]</span> The calculation is extremely simple using EVD.</p>
 <h4 id="exercise-1">Exercise</h4>
 <ol type="1">
@@ -547,9 +1029,9 @@ A \vec{v_2}=\sigma_2 \vec{u_2}\\
 \vdots\\
 A \vec{v_j}=\sigma_j \vec{u_j}\]</span></p>
 <p><span class="math display">\[\begin{align}
-&amp;\begin{pmatrix}\\\\A\\\\\end{pmatrix}\begin{pmatrix}\\\\
-\vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\\\end{pmatrix}=\begin{pmatrix}\\\\
-\vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\\\ \end{pmatrix}\begin{pmatrix}
+&amp;\begin{pmatrix}\\A\\\end{pmatrix}\begin{pmatrix}\\
+\vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\end{pmatrix}=\begin{pmatrix}\\
+\vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\ \end{pmatrix}\begin{pmatrix}
 \sigma_1 &amp; 0 &amp; \cdots &amp; 0 \\
 0 &amp; \sigma_2 &amp; \cdots &amp; 0 \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\

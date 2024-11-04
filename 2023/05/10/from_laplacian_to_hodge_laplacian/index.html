@@ -28,7 +28,7 @@
 <meta property="og:description" content="Preface Graph laplacian is familiar to computation science researcher, with which we can perform spectral analysis such as diffusion map, eigenmap or spectral clustering. Here, we discuss how to gener">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-10T19:17:56.000Z">
-<meta property="article:modified_time" content="2024-11-03T08:47:25.000Z">
+<meta property="article:modified_time" content="2024-11-03T13:46:04.000Z">
 <meta property="article:author" content="Mingbo Cheng">
 <meta property="article:tag" content="Simplicial-complex">
 <meta name="twitter:card" content="summary">
@@ -132,7 +132,7 @@ laplacian</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" hr
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -163,9 +163,6 @@ laplacian</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" hr
           链接
         </div>
         <ul class="links-of-blogroll-list">
-            <li class="links-of-blogroll-item">
-              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
-            </li>
             <li class="links-of-blogroll-item">
               <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
             </li>
@@ -414,7 +411,7 @@ to take a guess: Is the zero eigenvaule still there, or if so, how many
 zero eigenvaules?</p>
 <p>Now, let's perform the eigenvaule decomposition that: <span
 class="math display">\[\begin{equation}
-L = Q\Lambda Q^\top
+L_0 = Q\Lambda Q^\top
 \end{equation}\]</span></p>
 <p>Interestingly, the top 3 eigenvalues are all zero and we also have 3
 connected components in the graph. Is this a coincidence or a property
@@ -466,10 +463,10 @@ entry would be -1, otherwise the entry would be zero. Specifically:</p>
 <p><span class="math display">\[\begin{equation}
     {B}_2[j, q] =
        \begin{cases}
-            1 &amp; \text{if } e_j \in \bigtriangleup_q \text{ with same
-direction}     \\
-            -1  &amp; \text{if } e_j \in \bigtriangleup_q \text{ with
-opposite direction} \\
+            1 &amp; \text{if } e_j \in \bigtriangleup_q \text{\quad
+with\quad same\quad direction}     \\
+            -1  &amp; \text{if } e_j \in \bigtriangleup_q \text{\quad
+with\quad opposite\quad direction} \\
             0  &amp; \text{otherwise}
        \end{cases}
 \end{equation}\]</span></p>

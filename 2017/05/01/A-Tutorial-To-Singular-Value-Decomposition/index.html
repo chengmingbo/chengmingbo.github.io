@@ -28,7 +28,7 @@
 <meta property="og:description" content="Preface Under some circumstance, we want to compress data to save storage space. For example, when iPhone7 was released, many were trapped in a dilemma: Should I buy a 32G iPhone without enough free s">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-05-01T19:49:00.000Z">
-<meta property="article:modified_time" content="2019-03-17T16:28:23.000Z">
+<meta property="article:modified_time" content="2024-11-03T13:52:54.000Z">
 <meta property="article:author" content="Mingbo Cheng">
 <meta name="twitter:card" content="summary">
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,9 +161,6 @@
           链接
         </div>
         <ul class="links-of-blogroll-list">
-            <li class="links-of-blogroll-item">
-              <a href="http://www.flickering.cn/" title="http:&#x2F;&#x2F;www.flickering.cn&#x2F;" rel="noopener" target="_blank">flickering</a>
-            </li>
             <li class="links-of-blogroll-item">
               <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
             </li>
@@ -289,30 +286,30 @@ mulplication of <span class="math inline">\(A\)</span> and <span
 class="math inline">\(\vec{x}\)</span></p>
 <p><span
 class="math display">\[\vec{x}=\begin{pmatrix}1\\3\end{pmatrix}\qquad
-A=\begin{pmatrix}2 &amp; 1 \\\\ -1 &amp; 1
+A=\begin{pmatrix}2 &amp; 1 \\ -1 &amp; 1
 \end{pmatrix}\qquad\vec{y}=A\vec{x}\]</span></p>
 <p>But when we do this multiplication, what happens? Acutually, when we
 multiply <span class="math inline">\(A\)</span> and <span
 class="math inline">\(\vec{x}\)</span>, we are changing the coordinate
 axes of the vector <span class="math inline">\(x\)</span> to another new
 axes. Begin with a simpler example, we let</p>
-<p><span class="math display">\[A=\begin{pmatrix}1 &amp; 0\\\\ 0
+<p><span class="math display">\[A=\begin{pmatrix}1 &amp; 0\\ 0
 &amp;1\end{pmatrix}\]</span></p>
 <p>then we have <span class="math display">\[A\vec{x}=\begin{pmatrix}1
-&amp; 0\\\\ 0
+&amp; 0\\ 0
 &amp;1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=\begin{pmatrix}1\\3\end{pmatrix}\]</span></p>
 <p>You may have noticed that we can always get the same <span
 class="math inline">\(\vec{x}\)</span> after left multiply by A. In this
 case, we use coordinate axes <span
-class="math inline">\(i=\begin{pmatrix}1 \\\\ 0\end{pmatrix}\)</span>
-and <span class="math inline">\(j=\begin{pmatrix}0 \\\\
+class="math inline">\(i=\begin{pmatrix}1 \\ 0\end{pmatrix}\)</span> and
+<span class="math inline">\(j=\begin{pmatrix}0 \\
 1\end{pmatrix}\)</span> as the figure below demonstrated. That is, if we
 want to represent <span
 class="math inline">\(\begin{pmatrix}1\\3\end{pmatrix}\)</span> under
 the coordination, we can calculate the transformation as followed:</p>
 <p><span class="math display">\[\begin{align} A\vec{x}=1\cdot i + 3\cdot
-j = 1\cdot \begin{pmatrix}1 \\\\ 0\end{pmatrix} + 3\cdot
-\begin{pmatrix}0 \\\\
+j = 1\cdot \begin{pmatrix}1 \\ 0\end{pmatrix} + 3\cdot \begin{pmatrix}0
+\\
 1\end{pmatrix}=\begin{pmatrix}1\\3\end{pmatrix}\end{align}\]</span></p>
 <p><img
 src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-073041.jpg" /></p>
@@ -322,11 +319,11 @@ vector from one's head to the other's tail. Our example, we compute
 <span class="math inline">\(A\vec{x}\)</span> means add two vector(green
 imaginary lines) up. And the answer is still <span
 class="math inline">\(\begin{pmatrix}1\\3\end{pmatrix}\)</span>.</p>
-<p>Now we change <span class="math inline">\(i=\begin{pmatrix}2\\\\
+<p>Now we change <span class="math inline">\(i=\begin{pmatrix}2\\
 -1\end{pmatrix}\)</span> and <span
 class="math inline">\(j=\begin{pmatrix}1\\1\end{pmatrix}\)</span> as the
 coordinate axes(the red vectors), which means <span
-class="math inline">\(A=\begin{pmatrix}2 &amp; 1 \\\\ -1 &amp;
+class="math inline">\(A=\begin{pmatrix}2 &amp; 1 \\ -1 &amp;
 1\end{pmatrix}\)</span>. I put vectors(black ones) to this figure as
 well. We can see what happens when we change a new coordinate axes.</p>
 <p>First of all, we multiply <span class="math inline">\(j\)</span> by
@@ -338,9 +335,9 @@ coordination of <span class="math inline">\(1\cdot i+3\cdot
 j\)</span>(the blue one). We now verify the result using mutiplication
 of <span class="math inline">\(A\)</span> and <span
 class="math inline">\(\vec{x}\)</span>:</p>
-<p><span class="math display">\[A\vec{x}=\begin{pmatrix}2 &amp; 1 \\\\
--1 &amp; 1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=1\cdot
-\begin{pmatrix}2 \\\\ -1\end{pmatrix} + 3\cdot  \begin{pmatrix}1 \\\\
+<p><span class="math display">\[A\vec{x}=\begin{pmatrix}2 &amp; 1 \\ -1
+&amp; 1\end{pmatrix}\begin{pmatrix}1\\3\end{pmatrix}=1\cdot
+\begin{pmatrix}2 \\ -1\end{pmatrix} + 3\cdot  \begin{pmatrix}1 \\
 1\end{pmatrix}=\begin{pmatrix}5\\2\end{pmatrix}\]</span></p>
 <p><img
 src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-013710.jpg" />
@@ -354,15 +351,15 @@ multiplication is tranform the vector from one coordination to
 another.</p>
 <h4 id="exercise">Exercise</h4>
 <ol type="1">
-<li><span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\\\ 3 &amp;
+<li><span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\ 3 &amp;
 4\end{pmatrix}\)</span>, draw the picture to stretch and rotate <span
 class="math inline">\(x=\begin{pmatrix}1\\3\end{pmatrix}\)</span>.</li>
 <li>Find a <span class="math inline">\(A\)</span> matrix to rotate <span
 class="math inline">\(\vec{x}=\begin{pmatrix}1\\3\end{pmatrix}\)</span>
 to <span class="math inline">\(90^{\circ}\)</span> and <span
 class="math inline">\(180^{\circ}\)</span>.</li>
-<li>what if <span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\\\
-2 &amp; 4\end{pmatrix}\)</span>.</li>
+<li>what if <span class="math inline">\(A=\begin{pmatrix}1 &amp; 2 \\ 2
+&amp; 4\end{pmatrix}\)</span>.</li>
 </ol>
 <h3 id="eigenvector-and-eigenvalue">EigenVector and EigenValue</h3>
 <p>EigenVector and EigenValue is an extremely important concept in
@@ -386,44 +383,43 @@ class="math inline">\(A\)</span> to stretch and rotate the vector in
 order to represent the vector in a new coordinate axes. However, there
 are some vectors for <span class="math inline">\(A\)</span>, they can
 only be stretched but can not be rotated. Assume <span
-class="math inline">\(A=\begin{pmatrix}3 &amp; 1 \\\\ 0 &amp;
+class="math inline">\(A=\begin{pmatrix}3 &amp; 1 \\ 0 &amp;
 2\end{pmatrix}\)</span>, let <span
-class="math inline">\(\vec{x}=\begin{pmatrix}1 \\\\
+class="math inline">\(\vec{x}=\begin{pmatrix}1 \\
 -1\end{pmatrix}\)</span>. When we multiply <span
 class="math inline">\(A\)</span> and <span
 class="math inline">\(\vec{x}\)</span></p>
-<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\\\ 0
-&amp; 2\end{pmatrix}\begin{pmatrix}1 \\\\
--1\end{pmatrix}=\begin{pmatrix}2 \\\\ -2\end{pmatrix}=2\cdot
-\begin{pmatrix}1 \\\\ -1\end{pmatrix}\]</span></p>
+<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\ 0
+&amp; 2\end{pmatrix}\begin{pmatrix}1 \\ -1\end{pmatrix}=\begin{pmatrix}2
+\\ -2\end{pmatrix}=2\cdot \begin{pmatrix}1 \\
+-1\end{pmatrix}\]</span></p>
 <p>It turns out we can choose any vector along <span
 class="math inline">\(\vec{x}\)</span>, the outcome is the same, for
 example:</p>
-<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\\\ 0
-&amp; 2\end{pmatrix}\begin{pmatrix}-3 \\\\
-3\end{pmatrix}=\begin{pmatrix}-6 \\\\ -6\end{pmatrix}=2\cdot
-\begin{pmatrix}-3 \\\\ 3\end{pmatrix}\]</span></p>
+<p><span class="math display">\[A\vec{x}=\begin{pmatrix}3 &amp; 1 \\ 0
+&amp; 2\end{pmatrix}\begin{pmatrix}-3 \\
+3\end{pmatrix}=\begin{pmatrix}-6 \\ -6\end{pmatrix}=2\cdot
+\begin{pmatrix}-3 \\ 3\end{pmatrix}\]</span></p>
 <p><img
 src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-04-25-052135.jpg" /></p>
-<p>We name vectors like <span class="math inline">\(\begin{pmatrix}-3
-\\\\ 3\end{pmatrix}\)</span> and <span
-class="math inline">\(\begin{pmatrix}1 \\\\ -1\end{pmatrix}\)</span>
-<strong>EigenVectors</strong> and 2 the conresponse
-<strong>EigenValues</strong>. In practice, we usually choose unit
-eigenvectors(length equals to 1) given that there are innumerable
+<p>We name vectors like <span class="math inline">\(\begin{pmatrix}-3 \\
+3\end{pmatrix}\)</span> and <span class="math inline">\(\begin{pmatrix}1
+\\ -1\end{pmatrix}\)</span> <strong>EigenVectors</strong> and 2 the
+conresponse <strong>EigenValues</strong>. In practice, we usually choose
+unit eigenvectors(length equals to 1) given that there are innumerable
 EigenVectors along the line.</p>
 <p>I won't cover how to compute these vectors and vaules and just list
 the answer as followed</p>
 <p><span class="math display">\[\begin{align}&amp;\begin{pmatrix}3 &amp;
 1 \\0&amp; 2\end{pmatrix}
-\begin{pmatrix}{-1}/{\sqrt(2)} \\\\ {1}/{\sqrt(2)}\end{pmatrix}=
-2\begin{pmatrix}{-1}/{\sqrt(2)} \\\\ {1}/{\sqrt(2)}\end{pmatrix}
-\qquad\qquad\vec{x_1}=\begin{pmatrix}{-1}/{\sqrt(2)} \\\\
+\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix}=
+2\begin{pmatrix}{-1}/{\sqrt(2)} \\ {1}/{\sqrt(2)}\end{pmatrix}
+\qquad\qquad\vec{x_1}=\begin{pmatrix}{-1}/{\sqrt(2)} \\
 {1}/{\sqrt(2)}\end{pmatrix} &amp;\lambda_1=2\\
 &amp;\begin{pmatrix}3 &amp; 1 \\0&amp; 2\end{pmatrix}
-\begin{pmatrix}1 \\\\ 0\end{pmatrix}\qquad=\qquad
-3\begin{pmatrix}1 \\\\
-0\end{pmatrix}\qquad\qquad\quad\,\,\,\vec{x_2}=\begin{pmatrix}1 \\\\
+\begin{pmatrix}1 \\ 0\end{pmatrix}\qquad=\qquad
+3\begin{pmatrix}1 \\
+0\end{pmatrix}\qquad\qquad\quad\,\,\,\vec{x_2}=\begin{pmatrix}1 \\
 0\end{pmatrix}
 &amp;\lambda_2=3
 \end{align}\]</span> Notice that <span
@@ -438,7 +434,7 @@ class="math display">\[AQ=\begin{pmatrix}3 &amp; 1 \\0&amp;
 {1}/{\sqrt(2)}&amp;0
 \end{pmatrix}=
 \begin{pmatrix}
-{-1}/{\sqrt(2)}&amp;1 \\\\ {1}/{\sqrt(2)}&amp;0
+{-1}/{\sqrt(2)}&amp;1 \\ {1}/{\sqrt(2)}&amp;0
 \end{pmatrix}
 \begin{pmatrix}
 2 &amp; 0\\
@@ -482,7 +478,7 @@ AAA\cdots A &amp;= Q\Lambda Q^{-1}Q\Lambda Q^{-1}Q\Lambda Q^{-1}\cdots
 Q\Lambda Q^{-1}=Q\prod_{i=1}^{1000}\begin{pmatrix}3&amp; 1 \\0 &amp;
 2\end{pmatrix}Q^{-1}\\
 AAA\cdots A &amp;=Q\Lambda\Lambda\cdots \Lambda Q^{-1}=
-Q\begin{pmatrix}2^{1000} &amp; 0 \\\\0 &amp; 3^{1000}\end{pmatrix}Q^{-1}
+Q\begin{pmatrix}2^{1000} &amp; 0 \\0 &amp; 3^{1000}\end{pmatrix}Q^{-1}
 \end{align}\]</span> The calculation is extremely simple using EVD.</p>
 <h4 id="exercise-1">Exercise</h4>
 <ol type="1">
@@ -550,9 +546,9 @@ A \vec{v_2}=\sigma_2 \vec{u_2}\\
 \vdots\\
 A \vec{v_j}=\sigma_j \vec{u_j}\]</span></p>
 <p><span class="math display">\[\begin{align}
-&amp;\begin{pmatrix}\\\\A\\\\\end{pmatrix}\begin{pmatrix}\\\\
-\vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\\\end{pmatrix}=\begin{pmatrix}\\\\
-\vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\\\ \end{pmatrix}\begin{pmatrix}
+&amp;\begin{pmatrix}\\A\\\end{pmatrix}\begin{pmatrix}\\
+\vec{v_1},\vec{v_2},\cdots,\vec{v_n}\\\end{pmatrix}=\begin{pmatrix}\\
+\vec{u_1}, \vec{u_2},\cdots,\vec{u_n}\\ \end{pmatrix}\begin{pmatrix}
 \sigma_1 &amp; 0 &amp; \cdots &amp; 0 \\
 0 &amp; \sigma_2 &amp; \cdots &amp; 0 \\
 \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
