@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Recommandation system</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family:"Droid Serif';
+      background-size: 20%  auto;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family:"Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+	  .remark-slide-content h1 { font-size: 3em; }
+    .remark-slide-content h2 { font-size: 2em; }
+    .remark-slide-content h3 { font-size: 1.6em; }
+    .remark-slide-content ul { font-size: 1.6em; font-family:"Yanone Kaffeesatz'; line-height: 80px; }
+    .remark-slide-content ol { font-size: 1.6em; font-family:"Yanone Kaffeesatz'; }
+    .reference ul {font-size: 1.4em; font-family:"Yanone Kaffeesatz'; line-height: 60px; color:blue}
+    .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        right: 3em;
+        color: #777872;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family:"Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 50%;
+        float: right;
+        padding-top: 1em;
+      }
+      .pseudocode{
+        background-color:#E5E1B0;
+        padding:10px;
+        font-size: 15px;
+        color: black;
+        text-shadow: 0 0 3px #333;
+        border-radius: 15px;
+      }
+	  .imgcenter{
+	  	height: 200px;/*元素的高度*/
+		width: 200px;
+	  	position: absolute;
+	  	top: 30%;
+	  	margin-top: -50px;
+		left: 25%;
+		margin-left: -50px;
+	  	}	 
+      .vertmid{
+        width: 100%;
+        height: 67%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+ </style>
+</head>
+
+<body>
+ <textarea id="source">
+ 
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-1.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-2.svg" width=100% height=100%/>
+</div>
+---
+
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-3.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-4.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-5.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-6.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-7.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-8.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-9.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-10.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-11.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-12.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-13.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-14.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-15.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-16.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-17.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-18.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-19.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-20.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-21.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-22.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-23.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-24.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-25.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-26.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-27.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-28.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-29.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-30.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-31.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-32.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-33.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-34.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-35.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-36.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-37.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-38.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-39.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-40.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-41.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-42.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-43.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-44.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-45.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-46.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-47.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-48.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-49.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-50.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-51.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-52.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-53.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-54.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-55.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-56.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-57.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-58.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-59.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-60.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-61.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-62.svg" width=100% height=100%/>
+</div>
+---
+
+<div align=center>
+<img src="https://cmb.oss-cn-qingdao.aliyuncs.com/Spectral_methods-63.svg" width=100% height=100%/>
+</div>
+
+  </textarea>
+  <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+  <script type="text/javascript">
+      var options = {highlightStyle: 'monokai', highlightLines:true, ratio: '16:9'};
+
+  var renderMath = function(){
+          // Setup MathJax
+          MathJax.Hub.Config({
+          tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          }
+      });
+      MathJax.Hub.Configured();
+  }
+  var slideshow = remark.create(options);
+  renderMath();
+  </script>
+</body>
+</html>
