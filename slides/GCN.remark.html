@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Graph convolutional network</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style type="text/css">
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+    body {
+      font-family: 'Droid Serif';
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: normal;
+    }
+	  .remark-slide-content h1 { font-size: 3em; }
+    .remark-slide-content h2 { font-size: 2em; }
+    .remark-slide-content h3 { font-size: 1.6em; }
+    .remark-slide-content ul { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; line-height: 80px; }
+    .remark-slide-content ol { font-size: 1.6em; font-family: 'Yanone Kaffeesatz'; }
+    .footnote {
+        position: absolute;
+        font-size: small;
+        bottom: 3em;
+        right: 3em;
+        color: #777872;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 30%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 60%;
+        float: right;
+        padding-top: 1em;
+      }
+      .pseudocode{
+        background-color:#E5E1B0;
+        padding:10px;
+        font-size: 15px;
+        color: black;
+        text-shadow: 0 0 3px #333;
+        border-radius: 15px;
+      }
+	  .imgcenter{
+	  	height: 200px;/*元素的高度*/
+		width: 200px;
+	  	position: absolute;
+	  	top: 30%;
+	  	margin-top: -50px;
+		left: 25%;
+		margin-left: -50px;
+	  	}
+	  .smallfont{
+          	font-size: 0.6em;
+          }
+  </style>
+</head>
+
+<body>
+  <textarea id="source">
+
+name: inverse
+layout: true
+class: center, middle, inverse
+
+---
+# Graph convolutional network
+### By ChengMingbo
+### 2024-10-28
+.footnote[powered by <a href="https://github.com/gnab/remark"><font color=yellow>remark.js</font></a>]
+???
+I am a note, will be only shown when under presentation mode
+
+---
+layout: false
+## Definition
+
+$$G = (V, E)$$
+
+where $G$ is a graph, $V$ is the set of nodes, and $E$ is the set of edges.
+
+The Feature matrix $X$ is given by:
+
+$$X\in \mathbb{R}^{N\times D}$$
+
+where $x_i\in X$ is the feature description for every node. N is the number of nodes and D is the number of features.
+
+---
+## Definition
+
+The Adjacency matrix $A$ of $G=(V,E)$ is given by:
+$$\begin{aligned}A_{ij} = \begin{cases} 1 \quad \text{if } (v_i, v_j)\in E \\\\ 0 \quad \text{otherwise} \end{cases}\end{aligned}$$
+
+It produces a node-level output $Z\in \mathbb{R}^{N\times F}$, where $F$ is the number of output features. Thus every neural network layer can be represented as:
+
+$$H^{(l+1)} = f(H^{(l)}, A)$$
+
+
+where $H^{(0)}=X$ and $H^{(L)}=Z$, $L$ is the number of layers.
+
+---
+layout: false
+
+## Simplest Form
+
+Given the activation function $\sigma$, the simplest form of a graph neural network layer is:
+
+$$f(H^{(l)}, A) = \sigma(AH^{(l)}W^{(l)})$$
+
+where $W^{(l)}$ is the weight matrix of the $l$-th layer and $\sigma$ can be a non-linear activation function like ReLU.
+
+---
+## Normalization
+
+First we normalize the adjacency matrix $A$ by adding the identity matrix $I$ and the degree matrix $D$:
+$$\hat{A} = A + I$$
+
+Next we normalize the rows of $\hat{A}$ by the degree matrix $D$:
+
+$$\hat{D} = D^{-\frac{1}{2}}\hat{A}D^{-\frac{1}{2}}$$
+
+---
+## Normalization Form
+
+The normalized form of the graph neural network layer is:
+$$f(H^{(l)}, A) = \sigma(\hat{D}^{-\frac{1}{2}}\hat{A}\hat{D}^{-\frac{1}{2}}H^{(l)}W^{(l)})$$
+
+---
+layout: false
+## Karate club network
+
+We will use the Karate club network as an example to illustrate the graph neural network.
+
+![](https://cmb.oss-cn-qingdao.aliyuncs.com/karate.png)
+
+.footnote[powered by <a href="https://tkipf.github.io/graph-convolutional-networks/"><font color=grey>tkipf.github.io/graph-convolutional-networks/</font></a>]
+
+---
+layout: false
+## Karate club network
+
+Three layers of GCN are applied to the Karate club network with randomly initialized weight. Even without training, the output of the last layer is already able to separate the four classes of the Karate club network:
+
+![](https://cmb.oss-cn-qingdao.aliyuncs.com/karate_emb.png)
+
+.footnote[powered by <a href="https://tkipf.github.io/graph-convolutional-networks/"><font color=grey>tkipf.github.io/graph-convolutional-networks/</font></a>]
+---
+layout: false
+## Future reading
+
+<div class="smallfont">
+        1. Kipf & Welling (ICLR 2017), Semi-Supervised Classification with Graph Convolutional Networks (disclaimer: I'm the first author)<br/>
+        2. Defferrard et al. (NIPS 2016), Convolutional Neural Networks on Graphs with Fast Localized Spectral Filtering<br/>
+3. https://tkipf.github.io/graph-convolutional-networks/
+</div>
+
+
+![](https://cmb.oss-cn-qingdao.aliyuncs.com/gcn_web.png)
+
+
+---
+template: inverse
+# Thanks!
+# Q&A
+
+---
+class: middle, center
+layout: false
+
+# Reference
+
+1. https://arxiv.org/pdf/1609.02907
+2. https://tkipf.github.io/graph-convolutional-networks/
+
+  </textarea>
+  <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+  <script type="text/javascript">
+	var options = {highlightStyle: 'monokai', highlightLines:true, ratio: '4:3'};
+    var slideshow = remark.create(options);
+    var renderMath = function(){
+          // Setup MathJax
+          MathJax.Hub.Config({
+          tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+          inlineMath: [['$', '$'], ['`$', '$`'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['`$$', '$$`'], ['\\[', '\\]']]
+          }
+      });
+      MathJax.Hub.Register.LoadHook("[MathJax]/extensions/tex2jax.js", function () {
+          var TEX2JAX = MathJax.Extension.tex2jax;
+          TEX2JAX._createMathTag = TEX2JAX.createMathTag;
+          TEX2JAX.createMathTag = function (mode, tex) {
+            const math = this._createMathTag(mode, tex);
+            const code = math.parentNode;
+            if (code.nodeName === 'CODE' && code.childNodes.length <= 3) {
+              const span = document.createElement('mjx-span');
+              code.parentNode.replaceChild(span, code);
+              span.appendChild(math);
+            }
+            return math;
+          };
+      });
+      MathJax.Hub.Configured();
+      MathJax.Hub.Register.LoadHook();
+  }
+  renderMath();
+  </script>
+</body>
+</html>
