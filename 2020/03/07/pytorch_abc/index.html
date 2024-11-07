@@ -28,7 +28,7 @@
 <meta property="og:description" content="Fundamentals Torch.tensor 1234t &#x3D; tensor([[1,2,4],[4,5,6]])t.shape: (2,3)t.ndim: 2type: scalar, vector, matrix, tensor Tensor data produce 12345random_tensor &#x3D; torch.rand(size&#x3D;(3, 4, 5))zeros &#x3D; torch.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-07T21:50:11.000Z">
-<meta property="article:modified_time" content="2024-11-04T16:04:19.029Z">
+<meta property="article:modified_time" content="2024-11-07T15:36:30.405Z">
 <meta property="article:author" content="Mingbo Cheng">
 <meta name="twitter:card" content="summary">
 
@@ -409,18 +409,28 @@ metrics such as accuracy on the test set.</td>
 </tbody>
 </table>
 <h4 id="inference-and-save-model">Inference and save model</h4>
-<p><code>Inferennce</code> &gt; model_0.eval() # Set the model in
-evaluation mode &gt; with torch.inference_mode(): y_preds =
-model_0(X_test)</p>
-<p><code>torch.save</code> &gt; Saves a serialized object to disk using
-Python's pickle utility. Models, tensors and various other Python
-objects like dictionaries can be saved using torch.save.
-<code>torch.load</code> &gt; Uses pickle's unpickling features to
-deserialize and load pickled Python object files (like models, tensors
-or dictionaries) into memory. You can also set which device to load the
-object to (CPU, GPU etc). <code>torch.nn.Module.load_state_dict</code>
-## recommended &gt; Loads a model's parameter dictionary
-(model.state_dict()) using a saved state_dict() object.</p>
+<p><code>Inferennce</code></p>
+<blockquote>
+<p>model_0.eval() # Set the model in evaluation mode with
+torch.inference_mode(): y_preds = model_0(X_test)</p>
+</blockquote>
+<p><code>torch.save</code></p>
+<blockquote>
+<p>Saves a serialized object to disk using Python's pickle utility.
+Models, tensors and various other Python objects like dictionaries can
+be saved using torch.save.</p>
+</blockquote>
+<p><code>torch.load</code></p>
+<blockquote>
+<p>Uses pickle's unpickling features to deserialize and load pickled
+Python object files (like models, tensors or dictionaries) into memory.
+You can also set which device to load the object to (CPU, GPU etc).</p>
+</blockquote>
+<p><code>torch.nn.Module.load_state_dict</code> ## recommended</p>
+<blockquote>
+<p>Loads a model's parameter dictionary (model.state_dict()) using a
+saved state_dict() object.</p>
+</blockquote>
 <h2 id="examples">Examples</h2>
 <h4 id="example-1">Example 1</h4>
 <pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">torch.manual_seed(<span class="number">42</span>)</span><br><span class="line">epochs = <span class="number">100</span> <span class="comment"># Set the number of epochs </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create empty loss lists to track values</span></span><br><span class="line">train_loss_values = []</span><br><span class="line">test_loss_values = []</span><br><span class="line">epoch_count = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    <span class="comment">### Training</span></span><br><span class="line">    model_0.train() <span class="comment"># Put model in training mode (this is the default state of a model)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1. Forward pass on train data using the forward() method inside </span></span><br><span class="line">    y_pred = model_0(X_train)</span><br><span class="line">    <span class="comment"># 2. Calculate the loss (how different are our models predictions to the ground truth)</span></span><br><span class="line">    loss = loss_fn(y_pred, y_train)</span><br><span class="line">    optimizer.zero_grad() <span class="comment"># 3. Zero grad of the optimizer</span></span><br><span class="line">    loss.backward() <span class="comment"># 4. Loss backwards</span></span><br><span class="line">    optimizer.step() <span class="comment"># 5. Progress the optimizer</span></span><br><span class="line">     <span class="comment">### Testing</span></span><br><span class="line">    <span class="comment"># Put the model in evaluation mode</span></span><br><span class="line">    model_0.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> torch.inference_mode():</span><br><span class="line">      <span class="comment"># 1. Forward pass on test data</span></span><br><span class="line">      test_pred = model_0(X_test)</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 2. Caculate loss on test data</span></span><br><span class="line">       <span class="comment"># predictions come in torch.float datatype, so comparisons need to be done with tensors of the same type</span></span><br><span class="line">      test_loss = loss_fn(test_pred, y_test.<span class="built_in">type</span>(torch.<span class="built_in">float</span>)) </span><br><span class="line"></span><br><span class="line">      <span class="comment"># Print out what&#x27;s happening</span></span><br><span class="line">      <span class="keyword">if</span> epoch % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">            epoch_count.append(epoch)</span><br><span class="line">            train_loss_values.append(loss.detach().numpy())</span><br><span class="line">            test_loss_values.append(test_loss.detach().numpy())</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Epoch: <span class="subst">&#123;epoch&#125;</span> | MAE Train Loss: <span class="subst">&#123;loss&#125;</span> | MAE Test Loss: <span class="subst">&#123;test_loss&#125;</span> &quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
