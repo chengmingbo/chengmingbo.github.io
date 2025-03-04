@@ -127,7 +127,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -165,6 +165,9 @@
               <a href="https://lilianweng.github.io/archives/" title="https:&#x2F;&#x2F;lilianweng.github.io&#x2F;archives&#x2F;" rel="noopener" target="_blank">Lil'Log</a>
             </li>
             <li class="links-of-blogroll-item">
+              <a href="https://arjun-sarkar786.medium.com/" title="https:&#x2F;&#x2F;arjun-sarkar786.medium.com&#x2F;" rel="noopener" target="_blank">Arjun Sarkar</a>
+            </li>
+            <li class="links-of-blogroll-item">
               <a href="https://www.zybuluo.com/codeep/note/163962" title="https:&#x2F;&#x2F;www.zybuluo.com&#x2F;codeep&#x2F;note&#x2F;163962" rel="noopener" target="_blank">mathjax grammar</a>
             </li>
             <li class="links-of-blogroll-item">
@@ -200,6 +203,76 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2023/10/02/seq2seq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingbo Cheng">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mingbo">
+      <meta itemprop="description" content="Mingbo">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Mingbo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/10/02/seq2seq/" class="post-title-link" itemprop="url">Seq2seq</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-10-02 19:42:01" itemprop="dateCreated datePublished" datetime="2023-10-02T19:42:01+02:00">2023-10-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> spacy</span><br><span class="line"><span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">import</span> torchtext</span><br><span class="line"><span class="keyword">import</span> evaluate</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">seed = <span class="number">1234</span></span><br><span class="line">random</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1004,17 +1077,17 @@ CPU</h4>
 <h5 id="multiply">multiply</h5>
 <pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tensor = torch.tensor([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">tensor + <span class="number">10</span></span><br><span class="line">torch.multiply(tensor, <span class="number">10</span>)</span><br><span class="line">tensor * tensor <span class="comment"># tensor([1,4,9])</span></span><br><span class="line">tenorA @ tensorB <span class="comment"># matrix multiplication -&gt; tensor(14)</span></span><br><span class="line">torch.matmul(tensor, tensor)/torch.mm <span class="comment"># 1*1 + 2*2 + 3*3 = tensor(14)</span></span><br><span class="line">tensor.T</span><br></pre></td></tr></table></figure></code></pre>
 <h5 id="layer">layer</h5>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Torch.nn.Linear</span></span><br><span class="line">y = x A^T + b</span><br><span class="line">torch.manual_seed(<span class="number">42</span>)</span><br><span class="line">linear = torch.nn.Linear(in_features=<span class="number">2</span>, <span class="comment"># in_features = matches inner dimension of input </span></span><br><span class="line">             out_features=<span class="number">6</span>) <span class="comment"># out_features = describes outer value </span></span><br><span class="line">x = tensor_A</span><br><span class="line">output = linear(x)</span><br><span class="line">x.shape, output, output.shape</span><br></pre></td></tr></table></figure></code></pre>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Torch.nn.Linear</span></span><br><span class="line">y = x A^T + b</span><br><span class="line">torch.manual_seed(<span class="number">42</span>)</span><br><span class="line">linear = torch.nn.Linear(in_features=<span class="number">2</span>, <span class="comment"># in_features = matches inner dimension of input</span></span><br><span class="line">             out_features=<span class="number">6</span>) <span class="comment"># out_features = describes outer value</span></span><br><span class="line">x = tensor_A</span><br><span class="line">output = linear(x)</span><br><span class="line">x.shape, output, output.shape</span><br></pre></td></tr></table></figure></code></pre>
 <h5 id="other-operations">other operations</h5>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tensor = torch.arange(<span class="number">10</span>, <span class="number">100</span>, <span class="number">10</span>) <span class="comment"># tensor([10, 20, 30, 40, 50, 60, 70, 80, 90])</span></span><br><span class="line">tensor.argmax() <span class="comment"># 8</span></span><br><span class="line">tensor.argmin() <span class="comment"># 0</span></span><br><span class="line">tensor.<span class="built_in">type</span>(torch.float16) <span class="comment"># tensor([10., 20., 30., 40., 50., 60., 70., 80., 90.]</span></span><br><span class="line">torch.reshape(new_shape) <span class="comment"># -1 is to ask calculating automatically</span></span><br><span class="line">tensor.view(new_shape) <span class="comment"># return a new shape view</span></span><br><span class="line">torch.stack(t, dim=<span class="number">0</span>) <span class="comment"># concate a sequence of tensors along a new dimension(dim)</span></span><br><span class="line">torch.sequeeze() <span class="comment"># all into the first dimensions</span></span><br><span class="line">torch.clamp() <span class="comment"># min=min, max=max, limit the range</span></span><br><span class="line">torch.unsqueeze()</span><br><span class="line">torch.permute() <span class="comment"># torch.Size([224, 224, 3]) -&gt; torch.Size([3, 224, 224])</span></span><br><span class="line">torch.permute_(), x.unsqueeze_() -&gt; inplace operation</span><br></pre></td></tr></table></figure></code></pre>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">tensor = torch.arange(<span class="number">10</span>, <span class="number">100</span>, <span class="number">10</span>) <span class="comment"># tensor([10, 20, 30, 40, 50, 60, 70, 80, 90])</span></span><br><span class="line">tensor.argmax() <span class="comment"># 8</span></span><br><span class="line">tensor.argmin() <span class="comment"># 0</span></span><br><span class="line">tensor.<span class="built_in">type</span>(torch.float16) <span class="comment"># tensor([10., 20., 30., 40., 50., 60., 70., 80., 90.]</span></span><br><span class="line">torch.reshape(new_shape) <span class="comment"># -1 is to ask calculating automatically</span></span><br><span class="line">tensor.view(new_shape) <span class="comment"># return a new shape view</span></span><br><span class="line">torch.stack(t, dim=<span class="number">0</span>) <span class="comment"># concate a sequence of tensors along a new dimension(dim)</span></span><br><span class="line">torch.squeeze() <span class="comment"># all into the first dimensions</span></span><br><span class="line">torch.clamp() <span class="comment"># min=min, max=max, limit the range</span></span><br><span class="line">torch.unsqueeze()</span><br><span class="line">torch.permute() <span class="comment"># torch.Size([224, 224, 3]) -&gt; torch.Size([3, 224, 224])</span></span><br><span class="line">torch.permute_(), x.unsqueeze_() -&gt; inplace operation</span><br></pre></td></tr></table></figure></code></pre>
 <h5 id="slice">slice</h5>
 <pre><code> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x[:, <span class="number">0</span>] <span class="comment">#  tensor([[1, 2, 3]])</span></span><br><span class="line">x[:, :, <span class="number">1</span>] <span class="comment"># tensor([[2,5,8]])</span></span><br><span class="line">x[:, <span class="number">1</span>, <span class="number">1</span>] <span class="comment"># tensor([5])</span></span><br><span class="line">x[<span class="number">0</span>, <span class="number">0</span>, :]/x[<span class="number">0</span>][<span class="number">0</span>]  <span class="comment"># tensor([1,2,3])</span></span><br></pre></td></tr></table></figure></code></pre>
 <h5 id="numpy">numpy</h5>
 <pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor = torch.from_numpy(array)</span><br></pre></td></tr></table></figure></code></pre>
 <h5 id="random-seed">random seed</h5>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">random seed</span><br><span class="line">torch.manual_seed(seed=RANDOM_SEED) </span><br><span class="line">torch.random.manual_seed(seed=RANDOM_SEED)</span><br></pre></td></tr></table></figure></code></pre>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">random seed</span><br><span class="line">torch.manual_seed(seed=RANDOM_SEED)</span><br><span class="line">torch.random.manual_seed(seed=RANDOM_SEED)</span><br></pre></td></tr></table></figure></code></pre>
 <h5 id="variable">Variable</h5>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line">.data, .grad, .grad_fn</span><br><span class="line">x_tensor = torch.randn(<span class="number">10</span>, <span class="number">5</span>)</span><br><span class="line">y_tensor = torch.randn(<span class="number">10</span>, <span class="number">5</span>)</span><br><span class="line">x = Variable(x_tensor, requires_grad=<span class="literal">True</span>) </span><br><span class="line">y = Variable(y_tensor, requires_grad=<span class="literal">True</span>)</span><br><span class="line">z = torch.<span class="built_in">sum</span>(x + y)</span><br><span class="line"><span class="built_in">print</span>(z.data) <span class="comment">#-2.1379</span></span><br><span class="line"><span class="built_in">print</span>(z.grad_fn) <span class="comment">#&lt;SumBackward0 object at 0x10da636a0&gt;</span></span><br><span class="line">z.backward()</span><br></pre></td></tr></table></figure></code></pre>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line">.data, .grad, .grad_fn</span><br><span class="line">x_tensor = torch.randn(<span class="number">10</span>, <span class="number">5</span>)</span><br><span class="line">y_tensor = torch.randn(<span class="number">10</span>, <span class="number">5</span>)</span><br><span class="line">x = Variable(x_tensor, requires_grad=<span class="literal">True</span>)</span><br><span class="line">y = Variable(y_tensor, requires_grad=<span class="literal">True</span>)</span><br><span class="line">z = torch.<span class="built_in">sum</span>(x + y)</span><br><span class="line"><span class="built_in">print</span>(z.data) <span class="comment">#-2.1379</span></span><br><span class="line"><span class="built_in">print</span>(z.grad_fn) <span class="comment">#&lt;SumBackward0 object at 0x10da636a0&gt;</span></span><br><span class="line">z.backward()</span><br></pre></td></tr></table></figure></code></pre>
 <h5 id="gpu">GPU</h5>
 <pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> torch.cuda.is_available():</span><br><span class="line">    device = <span class="string">&quot;cuda&quot;</span> <span class="comment"># Use NVIDIA GPU (if available)</span></span><br><span class="line"><span class="keyword">elif</span> torch.backends.mps.is_available():</span><br><span class="line">    device = <span class="string">&quot;mps&quot;</span> <span class="comment"># Use Apple Silicon GPU (if available)</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    device = <span class="string">&quot;cpu&quot;</span> <span class="comment"># Default to CPU if no GPU is available</span></span><br><span class="line"></span><br><span class="line">tensor.to(device)</span><br><span class="line">tensor_on_gpu.cpu().numpy()</span><br></pre></td></tr></table></figure></code></pre>
 <h2 id="neural-network">Neural network</h2>
@@ -1049,7 +1122,7 @@ computation that will take place on the data passed to the particular
 nn.Module (e.g. the linear regression formula above).</p>
 </blockquote>
 <h4 id="define-a-net">Define a net</h4>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">net</span>(nn.Module):</span><br><span class="line">    __init__(<span class="variable language_">self</span>): <span class="built_in">super</span>().__init__() ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x: torch.Tensor</span>) -&gt; torch.Tensor: </span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">self</span>.weights * x + <span class="variable language_">self</span>.bias</span><br><span class="line"><span class="comment">## expample</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LinearRegressModle</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="built_in">super</span>().__init__()</span><br><span class="line">    <span class="variable language_">self</span>.weights = nn.Parameter(torch.randn(<span class="number">1</span>, required_grad=<span class="literal">True</span>, dtype=torch.<span class="built_in">float</span>))</span><br><span class="line">    <span class="variable language_">self</span>.bias = nn.Parameter(torch.randn(<span class="number">1</span>, required_grad=<span class="literal">True</span>, dtype=torch.<span class="built_in">float</span>))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x:torch.Tensor</span>) -&gt; torch.Tensor:</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.weight * x + <span class="variable language_">self</span>.bias</span><br></pre></td></tr></table></figure></code></pre>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">net</span>(nn.Module):</span><br><span class="line">    __init__(<span class="variable language_">self</span>): <span class="built_in">super</span>().__init__() ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x: torch.Tensor</span>) -&gt; torch.Tensor:</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">self</span>.weights * x + <span class="variable language_">self</span>.bias</span><br><span class="line"><span class="comment">## expample</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LinearRegressModle</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="built_in">super</span>().__init__()</span><br><span class="line">    <span class="variable language_">self</span>.weights = nn.Parameter(torch.randn(<span class="number">1</span>, required_grad=<span class="literal">True</span>, dtype=torch.<span class="built_in">float</span>))</span><br><span class="line">    <span class="variable language_">self</span>.bias = nn.Parameter(torch.randn(<span class="number">1</span>, required_grad=<span class="literal">True</span>, dtype=torch.<span class="built_in">float</span>))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x:torch.Tensor</span>) -&gt; torch.Tensor:</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.weight * x + <span class="variable language_">self</span>.bias</span><br></pre></td></tr></table></figure></code></pre>
 <h5 id="check-module">Check module</h5>
 <pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">torch.manual_seed(<span class="number">42</span>)</span><br><span class="line">model_0 = LinearRegressionModel()</span><br><span class="line"><span class="built_in">list</span>(model_0.parameters()) <span class="comment">#  tensor([0.3367], requires_grad=True)</span></span><br><span class="line">model_0.state_dict() <span class="comment"># OrderedDict([(&#x27;weights&#x27;, tensor([0.3367])), (&#x27;bias&#x27;, tensor([0.1288]))])</span></span><br><span class="line"><span class="keyword">with</span> torch.inference_mode(): y_preds = model_0(X_test) <span class="comment"># run inference</span></span><br></pre></td></tr></table></figure></code></pre>
 <h4 id="training">Training</h4>
@@ -1167,15 +1240,15 @@ saved state_dict() object.</p>
 </blockquote>
 <h2 id="examples">Examples</h2>
 <h4 id="example-1">Example 1</h4>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">torch.manual_seed(<span class="number">42</span>)</span><br><span class="line">epochs = <span class="number">100</span> <span class="comment"># Set the number of epochs </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create empty loss lists to track values</span></span><br><span class="line">train_loss_values = []</span><br><span class="line">test_loss_values = []</span><br><span class="line">epoch_count = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    <span class="comment">### Training</span></span><br><span class="line">    model_0.train() <span class="comment"># Put model in training mode (this is the default state of a model)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1. Forward pass on train data using the forward() method inside </span></span><br><span class="line">    y_pred = model_0(X_train)</span><br><span class="line">    <span class="comment"># 2. Calculate the loss (how different are our models predictions to the ground truth)</span></span><br><span class="line">    loss = loss_fn(y_pred, y_train)</span><br><span class="line">    optimizer.zero_grad() <span class="comment"># 3. Zero grad of the optimizer</span></span><br><span class="line">    loss.backward() <span class="comment"># 4. Loss backwards</span></span><br><span class="line">    optimizer.step() <span class="comment"># 5. Progress the optimizer</span></span><br><span class="line">     <span class="comment">### Testing</span></span><br><span class="line">    <span class="comment"># Put the model in evaluation mode</span></span><br><span class="line">    model_0.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> torch.inference_mode():</span><br><span class="line">      <span class="comment"># 1. Forward pass on test data</span></span><br><span class="line">      test_pred = model_0(X_test)</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 2. Caculate loss on test data</span></span><br><span class="line">       <span class="comment"># predictions come in torch.float datatype, so comparisons need to be done with tensors of the same type</span></span><br><span class="line">      test_loss = loss_fn(test_pred, y_test.<span class="built_in">type</span>(torch.<span class="built_in">float</span>)) </span><br><span class="line"></span><br><span class="line">      <span class="comment"># Print out what&#x27;s happening</span></span><br><span class="line">      <span class="keyword">if</span> epoch % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">            epoch_count.append(epoch)</span><br><span class="line">            train_loss_values.append(loss.detach().numpy())</span><br><span class="line">            test_loss_values.append(test_loss.detach().numpy())</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Epoch: <span class="subst">&#123;epoch&#125;</span> | MAE Train Loss: <span class="subst">&#123;loss&#125;</span> | MAE Test Loss: <span class="subst">&#123;test_loss&#125;</span> &quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">torch.manual_seed(<span class="number">42</span>)</span><br><span class="line">epochs = <span class="number">100</span> <span class="comment"># Set the number of epochs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create empty loss lists to track values</span></span><br><span class="line">train_loss_values = []</span><br><span class="line">test_loss_values = []</span><br><span class="line">epoch_count = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    <span class="comment">### Training</span></span><br><span class="line">    model_0.train() <span class="comment"># Put model in training mode (this is the default state of a model)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1. Forward pass on train data using the forward() method inside</span></span><br><span class="line">    y_pred = model_0(X_train)</span><br><span class="line">    <span class="comment"># 2. Calculate the loss (how different are our models predictions to the ground truth)</span></span><br><span class="line">    loss = loss_fn(y_pred, y_train)</span><br><span class="line">    optimizer.zero_grad() <span class="comment"># 3. Zero grad of the optimizer</span></span><br><span class="line">    loss.backward() <span class="comment"># 4. Loss backwards</span></span><br><span class="line">    optimizer.step() <span class="comment"># 5. Progress the optimizer</span></span><br><span class="line">     <span class="comment">### Testing</span></span><br><span class="line">    <span class="comment"># Put the model in evaluation mode</span></span><br><span class="line">    model_0.<span class="built_in">eval</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> torch.inference_mode():</span><br><span class="line">      <span class="comment"># 1. Forward pass on test data</span></span><br><span class="line">      test_pred = model_0(X_test)</span><br><span class="line"></span><br><span class="line">      <span class="comment"># 2. Caculate loss on test data</span></span><br><span class="line">       <span class="comment"># predictions come in torch.float datatype, so comparisons need to be done with tensors of the same type</span></span><br><span class="line">      test_loss = loss_fn(test_pred, y_test.<span class="built_in">type</span>(torch.<span class="built_in">float</span>))</span><br><span class="line"></span><br><span class="line">      <span class="comment"># Print out what&#x27;s happening</span></span><br><span class="line">      <span class="keyword">if</span> epoch % <span class="number">10</span> == <span class="number">0</span>:</span><br><span class="line">            epoch_count.append(epoch)</span><br><span class="line">            train_loss_values.append(loss.detach().numpy())</span><br><span class="line">            test_loss_values.append(test_loss.detach().numpy())</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Epoch: <span class="subst">&#123;epoch&#125;</span> | MAE Train Loss: <span class="subst">&#123;loss&#125;</span> | MAE Test Loss: <span class="subst">&#123;test_loss&#125;</span> &quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
 <h4 id="example-2">Example 2</h4>
-<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">torch.manual_seed(<span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the number of epochs </span></span><br><span class="line">epochs = <span class="number">1000</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># Put data on the available device</span></span><br><span class="line"><span class="comment"># Without this, error will happen (not all model/data on device)</span></span><br><span class="line">X_train = X_train.to(device)</span><br><span class="line">X_test = X_test.to(device)</span><br><span class="line">y_train = y_train.to(device)</span><br><span class="line">y_test = y_test.to(device)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    <span class="comment">### Training</span></span><br><span class="line">    model_1.train() <span class="comment"># train mode is on by default after construction</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1. Forward pass</span></span><br><span class="line">    y_pred = model_1(X_train)</span><br><span class="line">    <span class="comment"># 2. Calculate loss</span></span><br><span class="line">    loss = loss_fn(y_pred, y_train)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. Zero grad optimizer</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4. Loss backward</span></span><br><span class="line">    loss.backward()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 5. Step the optimizer</span></span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="comment">### Testing</span></span><br><span class="line">    model_1.<span class="built_in">eval</span>() <span class="comment"># put the model in evaluation mode for testing (inference)</span></span><br><span class="line">    <span class="comment"># 1. Forward pass</span></span><br><span class="line">    <span class="keyword">with</span> torch.inference_mode():</span><br><span class="line">        test_pred = model_1(X_test)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 2. Calculate the loss</span></span><br><span class="line">        test_loss = loss_fn(test_pred, y_test)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> epoch % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Epoch: <span class="subst">&#123;epoch&#125;</span> | Train loss: <span class="subst">&#123;loss&#125;</span> | Test loss: <span class="subst">&#123;test_loss&#125;</span>&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
+<pre><code><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">torch.manual_seed(<span class="number">42</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the number of epochs</span></span><br><span class="line">epochs = <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Put data on the available device</span></span><br><span class="line"><span class="comment"># Without this, error will happen (not all model/data on device)</span></span><br><span class="line">X_train = X_train.to(device)</span><br><span class="line">X_test = X_test.to(device)</span><br><span class="line">y_train = y_train.to(device)</span><br><span class="line">y_test = y_test.to(device)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    <span class="comment">### Training</span></span><br><span class="line">    model_1.train() <span class="comment"># train mode is on by default after construction</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1. Forward pass</span></span><br><span class="line">    y_pred = model_1(X_train)</span><br><span class="line">    <span class="comment"># 2. Calculate loss</span></span><br><span class="line">    loss = loss_fn(y_pred, y_train)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. Zero grad optimizer</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4. Loss backward</span></span><br><span class="line">    loss.backward()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 5. Step the optimizer</span></span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="comment">### Testing</span></span><br><span class="line">    model_1.<span class="built_in">eval</span>() <span class="comment"># put the model in evaluation mode for testing (inference)</span></span><br><span class="line">    <span class="comment"># 1. Forward pass</span></span><br><span class="line">    <span class="keyword">with</span> torch.inference_mode():</span><br><span class="line">        test_pred = model_1(X_test)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 2. Calculate the loss</span></span><br><span class="line">        test_loss = loss_fn(test_pred, y_test)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> epoch % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;Epoch: <span class="subst">&#123;epoch&#125;</span> | Train loss: <span class="subst">&#123;loss&#125;</span> | Test loss: <span class="subst">&#123;test_loss&#125;</span>&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
 <h4 id="vae">VAE</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">VAE</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, input_dim=<span class="number">784</span>, hidden_dim=<span class="number">400</span>, latent_dim=<span class="number">200</span>, device=device</span>):</span><br><span class="line">        <span class="built_in">super</span>(VAE, <span class="variable language_">self</span>).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># encoder</span></span><br><span class="line">        <span class="variable language_">self</span>.encoder = nn.Sequential(</span><br><span class="line">            nn.Linear(input_dim, hidden_dim),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.Linear(hidden_dim, latent_dim),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>)</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        <span class="comment"># latent mean and variance </span></span><br><span class="line">        <span class="variable language_">self</span>.mean_layer = nn.Linear(latent_dim, <span class="number">2</span>)</span><br><span class="line">        <span class="variable language_">self</span>.logvar_layer = nn.Linear(latent_dim, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># decoder</span></span><br><span class="line">        <span class="variable language_">self</span>.decoder = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">2</span>, latent_dim),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.Linear(latent_dim, hidden_dim),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.Linear(hidden_dim, input_dim),</span><br><span class="line">            nn.Sigmoid()</span><br><span class="line">            )</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encode</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = <span class="variable language_">self</span>.encoder(x)</span><br><span class="line">        mean, logvar = <span class="variable language_">self</span>.mean_layer(x), <span class="variable language_">self</span>.logvar_layer(x)</span><br><span class="line">        <span class="keyword">return</span> mean, logvar</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reparameterization</span>(<span class="params">self, mean, var</span>):</span><br><span class="line">        epsilon = torch.randn_like(var).to(device)      </span><br><span class="line">        z = mean + var*epsilon</span><br><span class="line">        <span class="keyword">return</span> z</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decode</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.decoder(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        mean, logvar = <span class="variable language_">self</span>.encode(x)</span><br><span class="line">        z = <span class="variable language_">self</span>.reparameterization(mean, logvar)</span><br><span class="line">        x_hat = <span class="variable language_">self</span>.decode(z)</span><br><span class="line">        <span class="keyword">return</span> x_hat, mean, log_var</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">VAE</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, input_dim=<span class="number">784</span>, hidden_dim=<span class="number">400</span>, latent_dim=<span class="number">200</span>, device=device</span>):</span><br><span class="line">        <span class="built_in">super</span>(VAE, <span class="variable language_">self</span>).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># encoder</span></span><br><span class="line">        <span class="variable language_">self</span>.encoder = nn.Sequential(</span><br><span class="line">            nn.Linear(input_dim, hidden_dim),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.Linear(hidden_dim, latent_dim),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>)</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        <span class="comment"># latent mean and variance</span></span><br><span class="line">        <span class="variable language_">self</span>.mean_layer = nn.Linear(latent_dim, <span class="number">2</span>)</span><br><span class="line">        <span class="variable language_">self</span>.logvar_layer = nn.Linear(latent_dim, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># decoder</span></span><br><span class="line">        <span class="variable language_">self</span>.decoder = nn.Sequential(</span><br><span class="line">            nn.Linear(<span class="number">2</span>, latent_dim),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.Linear(latent_dim, hidden_dim),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            nn.Linear(hidden_dim, input_dim),</span><br><span class="line">            nn.Sigmoid()</span><br><span class="line">            )</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">encode</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = <span class="variable language_">self</span>.encoder(x)</span><br><span class="line">        mean, logvar = <span class="variable language_">self</span>.mean_layer(x), <span class="variable language_">self</span>.logvar_layer(x)</span><br><span class="line">        <span class="keyword">return</span> mean, logvar</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reparameterization</span>(<span class="params">self, mean, var</span>):</span><br><span class="line">        epsilon = torch.randn_like(var).to(device)</span><br><span class="line">        z = mean + var*epsilon</span><br><span class="line">        <span class="keyword">return</span> z</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decode</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.decoder(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        mean, logvar = <span class="variable language_">self</span>.encode(x)</span><br><span class="line">        z = <span class="variable language_">self</span>.reparameterization(mean, logvar)</span><br><span class="line">        x_hat = <span class="variable language_">self</span>.decode(z)</span><br><span class="line">        <span class="keyword">return</span> x_hat, mean, log_var</span><br></pre></td></tr></table></figure>
 <h4 id="cnn">CNN</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a neural net class</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    <span class="comment"># Constructor</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, num_classes=<span class="number">3</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(Net, <span class="variable language_">self</span>).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Our images are RGB, so input channels = 3. We&#x27;ll apply 12 filters in the first convolutional layer</span></span><br><span class="line">        <span class="variable language_">self</span>.conv1 = nn.Conv2d(in_channels=<span class="number">3</span>, out_channels=<span class="number">12</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># We&#x27;ll apply max pooling with a kernel size of 2</span></span><br><span class="line">        <span class="variable language_">self</span>.pool = nn.MaxPool2d(kernel_size=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># A second convolutional layer takes 12 input channels, and generates 12 outputs</span></span><br><span class="line">        <span class="variable language_">self</span>.conv2 = nn.Conv2d(in_channels=<span class="number">12</span>, out_channels=<span class="number">12</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># A third convolutional layer takes 12 inputs and generates 24 outputs</span></span><br><span class="line">        <span class="variable language_">self</span>.conv3 = nn.Conv2d(in_channels=<span class="number">12</span>, out_channels=<span class="number">24</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># A drop layer deletes 20% of the features to help prevent overfitting</span></span><br><span class="line">        <span class="variable language_">self</span>.drop = nn.Dropout2d(p=<span class="number">0.2</span>)</span><br><span class="line">        <span class="comment"># Our 128x128 image tensors will be pooled twice with a kernel size of 2. 128/2/2 is 32.</span></span><br><span class="line">        <span class="comment"># So our feature tensors are now 32 x 32, and we&#x27;ve generated 24 of them</span></span><br><span class="line">        <span class="comment"># We need to flatten these and feed them to a fully-connected layer</span></span><br><span class="line">        <span class="comment"># to map them to  the probability for each class</span></span><br><span class="line">        <span class="variable language_">self</span>.fc = nn.Linear(in_features=<span class="number">32</span> * <span class="number">32</span> * <span class="number">24</span>, out_features=num_classes)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># Use a relu activation function after layer 1 (convolution 1 and pool)</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.pool(<span class="variable language_">self</span>.conv1(x)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Use a relu activation function after layer 2 (convolution 2 and pool)</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.pool(<span class="variable language_">self</span>.conv2(x)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Select some features to drop after the 3rd convolution to prevent overfitting</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.drop(<span class="variable language_">self</span>.conv3(x)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Only drop the features if this is a training pass</span></span><br><span class="line">        x = F.dropout(x, training=<span class="variable language_">self</span>.training)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Flatten</span></span><br><span class="line">        x = x.view(-<span class="number">1</span>, <span class="number">32</span> * <span class="number">32</span> * <span class="number">24</span>)</span><br><span class="line">        <span class="comment"># Feed to fully-connected layer to predict class</span></span><br><span class="line">        x = <span class="variable language_">self</span>.fc(x)</span><br><span class="line">        <span class="comment"># Return log_softmax tensor </span></span><br><span class="line">        <span class="keyword">return</span> F.log_softmax(x, dim=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create a neural net class</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Net</span>(nn.Module):</span><br><span class="line">    <span class="comment"># Constructor</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, num_classes=<span class="number">3</span></span>):</span><br><span class="line">        <span class="built_in">super</span>(Net, <span class="variable language_">self</span>).__init__()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Our images are RGB, so input channels = 3. We&#x27;ll apply 12 filters in the first convolutional layer</span></span><br><span class="line">        <span class="variable language_">self</span>.conv1 = nn.Conv2d(in_channels=<span class="number">3</span>, out_channels=<span class="number">12</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># We&#x27;ll apply max pooling with a kernel size of 2</span></span><br><span class="line">        <span class="variable language_">self</span>.pool = nn.MaxPool2d(kernel_size=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># A second convolutional layer takes 12 input channels, and generates 12 outputs</span></span><br><span class="line">        <span class="variable language_">self</span>.conv2 = nn.Conv2d(in_channels=<span class="number">12</span>, out_channels=<span class="number">12</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># A third convolutional layer takes 12 inputs and generates 24 outputs</span></span><br><span class="line">        <span class="variable language_">self</span>.conv3 = nn.Conv2d(in_channels=<span class="number">12</span>, out_channels=<span class="number">24</span>, kernel_size=<span class="number">3</span>, stride=<span class="number">1</span>, padding=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># A drop layer deletes 20% of the features to help prevent overfitting</span></span><br><span class="line">        <span class="variable language_">self</span>.drop = nn.Dropout2d(p=<span class="number">0.2</span>)</span><br><span class="line">        <span class="comment"># Our 128x128 image tensors will be pooled twice with a kernel size of 2. 128/2/2 is 32.</span></span><br><span class="line">        <span class="comment"># So our feature tensors are now 32 x 32, and we&#x27;ve generated 24 of them</span></span><br><span class="line">        <span class="comment"># We need to flatten these and feed them to a fully-connected layer</span></span><br><span class="line">        <span class="comment"># to map them to  the probability for each class</span></span><br><span class="line">        <span class="variable language_">self</span>.fc = nn.Linear(in_features=<span class="number">32</span> * <span class="number">32</span> * <span class="number">24</span>, out_features=num_classes)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># Use a relu activation function after layer 1 (convolution 1 and pool)</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.pool(<span class="variable language_">self</span>.conv1(x)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Use a relu activation function after layer 2 (convolution 2 and pool)</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.pool(<span class="variable language_">self</span>.conv2(x)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Select some features to drop after the 3rd convolution to prevent overfitting</span></span><br><span class="line">        x = F.relu(<span class="variable language_">self</span>.drop(<span class="variable language_">self</span>.conv3(x)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Only drop the features if this is a training pass</span></span><br><span class="line">        x = F.dropout(x, training=<span class="variable language_">self</span>.training)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Flatten</span></span><br><span class="line">        x = x.view(-<span class="number">1</span>, <span class="number">32</span> * <span class="number">32</span> * <span class="number">24</span>)</span><br><span class="line">        <span class="comment"># Feed to fully-connected layer to predict class</span></span><br><span class="line">        x = <span class="variable language_">self</span>.fc(x)</span><br><span class="line">        <span class="comment"># Return log_softmax tensor</span></span><br><span class="line">        <span class="keyword">return</span> F.log_softmax(x, dim=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <h4 id="lstm">LSTM</h4>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_padded_sequence, pad_packed_sequence</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LSTMClassifier</span>(nn.Module):</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, vocab_size, embedding_dim, hidden_dim, output_size</span>):</span><br><span class="line">    <span class="built_in">super</span>(LSTMClassifier, <span class="variable language_">self</span>).__init__()</span><br><span class="line">    <span class="variable language_">self</span>.embedding_dim = embedding_dim</span><br><span class="line">    <span class="variable language_">self</span>.hidden_dim = hidden_dim</span><br><span class="line">    <span class="variable language_">self</span>.vocab_size = vocab_size</span><br><span class="line">    <span class="variable language_">self</span>.embedding = nn.Embedding(vocab_size, embedding_dim)</span><br><span class="line">    <span class="variable language_">self</span>.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=<span class="number">1</span>)</span><br><span class="line">    <span class="variable language_">self</span>.hidden2out = nn.Linear(hidden_dim, output_size)</span><br><span class="line">    <span class="variable language_">self</span>.softmax = nn.LogSoftmax()</span><br><span class="line">    <span class="variable language_">self</span>.dropout_layer = nn.Dropout(p=<span class="number">0.2</span>)</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">init_hidden</span>(<span class="params">self, batch_size</span>):</span><br><span class="line">    <span class="keyword">return</span>(autograd.Variable(torch.randn(<span class="number">1</span>, batch_size, <span class="variable language_">self</span>.hidden_dim)),</span><br><span class="line">            autograd.Variable(torch.randn(<span class="number">1</span>, batch_size, <span class="variable language_">self</span>.hidden_dim)))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, batch, lengths</span>): </span><br><span class="line"></span><br><span class="line">    <span class="variable language_">self</span>.hidden = <span class="variable language_">self</span>.init_hidden(batch.size(-<span class="number">1</span>))</span><br><span class="line">    embeds = <span class="variable language_">self</span>.embedding(batch)</span><br><span class="line">    packed_input = pack_padded_sequence(embeds, lengths)</span><br><span class="line">    outputs, (ht, ct) = <span class="variable language_">self</span>.lstm(packed_input, <span class="variable language_">self</span>.hidden)</span><br><span class="line">    <span class="comment"># ht is the last hidden state of the sequences</span></span><br><span class="line">    <span class="comment"># ht = (1 x batch_size x hidden_dim)</span></span><br><span class="line">    <span class="comment"># ht[-1] = (batch_size x hidden_dim)</span></span><br><span class="line">    output = <span class="variable language_">self</span>.dropout_layer(ht[-<span class="number">1</span>])</span><br><span class="line">    output = <span class="variable language_">self</span>.hidden2out(output)</span><br><span class="line">    output = <span class="variable language_">self</span>.softmax(output)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_padded_sequence, pad_packed_sequence</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LSTMClassifier</span>(nn.Module):</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, vocab_size, embedding_dim, hidden_dim, output_size</span>):</span><br><span class="line">    <span class="built_in">super</span>(LSTMClassifier, <span class="variable language_">self</span>).__init__()</span><br><span class="line">    <span class="variable language_">self</span>.embedding_dim = embedding_dim</span><br><span class="line">    <span class="variable language_">self</span>.hidden_dim = hidden_dim</span><br><span class="line">    <span class="variable language_">self</span>.vocab_size = vocab_size</span><br><span class="line">    <span class="variable language_">self</span>.embedding = nn.Embedding(vocab_size, embedding_dim)</span><br><span class="line">    <span class="variable language_">self</span>.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=<span class="number">1</span>)</span><br><span class="line">    <span class="variable language_">self</span>.hidden2out = nn.Linear(hidden_dim, output_size)</span><br><span class="line">    <span class="variable language_">self</span>.softmax = nn.LogSoftmax()</span><br><span class="line">    <span class="variable language_">self</span>.dropout_layer = nn.Dropout(p=<span class="number">0.2</span>)</span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">init_hidden</span>(<span class="params">self, batch_size</span>):</span><br><span class="line">    <span class="keyword">return</span>(autograd.Variable(torch.randn(<span class="number">1</span>, batch_size, <span class="variable language_">self</span>.hidden_dim)),</span><br><span class="line">            autograd.Variable(torch.randn(<span class="number">1</span>, batch_size, <span class="variable language_">self</span>.hidden_dim)))</span><br><span class="line"></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, batch, lengths</span>):</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">self</span>.hidden = <span class="variable language_">self</span>.init_hidden(batch.size(-<span class="number">1</span>))</span><br><span class="line">    embeds = <span class="variable language_">self</span>.embedding(batch)</span><br><span class="line">    packed_input = pack_padded_sequence(embeds, lengths)</span><br><span class="line">    outputs, (ht, ct) = <span class="variable language_">self</span>.lstm(packed_input, <span class="variable language_">self</span>.hidden)</span><br><span class="line">    <span class="comment"># ht is the last hidden state of the sequences</span></span><br><span class="line">    <span class="comment"># ht = (1 x batch_size x hidden_dim)</span></span><br><span class="line">    <span class="comment"># ht[-1] = (batch_size x hidden_dim)</span></span><br><span class="line">    output = <span class="variable language_">self</span>.dropout_layer(ht[-<span class="number">1</span>])</span><br><span class="line">    output = <span class="variable language_">self</span>.hidden2out(output)</span><br><span class="line">    output = <span class="variable language_">self</span>.softmax(output)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
 <h2 id="references">References</h2>
 <pre><code>1. https://github.com/mrdbourke/pytorch-deep-learning
 2. https://readmedium.com/@rekalantar/variational-auto-encoder-vae-pytorch-tutorial-dce2d2fe0f5f
@@ -2334,430 +2407,8 @@ is drawn from Gaussian Distribution, GDA is the better choice.</p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://chengmingbo.github.io/2017/06/17/sample-variance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Mingbo Cheng">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mingbo">
-      <meta itemprop="description" content="Mingbo">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Mingbo">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/06/17/sample-variance/" class="post-title-link" itemprop="url">样本方差为什么除以N-1?（翻译）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2017-06-17 17:52:38" itemprop="dateCreated datePublished" datetime="2017-06-17T17:52:38+02:00">2017-06-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>原文作者：<a target="_blank" rel="noopener" href="http://www.visiondummy.com/">Vincent Spruy</a></p>
-<p>译者：程明波</p>
-<p><a
-target="_blank" rel="noopener" href="http://www.visiondummy.com/2014/03/divide-variance-n-1/">英文文章地址</a></p>
-<p><a
-href="http://chengmingbo.github.io/2017/06/17/sample-variance/">译文地址</a></p>
-<p>译者注：由于历史原因，高斯分布(Gaussian
-Distribution)，正态分布(Normal Distribution)皆指概率密度函数形如<span
-class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span>的分布。文中我会采用正态分布的提法。</p>
-<h3 id="简介">简介</h3>
-<p>本文，呼应标题，我将推导著名正态分布数据均值和方差的计算公式。如果一些读者对于这个问题的“为什么”并不感兴趣，仅仅是对“什么时候使用”感兴趣，那答案就非常简单了：</p>
-<p>如果你想预估一份数据的均值和方差(典型情况)，那么方差公式除的是<span
-class="math inline">\(N-1\)</span>，即：</p>
-<p><span class="math display">\[\sigma^2 = \frac{1}{N-1}\sum_{i=1}^N
-(x_i - \mu)^2\]</span></p>
-<p>另一种情况，如果整体的真实均值已知，那么方差公式除的就是<span
-class="math inline">\(N\)</span>，即：</p>
-<p><span class="math display">\[\sigma^2 = \frac{1}{N}\sum_{i=1}^N (x_i
-- \mu)^2\]</span></p>
-<p>然而，前一种情况，会是你遇到更典型的情形。一会儿，我会举一个预估高斯白噪音的离散程度例子。例子中高斯白噪音的均值是已知的0，这种情况下，我们只需要估计方差。</p>
-<p>如果数据是正态分布，我们可以完全用均值<span
-class="math inline">\(\mu\)</span>和方差<span
-class="math inline">\(\sigma^2\)</span>刻画这个分布。其中，方差是标准差<span
-class="math inline">\(\sigma\)</span>的平方，标准差代表了每个数据点偏离均值点的平均距离，也就是说，方差表示了数据离散程度。对于正态分布，68.3%的数据的值会介于<span
-class="math inline">\(\mu-\sigma\)</span>和<span
-class="math inline">\(\mu+\sigma\)</span>之间。下面图片展示是一个正态分布的概率密度函数，他的均值是<span
-class="math inline">\(\mu=10\)</span>,方差是<span
-class="math inline">\(\sigma^2=3^2=9\)</span>：</p>
-<p><img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110159.jpg" /></p>
-<p><strong>图1.</strong> 正态分布概率密度函数.
-对于正态分布数据，68%的样本落在均值<span
-class="math inline">\(\pm\)</span>方差。</p>
-<p>通常，我们拿不到全部的全体数据。上面的例子中，典型的情况是我们有一些观察数据，但是，我们没有上图中x轴上所有可能的观察数据。例如我们可能有下面一些观察数据：</p>
-<p>表1</p>
-<table>
-<thead>
-<tr class="header">
-<th>观察数据ID</th>
-<th>观察值</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>观察数据 1</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>观察数据 2</td>
-<td>12</td>
-</tr>
-<tr class="odd">
-<td>观察数据 3</td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>观察数据 4</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>观察数据 5</td>
-<td>11</td>
-</tr>
-</tbody>
-</table>
-<p>现在如果我们通过把所有值相加并除以观察的次数，得到经验均值：</p>
-<p><span
-class="math display">\[\mu=\frac{10+12+7+5+11}{5}=9\tag{1}\]</span>.</p>
-<p>通常，我们会假设经验均值接近分布的未知的真实均值，因此，我们可以假设观测数据来自于均值为<span
-class="math inline">\(\mu=9\)</span>的正态分布。在这个例子中，分布真实均值是10，
-也就是说，经验均值实际上接近于真实均值。</p>
-<p>数据的方差计算如下：</p>
-<p><span class="math display">\[\begin{aligned}\sigma^2&amp;=
-\frac{1}{N-1}\sum_{i=1}^N (x_i - \mu)^2\\&amp;=
-\frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4})\\&amp;=
-8.5.\end{aligned}\tag{2}\]</span></p>
-<p>同样，我们一般假设经验方差接近于基于分布真实未知方差。在此例中，真实方差是9，所以，经验方差也是接近于真实方差。</p>
-<p>那么我们手上的问题现在就是为什么我们用于计算经验均值和经验方差的公式是正确的。事实上，另一个我们经常用于计算方差的公式是这样定义的：</p>
-<p><span class="math display">\[\begin{aligned}\sigma^2 &amp;=
-\frac{1}{N}\sum_{i=1}^N (x_i - \mu)^2 \\&amp;=
-\frac{(10-9)^2+(12-9)^2+(7-9)^2+(5-9)^2+(11-9)^2}{4}) \\&amp;=
-6.8.\end{aligned}\tag{3}\]</span></p>
-<p>公式(2)和公式(3)的唯一不同是前一个公式除的是<span
-class="math inline">\(N-1\)</span>，而后一个除的是<span
-class="math inline">\(N\)</span>。两个公式都是对的，只是根据不同的场景使用不同的公式。</p>
-<p>接下来的部分，我们针对给定一个正态分布的样本集，完成对其未知方差和均值最好估计的完整推导。我们将会看到，一些情况下，方差除的是<span
-class="math inline">\(N\)</span>，另一些情况除的是<span
-class="math inline">\(N-1\)</span>。</p>
-<p>用一个公式近似一个参数(均值或方差)叫做估计量。下面，我们定义一个分布的真实但未知的参数为<span
-class="math inline">\(\hat{\mu}\)</span>和<span
-class="math inline">\(\hat{\sigma}^2\)</span>。而估计量，例如，经验的平均和经验方差，定义为<span
-class="math inline">\(\mu\)</span>和<span
-class="math inline">\(\sigma^2\)</span>。</p>
-<p>为了找到最优的估计量，首先，一个整体均值为<span
-class="math inline">\(\mu\)</span>标准差为<span
-class="math inline">\(\sigma\)</span>的正态分布，对于特定的观察点<span
-class="math inline">\(x_i\)</span>，我们需要一个分析相似的表达式。对于一个已知参数的正态分布一般定义为<span
-class="math inline">\(N(\mu,\sigma^2)\)</span>。似然函数为：</p>
-<p><span class="math display">\[x_i \sim N(\mu,\sigma^2) \Rightarrow
-P(x_i;
-\mu,\sigma)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x-\mu)^2}.\tag{4}\]</span></p>
-<p>为了计算均值和方差，显然，我们需要这个分布一个以上的样本。接下来，设<span
-class="math inline">\(\vec{x}=(x_1,x_2,\cdots,x_N)\)</span>为包含所有的可用样本的向量（例如：表一中所有的值）。如果所有这些样本统计独立，我们可以写出联合似然函数为所有似然函数的乘积：</p>
-<p><span
-class="math display">\[\begin{aligned}P(\vec{x};\mu,\sigma^2)&amp;=P(x_1,x_2,\cdots,x_n;\mu,\sigma^2)\\&amp;=P(x_1;\mu,\sigma^2)P(x_2;\mu,\sigma^2)\cdots
-P(x_N;\mu,\sigma^2)\\&amp;=\prod_{i=1}^{N}P(x_i;\mu,\sigma^2)\end{aligned}.\tag{5}\]</span></p>
-<p>把公式(4)代入公式(5)，可得出联合概率密度函数的分析表达式：</p>
-<p><span
-class="math display">\[\begin{aligned}P({\vec{x};\mu,\sigma})&amp;=\prod_{i=1}^{N}\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(x_i-\mu)^2}\\&amp;=\frac{1}{(2\pi\sigma^2)^{\frac{N}{2}}}e^{-\frac{1}{2\sigma^2}\sum_{i=1}^{N}(x_i-\mu)^2}\end{aligned}.\tag{6}\]</span></p>
-<p>公式(6)在接下来的部分将非常重要。我们会用它推导关于正态分布著名的估计量均值和方差。</p>
-<h3 id="最小方差无偏估计量">最小方差，无偏估计量</h3>
-<p>决定一个估计量是不是“好”估计量，首先我们需要定义什么是真正的“好”
-估计量。说一个估计量好，依赖于两个度量，叫做其偏差(bias)和方差(variance)(是的，我们要讨论均值估计量的方差，以及方差估计量的方差)。本节将简单的讨论这两个度量。</p>
-<h4 id="参数偏差">参数偏差</h4>
-<p>想象一下，如果我们能拿到全体不同的(互斥)数据子集。类比之前的的例子，假设，除了【表1】中的数据，我们还有完全不同观察结果表2及表3。那么，一个关于均值好的估计量，应该使得这个估计量平均下来等于真实的均值。我们可以接受其中一个自己的经验均值不等于真实均值，但是，一个好的估计量应该保证：对于所有子集均值估计的平均值等于真实均值。这个限制条件用数学化的表示，就是估计量的期望值(Expected
-Value)应该等于参数值：</p>
-<p><span class="math display">\[E(\mu)=\hat{\mu}\qquad
-E(\sigma^2)=\hat{\sigma}^2.\tag{7}\]</span></p>
-<p>如果满足上面的条件，那么这些估计量就被称之为“无偏估计”。反之，如果上面的条件不满足，这些估计量叫做“有偏的”，也就是说平均来看，他们或者低估或者高估了参数的真实值。</p>
-<h4 id="参数方差">参数方差</h4>
-<p>无偏估计量保证平均来看，它们估计的值等于真是参数。但是，这并不意味着每次估计是一个好的估计。比如，如果真实均值为10，一个无偏估计量可以估计全体的其中一个子集的均值为50，而另一个均值为-30。期望的估计的值确实是10，也等于真是的参数值，但是，估计量的质量明显依赖每次估计的离散程度。对于全体5个不同子集，一个估计量产生的估计值(10,15,5,12,8)是无偏的和另一个估计量产生的估计值（50，-30，100，-90，20）（译者注：原文作者最后一个是10，我计算换成20，这样均值才是10）。但是第一个估计量的所有估计值明显比第二个估计量的估计值更接近真实值。</p>
-<p>因此，一个好的估计量不仅需要有低偏差，同时也需要低方差。这个方差表示为平均平方误差的估计量：</p>
-<p><span
-class="math display">\[Var(\mu)=E[(\hat{\mu}-\mu)^2]\]</span></p>
-<p><span
-class="math display">\[Var(\sigma^2)=E[(\hat{\sigma}-\sigma)^2]\]</span></p>
-<p>因此一个好的估计量是低偏差，低方差的。如果存在最优的估计量，那么这个估计应该是无偏的，而且方差比所有的其他可能估计量都要低。这样的一个估计量被称之为最小方差，无偏（MVU）估计量。下一节，我们将会针对一个正态分布推导均值和方差估计量的数学表达式。我们将会看到，一个正态分布的方差MVU估计量在一些假设下需要除以<span
-class="math inline">\(N\)</span>，而在另一些假设下需要除以<span
-class="math inline">\(N-1\)</span>。</p>
-<h3 id="最大似然估计">最大似然估计</h3>
-<p>基于整体的一个子集，尽管有大量的获取一个参数估计量的技术，所有这些技术中最简单的可能就数最大似然估计了。</p>
-<p>观察值<span
-class="math inline">\(\vec{x}\)</span>的概率在公式(6)定义为<span
-class="math inline">\(P(\vec{x};\mu,\sigma^2)\)</span>.
-如果我们在此函数中固定<span class="math inline">\(x\)</span>和<span
-class="math inline">\(\sigma^2\)</span>，当使<span
-class="math inline">\(\vec{x}\)</span>变化时，我们就可以获得图(1)的正态分布。但是，我们也可以固定<span
-class="math inline">\(\vec{x}\)</span>，使<span
-class="math inline">\(\mu\)</span>和（或）<span
-class="math inline">\(\sigma^2\)</span>变化。比如，我们可以选择类似前面例子中的<span
-class="math inline">\(\vec{x}=(10,12,7,5,11)\)</span>。我们选择固定<span
-class="math inline">\(\mu=10\)</span>，同时使<span
-class="math inline">\(\sigma^2\)</span>变化。图(2)展示了当<span
-class="math inline">\(x\)</span>和<span
-class="math inline">\(\mu\)</span>固定时，<span
-class="math inline">\(\sigma^2\)</span>对于这个分布取不同值的变化曲线：</p>
-<p><img
-src="http://cmb.oss-cn-qingdao.aliyuncs.com/2017-06-20-110329.jpg" /></p>
-<p>图 2. 此图表示了似然函数在特定观察数据<span
-class="math inline">\(\vec{x}\)</span>，下固定<span
-class="math inline">\(\mu=10\)</span>，<span
-class="math inline">\(\sigma^2\)</span>变化曲线。</p>
-<p>上图，我们通过固定<span
-class="math inline">\(\mu=10\)</span>，令<span
-class="math inline">\(\sigma^2\)</span>变化计算了<span
-class="math inline">\(P(\vec{x};\sigma^2)\)</span>的似然函数。在结果曲线的每一个数据点代表了似然度，观察值<span
-class="math inline">\(\vec{x}\)</span>是一个正态分布在参数<span
-class="math inline">\(\sigma^2\)</span>下的样本。那么对应最大似然度的参数值最有可能是从我们定义的分布中产生数据的参数。因此，我们能通过找到似然度曲线的最大值决定最优的<span
-class="math inline">\(\sigma^2\)</span>。在此例中，最大值在<span
-class="math inline">\(\sigma^2=7.8\)</span>，这样标准差就是<span
-class="math inline">\(\sqrt{(\sigma^2)=2.8}\)</span>。事实上，如果给定<span
-class="math inline">\(\mu=10\)</span>，通过传统的方法计算，我们会发明方差就是7.8：</p>
-<p><span
-class="math display">\[\frac{(10-10)^2+(12-10)^2+(7-10)^2+(5-10)^2+(11-10)^2}{5}=7.8\]</span></p>
-<p>因此，基于样本数据的方差计算公式只需要简单的通过找到最大的似然函数的最高点。此外，除了固定<span
-class="math inline">\(\mu\)</span>，我们可以使<span
-class="math inline">\(\mu\)</span>和<span
-class="math inline">\(\sigma^2\)</span>同时变化。然后找到两个估计量对应在两个维度的似然函数的最大值。</p>
-<p>要找一个函数的最大值，也很简单，只需要求导使其等于0。如果想找一个有两个变量函数的最大值，我们需要计算每个变量的偏导，再把两个偏导全部设置为0。接下来，设<span
-class="math inline">\(\hat{\mu}_{ML}\)</span>为通过极大似然方法得到的总体均值的最优估计量，设<span
-class="math inline">\(\hat{\sigma}^2_ML\)</span>为方差的最优估计量。要最大化似然函数，我们可以简单的计算它的(偏)导数，然后赋值为0，如下：</p>
-<p><span class="math display">\[\begin{aligned} &amp;\hat{\mu}_{ML} =
-\arg\max_\mu P(\vec{x}; \mu, \sigma^2)\\ &amp;\Rightarrow \frac{\partial
-P(\vec{x}; \mu, \sigma^2)}{\partial \mu} = 0 \end{aligned}\]</span></p>
-<p>及</p>
-<p><span class="math display">\[\begin{aligned} &amp;\hat{\sigma}^2_{ML}
-= \arg\max_{\sigma^2} P(\vec{x}; \mu, \sigma^2)\\ &amp;\Rightarrow
-\frac{\partial P(\vec{x}; \mu, \sigma^2)}{\partial \sigma^2} = 0
-\end{aligned}\]</span></p>
-<p>下一节，我们将利用这个技术得到<span
-class="math inline">\(\mu\)</span>和<span
-class="math inline">\(\sigma^2\)</span>的MVU估计量。我们考虑两种情形：</p>
-<p>第一种情形，我们假设分布的真正的均值<span
-class="math inline">\(\hat{\mu}\)</span>是已知的，因此，我们只需要估计方差，那么问题就变成在参数为<span
-class="math inline">\(\sigma^2\)</span>的一维的极大似然函数中对应找其最大值。这种情况不经常出现，但是，在实际应用中确实存在。例如，如果我们知道一个信号(比如：一幅图中一个像素的颜色值)本来应该有特定的值，但是，信号被白噪音污染了（均值为0的高斯噪音），这时分布的均值是已知的，我们只需要估计方差。</p>
-<p>第二种情形就是处理均值和方差的真实值都不知道的情况。这种情况最常见，这时，我们需要基于样本数据估计均值和方差。</p>
-<p>后面我们将看到，每种情形产生不同的MVU估计量。具体来说，第一种情形方差估计量需要除以<span
-class="math inline">\(N\)</span>来标准化MVU。而第二种除的是<span
-class="math inline">\(N-1\)</span>。</p>
-<h3 id="均值已知的方差估计">均值已知的方差估计</h3>
-<h4 id="参数估计">参数估计</h4>
-<p>如果分布的均值真实值已知，那么似然函数只有一个参数<span
-class="math inline">\(\sigma^2\)</span>。求最大似然估计量也就是解决：</p>
-<p><span class="math display">\[\hat{\sigma^2}_{ML}=\arg\max_{\sigma^2}
-P(\vec{x};\sigma^2).\tag{8}\]</span></p>
-<p>但是，根据公式(6)的定义，如果计算<span
-class="math inline">\(P(\vec{x};\sigma^2)\)</span>涉及到计算函数中指数的偏导。事实上，计算对数似然函数比计算似然函数本身的导数要简单的多。因为对数函数是单调递增函数，其最大值取值位置与原似然函数是一样的。因此我们用下面的式子替换：</p>
-<p><span
-class="math display">\[\hat{\sigma}^2_{ML}=\arg\max_{\sigma^2}\log(P(\vec{x};\sigma^2)).\tag{9}\]</span></p>
-<p>下面，我令<span
-class="math inline">\(s=\sigma^2\)</span>简化式子。我们通过计算公式(6)的对数的导数赋值为0来最大化对数似然函数：</p>
-<p><span class="math display">\[\begin{aligned}&amp;\frac{\partial
-\log(P(\vec{x};\sigma^2))}{\partial
-\sigma^2}=0\\&amp;\Leftrightarrow\frac{\partial\log(P(\vec{x};s))}{\partial
-s}=0\\&amp;\Leftrightarrow\frac{\partial}{\partial
-s}\log\left(\frac{1}{(2\pi
-s)^{\frac{N}{2}}}e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2}
-\right)=0\\&amp;\Leftrightarrow\frac{\partial}{\partial
-s}\log\left(\frac{1}{(2\pi)^{\frac{N}{2}}}\right)+\frac{\partial}{\partial
-s}\log\left(\frac{1}{\sqrt{s}^\frac{N}{2}}\right)+\frac{\partial}{\partial
-s} \log\left(e^{-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2}\right
-)=0\\&amp;\Leftrightarrow0+\frac{\partial}{\partial
-s}\log\left((s)^{-\frac{N}{2}}\right)+\frac{\partial}{\partial
-s}\left(-\frac{1}{2s}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\\&amp;\Leftrightarrow
--\frac{N}{2}\log (s)+\frac{1}{2
-s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\\&amp;\Leftrightarrow
--\frac{N}{2s}+\frac{1}{2s^2}\sum_{i=1}^{N}(x_i-\mu)^2=0\\&amp;\Leftrightarrow
-\frac{N}{2s^2}\left(-s+\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2\right)=0\\&amp;\Leftrightarrow\frac{N}{2s^2}\left(\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2-s\right)=0\end{aligned}\]</span></p>
-<p>很明显，如果<span
-class="math inline">\(N&gt;0\)</span>，那么上面等式唯一的解就是：</p>
-<p><span
-class="math display">\[s=\sigma^2=\frac{1}{N}\sum_{i=1}^{N}(x_i-\mu)^2.\tag{10}\]</span></p>
-<p>注意到，实际上<span
-class="math inline">\(\hat{\sigma}^2\)</span>的极大似然估计估计量就是传统上一般计算方差的公式。这里标准化因子是<span
-class="math inline">\(\frac{1}{N}\)</span>.</p>
-<p>但是，极大似然估计并不保证得出的是一个无偏估计量。另外，就算得到的估计量是无偏的，极大似然估计也不能保证估计是最小方差，即MVU。因此，我们需要检查公式(10)的的估计量是否是无偏的。</p>
-<h4 id="表现评价">表现评价</h4>
-<p>我们需要检查公式(7)的等式是否成立，来确定是否公式(10)中的估计量是无偏的。即判断：</p>
-<p><span class="math display">\[E(s)=\hat{s}.\]</span></p>
-<p>我们把公式(10)代入到<span
-class="math inline">\(E(s)\)</span>，计算：</p>
-<p><span class="math display">\[\begin{aligned}E[s] &amp;= E
-\left[\frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2 \right] = \frac{1}{N}
-\sum_{i=1}^N E \left[(x_i - \mu)^2 \right] = \frac{1}{N} \sum_{i=1}^N E
-\left[x_i^2 - 2x_i \mu + \mu^2 \right]\\&amp;= \frac{1}{N} \left( N
-E[x_i^2] -2N \mu E[x_i] + N \mu^2 \right)\\&amp;= \frac{1}{N} \left( N
-E[x_i^2] -2N \mu^2 + N \mu^2 \right)\\&amp;= \frac{1}{N} \left( N
-E[x_i^2] -N \mu^2 \right)\end{aligned}\]</span></p>
-<p>另外，真实方差<span class="math inline">\(\hat{s}\)</span>有一个<a
-target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Variance#Definition">非常重要的性质</a>为<span
-class="math inline">\(\hat{s}=E[x_i^2]-E[x_i]^2\)</span>，可变换公式为<span
-class="math inline">\(E[x_i^2]=\hat{s}+E[x_i]^2=\hat{s}+\mu^2\)</span>。使用此性质我们可能从上面的公式推出：</p>
-<p><span class="math display">\[\begin{aligned}E[s]&amp;=\frac{1}{N}(N
-E[x_i^2]-N\mu^2)\\&amp;=\frac{1}{N}(N\hat{s}+N\mu^2-N\mu^2)\\&amp;=\frac{1}{N}(N\hat{s})\\&amp;=\hat{s}\end{aligned}\]</span></p>
-<p>满足了公式(7)的条件<span class="math inline">\(E[s]=\hat
-s\)</span>，因此，我们得到的数据方差<span class="math inline">\(\hat
-s\)</span>的统计量是无偏的。此外，因为极大似然估计的如果是一个无偏的估计量，那么也是最小方差(MVU)，也就是说，我们得到的估计量比任何一个其他的估计量都大。</p>
-<p>因此，在分布真实均值已知的情况下，我们不用除以<span
-class="math inline">\(N-1\)</span>，而是用除<span
-class="math inline">\(N\)</span>计算正态分布的方差。</p>
-<h3 id="均值未知的方差估计">均值未知的方差估计</h3>
-<h4 id="参数估计-1">参数估计</h4>
-<p>上一节，分布的真实均值已知，因此，我们只需要估计数据的方差。但是，如果真实的均值未知，我们均值的估计量就也需要计算了。</p>
-<p>此外，方差的估计量需要使用均值的估计量。我们会看到，这时，之前我们得到的方差的估计量就不再无偏了。我们一会儿会通过除以N-1，而不是N来稍微的增加方差估计量的值，从而使方差估计无偏。</p>
-<p>与之前一样，基于log似然函数，我们用极大似然估计计算两个估计量。首先我们先计算<span
-class="math inline">\(\hat\mu\)</span>的极大似然估计量：</p>
-<p><span class="math display">\[\begin{aligned}&amp;\frac{\partial
-\log(P(\vec{x}; s, \mu))}{\partial \mu} = 0\\&amp;\Leftrightarrow
-\frac{\partial}{\partial \mu} \log \left( \frac{1}{(2 \pi
-s)^{\frac{N}{2}}} e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) =
-0\\&amp;\Leftrightarrow \frac{\partial}{\partial \mu} \log \left(
-\frac{1}{(2 \pi)^{\frac{N}{2}}} \right) + \frac{\partial}{\partial \mu}
-\log \left(e^{-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2} \right) =
-0\\&amp;\Leftrightarrow \frac{\partial}{\partial \mu}
-\left(-\frac{1}{2s}\sum_{i=1}^N(x_i - \mu)^2 \right) =
-0\\&amp;\Leftrightarrow -\frac{1}{2s}\frac{\partial}{\partial \mu}
-\left(\sum_{i=1}^N(x_i - \mu)^2 \right) = 0\\&amp;\Leftrightarrow
--\frac{1}{2s} \left(\sum_{i=1}^N -2(x_i - \mu) \right) =
-0\\&amp;\Leftrightarrow \frac{1}{s} \left(\sum_{i=1}^N (x_i - \mu)
-\right) = 0 \\&amp;\Leftrightarrow \frac{N}{s} \left( \frac{1}{N}
-\sum_{i=1}^N (x_i) - \mu \right) = 0 \end{aligned}\]</span></p>
-<p>显然，如果<span
-class="math inline">\(N&gt;0\)</span>，那么上面的等式只有一种解：</p>
-<p><span
-class="math display">\[\mu=\frac{1}{N}\sum_{i=1}^{N}x_i.\tag{11}\]</span></p>
-<p>注意到，实际的这是计算一个分布均值的著名公式。虽然我们知道这个公式，但我们现在证明了极大似然估计量估计了一个正态分布未知均值的真实值。现在我们先假定我们之前公式(10)计算的方差<span
-class="math inline">\(\hat
-s\)</span>的估计量仍然是MVU方差估计量。但下一节我们会证明这个估计量已经是有偏的了。</p>
-<h4 id="表现评价-1">表现评价</h4>
-<p>我们需要通过检查估计量<span
-class="math inline">\(\mu\)</span>对真实<span class="math inline">\(\hat
-\mu\)</span>的估计是否无偏来确定公式(7)的条件能否成立：</p>
-<p><span
-class="math display">\[E[\mu]=E\left[\frac{1}{N}\sum_{i=1}^{N}x_i\right]=\frac{1}{N}\sum_{i=1}^N
-E[x_i]=\frac{1}{N}N E[x_i]=\frac{1}{N} N \hat\mu=\hat\mu.\]</span></p>
-<p>既然<span
-class="math inline">\(E[\mu]=\hat\mu\)</span>，那么也就是说我们对分布均值的估计量是无偏的。因为极大似然估计可以保证在估计是无偏的情况下得到的是最小方差估计量，所以我们就已经是证明了<span
-class="math inline">\(\mu\)</span>是均值的MVU估计量。</p>
-<p>现在我们检查基于经验均值<span
-class="math inline">\(\mu\)</span>，而不是真实均值<span
-class="math inline">\(\hat\mu\)</span>的方差估计量<span
-class="math inline">\(s\)</span>对真实方差<span
-class="math inline">\(\hat
-s\)</span>的估计身上仍然是无偏的。我们只需要把得到的估计量<span
-class="math inline">\(\mu\)</span>带入到之前在公式(10)推导出的公式：</p>
-<p><span class="math display">\[\begin{aligned} s &amp;= \sigma^2 =
-\frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\\&amp;=\frac{1}{N}\sum_{i=1}^N
-\left(x_i - \frac{1}{N} \sum_{i=1}^N (x_i)
-\right)^2\\&amp;=\frac{1}{N}\sum_{i=1}^N \left[x_i^2 - 2 x_i \frac{1}{N}
-\sum_{i=1}^N (x_i) + \left(\frac{1}{N} \sum_{i=1}^N (x_i) \right)^2
-\right]\\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i
-\sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N}
-\right)^2\\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \frac{2\sum_{i=1}^N x_i
-\sum_{i=1}^N x_i}{N^2} + \left(\frac{\sum_{i=1}^N x_i}{N}
-\right)^2\\&amp;=\frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N
-x_i}{N} \right)^2\end{aligned}\]</span></p>
-<p>现在我们需要再次检查公式(7)的条件是否成立，来决定估计量是否无偏：</p>
-<p><span class="math display">\[\begin{aligned} E[s]&amp;= E \left[
-\frac{\sum_{i=1}^N x_i^2}{N} - \left(\frac{\sum_{i=1}^N x_i}{N}
-\right)^2 \right ]\\&amp;= \frac{\sum_{i=1}^N E[x_i^2]}{N} -
-\frac{E[(\sum_{i=1}^N x_i)^2]}{N^2} \end{aligned}\]</span></p>
-<p>记得我们在之前用过方差一个非常重要的性质，真实方差<span
-class="math inline">\(\hat s\)</span>可以写成<span
-class="math inline">\(\hat s = E[x_i^2]-E[x_i]^2\)</span>，即，<span
-class="math inline">\(E[x_i^2]=\hat s + E[x_i]^2=\hat s
-+\mu^2\)</span>。利用这个性质我们可以推出：</p>
-<p><span class="math display">\[\begin{aligned} E[s] &amp;=
-\frac{\sum_{i=1}^N E[x_i^2]}{N} - \frac{E[(\sum_{i=1}^N
-x_i)^2]}{N^2}\\&amp;= s + \mu^2 - \frac{E[(\sum_{i=1}^N
-x_i)^2]}{N^2}\\&amp;= s + \mu^2 - \frac{E[\sum_{i=1}^N x_i^2 + \sum_i^N
-\sum_{j\neq i}^N x_i x_j]}{N^2}\\&amp;= s + \mu^2 - \frac{E[N(s+\mu^2) +
-\sum_i^N \sum_{j\neq i}^N x_i x_j]}{N^2}\\&amp;= s + \mu^2 -
-\frac{N(s+\mu^2) + \sum_i^N \sum_{j\neq i}^N E[x_i] E[x_j]}{N^2}\\&amp;=
-s + \mu^2 - \frac{N(s+\mu^2) + N(N-1)\mu^2}{N^2}\\&amp;= s + \mu^2 -
-\frac{N(s+\mu^2) + N^2\mu^2 -N\mu^2}{N^2}\\&amp;= s + \mu^2 -
-\frac{s+\mu^2 + N\mu^2 -\mu^2}{N}\\&amp;= s + \mu^2 - \frac{s}{N} -
-\frac{\mu^2}{N} - \mu^2 + \frac{\mu^2}{N}\\&amp;= s -
-\frac{s}{N}\\&amp;= s \left( 1 - \frac{1}{N} \right)\\&amp;= s
-\left(\frac{N-1}{N} \right) \end{aligned}\]</span></p>
-<p>显然<span class="math inline">\(E[s]\neq\hat
-s\)</span>，上面公式可知分布的方差估计量不再是无偏的了。事实上，平均来看，这个估计量低估了真实方差，比例为<span
-class="math inline">\(\frac{N-1}{N}\)</span>。当样本的数量趋于无穷时(<span
-class="math inline">\(N\rightarrow\infty\)</span>)，这个偏差趋近于0。但是对于小的样本集，这个偏差就意义了，需要被消除。</p>
-<h4 id="修正偏差">修正偏差</h4>
-<p>因为偏差不过是一个因子，我们只需通过对公式(10)的估计量乘以偏差的倒数。这样我们就可以定义一个如下的无偏的估计量<span
-class="math inline">\(s\prime\)</span>：</p>
-<p><span class="math display">\[\begin{aligned} s\prime &amp;= \left (
-\frac{N-1}{N} \right )^{-1} s\\s\prime &amp;= \left ( \frac{N-1}{N}
-\right )^{-1} \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\\s\prime &amp;=\left
-( \frac{N}{N-1} \right ) \frac{1}{N}\sum_{i=1}^N(x_i - \mu)^2\\s\prime
-&amp;= \frac{1}{N-1}\sum_{i=1}^N(x_i - \mu)^2\end{aligned}\]</span></p>
-<p>这个估计量现在就是无偏的了，事实上，这个公式与传统计算方差的公式非常像，不同的是除的是<span
-class="math inline">\(N-1\)</span>而不是<span
-class="math inline">\(N\)</span>。然而，你可能注意到这个估计量不再是最小方差估计量，但是这个估计量是所有无偏估计量中最小方差的一个。如果我们除以<span
-class="math inline">\(N\)</span>，那么估计量就是有偏的了，如果我们除以<span
-class="math inline">\(N-1\)</span>，估计量就不是最小方差估计量。但大体来说，一个有偏的估计量要比一个稍高一点方差的估计量要糟糕的多。因此，如果当总体的均值是未知的情况下，方差除的是<span
-class="math inline">\(N-1\)</span>，而不是<span
-class="math inline">\(N\)</span>。</p>
-<h3 id="总结">总结</h3>
-<p>本文，我们推导了如果从分布数据中计算常见的方差和均值公式。此外，我们还证明了在方差估计中，标准化因子在总体均值已知时是<span
-class="math inline">\(\frac{1}{N}\)</span>，在均值也需要估计时是<span
-class="math inline">\(\frac{1}{N-1}\)</span>。</p>
-<p><a
-target="_blank" rel="noopener" href="http://cmb.oss-cn-qingdao.aliyuncs.com/%E6%A0%B7%E6%9C%AC%E6%96%B9%E5%B7%AE%E4%B8%BA%E4%BB%80%E4%B9%88%E9%99%A4%E4%BB%A5N-1%3F%EF%BC%88%E7%BF%BB%E8%AF%91%EF%BC%89.pdf">本文PDF</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -2768,7 +2419,7 @@ target="_blank" rel="noopener" href="http://cmb.oss-cn-qingdao.aliyuncs.com/%E6%
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class=""></i>
     </span>
